@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <style>
+    /* 面包屑导航对齐优化 */
+    .breadcrumb-bar-fix {
+      height: 44px !important;
+      min-height: 44px !important;
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 8px 0 rgba(59,130,246,0.07);
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 40;
+    }
+    .breadcrumb-inner-fix {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 44px;
+      font-size: 1rem;
+    }
+    .breadcrumb-inner-fix a, .breadcrumb-inner-fix span {
+      line-height: 1.8;
+      display: flex;
+      align-items: center;
+      position: relative;
+      top: 2px;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="旅人教育 TABITO｜日本留学升学指导：美术升学、共通考试、EJU指导。专业导师团队，个性化规划，助你实现日本名校梦想。">
+  <link rel="icon" href="images/logo1.png">
+  <title>日本留学｜旅人教育 TABITO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#F97316',
+            light: '#EFF6FF'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(249,115,22,0.1) 100%);
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #3B82F6, #F97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hover-lift:hover {
+      transform: translateY(-5px);
+    }
+    .table-cell {
+      border: 1px solid #E5E7EB;
+      padding: 12px 8px;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      transform: translateY(-8px);
+    }
+    .btn-primary {
+      padding: 1rem 2rem;
+      background-color: #3B82F6;
+      color: white;
+      font-weight: bold;
+      border-radius: 9999px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background-color: #2563EB;
+      transform: scale(1.05) translateY(-2px);
+    }
+    .btn-secondary {
+      padding: 1rem 2rem;
+      background-color: #F97316;
+      color: white;
+      font-weight: bold;
+      border-radius: 9999px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-secondary:hover {
+      background-color: #EA580C;
+      transform: scale(1.05) translateY(-2px);
+    }
+    .img-align-top {
+      object-position: top;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 scroll-smooth">
+
+  <!-- Fixed Navigation -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+ 
+         <a href="#" onclick="showPage('home')" class="flex items-center space-x-2">
+          <img src="images/logo1.png" alt="旅人教育LOGO" class="h-12 w-auto">
+          <span class="text-2xl font-black gradient-text">旅人教育 TABITO</span>
+        </a>
+
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-6">
+          <a href="#" onclick="showPage('home')" class="nav-link font-medium transition-colors duration-200 text-primary font-bold" data-page="home">首页</a>
+          <a href="#" onclick="showPage('art')" class="nav-link font-medium transition-colors duration-200 hover:text-primary" data-page="art">美术升学</a>
+          <a href="#" onclick="showPage('kyotsu')" class="nav-link font-medium transition-colors duration-200 hover:text-primary" data-page="kyotsu">共通考试</a>
+          <a href="#" onclick="showPage('eju')" class="nav-link font-medium transition-colors duration-200 hover:text-primary" data-page="eju">EJU升学</a>
+          <a href="#company" class="font-medium hover:text-primary transition-colors duration-200">公司介绍</a>
+          <a href="#contact" class="font-medium hover:text-primary transition-colors duration-200">联系我们</a>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-light transition-colors duration-200" id="mobileMenuBtn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden mt-4 py-4 border-t border-gray-100 hidden">
+        <div class="flex flex-col space-y-3">
+          <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="mobile-nav-link font-medium transition-colors duration-200 py-2 text-primary font-bold" data-page="home">首页</a>
+          <a href="#" onclick="showPage('art'); toggleMobileMenu()" class="mobile-nav-link font-medium transition-colors duration-200 py-2 hover:text-primary" data-page="art">美术升学</a>
+          <a href="#" onclick="showPage('kyotsu'); toggleMobileMenu()" class="mobile-nav-link font-medium transition-colors duration-200 py-2 hover:text-primary" data-page="kyotsu">共通考试</a>
+          <a href="#" onclick="showPage('eju'); toggleMobileMenu()" class="mobile-nav-link font-medium transition-colors duration-200 py-2 hover:text-primary" data-page="eju">EJU升学</a>
+          <a href="#company" onclick="toggleMobileMenu()" class="font-medium hover:text-primary transition-colors duration-200 py-2">公司介绍</a>
+          <a href="#contact" onclick="toggleMobileMenu()" class="font-medium hover:text-primary transition-colors duration-200 py-2">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+ 
+
+  <!-- Floating Consult Button -->
+  <a href="#contact" class="fixed z-50 right-6 bottom-6 bg-secondary text-white px-6 py-4 rounded-full shadow-2xl font-bold hover:bg-orange-600 transition-all hover:scale-110 animate-float">
+    💬 立即咨询
+  </a>
+
+  <div id="home" class="page-section active"><!-- 首页 -->
+
+    <!-- 面包屑导航（首页专用，固定在导航栏下方） -->
+    <div id="breadcrumb-home" class="breadcrumb-bar-fix fixed left-0 top-[72px] w-full">
+      <div class="breadcrumb-inner-fix">
+        <a href="#" onclick="showPage('home')" class="hover:text-primary text-primary font-bold">首页</a>
+      </div>
+    </div>
+    <div style="height:44px;"></div>
+
+
+
+    <!-- 英雄区域 主页 -->
+    <section class="relative min-h-[110vh] flex items-center justify-center hero-bg pt-20">
+      <div class="absolute inset-0 overflow-hidden">
+        <img src="images/hero_background_4.jpg" alt="日本大学校园" class="w-full h-full object-cover opacity-20 img-align-top">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+      </div>
+      
+      <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+          
+          <span class="text-gray-600 text-xl">实现你的日本名校梦想！</span><br>
+          <span class="gradient-text">あなたの夢へ</span><br>
+          <span class="text-gray-800"></span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl mb-12 text-gray-700 max-w-4xl mx-auto font-medium leading-relaxed">
+          专业日本升学指导服务，为你量身定制最适合的升学路径<br>
+          <span class="text-secondary font-bold">美术升学 • 共通考试 • EJU指导</span> - 让每一个梦想都有实现的可能！
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-6 mb-16">
+          <a href="#" onclick="showPage('art')" class="btn-primary">
+            🎨 美术升学指导
+          </a>
+          <a href="#" onclick="showPage('kyotsu')" class="btn-secondary">
+            📚 共通考试指导
+          </a>
+          <a href="#" onclick="showPage('eju')" class="btn-primary">
+            📖 EJU升学指导
+          </a>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">简化流程</div>
+            <div class="text-gray-600">省略笔试面试</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">走向名校</div>
+            <div class="text-gray-600">通过共通テスト方式</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">专业经验</div>
+            <div class="text-gray-600">顶尖学校出身教师</div>
+          </div>
+        </div>
+      </div>
+    </section>
+      <!-- 共通考试项目科普 -->
+      <section class="py-16 bg-gradient-to-br from-blue-50 via-white to-blue-100">
+      <div class="max-w-5xl mx-auto px-4">
+    
+      <h2 class="text-3xl md:text-4xl font-black mb-6 gradient-text drop-shadow">什么是共通考试？</h2>
+      <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+        &nbsp;&nbsp;&nbsp;&nbsp;日本大学入学共通考试（<b class="text-primary">共通テスト</b>）是日本全国统一实施的高考类考试，由大学入试中心主办，每年一月举行。所有国公立大学原则上都必须使用共通考试成绩，绝大部分私立大学也开设了“共通利用方式”，直接采纳共通考试的分数进行录取。考试科目覆盖外语、数学、理科、文科等，形式以笔试为主，公平公开。
+      </p>
+
+      <h3 class="text-2xl font-bold mb-4 gradient-text">外国人留学生也可以参加！</h3>
+      <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+        &nbsp;&nbsp;&nbsp;&nbsp;外国留学生只要完成了<b class="text-secondary">12年高中教育</b>，即可和日本考生一样报考共通考试，无需额外资格限制。这意味着中国高中毕业生<span class="text-primary font-bold">完全无需语言学校</span>,可以选择共通考试作为进入日本大学的升学途径。
+      </p>
+
+      <div class="bg-gradient-to-br from-primary/10 to-blue-100/60 rounded-2xl p-8 shadow-lg mb-10 border border-blue-100">
+        <h3 class="text-2xl font-bold mb-4 gradient-text">为什么共通考试对中国学生有优势？</h3>
+        <ul class="list-disc list-inside text-gray-700 text-lg space-y-2">
+          <li><b class="text-primary">中文可作为外语科目</b>：平均分长期最高，许多中国学生能轻松考到180分以上（满分200）。</li>
+          <li><b class="text-primary">无需语言学校</b>：可直接参加考试并申请大学，比EJU节省部分时间。</li>
+          <li><b class="text-primary">无需笔试/面试</b>：多数大学仅凭共通成绩即可申请，规避了EJU和校内考中的面试主观性。</li>
+          <li><b class="text-primary">透明度高</b>：考试当天即公布标准答案，考生能立即估分并合理填报志愿。</li>
+        </ul>
+      </div>
+
+      <p class="text-gray-700 text-lg">
+        对于目标明确、预算有限、希望快速入学的中国留学生，<span class="font-bold text-primary">共通考试</span>是一条高效、公平、优势明显的升学新路径。
+      </p>
+
+  </div>
+</section>
+
+    <!-- 服务项目介绍 -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">专业升学服务</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            根据每位学生的背景和兴趣，提供个性化的升学指导方案
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- 美术主页 升学服务卡片 -->
+          <div class="feature-card">
+            <div class="text-4xl mb-4">🎨</div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">美术升学指导</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              专门针对美术类专业的升学指导，包括作品集准备、面试技巧、院校选择等全方位支持。
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                作品集制作指导
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                美术院校选择建议
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                面试技巧培训
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                专业日语指导
+              </li>
+            </ul>
+            <a href="#" onclick="showPage('art')" class="btn-primary w-full block text-center">
+              了解详情
+            </a>
+          </div>
+
+          <!-- 共通考试服务卡片 -->
+          <div class="feature-card">
+            <div class="text-4xl mb-4">📚</div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">共通考试指导</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              专注于日本共通考试路线，为留学生提供高效的升学捷径，成本更低、机会更多。
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                共通考试专项培训
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                国公立大学升学指导
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                过往数据分析
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                升学规划咨询
+              </li>
+            </ul>
+            <a href="#" onclick="showPage('kyotsu')" class="btn-secondary w-full block text-center">
+              了解详情
+            </a>
+          </div>
+
+          <!-- EJU升学服务卡片 -->
+          <div class="feature-card">
+            <div class="text-4xl mb-4">📖</div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">EJU升学指导<br>（目前仅开展一对一）</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+             大学择校指导
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                文书写作指导
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                大学升学指导
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                面试模拟训练
+              </li>
+              <li class="flex items-center text-gray-700">
+                <span class="text-green-500 mr-2">✓</span>
+                出愿手续指导
+              </li>
+            </ul>
+            <a href="#" onclick="showPage('eju')" class="btn-primary w-full block text-center">
+              了解详情
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 师资团队简介 -->
+    <section class="py-20 bg-gradient-to-br from-light to-blue-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">专业师资团队</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            名校毕业的专业导师，为你的升学之路保驾护航
+          </p>
+        </div>
+        
+        <!-- 3行，每行三个，仅展示姓名与出身大学（使用三列网格固定布局） -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 justify-items-stretch max-w-3xl mx-auto px-2 md:px-0">
+          <!-- Row 1 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_ji.jpg" alt="籍老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-primary shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">籍老师</h3>
+              <div class="bg-gradient-to-r from-primary to-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">东京理科大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_li.jpg" alt="李老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-secondary shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">李老师</h3>
+              <div class="bg-gradient-to-r from-secondary to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold">东北大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_lu.jpg" alt="陆老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-primary shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">陆老师</h3>
+              <div class="bg-gradient-to-r from-primary to-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">东京科学大学出身</div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_zhou.jpg" alt="周老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-green-600 shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">周老师</h3>
+              <div class="bg-gradient-to-r from-green-600 to-lime-400 text-white px-4 py-2 rounded-full text-sm font-bold">筑波大学出身</div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_ni.jpg" alt="妮老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-blue-500 shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">妮老师</h3>
+              <div class="bg-gradient-to-r from-blue-500 to-green-400 text-white px-4 py-2 rounded-full text-sm font-bold">多摩美术大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_tang.jpg" alt="汤老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-secondary shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">汤老师</h3>
+              <div class="bg-gradient-to-r from-secondary to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold">多摩美术大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_liu.jpg" alt="刘老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-blue-500 shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">刘老师</h3>
+              <div class="bg-gradient-to-r from-blue-500 to-green-400 text-white px-4 py-2 rounded-full text-sm font-bold">京都大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_wu.jpg" alt="吴老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-secondary shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">吴老师</h3>
+              <div class="bg-gradient-to-r from-secondary to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold">东京理科大学出身</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift transition-all duration-300 hover:shadow-xl w-full">
+            <div class="text-center">
+              <img src="images/teacher_yang.jpg" alt="杨老师" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-green-600 shadow-lg" loading="lazy">
+              <h3 class="text-xl font-black text-gray-800 mb-2">杨老师</h3>
+              <div class="bg-gradient-to-r from-green-600 to-lime-400 text-white px-4 py-2 rounded-full text-sm font-bold">顺天堂大学出身</div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+    <!-- 成功案例展示 -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">成功案例</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+           专业指导 见证每一份成功
+          </p>
+        </div>
+        
+        <div class="bg-gradient-to-br from-light to-white rounded-3xl p-8 shadow-2xl">
+          <img src="images/success_students1.png" alt="成功学生" class="w-full h-64 object-cover rounded-2xl mb-8" loading="lazy">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="text-center">
+              <div class="text-3xl font-black text-secondary mb-2">成功合格学生</div>
+              <div class="text-gray-600 mb-4">涵盖</div>
+              <p class="text-sm text-gray-500">
+                东京理科大学、法政大学、多摩美术大学、等知名院校
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-secondary mb-2">95%+</div>
+              <div class="text-gray-600 mb-4">合格率</div>
+              <p class="text-sm text-gray-500">
+                截至目前，无须多言
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 公司概要 -->
+    <section id="company" class="py-20 bg-gradient-to-br from-blue-50 via-white to-orange-50 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
+          <div>
+            <div class="inline-flex items-center px-4 py-2 mb-6 bg-white border border-blue-100 rounded-full text-primary font-bold shadow-sm">
+              教育服务企业
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black mb-6 gradient-text leading-tight">中国旅人教育集団株式会社</h2>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">概述</h3>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 Ferris大厦4层。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。
+            </p>
+          </div>
+
+          <div class="border-l-4 border-primary pl-6 md:pl-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">基本信息</h3>
+            <dl class="space-y-5">
+              <div>
+                <dt class="text-sm font-bold text-primary mb-1">中文名</dt>
+                <dd class="text-gray-800 font-medium">中国旅人教育集团株式会社</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-bold text-primary mb-1">成立时间</dt>
+                <dd class="text-gray-800 font-medium">2025年3月27日</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-bold text-primary mb-1">核心业务</dt>
+                <dd class="text-gray-800 font-medium">留学服务</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-bold text-primary mb-1">总部地址</dt>
+                <dd class="text-gray-800 font-medium leading-relaxed">日本东京都中野区中野1-55-3 Ferris大厦4层</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-14 pt-10 border-t border-gray-200">
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">发展历程</h3>
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+              <p><span class="font-bold text-primary">2025年5月8日</span>设立国际贸易部；10月启动日本语言学校及旅行资质申办，并在东京都青梅市购置项目用地。</p>
+              <p><span class="font-bold text-primary">2026年1月起</span>在河北省沧州市筹办国际高中。</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">分支机构</h3>
+            <p class="text-gray-700 leading-relaxed mb-3">公司在中国设有：</p>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start"><span class="text-secondary mr-2">●</span><span>沧州旅人教育科技有限公司</span></li>
+              <li class="flex items-start"><span class="text-secondary mr-2">●</span><span>沧州旅者教育科技有限公司</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">管理团队</h3>
+            <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-gray-700">
+              <dt class="font-bold text-gray-800">董事长</dt><dd>籍诚</dd>
+              <dt class="font-bold text-gray-800">专务董事</dt><dd>汤阳</dd>
+              <dt class="font-bold text-gray-800">常务董事</dt><dd>吴子吟</dd>
+              <dt class="font-bold text-gray-800">董事</dt><dd>刘可惟</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系咨询区域 -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">开始你的升学之旅</h2>
+        <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          专业的升学指导团队随时为你提供咨询服务，让我们一起规划你的日本升学路径
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white rounded-2xl p-8 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">微信咨询</h3>
+            <img src="images/wechat_qr1.jpeg" alt="微信二维码" class="w-32 h-32 mx-auto mb-4 rounded-lg" loading="lazy">
+            <p class="text-gray-600">扫码添加微信好友</p>
+            <p class="text-sm text-gray-500">咨询时间：9:00-21:00 全年无休</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">QQ咨询</h3>
+            <img src="images/qq_qr1.jpeg" alt="QQ二维码" class="w-32 h-32 mx-auto mb-4 rounded-lg" loading="lazy">
+            <p class="text-gray-600">扫码添加QQ好友</p>
+            <p class="text-sm text-gray-500">咨询时间：9:00-21:00 全年无休</p>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="#contact" class="btn-primary">
+            📞 立即咨询
+          </a>
+          <a href="#contact" class="btn-secondary">
+            📄 获取升学规划
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+ 
+<div id="art" class="page-section"> <!-- 美术升学指导页面  美术主页-->
+    <!-- 统一样式固定面包屑导航 -->
+    <div class="breadcrumb-bar-fix fixed left-0 top-[72px] w-full">
+      <div class="breadcrumb-inner-fix">
+        <a href="#" onclick="showPage('home')" class="hover:text-primary text-primary font-bold">首页</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="font-bold text-gray-600">美术升学指导</span>
+      </div>
+    </div>
+    <div style="height:44px;"></div>
+
+      
+    
+
+  <!-- 英雄区域 -->
+  <section class="relative min-h-[120vh] flex items-center justify-center hero-bg pt-32"><!--英雄区域-->
+        <div class="absolute inset-0 overflow-hidden">
+          <img src="images/hero_background_5.jpg" alt="美术院校" class="w-full h-full object-cover opacity-20 img-align-top">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+          <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            <span class="gradient-text">美術の力で</span><br>
+            <span class="text-gray-800">大学への扉を！</span>
+          </h1>
+          
+          <p class="text-xl md:text-2xl mb-12 text-gray-700 max-w-4xl mx-auto font-medium leading-relaxed">
+            专业的美术升学指导，从<span class="text-secondary font-bold">作品集制作</span>到<span class="text-primary font-bold">合格</span>，<br>
+            助你进入东京艺术大学、多摩美术大学等顶尖美术院校！
+          </p>
+          
+          <div class="flex flex-wrap justify-center gap-6 mb-16">
+            <a href="#art-portfolio" class="btn-primary">
+              🎨 作品集指导
+            </a>
+            <a href="#contact" class="btn-secondary">
+              📞 预约咨询
+            </a>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+              <div class="text-3xl font-black text-secondary mb-2">系统课程</div>
+              <div class="text-gray-600">从基础到深入覆盖</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+              <div class="text-3xl font-black text-secondary mb-2">共通利用</div>
+              <div class="text-gray-600">美术顶尖院校</div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+              <div class="text-3xl font-black text-secondary mb-2">1对1</div>
+              <div class="text-gray-600">专业作品集指导</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+
+      <!-- 日本高考与美术留学双系统项目介绍 -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-4 gradient-text">日本高考 + 美术留学 — 双系统升学</h2>
+    <p class="text-gray-700 text-lg mb-4">
+      &nbsp;&nbsp;&nbsp;&nbsp;日本高考美术留学项目区别于一般留学考试模式——无需参加各美术大学的校内考，甚至部分学校都不需要提交日本语能力考试（JLPT）或日本留学试验（EJU）的日语成绩。学生可通过参加日本高考（共通テスト），凭日本高考成绩申请美术大学。日本高考的外语科目可选中文，且中文的平均分很高，这对中国留学生来说是优势。<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;目前多所日本美术大学已接受两科目（中文科目+其他一项科目）的高考成绩为录取依据。近年来，选择日本留学的美术生大幅增加，这导致留学竞争愈发激烈。通过共通考试方式，将免除部分面试及素描考试带来的压力。目前多数机构只聚焦留学生考试，美术共通考试双系统考核的专业培训却极为稀缺。
+    </p>
+    <p class="font-bold text-secondary mb-2">
+      &nbsp;&nbsp;&nbsp;&nbsp;我们的课程将打破这一壁垒，打造“双保险”升学路径：一边冲刺外语科目可选中文的学校的共通考试来保底；一边稳扎稳打留学生考试，全面覆盖美术专业科目。双线并进，不仅稳住底线录取，更能大幅提升冲击名校的机会！
+    </p>
+  </div>
+</section>
+
+
+
+      <!-- 目标美术院校 -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">目标美术院校</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              覆盖日本顶尖美术大学，为你量身定制升学方案
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🏛️</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">东京艺术大学</h3>
+              <p class="text-gray-600 mb-4">日本最高美术学府，全方位美术教育</p>
+              <div class="text-sm text-gray-500">
+                <div>国立美术大学</div>
+                <div></div>
+              </div>
+            </div>
+            
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🎭</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">多摩美术大学</h3>
+              <p class="text-gray-600 mb-4">私立美术最高峰，东京五美之一</p>
+              <div class="text-sm text-gray-500">
+                <div>顶尖美术名校</div>
+                <div></div>
+              </div>
+            </div>
+            
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🖼️</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">武藏野美术大学</h3>
+              <p class="text-gray-600 mb-4">传统与现代并重，东京五美之一</p>
+              <div class="text-sm text-gray-500">
+                <div>顶尖美术名校</div>
+                <div></div>
+              </div>
+            </div>
+            
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🎨</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">女子美术大学</h3>
+              <p class="text-gray-600 mb-4">百年女子美术教育名校，东京五美之一</p>
+              <div class="text-sm text-gray-500">
+                <div>女子美术专门</div>
+                <div>创意产业导向</div>
+              </div>
+            </div>
+            
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🏗️</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">日本大学艺术学部</h3>
+              <p class="text-gray-600 mb-4">综合性大学中的美术强院，东京五美之一</p>
+              <div class="text-sm text-gray-500">
+                <div>综合性大学</div>
+                <div>影视传媒强势</div>
+              </div>
+            </div>
+            
+            <div class="feature-card text-center">
+              <div class="text-4xl mb-4">🌟</div>
+              <h3 class="text-xl font-bold mb-4 text-gray-800">其他美术院校</h3>
+              <p class="text-gray-600 mb-4">京都市立美术大学、金泽美术工艺大学等美术院校</p>
+              <div class="text-sm text-gray-500">
+                <div>公立美术院校</div>
+                <div>地方特色突出</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+    
+    <!-- 替换“专业课程体系”section内原有的4个浮动feature-card，添加课程表格展示 -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">专业课程体系</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        系统化美术教育课程，从基础到高级全覆盖
+      </p>
+            <!-- 课程介绍 -->
+      <div class="bg-gradient-to-br from-light to-blue-50 rounded-2xl p-8 shadow mb-10">
+        <h3 class="text-2xl font-bold mb-4 gradient-text">课程介绍</h3>
+        <ul class="text-gray-700 text-lg space-y-2 mb-0 text-left list-disc list-inside">
+          <li><b>共通课程：</b>详情见共通主页，以1～3科目为主的共通考试专项训练，学生可以依据自己的擅长程度来自由选报。</li>
+          <li><b>日语课程：</b>日本语能力考试的阅读理解、语法词汇等专项训练</li>
+          <li><b>美术冲刺班：</b>针对关西关东区域，私立国公立美术院校校进行静物写生集训。</li>
+          <li><b>美术基础班：</b>针对零基础入门的同学，迅速提高打型和刻画能力。</li>
+          <li><b>美术安心班：</b>夯实基础，针对关东关西区域美术大学考试，例如京都精华大学、京都艺术大学等，长期专项训练指导。</li>
+          <li><b>美术强化班：</b>高强度短期集训，针对关东关西区域美术大学考试，例如多摩美术大学、武藏野美术大学、东京造型大学等专项训练指导。</li>
+        </ul>
+      </div>
+    </div>
+     
+      
+    <!-- 课程表格 -->
+    <div class="overflow-x-auto rounded-2xl shadow-lg bg-white">
+  <table class="min-w-full text-gray-800">
+    <thead class="bg-gradient-to-r from-primary to-secondary text-white">
+      <tr>
+        <th class="py-4 px-2 text-lg font-bold text-right">课程名称</th>
+        <th class="py-4 px-2 text-lg font-bold text-right">课时</th>
+        <th class="py-4 px-2 text-lg font-bold text-right">总价(原价)（JPY¥）</th>
+        <th class="py-4 px-2 text-lg font-bold text-right">作品集指导</th>
+        <th class="py-4 px-2 text-lg font-bold text-right">班级人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-blue-50/60">
+        <td colspan="5" class="text-left py-3 px-4 text-sm font-semibold text-blue-700">线下集训班型</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🦅 冲刺班（专题训练）<span class="ml-2 text-xs text-orange-500">7月生推荐</span></td>
+        <td class="py-3 px-2 text-right">60节-180h（三-四个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥498,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🍁 强化班（针对训练）</td>
+        <td class="py-3 px-2 text-right">120节-360h（七-八个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥598,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🪼 安心班（基础巩固）</td>
+        <td class="py-3 px-2 text-right">180节-540h（九-十个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥798,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🖌️ 基础班（入门学习）</td>
+        <td class="py-3 px-2 text-right">240节-720h（一年）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥898,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="bg-blue-50/60">
+        <td colspan="5" class="text-left py-3 px-4 text-sm font-semibold text-blue-700">作品集 & 色构一对一</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🐦 学部作品集一对一 16h</td>
+        <td class="py-3 px-2 text-right">16节-16h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥128,000</td>
+        <td class="py-3 px-2 text-right text-green-600">✓</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🐦 学部作品集一对一 24h</td>
+        <td class="py-3 px-2 text-right">24节-24h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥180,000</td>
+        <td class="py-3 px-2 text-right text-green-600">✓</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🎀 色彩构成精品一对一 48h</td>
+        <td class="py-3 px-2 text-right">16节（3h）-48h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥288,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🎀 色彩构成精品一对一 72h</td>
+        <td class="py-3 px-2 text-right">24节（3h）-72h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥432,000</td>
+        <td class="py-3 px-2 text-right text-red-600">✗</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🧠 作品集+色构套餐一对一 64h</td>
+        <td class="py-3 px-2 text-right">16（1h）+16（3h）=32节（64h）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥406,000</td>
+        <td class="py-3 px-2 text-right text-green-600">✓</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🧠 作品集+色构套餐一对一 88h</td>
+        <td class="py-3 px-2 text-right">16（1h）+24（3h）=40节（88h）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥550,000</td>
+        <td class="py-3 px-2 text-right text-green-600">✓</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-blue-50/60">
+        <td colspan="5" class="text-left py-3 px-4 text-sm font-semibold text-blue-700">线上课程</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">💻 Online60节</td>
+        <td class="py-3 px-2 text-right">60节-180h（三-四个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥398,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">💻 Online120节</td>
+        <td class="py-3 px-2 text-right">120节-360h（七-八个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥498,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">💻 Online180节</td>
+        <td class="py-3 px-2 text-right">180节-540h（九-十个月）</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥698,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">大课</td>
+      </tr>
+      <tr class="bg-blue-50/60">
+        <td colspan="5" class="text-left py-3 px-4 text-sm font-semibold text-blue-700">大学院作品集一对一</td>
+      </tr>
+      <tr class="border-b">
+        <td class="py-3 px-2 text-right">🎓 大学院作品集一对一 16h</td>
+        <td class="py-3 px-2 text-right">16节-16h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥199,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-gray-50 border-b">
+        <td class="py-3 px-2 text-right">🎓 大学院作品集一对一 24h</td>
+        <td class="py-3 px-2 text-right">24节-24h</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥288,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">一对一</td>
+      </tr>
+      <tr class="bg-blue-50/60">
+        <td colspan="5" class="text-left py-3 px-4 text-sm font-semibold text-blue-700">其他服务</td>
+      </tr>
+      <tr>
+        <td class="py-3 px-2 text-right">📝 愿书修改</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 font-bold text-secondary text-right">¥30,000</td>
+        <td class="py-3 px-2 text-right">-</td>
+        <td class="py-3 px-2 text-right">-</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    
+  </div>
+</section>
+
+      <!-- 作品集制作指导 -->
+      <section id="art-portfolio" class="py-20 bg-gradient-to-br from-light to-blue-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">作品集制作指导</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              专业导师一对一指导，打造让日本美术院校眼前一亮的作品集
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="feature-card">
+              <div class="text-4xl mb-4">📋</div>
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">作品集规划</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 根据目标院校制定作品集主题</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 作品类型和数量的合理配置</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 创作时间轴规划和进度管理</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 个人风格定位和发展方向</li>
+              </ul>
+            </div>
+            
+            <div class="feature-card">
+              <div class="text-4xl mb-4">🎨</div>
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">技法指导</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 素描・绘画基础技能强化</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 美术构成・设计教学指导</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 配备线下画图室可供使用</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 专业工具使用和材料选择</li>
+              </ul>
+            </div>
+            
+            <div class="feature-card">
+              <div class="text-4xl mb-4">💡</div>
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">创意启发</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 创作灵感来源和发掘方法</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 主题深度挖掘和概念表达</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 跨领域美术融合和创新</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 批判性思维和美术观点培养</li>
+              </ul>
+            </div>
+            
+            <div class="feature-card">
+              <div class="text-4xl mb-4">📊</div>
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">作品评估</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 定期作品审阅和专业点评</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 日本美术院校评判标准解读</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 作品完成度和表现力提升</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 最终作品集整体效果优化</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 专业师资团队 -->
+      <section class="py-20 bg-gradient-to-br from-light to-blue-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">专业师资团队</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              来自日本顶尖美术院校的专业导师，带来最前沿的美术教育理念
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-5 justify-items-center">
+            <div class="bg-white rounded-3xl p-6 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl w-full max-w-[280px]">
+              <div class="text-center">
+                <img src="images/teacher_tang.jpg" alt="汤老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-secondary shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">汤老师</h3>
+                <div class="bg-gradient-to-r from-secondary to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">雕刻学科讲师</div>
+                <p class="text-gray-600 leading-snug">多摩美术大学 雕刻学科</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl w-full max-w-[280px]">
+              <div class="text-center">
+                <img src="images/teacher_zhou.jpg" alt="张老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-primary shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">张老师</h3>
+                <div class="bg-gradient-to-r from-primary to-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">油画科专长</div>
+                <p class="text-gray-600 leading-snug">多摩美术大学 油画学科</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-5 justify-items-center mt-6">
+            <div class="bg-white rounded-3xl p-6 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl w-full max-w-[280px]">
+              <div class="text-center">
+                <img src="images/teacher_liu3.jpg" alt="兰老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-green-500 shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">兰老师</h3>
+                <div class="bg-gradient-to-r from-green-500 to-emerald-400 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">染织设计讲师</div>
+                <p class="text-gray-600 leading-snug"><br>中国美术学院 染织设计本科<br>东京造型大学 染织设计大学院</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl w-full max-w-[280px]">
+              <div class="text-center">
+                <img src="images/teacher_li.jpg" alt="李老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-amber-500 shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">李老师</h3>
+                <div class="bg-gradient-to-r from-amber-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">雕塑与角色设计</div>
+                <p class="text-gray-600 leading-snug">多摩美术大学 雕刻学科<br>京都精华大学 角色设计 合格</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl w-full max-w-[280px]">
+              <div class="text-center">
+                <img src="images/teacher_wu.jpg" alt="薛老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-purple-500 shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">薛老师</h3>
+                <div class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">动画实战导师</div>
+                <p class="text-gray-600 leading-snug">北京电影学院 动漫本科毕业<br>production.G（排球少年）就职</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 学生成功案例 -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">学生成功案例</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              真实学生的美术升学之路，见证梦想照进现实
+            </p>
+          </div>
+          
+            
+            <!-- 成功案例横排容器 -->
+            <div class="grid md:grid-cols-2 gap-6">
+            <!-- 成功案例1 -->
+            <div class="feature-card">
+              <div class="flex items-center mb-6">
+                <div class="text-4xl mr-4">🎨</div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-800">T同学</h3>
+                  <div class="text-secondary font-bold">合格 多摩美术大学</div>
+                </div>
+              </div>
+              <blockquote class="text-gray-600 italic mb-4">
+                "感谢老师们的悉心指导，让我的设计作品中获得了教授们的高度评价，顺利进入了梦想大学"
+              </blockquote>
+              <div class="flex items-center justify-between">
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">已入学</span>
+              </div>
+            </div>
+            
+            <!-- 成功案例2 -->
+            <div class="feature-card">
+              <div class="flex items-center mb-6">
+                <div class="text-4xl mr-4">📱</div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-800">J同学</h3>
+                  <div class="text-secondary font-bold">合格 东京理科大学</div>
+                </div>
+              </div>
+              <blockquote class="text-gray-600 italic mb-4">
+                "老师们悉心的理科指导让我在物理化学都拿到了高分，顺利进入东京理科大学！"
+              </blockquote>
+              <div class="flex items-center justify-between">
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">已入学</span>
+              </div>
+            </div>
+            </div>
+            
+            <!-- 合格成绩图片（一排四张，大小一致） -->
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
+              <div class="relative w-full max-w-[180px] md:max-w-[240px] mx-auto pt-[80%] rounded-xl shadow overflow-hidden bg-white">
+                <img src="images/success_student1.png" alt="合格成绩1" class="absolute inset-0 w-full h-full object-contain" loading="lazy">
+              </div>
+              <div class="relative w-full max-w-[220px] md:max-w-[240px] mx-auto pt-[133.333%] rounded-xl shadow overflow-hidden bg-white">
+                <img src="images/success_student2.png" alt="合格成绩2" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              </div>
+              <div class="relative w-full max-w-[220px] md:max-w-[240px] mx-auto pt-[133.333%] rounded-xl shadow overflow-hidden bg-white">
+                <img src="images/success_student3.png" alt="合格成绩3" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              </div>
+              <div class="relative w-full max-w-[180px] md:max-w-[240px] mx-auto pt-[80%] rounded-xl shadow overflow-hidden bg-white">
+                <img src="images/success_student4.png" alt="合格成绩4" class="absolute inset-0 w-full h-full object-contain" loading="lazy">
+              </div>
+            </div>
+            <!-- 调整图片间距：修改上方容器的 gap-x-2 数值（如 gap-x-1 更紧凑，gap-x-4 更宽松） -->
+
+            <!-- 省略号（更多合格未展示） -->
+            <br> <br>
+            <div class="flex justify-center items-center mt-3">
+              <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+              <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+              <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+            </div>
+            
+          </div>
+        
+      </section>
+
+      <!-- 教师作品展示 -->
+      <section class="py-20 bg-gradient-to-br from-white to-light">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">教师作品展示</h2>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[75%] bg-gray-100">
+                <img src="images/teacher-work-portrait-charcoal.jpg" alt="教师作品：人物炭笔肖像" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+          
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[70%] bg-gray-100">
+                <img src="images/teacher-work-stilllife-kitchen.jpg" alt="教师作品：厨房器具静物" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[70%] bg-gray-100">
+                <img src="images/teacher-work-stilllife-rope-bottle.jpg" alt="教师作品：绳索与酒瓶静物" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[70%] bg-gray-100">
+                <img src="images/teacher-work-stilllife-glass.jpg" alt="教师作品：玻璃器皿静物" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[80%] bg-gray-100">
+                <img src="images/teacher-work-bust-study.jpg" alt="教师作品：石膏头像仰视" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[65%] bg-gray-100">
+                <img src="images/teacher-work-installation-neon.jpg" alt="教师作品：新媒体装置" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[65%] bg-gray-100">
+                <img src="images/teacher-work-scroll-illustration.jpg" alt="教师作品：户外插画手稿" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white">
+              <div class="relative w-full pt-[70%] bg-gray-100">
+                <img src="images/teacher-work-sculpture-stone.jpg" alt="教师作品：石材雕塑" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- 学生作品展示 -->
+      <section class="py-20 bg-gradient-to-br from-light to-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">学生作品展示</h2>
+          </div>
+
+          <div class="space-y-6">
+            <div class="grid gap-6 md:grid-cols-2 justify-items-center">
+              <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white w-full max-w-[340px]">
+                <img src="images/student-work-stilllife-wires.png" alt="学生作品：线圈静物" class="w-full h-auto block transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+
+              <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white w-full max-w-[340px]">
+                <img src="images/student-work-bust-charcoal.jpg" alt="学生作品：石膏半身像" class="w-full h-auto block transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3 justify-items-center">
+              <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white w-full max-w-[300px]">
+                <img src="images/student-work-hat-stilllife.jpg" alt="学生作品：帽子静物" class="w-full h-auto block transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+
+              <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white w-full max-w-[300px]">
+                <img src="images/student-work-illustration-city.png" alt="学生作品：都市插画场景" class="w-full h-auto block transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+
+              <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 bg-white w-full max-w-[300px]">
+                <img src="images/student-work-figure-study.jpg" alt="学生作品：人物造型练习" class="w-full h-auto block transition-transform duration-500 hover:scale-105" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 开启你的美术之路（咨询） -->
+      <section class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">开启你的美术之路</h2>
+          <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            让我们一起规划你的日本美术升学之路，用专业指导点亮你的美术梦想
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">🎯</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">免费评估</h3>
+              <p class="text-gray-600 text-sm">专业老师评估你的美术基础，制定个性化学习方案</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">📚</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">试听课程</h3>
+              <p class="text-gray-600 text-sm">免费体验我们的专业课程，感受美术教育的魅力</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">🎨</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">作品点评</h3>
+              <p class="text-gray-600 text-sm">资深导师免费点评你的作品，指出改进方向</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap justify-center gap-6">
+            <a href="#contact" class="btn-primary text-lg px-10 py-5">
+              🎨 预约免费美术评估
+            </a>
+            <a href="#contact" class="btn-secondary text-lg px-10 py-5">
+              📞 立即咨询美术升学
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  
+
+ 
+  <div id="kyotsu" class="page-section"> <!-- 共通考试升学指导页面 -->
+    <!-- 统一样式固定面包屑导航 -->
+    <div class="breadcrumb-bar-fix fixed left-0 top-[72px] w-full">
+      <div class="breadcrumb-inner-fix">
+        <a href="#" onclick="showPage('home')" class="hover:text-primary text-primary font-bold">首页</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="font-bold text-gray-600">共通考试升学指导</span>
+      </div>
+    </div>
+    <div style="height:44px;"></div>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[120vh] flex items-center justify-center hero-bg pt-32">
+        <div class="absolute inset-0 overflow-hidden">
+        <img src="images/hero_background_1.jpg" alt="日本大学校园" class="w-full h-full object-cover opacity-20 img-align-top">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+          <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            <span class="gradient-text">共通テストを</span><br>
+            <span class="text-gray-800">日本の難関大学へ！</span>
+          </h1>
+          
+          <p class="text-xl md:text-2xl mb-12 text-gray-700 max-w-4xl mx-auto font-medium leading-relaxed">
+            逆に、<span class="text-primary font-bold">留学生入試</span>より<span class="text-secondary font-bold">簡単</span>。　<br>我们专注于<span class="text-secondary font-bold">"日本共通考试"</span>路线，<br>
+            打造你的升学捷径！
+          </p>
+          
+          <div class="flex flex-wrap justify-center gap-6 mb-16">
+            <a href="#kyotsu-courses" class="btn-primary">
+              🎯 了解我们的课程
+            </a>
+            <a href="#contact" class="btn-secondary">
+              📞 预约咨询
+            </a>
+          </div>
+          
+           <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">简化流程</div>
+            <div class="text-gray-600">省略笔试面试</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">走向名校</div>
+            <div class="text-gray-600">通过共通テスト方式</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+            <div class="text-3xl font-black text-secondary mb-2">专业经验</div>
+            <div class="text-gray-600">顶尖学校出身教师</div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+
+<!-- 日本高考共通考试升学路径介绍 -->
+<section class="py-16 bg-white">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-4 gradient-text">日本高考 · 共通考试 —— 留学生升学新路径</h2>
+    <p class="text-gray-700 text-lg mb-4">
+      &nbsp;&nbsp;&nbsp;&nbsp;日本高考（共通テスト）升学路径为中国留学生提供了一条区别于传统EJU路线的全新通道。无需就读语言学校、无需提交托福或托业成绩，更无需经历繁琐的校内面试。只需参加每年1月举行的共通考试，凭借笔试成绩即可申请多所日本大学。值得一提的是，共通考试外语科目可选择中文，且平均分居所有语言科目之首，这对中国学生而言具有明显优势。
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;目前所有大学都开放共通成绩的利用方式，即便外国人也可以参加。支持“中文+数学”或“中文+其他科目”组合，仅需两科成绩即可满足报考条件。这一机制有效降低了语言门槛、考试难度和准备成本，为留学生提供了更加公平和透明的升学路径。
+    </p>
+    <p class="font-bold text-secondary mb-2">
+      &nbsp;&nbsp;&nbsp;&nbsp;我们的课程体系将帮助留学生科学备考共通考试，构建“少科目、高分值、易冲刺”的升学方案。无需绕路语校，直接对接大学；无需语言证书，中文高分轻松获得录取。无论是预算有限、时间紧迫，还是不擅长面试的同学，选择共通考试，都能为你的日本大学梦增添一份确定性。
+    </p>
+  </div>
+</section>
+
+
+<!-- Comparison Section -->
+<section id="kyotsu-comparison" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">大学入学共通考试 vs EJU日本留学试验</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">详细对比两种考试，让你更明确自己的升学路线</p>
+    </div>
+
+    <div class="bg-gradient-to-br from-light to-white rounded-3xl p-8 shadow-2xl overflow-x-auto">
+      <table class="w-full text-center">
+        <thead>
+          <tr class="bg-gradient-to-r from-primary to-secondary text-white">
+            <th class="py-4 px-2 text-lg font-bold">比较内容</th>
+            <th class="py-4 px-2 text-lg font-bold">大学入学共通考试 🎯</th>
+            <th class="py-4 px-2 text-lg font-bold">EJU日本留学试验 📚</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <tr class="bg-gray-50 hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">难度</td>
+            <td class="py-3 px-2">中等偏高，题目难度偏高</td>
+            <td class="py-3 px-2">中等偏低，题目简单但计算量大</td>
+          </tr>
+          <tr class="hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">考试语言</td>
+            <td class="py-3 px-2">日语</td>
+            <td class="py-3 px-2">日语或英语</td>
+          </tr>
+          <!-- <tr class="bg-gray-50 hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">适用对象</td>
+            <td class="py-3 px-2">所有人</td>
+            <td class="py-3 px-2">仅外国留学生</td>
+          </tr> -->
+          <tr class="hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">考试频率</td>
+            <td class="py-3 px-2">每年1次（1月）</td>
+            <td class="py-3 px-2">每年2次（6月和11月）</td>
+          </tr>
+          <tr class="bg-gray-50 hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">报考学校范围</td>
+            <td class="py-3 px-2">所有大学（国公立+顶尖私立大学）</td>
+            <td class="py-3 px-2">几乎全部大学（但部分国公立名额极少）</td>
+          </tr>
+          <tr class="hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">语言门槛</td>
+            <td class="py-3 px-2">需一定日语水平阅读题目</td>
+            <td class="py-3 px-2">推荐N2以上</td>
+          </tr>
+          <tr class="bg-gray-50 hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">合格大学难度</td>
+            <td class="py-3 px-2">🌟～🌟🌟🌟</td>
+            <td class="py-3 px-2">🌟🌟～🌟🌟🌟</td>
+          </tr>
+          <tr class="hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">适合人群</td>
+            <td class="py-3 px-2">目标高偏差国公立大学/不挑专业，想进入名校</td>
+            <td class="py-3 px-2">目标私立大学，通过语言学校或留学生考试入学</td>
+          </tr>
+          <!-- <tr class="bg-gray-50 hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">时间线</td>
+            <td class="py-3 px-2">高三赴日共通考试，高中毕业后4月升学</td>
+            <td class="py-3 px-2">高中毕业后赴日，语言学校1年/2年后升学</td>
+          </tr> -->
+          <tr class="hover:bg-gray-100">
+            <td class="py-3 px-2 font-medium">缺点</td>
+            <td class="py-3 px-2 text-gray-500">题目难度整体偏高，但通过选择能降低难度</td>
+            <td class="py-3 px-2 text-gray-500">是普遍适用的升学途径</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="mt-8 text-center">
+        <span class="inline-block bg-gradient-to-r from-secondary to-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-xl">
+          💡 根据需求选择适合你的升学路线！
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 日本共通考试课程体系介绍 -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">共通考试课程体系</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        针对共通考试（共通テスト）量身定制的系统课程，聚焦中国留学生优势科目，高效冲刺，全面覆盖升学所需科目。
+      </p>
+
+      <!-- 课程介绍 -->
+      <div class="bg-gradient-to-br from-light to-blue-50 rounded-2xl p-8 shadow mb-10">
+        <h3 class="text-2xl font-bold mb-4 gradient-text">课程设置</h3>
+        <ul class="text-gray-700 text-lg space-y-2 mb-0 text-left list-disc list-inside">
+          <li><b>中文科目+日语基础：</b>中文作为外国语选项，优势显著。附赠日语基础课程，快速到达考试所需水平</li>
+          <li><b>数学：</b>中文授课，结合日本高考题型进行学习与技巧演习强化</li>
+          <li><b>理科物理：</b>覆盖考纲所有要点，贴合共通题型，强化计算与实验题解题策略</li>
+          <li><b>理科化学：</b>系统讲解化学基础知识，贴合日本共通考试题型，强化化学计算与实验分析能力</li>
+          <li><b>理科生物：</b>资深讲师授课，内容覆盖生物核心知识</li>
+          <li><b>理科地学：</b>全面覆盖地学基础知识，贴合日本共通考试地学科目要求，强化地质、气象、天文等核心内容</li>
+          <li><b>地理综合：</b>系统讲解地理基础知识，贴合日本共通考试地理综合科目要求，涵盖自然地理与人文地理核心内容</li>
+          <li><b>地理探究：</b>深入探究地理专题，贴合日本共通考试地理探究科目要求，强化地理思维与综合分析能力</li>
+          <li><b>国语：</b>面向国内学生专门针对日语国语进行教学，专项训练快速提升速读与得分能力</li>
+          <li><b>一对一升学指导课程：</b>个人定制计划、辅导任何知识点与出愿支持</li>
+        </ul>
+      </div>
+
+      <!-- 课程价格说明和开设科目 -->
+      <div class="bg-gradient-to-br from-light to-blue-50 rounded-2xl p-4 md:p-8 shadow mb-10">
+        <!-- 课程价格说明 -->
+        <h3 class="text-2xl font-bold mb-4 gradient-text">课程价格说明</h3>
+        <div class="overflow-x-auto mb-6">
+          <table class="min-w-full text-gray-800 mb-4">
+            <thead class="bg-gradient-to-r from-primary to-secondary text-white">
+              <tr>
+                <th class="py-3 px-4 text-lg font-bold text-left">项目</th>
+                <th class="py-3 px-4 text-lg font-bold text-right">价格（RMB）</th>
+                <th class="py-3 px-4 text-lg font-bold text-left">备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b bg-white">
+                <td class="py-3 px-4">单科课程费用</td>
+                <td class="py-3 px-4 font-bold text-secondary text-right">14,000 元/科</td>
+                <td class="py-3 px-4">每科目</td>
+              </tr>
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4">材料及咨询费</td>
+                <td class="py-3 px-4 font-bold text-secondary text-right">5,000 元</td>
+                <td class="py-3 px-4">含材料办理与咨询</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-gray-600 mb-6">*所有学员均收取5,000元材料及咨询服务费，包含共通考试/大学入学试验等材料办理与升学咨询。</p>
+
+        <!-- 开设科目 -->
+        <h3 class="text-2xl font-bold mb-4 gradient-text">开设科目</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-[760px] w-full text-gray-800">
+            <thead class="bg-gradient-to-r from-primary to-secondary text-white">
+              <tr>
+                <th class="py-3 px-4 text-lg font-bold text-left">科目类别</th>
+                <th class="py-3 px-4 text-lg font-bold text-left">科目名称</th>
+                <th class="py-3 px-4 text-lg font-bold text-right">价格</th>
+                <th class="py-3 px-4 text-lg font-bold text-right">预计课时</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 数学类 -->
+              <tr class="border-b bg-blue-50/60">
+                <td class="py-3 px-4 font-medium" rowspan="2">数学类</td>
+                <td class="py-3 px-4">数学 1A</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-blue-50/60">
+                <td class="py-3 px-4">数学 2BC</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <!-- 理科类 -->
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4 font-medium" rowspan="4">理科类</td>
+                <td class="py-3 px-4">物理</td>
+                <td class="py-3 px-4 text-right">
+                    <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4">化学</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4">生物</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4">地学</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <!-- 文科类 -->
+              <tr class="border-b bg-white">
+                <td class="py-3 px-4 font-medium" rowspan="2">文科类</td>
+                <td class="py-3 px-4">地理综合</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-white">
+                <td class="py-3 px-4">地理探究</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <!-- 语言类 -->
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4 font-medium" rowspan="2">语言类</td>
+                <td class="py-3 px-4">日语（中文）</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <tr class="border-b bg-gray-50">
+                <td class="py-3 px-4">国语</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">14,000 元（RMB）</div>
+                </td>
+                <td class="py-3 px-4 text-right">20课时（2h/课时）</td>
+              </tr>
+              <!-- 一对一VIP -->
+              <tr class="border-b bg-blue-50/60">
+                <td class="py-3 px-4 font-medium">一对一VIP</td>
+                <td class="py-3 px-4">一对一VIP指导</td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-bold text-secondary">500 元（RMB）/小时</div>
+                </td>
+                <td class="py-3 px-4 text-right">按小时计费</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-gray-500 mt-4 italic">*课程安排可能会根据授课情况与学生水平调整，具体请以通知为准。</p>
+      </div>
+
+      <!-- 费用计算示例 -->
+      <div class="bg-gradient-to-br from-light to-blue-50 rounded-2xl p-8 shadow mb-10">
+        <h3 class="text-2xl font-bold mb-4 gradient-text">费用计算示例</h3>
+        <ul class="text-gray-700 text-lg space-y-3 mb-0 text-left list-none">
+          <li class="flex items-center">
+            <span class="text-green-500 mr-3 font-bold">•</span>
+            <span><b>单科报名：</b>14,000 元 + 5,000 元材料及咨询服务费 = <span class="font-bold text-secondary">19,000 元</span></span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-green-500 mr-3 font-bold">•</span>
+            <span><b>两科报名：</b>28,000 元 + 5,000 元材料及咨询服务费 = <span class="font-bold text-secondary">33,000 元</span></span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-green-500 mr-3 font-bold">•</span>
+            <span><b>三科报名：</b>42,000 元 + 5,000 元材料及咨询服务费 = <span class="font-bold text-secondary">47,000 元</span></span>
+          </li>
+          <li class="flex items-center">
+            <span class="text-green-500 mr-3 font-bold">•</span>
+            <span><b>四科报名：</b>56,000 元 + 5,000 元材料及咨询服务费 = <span class="font-bold text-secondary">61,000 元</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+      <!-- Teachers Section -->
+      <section id="kyotsu-teachers" class="py-20 bg-gradient-to-br from-light to-blue-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">名校师资团队</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">汇聚东京大学・京都大学・东北大学・东京科学大学等师资，用最专业的指导助你圆梦</p>
+          </div>
+          
+          <div class="flex flex-wrap justify-center gap-8">
+            <!-- Teacher 2 -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl flex-1 min-w-[260px] max-w-[340px]">
+              <div class="text-center">
+                <img src="images/teacher_li.jpg" alt="李老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-secondary shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">李老师</h3>
+                <div class="text-secondary font-bold mb-4">顶尖选手培训师</div>
+                <div class="bg-gradient-to-r from-secondary to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                 东北大学出身
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  "共通数学丰富经验<span class="font-bold text-secondary">共通数学几近满分</span>。"
+                </p>
+              </div>
+            </div>
+            <!-- Teacher 物理 -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl flex-1 min-w-[260px] max-w-[340px]">
+              <div class="text-center">
+                <img src="images/teacher_liu.jpg" alt="刘老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">刘老师</h3>
+                <div class="text-blue-600 font-bold mb-4">物理实力派</div>
+                <div class="bg-gradient-to-r from-blue-500 to-green-400 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                 京都大学出身
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  "多年物理教学经验，<span class="font-bold text-blue-600">助力高分突破</span>。"
+                </p>
+              </div>
+            </div>
+            <!-- Teacher 生物 -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl flex-1 min-w-[260px] max-w-[340px]">
+              <div class="text-center">
+                <img src="images/teacher_zhou.jpg" alt="周老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-green-600 shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">周老师</h3>
+                <div class="text-green-600 font-bold mb-4">生物全能导师</div>
+                <div class="bg-gradient-to-r from-green-600 to-lime-400 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                 筑波大学出身
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  "生物知识点全覆盖，<span class="font-bold text-green-600">高效提分有保障</span>。"
+                </p>
+              </div>
+            </div>
+            
+            <!-- Teacher 3 -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl hover-lift transition-all duration-300 hover:shadow-2xl flex-1 min-w-[260px] max-w-[340px]">
+              <div class="text-center">
+                <img src="images/teacher_lu.jpg" alt="陆老师" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-primary shadow-lg" loading="lazy">
+                <h3 class="text-xl font-black text-gray-800 mb-2">陆老师</h3>
+                <div class="text-secondary font-bold mb-4">数学高分制造机器</div>
+                <div class="bg-gradient-to-r from-primary to-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                  东京科学大学出身
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                  "<span class="font-bold text-primary">Take it easy</span>，教你轻松超越日本学生。"
+                </p>
+              </div>
+            </div>
+            <!-- ...如需新增教师卡片，直接复制上方结构即可自动适配居中... -->
+          </div>
+        </div>
+      </section>
+
+<!-- 学生成功案例 -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">学生成功案例</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        真实学生的美术升学之路，见证梦想照进现实
+      </p>
+    </div>
+    
+      
+      <!-- 成功案例横排容器 -->
+      <div class="grid md:grid-cols-2 gap-6">
+      <!-- 成功案例1 -->
+      <div class="feature-card">
+        <div class="flex items-center mb-6">
+          <div class="text-4xl mr-4">🎨</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">T同学</h3>
+            <div class="text-secondary font-bold">合格 多摩美术大学</div>
+          </div>
+        </div>
+        <blockquote class="text-gray-600 italic mb-4">
+          "感谢老师们的悉心指导，让我的设计作品中获得了教授们的高度评价，顺利进入了梦想大学"
+        </blockquote>
+        <div class="flex items-center justify-between">
+          <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">已入学</span>
+        </div>
+      </div>
+      
+      <!-- 成功案例2 -->
+      <div class="feature-card">
+        <div class="flex items-center mb-6">
+          <div class="text-4xl mr-4">📱</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">J同学</h3>
+            <div class="text-secondary font-bold">合格 东京理科大学</div>
+          </div>
+        </div>
+        <blockquote class="text-gray-600 italic mb-4">
+          "老师们悉心的理科指导让我在物理化学都拿到了高分，顺利进入东京理科大学！"
+        </blockquote>
+        <div class="flex items-center justify-between">
+          <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">已入学</span>
+        </div>
+      </div>
+      </div>
+      
+      <!-- 合格成绩图片（一排四张，大小一致） -->
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4">
+        <div class="relative w-full max-w-[180px] md:max-w-[240px] mx-auto pt-[80%] rounded-xl shadow overflow-hidden bg-white">
+          <img src="images/success_student1.png" alt="合格成绩1" class="absolute inset-0 w-full h-full object-contain" loading="lazy">
+        </div>
+        <div class="relative w-full max-w-[220px] md:max-w-[240px] mx-auto pt-[133.333%] rounded-xl shadow overflow-hidden bg-white">
+          <img src="images/success_student2.png" alt="合格成绩2" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="relative w-full max-w-[220px] md:max-w-[240px] mx-auto pt-[133.333%] rounded-xl shadow overflow-hidden bg-white">
+          <img src="images/success_student3.png" alt="合格成绩3" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="relative w-full max-w-[180px] md:max-w-[240px] mx-auto pt-[80%] rounded-xl shadow overflow-hidden bg-white">
+          <img src="images/success_student4.png" alt="合格成绩4" class="absolute inset-0 w-full h-full object-contain" loading="lazy">
+        </div>
+      </div>
+      <!-- 调整图片间距：修改上方容器的 gap-x-2 数值（如 gap-x-1 更紧凑，gap-x-4 更宽松） -->
+
+      <!-- 省略号（更多合格未展示） -->
+      <br> <br>
+      <div class="flex justify-center items-center mt-3">
+        <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+        <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+        <span class="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
+      </div>
+      
+    </div>
+
+</section>
+
+      <!-- 开启你的共通考试升学之路（咨询） -->
+      <section class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text">开启你的共通考试升学之路</h2>
+          <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            让我们一起规划你的日本共通考试升学之路，用专业指导点亮你的日本名校梦想
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">🎯</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">免费评估</h3>
+              <p class="text-gray-600 text-sm">专业老师评估你的基础，制定个性化升学方案</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">📚</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">试听课程</h3>
+              <p class="text-gray-600 text-sm">免费体验我们的专业课程，感受共通教育的魅力</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-6 shadow-xl">
+              <div class="text-4xl mb-4">🎨</div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">课程+升学指导</h3>
+              <p class="text-gray-600 text-sm">资深教师+班主任指导，指导你的升学方向</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap justify-center gap-6">
+            <a href="#contact" class="btn-primary text-lg px-10 py-5">
+              🎨 预约升学推荐・评估
+            </a>
+            <a href="#contact" class="btn-secondary text-lg px-10 py-5">
+              📞 立即咨询共通考试升学
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  
+
+  
+  
+
+  <!-- EJU升学指导页面 - 暂时空白 -->
+  <div id="eju" class="page-section"><!-- EJU升学指导页面 - 暂时空白 -->
+    <div class="pt-20">
+      <!-- 统一样式固定面包屑导航 -->
+      <div class="breadcrumb-bar-fix fixed left-0 top-[72px] w-full">
+        <div class="breadcrumb-inner-fix">
+          <a href="#" onclick="showPage('home')" class="hover:text-primary text-primary font-bold">首页</a>
+          <span class="mx-2 text-gray-400">/</span>
+          <span class="font-bold text-gray-600">EJU升学指导</span>
+        </div>
+      </div>
+      <div style="height:44px;"></div>
+
+
+      <!-- 一对一课程指导 -->
+      <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-black mb-4 gradient-text">VIP一对一课程指导（EJU）</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">针对学生弱点定制化辅导，可自由选择服务内容</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-10">
+            <div class="feature-card">
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">可选服务方向</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 所有科目课程一对一辅导</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 志望理由书书写指导</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 出愿指导（材料准备与时间规划）</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 面试稿修改（逻辑与表达优化）</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 面试辅导（模拟面试与反馈）</li>
+              </ul>
+            </div>
+
+            <div class="feature-card">
+              <h3 class="text-2xl font-bold mb-4 text-gray-800">收费标准</h3>
+              <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl p-6 border border-blue-100">
+                <div class="text-4xl font-black text-secondary mb-2">500 元（RMB）<span class="text-base text-gray-600 font-medium"> / 小时</span></div>
+                <p class="text-gray-600">按时计费，灵活预约；可根据目标与时间定制学习计划</p>
+              </div>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href="#contact" class="btn-primary">预约一对一咨询</a>
+                <a href="#contact" class="btn-secondary">获取个性化方案</a>
+              </div>
+            </div>
+          </div>
+
+               <!-- 空白内容区域 -->
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <h1 class="text-4xl md:text-5xl font-black mb-6 gradient-text">EJU升学指导</h1>
+          <p class="text-xl text-gray-600 mb-12">
+            更多内容开展中，如有需求敬请咨询...
+          </p>
+        </div>
+      </section>
+        </div>
+      </section>
+    </div>
+  </div>
+
+   <!-- Footer Section -->
+<footer class="py-8 bg-gray-100 text-gray-600 "><!--Footer -->
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <!-- 联系方式 -->
+      <div class="text-center md:text-left ">
+        <p class="font-medium">📍 地址：東京都中野区中野1-55-3 フェリスビル 4F</p>
+        <p class="font-medium">📞 电话：080-6431-9082</p>
+        <p class="font-medium">✉️ 邮件：jic56428@gmail.com</p>
+      </div>
+
+      <!-- 隐私政策和使用条款（暂指向联系我们） -->
+      <div class="flex space-x-4 text-sm">
+        <a href="#contact" class="hover:text-primary transition">隐私政策</a>
+        <span>|</span>
+        <a href="#contact" class="hover:text-primary transition">使用条款</a>
+      </div>
+
+      <!-- 版权信息 -->
+      <div class="text-sm">
+        © 2025 旅人教育株式会社. 保留所有权利.
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    let currentPage = 'home';
+    let isMobileMenuOpen = false;
+
+    function showPage(pageId) {
+      // 隐藏所有页面
+      const pages = document.querySelectorAll('.page-section');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // 显示指定页面
+      document.getElementById(pageId).classList.add('active');
+      
+      // 更新导航状态
+      updateNavigation(pageId);
+      
+      // 滚动到顶部
+      window.scrollTo(0, 0);
+      
+      // 关闭移动端菜单
+      if (isMobileMenuOpen) {
+        toggleMobileMenu();
+      }
+      
+      // 更新当前页面状态
+      currentPage = pageId;
+    }
+
+    function updateNavigation(activePageId) {
+      // 更新桌面端导航
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        const pageId = link.getAttribute('data-page');
+        if (pageId === activePageId) {
+          link.className = 'nav-link font-medium transition-colors duration-200 text-primary font-bold';
+        } else {
+          link.className = 'nav-link font-medium transition-colors duration-200 hover:text-primary';
+        }
+      });
+      
+      // 更新移动端导航
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      mobileNavLinks.forEach(link => {
+        const pageId = link.getAttribute('data-page');
+        if (pageId === activePageId) {
+          link.className = 'mobile-nav-link font-medium transition-colors duration-200 py-2 text-primary font-bold';
+        } else {
+          link.className = 'mobile-nav-link font-medium transition-colors duration-200 py-2 hover:text-primary';
+        }
+      });
+    }
+
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const menuIcon = menuBtn.querySelector('svg path');
+      
+      isMobileMenuOpen = !isMobileMenuOpen;
+      
+      if (isMobileMenuOpen) {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      }
+    }
+
+    // 处理首页内锚点链接，确保从子页面也能正确跳转
+    document.addEventListener('click', function(e) {
+      const anchor = e.target.closest && e.target.closest('a[href="#contact"], a[href="#company"]');
+      if (!anchor) return;
+      e.preventDefault();
+      const targetId = anchor.getAttribute('href').slice(1);
+      if (currentPage !== 'home') {
+        showPage('home');
+        setTimeout(() => {
+          document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      // 确保首页显示
+      showPage('home');
+      
+      // 平滑滚动支持
+      document.documentElement.style.scrollBehavior = 'smooth';
+    });
+  </script>
+
+ 
+
+</body>
+</html>
