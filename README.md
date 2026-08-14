@@ -1,6 +1,6 @@
 # 旅人教育 TABITO 官网
 
-这是 `https://www.tabitoedu.com/` 的私有协作仓库。网站是无需构建的静态站点，生产文件位于 `site/`，目前部署到 AWS S3，并由 CloudFront 对外提供访问。
+这是 `https://www.tabitoedu.com/` 的公开协作仓库。网站是无需构建的静态站点，生产文件位于 `site/`，目前部署到 AWS S3，并由 CloudFront 对外提供访问。
 
 ## 目录结构
 
