@@ -52,10 +52,18 @@ Write-Host "Syncing $siteRoot to s3://$Bucket"
 Invoke-AwsCli -Arguments $syncArguments | Write-Host
 
 Write-Host "Refreshing CloudFront distribution $DistributionId"
+$invalidationPaths = @(
+  '/',
+  '/index.html',
+  '/robots.txt',
+  '/sitemap.xml',
+  '/teachers/liu-kewei.html'
+)
 $invalidationId = (Invoke-AwsCli -Arguments @(
   'cloudfront', 'create-invalidation',
   '--distribution-id', $DistributionId,
-  '--paths', '/', '/index.html',
+  '--paths'
+) + $invalidationPaths + @(
   '--query', 'Invalidation.Id',
   '--output', 'text'
 )).Trim()
@@ -70,7 +78,8 @@ Invoke-AwsCli -Arguments @(
   '--id', $invalidationId
 )
 
-$checkUrl = "https://www.tabitoedu.com/?deploy-check=$([DateTimeOffset]::UtcNow.ToUnixTimeSeconds())"
+$cacheBust = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+$checkUrl = "https://www.tabitoedu.com/?deploy-check=$cacheBust"
 $response = Invoke-WebRequest -Uri $checkUrl -UseBasicParsing
 
 if ($response.StatusCode -ne 200) {
@@ -85,5 +94,19 @@ if ($response.Content.Contains('旅人学堂') -or $response.Content.Contains('�
   throw 'Public site still contains retired text.'
 }
 
+$teacherUrl = "https://www.tabitoedu.com/teachers/liu-kewei.html?deploy-check=$cacheBust"
+$teacherResponse = Invoke-WebRequest -Uri $teacherUrl -UseBasicParsing
+if ($teacherResponse.StatusCode -ne 200 -or -not $teacherResponse.Content.Contains('刘可惟')) {
+  throw 'Public instructor profile verification failed.'
+}
+
+$robotsUrl = "https://www.tabitoedu.com/robots.txt?deploy-check=$cacheBust"
+$robotsResponse = Invoke-WebRequest -Uri $robotsUrl -UseBasicParsing
+if ($robotsResponse.StatusCode -ne 200 -or -not $robotsResponse.Content.Contains('Sitemap: https://www.tabitoedu.com/sitemap.xml')) {
+  throw 'Public robots.txt verification failed.'
+}
+
 Write-Host "Deployment complete. CloudFront invalidation: $invalidationId"
 Write-Host 'Verified: https://www.tabitoedu.com/'
+Write-Host 'Verified: https://www.tabitoedu.com/teachers/liu-kewei.html'
+Write-Host 'Verified: https://www.tabitoedu.com/robots.txt'
