@@ -1,0 +1,10 @@
+/* Narrow-screen and legacy layout fixes layered after polish-v3.css. */
+@media (min-width:768px) and (max-width:980px){
+  nav.fixed .hidden.md\:flex a[data-v3-results],
+  nav.fixed .hidden.md\:flex a[data-v3-recruit]{display:none!important}
+}
+@media (max-width:767px){
+  .tabito-v3-polish .breadcrumb-bar-fix{top:64px!important}
+  .tabito-v3-polish .breadcrumb-inner-fix{padding-inline:14px!important;font-size:13px!important}
+  .tabito-v3-polish .overflow-x-auto{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+}
