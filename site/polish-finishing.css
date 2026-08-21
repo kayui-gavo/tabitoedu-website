@@ -168,5 +168,5 @@
 
 @media(max-width:420px){
   .finish-program-copy{min-height:160px}.finish-program-copy h3{font-size:13px!important}.finish-program-media{height:72px}
-  .tabito-finishing #contact .grid.md\\:grid-cols-2{grid-template-columns:1fr 1fr!important}
+  .tabito-finishing #contact .grid.md\:grid-cols-2{grid-template-columns:1fr 1fr!important}
 }
