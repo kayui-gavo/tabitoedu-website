@@ -1,0 +1,16 @@
+/* v8 finishing layer: remove duplicated navigation, keep evidence imagery meaningful, and tighten mobile rhythm. */
+.tabito-v8-baijin .v4-reading-nav{display:none!important}
+.v8-case:before{background:radial-gradient(circle at 78% 24%,rgba(73,147,184,.18),transparent 27%),linear-gradient(110deg,#0e2e43 0%,#123b55 54%,#0d293b 100%)!important;filter:none!important}
+.v8-hero .v4-hero-actions{display:grid!important;grid-template-columns:auto auto!important;justify-content:start!important;width:max-content!important;max-width:100%!important}
+.v8-hero .v4-hero-actions a:nth-child(3){display:none!important}
+.v8-hero .v4-hero-actions a{min-width:138px!important;text-align:center!important}
+.v8-hero .v4-hero-results-link{display:inline-block!important;margin-top:13px!important}
+.v8-case-visual{border-radius:2px!important;overflow:hidden!important}
+.v8-case-visual:after{border-top:1px solid rgba(255,255,255,.2)}
+.v8-programs>.max-w-7xl,.v8-programs>.max-w-6xl{max-width:1180px!important}
+.v8-results .v3-result-note{max-width:480px!important}
+.v8-faculty .v5-faculty-note{font-size:9.5px!important}
+.v8-insight .v6-source-link b,.v8-coverage .v6-source-link b{font-size:12px!important}
+.tabito-v8-baijin #company{padding-top:64px!important;padding-bottom:64px!important}
+.tabito-v8-baijin #recruit{padding-top:58px!important;padding-bottom:58px!important}
+@media(max-width:700px){.v8-hero .v4-hero-actions{grid-template-columns:1fr 1fr!important;width:100%!important}.v8-hero .v4-hero-actions a{min-width:0!important}.v8-case-visual{min-height:300px!important}.v8-trust-bar strong{font-size:13px!important}.v8-program-caption{position:static!important;margin-top:20px!important}.v8-program{min-height:0!important}.v8-faculty .v5-faculty-note{display:none!important}}
