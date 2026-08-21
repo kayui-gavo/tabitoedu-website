@@ -59,14 +59,15 @@ $invalidationPaths = @(
   '/sitemap.xml',
   '/teachers/liu-kewei.html'
 )
-$invalidationId = (Invoke-AwsCli -Arguments @(
+$invalidationArguments = @(
   'cloudfront', 'create-invalidation',
   '--distribution-id', $DistributionId,
   '--paths'
 ) + $invalidationPaths + @(
   '--query', 'Invalidation.Id',
   '--output', 'text'
-)).Trim()
+)
+$invalidationId = (Invoke-AwsCli -Arguments $invalidationArguments).Trim()
 
 if ([string]::IsNullOrWhiteSpace($invalidationId)) {
   throw 'CloudFront did not return an invalidation ID.'
