@@ -1,0 +1,114 @@
+/* TABITO v9 — cool white / blue-gray visual system. Removes the warm yellow cast and gives real assets clearer roles. */
+:root{--v8-cream:#eef4f7;--v8-paper:#f7fafc;--v9-bg:#f5f9fc;--v9-surface:#ffffff;--v9-surface2:#eef5f9;--v9-surface3:#e7f1f6;--v9-navy:#102f45;--v9-blue:#2e86b7;--v9-cyan:#65b5d3;--v9-ink:#173348;--v9-muted:#6c7d88;--v9-line:#d6e2e8}
+.tabito-v9-cool body{background:var(--v9-bg)!important;color:var(--v9-ink)!important}
+
+/* Overall surfaces: cool and crisp, no beige cast. */
+.tabito-v9-cool .v8-hero{background:#f3f8fb!important}
+.tabito-v9-cool .v8-hero-bg-photo{filter:saturate(.68) contrast(.98) brightness(1.02) hue-rotate(2deg)!important}
+.tabito-v9-cool .v8-hero-bg-mask{background:linear-gradient(90deg,rgba(247,251,253,.985) 0%,rgba(247,251,253,.965) 40%,rgba(241,248,251,.84) 63%,rgba(224,240,248,.34) 100%),linear-gradient(180deg,rgba(29,93,126,.02),rgba(29,93,126,.08))!important}
+.tabito-v9-cool .v8-hero-grid{background-image:linear-gradient(rgba(26,83,111,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,83,111,.04) 1px,transparent 1px)!important}
+.tabito-v9-cool .v8-hero .v7-hero-index{background:rgba(255,255,255,.92)!important;border-color:#c9dbe4!important;box-shadow:0 24px 64px rgba(21,71,98,.14)!important}
+.tabito-v9-cool .v8-programs,.tabito-v9-cool .v8-faculty,.tabito-v9-cool .v7-classroom{background:#fff!important}
+.tabito-v9-cool .v8-results{background:linear-gradient(180deg,#edf5f9 0%,#f7fafc 100%)!important}
+.tabito-v9-cool .v8-method{background:#edf4f7!important}
+.tabito-v9-cool .v8-insight{background:#eaf4f8!important}
+.tabito-v9-cool .v4-company{background:#f7fafc!important}
+.tabito-v9-cool #recruit{background:#eef5f8!important}
+.tabito-v9-cool .v8-coverage{background:#f8fbfc!important}
+.tabito-v9-cool #contact{background:#102f45!important}
+
+/* Hero: more premium contrast and a calmer type hierarchy. */
+.tabito-v9-cool .v8-hero{min-height:690px!important;padding-top:126px!important;padding-bottom:72px!important}
+.tabito-v9-cool .v8-hero .v3-hero-title{color:#143247!important;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+.tabito-v9-cool .v8-hero .v3-hero-brand{color:#2f83ae!important}
+.tabito-v9-cool .v8-hero .v3-hero-lede{color:#506a78!important}
+.tabito-v9-cool .v8-hero .v4-hero-actions a:first-child{background:#123950!important;border-color:#123950!important}
+.tabito-v9-cool .v8-hero .v4-hero-actions a:nth-child(2){background:rgba(255,255,255,.92)!important}
+.tabito-v9-cool .v8-trust-bar{background:linear-gradient(90deg,#0f3046,#15435f)!important}
+.tabito-v9-cool .v8-trust-bar span{color:#9bc0d2!important}
+
+/* Program cards: use authentic visual material in the card body rather than decorative icons. */
+.v9-program-visual{position:relative;height:150px;margin:-29px -28px 22px;overflow:hidden;border-bottom:1px solid #d7e3e9;background:#e8f1f5}
+.v9-program-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,47,69,.02),rgba(15,47,69,.18));pointer-events:none}
+.v9-program-visual>span.v9-visual-label{position:absolute;left:13px;bottom:11px;z-index:3;padding:5px 8px;border:1px solid rgba(255,255,255,.72);background:rgba(16,47,69,.76);color:#fff;font-size:8px;font-weight:850;letter-spacing:.08em;backdrop-filter:blur(4px)}
+.v9-art-visual{display:grid;grid-template-columns:1.05fr .9fr .8fr;gap:1px;background:#fff}
+.v9-art-visual i{display:block;background-size:cover;background-position:center;filter:saturate(.82) contrast(.98)}
+.v9-art-visual i:nth-child(1){background-image:url('images/student-work-illustration-city.png')}.v9-art-visual i:nth-child(2){background-image:url('images/student-work-bust-charcoal.jpg')}.v9-art-visual i:nth-child(3){background-image:url('images/student-work-hat-stilllife.jpg')}
+.v9-common-visual{height:150px!important;min-height:150px!important;margin:-29px -28px 22px!important;border:0!important;border-bottom:1px solid #d7e3e9!important;border-radius:0!important;background-position:center!important}
+.v9-science-visual{height:150px!important;min-height:150px!important;margin:-29px -28px 22px!important;border:0!important;border-bottom:1px solid #d7e3e9!important;border-radius:0!important;background-position:center!important;box-shadow:none!important}
+.v9-program-has-visual{padding-top:29px!important}.v9-program-has-visual h3{margin-top:18px!important}
+.tabito-v9-cool .v8-program{background:#fff!important;border-color:#d4e1e7!important;box-shadow:0 8px 28px rgba(26,78,106,.055)!important}
+.tabito-v9-cool .v8-program:hover{border-color:#91b3c3!important;box-shadow:0 13px 34px rgba(26,78,106,.08)!important}
+.tabito-v9-cool .v8-program:nth-child(1):before{display:none!important}
+
+/* Results: clean data-first block with a very light archival watermark. */
+.tabito-v9-cool .v8-results:after{opacity:.045!important;filter:grayscale(.15) saturate(.6) hue-rotate(5deg)!important}
+.tabito-v9-cool .v8-results .v3-result-list{background:rgba(255,255,255,.58);padding:0 18px;border-bottom:1px solid #d6e2e8}
+.tabito-v9-cool .v8-results .v3-result-row{border-color:#dbe5ea!important}
+.tabito-v9-cool .v8-results .v3-result-facts{border-color:#c4d7e0!important}
+
+/* Tokyo Science: stronger clean blue, no warm undertone. */
+.tabito-v9-cool .v8-case{background:#0d3148!important}
+.tabito-v9-cool .v8-case:before{background:radial-gradient(circle at 76% 18%,rgba(88,176,215,.20),transparent 30%),linear-gradient(110deg,#0d3047 0%,#124761 56%,#0c293c 100%)!important}
+.tabito-v9-cool .v8-case-link{border-color:#78afc8!important}
+
+/* Guidance section becomes a crisp institutional process panel. */
+.tabito-v9-cool .v8-method{border-top:1px solid #d3e0e6!important;border-bottom:1px solid #d3e0e6!important}
+.tabito-v9-cool .v8-method .v4-method-grid{background:rgba(255,255,255,.58)}
+.tabito-v9-cool .v8-method .v4-method-grid article{padding-left:18px!important;padding-right:18px!important}
+
+/* Faculty: archive-like but with a cool section marker and subject index. */
+.v9-subject-index{display:flex;flex-wrap:wrap;gap:6px;margin-top:17px}
+.v9-subject-index span{padding:5px 8px;border:1px solid #d4e1e7;background:#f4f9fb;color:#557080;font-size:9px;font-weight:800;letter-spacing:.02em}
+.tabito-v9-cool .v8-faculty .v5-section-head{border-color:#173e57!important}
+.tabito-v9-cool .v8-faculty .v5-faculty-row{transition:background .16s ease}
+.tabito-v9-cool .v8-faculty .v5-faculty-row:hover{background:#eef7fa!important}
+
+/* Common Test: more editorial, with a cool document/policy aesthetic. */
+.tabito-v9-cool .v8-insight{border-top:1px solid #d1e0e7;border-bottom:1px solid #d1e0e7}
+.tabito-v9-cool .v8-insight-head{border-color:#17445f!important}
+.tabito-v9-cool .v6-source-link{border-color:#d5e2e8!important}
+.tabito-v9-cool .v6-source-link:hover{background:rgba(255,255,255,.48)}
+.tabito-v9-cool .v8-common-course{background:#fff!important}
+.tabito-v9-cool .v8-common-poster{background-color:#0f344c!important}
+.tabito-v9-cool .v6-subjects,.tabito-v9-cool .v6-fee-rules{background:#f7fbfc!important;border-color:#d4e1e7!important}
+
+/* Art page: use the old site work assets as atmosphere, not generic decorative images. */
+.tabito-v9-cool #art .v5-subhero{background:#edf4f7!important}
+.tabito-v9-cool #art .v5-subhero:after{content:"";position:absolute;right:0;top:0;width:48%;height:100%;background:linear-gradient(90deg,rgba(237,244,247,1),rgba(237,244,247,.10)),url('images/student-work-illustration-city.png') center/cover no-repeat;opacity:.72;pointer-events:none}
+.tabito-v9-cool #art .v5-subhero>.relative{position:relative;z-index:2}
+.tabito-v9-cool #art .v5-art-gallery{background:#f5f9fb!important}
+.tabito-v9-cool #art .v5-art-gallery .rounded-3xl:has(img[src*="work-"]){background:#fff!important;border-color:#d7e3e8!important}
+
+/* EJU and Common subpage heroes: clean, cooler and more visually intentional. */
+.tabito-v9-cool #kyotsu .v5-subhero,.tabito-v9-cool #eju .v5-subhero{background:#eef5f8!important}
+.tabito-v9-cool #kyotsu .v5-subhero h1,.tabito-v9-cool #eju .v5-subhero h1{color:#15364b!important}
+
+/* Nakano classroom: cool-white premium location card. */
+.tabito-v9-cool .v7-classroom{background:#f2f7fa!important}
+.tabito-v9-cool .v7-tabito-block{background:#fff!important;border-color:#cedde5!important;box-shadow:0 18px 45px rgba(22,73,101,.09)!important}
+.tabito-v9-cool .v7-tabito-info{background:#fff!important}
+.tabito-v9-cool .v7-tabito-links a{background:#f8fbfc!important;border-color:#d5e2e8!important}
+.tabito-v9-cool .v7-tabito-links a:hover{background:#eef7fa!important}
+
+/* Company / coverage / recruit: same visual language, no yellow paper blocks. */
+.tabito-v9-cool .v5-company-brand,.tabito-v9-cool .v6-coverage,.tabito-v9-cool #recruit{border-color:#d5e2e8!important}
+.tabito-v9-cool #company .bg-white,.tabito-v9-cool #recruit .bg-white{background:#fff!important}
+
+/* Contact: use old QR assets as a restrained utility rail if present. */
+.tabito-v9-cool #contact{position:relative;overflow:hidden}
+.tabito-v9-cool #contact:before{content:"";position:absolute;right:-10%;top:-25%;width:45%;height:150%;background:radial-gradient(circle,rgba(89,167,205,.18),transparent 66%);pointer-events:none}
+.tabito-v9-cool #contact>*{position:relative;z-index:1}
+
+/* Less toy-like rounding throughout. */
+.tabito-v9-cool .rounded-3xl{border-radius:14px!important}.tabito-v9-cool .rounded-2xl{border-radius:11px!important}.tabito-v9-cool .rounded-xl{border-radius:9px!important}
+
+@media(max-width:940px){
+  .tabito-v9-cool .v8-hero{min-height:auto!important}.v9-program-visual,.v9-common-visual,.v9-science-visual{height:136px!important;min-height:136px!important}
+}
+@media(max-width:700px){
+  .tabito-v9-cool .v8-hero{padding-top:104px!important;padding-bottom:46px!important}.tabito-v9-cool .v8-hero-bg-mask{background:linear-gradient(180deg,rgba(247,251,253,.97) 0%,rgba(247,251,253,.92) 68%,rgba(235,246,250,.78) 100%)!important}.tabito-v9-cool .v8-hero-bg-photo{opacity:.45!important;background-position:62% center!important}
+  .v9-program-visual,.v9-common-visual,.v9-science-visual{height:128px!important;min-height:128px!important;margin:-20px -20px 18px!important}.v9-art-visual{grid-template-columns:1.1fr .9fr}.v9-art-visual i:nth-child(3){display:none}
+  .tabito-v9-cool #art .v5-subhero:after{width:100%;opacity:.28;background:linear-gradient(180deg,rgba(237,244,247,.92),rgba(237,244,247,.48)),url('images/student-work-illustration-city.png') center/cover no-repeat}
+  .v9-subject-index{gap:5px}.v9-subject-index span{font-size:8.5px}
+}
