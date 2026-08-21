@@ -6,12 +6,6 @@
   const eju=document.getElementById('eju');
   const art=document.getElementById('art');
 
-  const scrollHome=id=>{
-    if(typeof window.showPage==='function') window.showPage('home');
-    window.setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'}),70);
-    return false;
-  };
-
   function removeGenericProof(){
     document.querySelectorAll('.v5-result-proof').forEach(el=>el.remove());
   }
@@ -97,7 +91,7 @@
         ['03','对应学科授课','数学、理科、语言、人文与美术由相应教师负责。'],
         ['04','出愿・面试衔接','笔试之外，同步确认材料、出愿节点与面试准备。']
       ];
-      [...method?.querySelectorAll('.v4-method-grid article')||[]].forEach((a,i)=>{
+      [...(method?.querySelectorAll('.v4-method-grid article')||[])].forEach((a,i)=>{
         const d=methodData[i]; if(!d) return;
         a.innerHTML=`<b>${d[0]}</b><strong>${d[1]}</strong><span>${d[2]}</span>`;
       });
@@ -132,34 +126,46 @@
     }
   }
 
+  function go(page,id){
+    window.showPage?.(page);
+    if(id) window.setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'}),70);
+  }
+
   function cleanNavigation(){
     const nav=document.querySelector('nav.fixed');
     const desktop=nav?.querySelector('.hidden.md\\:flex');
     const mobile=document.querySelector('#mobileMenu .flex.flex-col');
     const items=[
-      ['首页',"showPage('home');return false;"],
-      ['美术升学',"showPage('art');return false;"],
-      ['共通考试',"showPage('kyotsu');return false;"],
-      ['EJU・校内考',"showPage('eju');return false;"],
-      ['合格实绩',"showPage('home');setTimeout(()=>document.getElementById('results')?.scrollIntoView({behavior:'smooth'}),70);return false;"],
-      ['部分讲师',"showPage('home');setTimeout(()=>document.getElementById('faculty')?.scrollIntoView({behavior:'smooth'}),70);return false;"],
-      ['中野教室',"showPage('home');setTimeout(()=>document.getElementById('nakano-classroom')?.scrollIntoView({behavior:'smooth'}),70);return false;"],
-      ['咨询',"showPage('home');setTimeout(()=>document.getElementById('contact')?.scrollIntoView({behavior:'smooth'}),70);return false;"]
+      {label:'首页',page:'home'},
+      {label:'美术升学',page:'art'},
+      {label:'共通考试',page:'kyotsu'},
+      {label:'EJU・校内考',page:'eju'},
+      {label:'合格实绩',page:'home',id:'results'},
+      {label:'部分讲师',page:'home',id:'faculty'},
+      {label:'中野教室',page:'home',id:'nakano-classroom'},
+      {label:'咨询',page:'home',id:'contact',cta:true}
     ];
-    const html=items.map(([label,onclick],i)=>`<a href="#" onclick="${onclick}" class="v7-nav-link${i===7?' v7-nav-cta':''}">${label}</a>`).join('');
-    if(desktop){desktop.innerHTML=html;desktop.classList.add('v7-nav');}
-    if(mobile){mobile.innerHTML=items.map(([label,onclick])=>`<a href="#" onclick="${onclick}toggleMobileMenu();" class="v7-mobile-link">${label}</a>`).join('');}
+    const render=(mobileMode=false)=>items.map((item,i)=>`<a href="#" data-v7-index="${i}" class="${mobileMode?'v7-mobile-link':'v7-nav-link'}${item.cta&&!mobileMode?' v7-nav-cta':''}">${item.label}</a>`).join('');
+    if(desktop){
+      desktop.innerHTML=render(false); desktop.classList.add('v7-nav');
+      desktop.querySelectorAll('[data-v7-index]').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const x=items[Number(a.dataset.v7Index)];go(x.page,x.id);}));
+    }
+    if(mobile){
+      mobile.innerHTML=render(true);
+      mobile.querySelectorAll('[data-v7-index]').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const x=items[Number(a.dataset.v7Index)];go(x.page,x.id);window.toggleMobileMenu?.();}));
+    }
   }
 
   function stripVisibleEmoji(){
-    const re=/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F\u200D]/gu;
+    const testRe=/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F\u200D]/u;
+    const replaceRe=/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F\u200D]/gu;
     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){
       const p=node.parentElement;
       if(!p||['SCRIPT','STYLE','TEXTAREA','NOSCRIPT'].includes(p.tagName)) return NodeFilter.FILTER_REJECT;
-      return re.test(node.nodeValue||'')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+      return testRe.test(node.nodeValue||'')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
     }});
     const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(n=>{n.nodeValue=(n.nodeValue||'').replace(re,'').replace(/[ \t]{2,}/g,' ');});
+    nodes.forEach(n=>{n.nodeValue=(n.nodeValue||'').replace(replaceRe,'').replace(/[ \t]{2,}/g,' ');});
   }
 
   function removePresentationMeta(){
