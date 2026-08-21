@@ -21,14 +21,14 @@ frame.addEventListener('load',()=>{
   try{
     const doc=frame.contentDocument;
     const css=doc.createElement('link');
-    css.rel='stylesheet'; css.href='polish-v3.css?v=20260821b';
+    css.rel='stylesheet'; css.href='polish-v3.css?v=20260822a';
     doc.head.appendChild(css);
     const js=doc.createElement('script');
-    js.src='polish-v3.js?v=20260821b';
+    js.src='polish-v3.js?v=20260822a';
     doc.body.appendChild(js);
     loading.remove();
   }catch(err){
-    loading.textContent='预览层载入失败。';
+    loading.textContent='预览层载入失败，请通过 HTTP 方式打开本页面。';
     console.error(err);
   }
 });
