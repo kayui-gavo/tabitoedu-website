@@ -1,0 +1,108 @@
+/* TABITO v7 — professional prep-school finish. Meaningful media only, factual hierarchy, no gimmicks. */
+.tabito-v7-professional body{background:#f7f6f2!important}
+.tabito-v7-professional .v7-hide-kicker{display:none!important}
+
+/* Navigation follows the visitor's decision path: courses -> proof -> people -> campus -> consultation. */
+.tabito-v7-professional nav.fixed .max-w-7xl{max-width:1240px!important;padding-inline:20px!important}
+.tabito-v7-professional .v7-nav{display:flex!important;align-items:center!important;gap:17px!important;white-space:nowrap}
+.v7-nav-link{color:#405461;font-size:12px;font-weight:750;text-decoration:none;letter-spacing:.005em;transition:color .16s ease}
+.v7-nav-link:hover{color:#1f6d98}
+.v7-nav-cta{margin-left:3px;padding:8px 12px;border:1px solid #183247;border-radius:7px;color:#183247!important}
+.v7-nav-cta:hover{background:#183247;color:#fff!important}
+.v7-mobile-link{padding:9px 1px;border-bottom:1px solid #e4e8ea;color:#314b5b;font-size:13px;font-weight:750;text-decoration:none}
+
+/* Home hero: no stock/ambiguous photo. The right side now has a useful course index. */
+.v7-hero-clean{padding-top:120px!important;padding-bottom:58px!important;background:#f8f7f3!important}
+.v7-hero-clean .v5-hero-layout{grid-template-columns:minmax(0,1.12fr) minmax(330px,.72fr)!important;gap:70px!important;align-items:center!important}
+.v7-hero-clean .v5-hero-copy .v3-hero-title{font-size:clamp(48px,5.9vw,74px)!important;line-height:1.04!important;letter-spacing:-.05em!important}
+.v7-hero-clean .v5-hero-copy .v3-hero-lede{max-width:610px!important;font-size:15px!important;line-height:1.82!important;color:#576a76!important}
+.v7-hero-clean .v5-hero-copy .v4-hero-actions{gap:8px!important;margin-top:25px!important}
+.v7-hero-clean .v5-hero-copy .v4-hero-actions a{min-width:126px!important;padding:11px 14px!important;border-radius:7px!important;font-size:12px!important}
+.v7-hero-clean .v5-hero-copy .v3-hero-facts{max-width:590px!important;margin-top:22px!important;margin-bottom:0!important}
+.v5-hero-media{display:none!important}
+.v7-hero-index{border-top:2px solid #183247;border-bottom:1px solid #cdd7dc;background:#fff}
+.v7-hero-index header{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:16px 2px 13px;border-bottom:1px solid #d8e0e4}
+.v7-hero-index header span{color:#829099;font-size:10px;font-weight:800;letter-spacing:.12em}.v7-hero-index header strong{color:#183247;font-size:15px}
+.v7-hero-index button{appearance:none;width:100%;display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:12px;align-items:center;padding:17px 2px;border:0;border-bottom:1px solid #e2e7e9;background:transparent;text-align:left;cursor:pointer}
+.v7-hero-index button:hover{background:#fafcfc}.v7-hero-index button>b{color:#86a0ae;font-size:10px;letter-spacing:.08em}.v7-hero-index button>span{display:grid;gap:3px}.v7-hero-index button strong{color:#233f50;font-size:14px}.v7-hero-index button small{color:#7a8991;font-size:10px;line-height:1.5}.v7-hero-index button i{color:#668494;font-size:13px;font-style:normal}
+.v7-hero-index footer{display:flex;justify-content:space-between;padding:12px 2px;color:#86939a;font-size:9px;font-weight:800;letter-spacing:.08em}
+
+/* Program selection is allowed to use an image only when the image actually proves the category. */
+.v4-programs .grid.md\:grid-cols-3{gap:14px!important}
+.v4-program-card{border-radius:10px!important;box-shadow:none!important;background:#fff!important;transition:border-color .16s ease!important}
+.v4-program-card:hover{transform:none!important;box-shadow:none!important;border-color:#aebfc8!important}
+.v7-program-card--text{padding:24px!important;min-height:335px!important;border-top:3px solid #d5e0e5!important}
+.v7-program-card--text .v4-program-code{margin-top:2px!important}
+.v7-program-card--art{border-top:3px solid #657f90!important}
+.v7-program-card--art .v5-program-media{height:158px!important;border-radius:0!important}
+.v4-program-code{font-size:9px!important;letter-spacing:.08em!important;color:#778891!important}
+
+/* Results: structured data only. Generic proof-thumbnail walls are intentionally removed. */
+.v5-result-proof{display:none!important}
+.v3-results-section{padding-top:62px!important;padding-bottom:62px!important}
+.v3-results-copy{position:static!important}
+.v3-results-grid{grid-template-columns:minmax(310px,.78fr) minmax(0,1.22fr)!important;gap:54px!important}
+.v3-result-row{padding:13px 2px!important}.v3-result-row strong{font-size:16px!important}.v3-result-row b{font-size:20px!important}
+.v3-result-facts b{font-size:36px!important}
+
+/* Guidance system is a compact process strip, not another slogan section. */
+.v4-method{padding:48px 0!important;background:#173247!important}
+.v4-method-head{margin-bottom:18px!important}.v4-method-head h2{font-size:30px!important;letter-spacing:-.025em!important}
+.v4-method-grid article{padding-top:17px!important}.v4-method-grid strong{margin-top:11px!important;font-size:14px!important}.v4-method-grid span{font-size:10.5px!important;line-height:1.65!important}
+
+/* Faculty is an institutional roster rather than a portrait wall. */
+.v5-faculty-section{padding:60px 0!important}
+.v5-section-head{margin-bottom:22px!important}.v5-section-head h2{font-size:38px!important}.v5-section-head p:not(.v3-kicker){font-size:13px!important;line-height:1.72!important}
+.v5-faculty-group{padding:16px 0!important}.v5-faculty-row{min-height:43px!important;padding:7px 2px!important}.v5-faculty-name{font-size:12.5px!important}.v5-faculty-school,.v5-faculty-subject{font-size:10.5px!important}
+
+/* Common Test content reads like an editorial explainer. No generic campus photo. */
+.v5-common-media{display:none!important}
+.v4-common-guide{padding:54px 0!important}.v4-common-guide h2{max-width:760px!important;font-size:34px!important}.v4-common-guide p,.v4-common-guide li{font-size:13px!important}
+.v7-neutral-subhero{min-height:auto!important;padding-top:126px!important;padding-bottom:68px!important;background:#f8f7f3!important}
+.v7-neutral-subhero>div.absolute{display:none!important}.v7-neutral-subhero>.relative.z-10{width:min(calc(100% - 40px),1050px)!important}
+
+/* EJU is also text/product-led until a real teaching asset is available. */
+.v5-eju-media{display:none!important}
+.v6-two-paths article{border-radius:0!important}.v6-titech-case{border-radius:0!important}
+.v6-home-case button{border-radius:6px!important}
+
+/* Nakano: mirror the successful lecturer-page pattern — photo + real map as one media stage, then factual info. */
+.v7-classroom{padding:50px 0;background:#fff;border-top:1px solid #dce3e7}
+.v7-tabito-block{max-width:980px;margin:0 auto;border:1px solid #d9e1e4;border-radius:14px;overflow:hidden;background:#fbfaf7;box-shadow:0 12px 34px rgba(24,50,71,.055)}
+.v7-tabito-media-stage{display:grid;grid-template-columns:.95fr 1.05fr;height:205px;background:#e8edef}
+.v7-tabito-photo,.v7-tabito-map{margin:0;min-width:0;overflow:hidden}.v7-tabito-photo{border-right:1px solid rgba(255,255,255,.8)}
+.v7-tabito-photo img{width:100%;height:100%;object-fit:cover;object-position:center}.v7-tabito-map iframe{width:100%;height:100%;border:0;filter:saturate(.78) contrast(.98)}
+.v7-tabito-info{padding:23px 25px 22px}
+.v7-tabito-head{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding-bottom:17px;border-bottom:1px solid #dde4e7}
+.v7-overline{display:block;margin-bottom:5px;color:#6e8998;font-size:9px;font-weight:850;letter-spacing:.12em}.v7-tabito-head h2{margin:0;color:#183247;font-size:25px;line-height:1.18;letter-spacing:-.03em}.v7-tabito-head p{margin:6px 0 0;color:#7b8991;font-size:10px}.v7-tabito-head img{width:auto;height:42px;object-fit:contain}
+.v7-tabito-bottom{display:grid;grid-template-columns:210px minmax(0,1fr) 300px;gap:24px;align-items:center;padding-top:16px}.v7-tabito-bottom address{color:#4d626e;font-size:10px;font-style:normal;line-height:1.7}.v7-tabito-bottom>p{margin:0;color:#6c7d86;font-size:11px;line-height:1.7}.v7-tabito-links{display:grid;grid-template-columns:1fr;gap:5px}.v7-tabito-links a{display:flex;justify-content:space-between;align-items:center;min-height:32px;padding:6px 9px;border:1px solid #d9e1e4;border-radius:6px;background:#fff;color:#345467;font-size:10px;font-weight:800;text-decoration:none}.v7-tabito-links a:hover{border-color:#aebfc8;color:#1f6d98}
+.v4-classroom-row,.v6-map-card{display:none!important}
+
+/* Coverage is low-level trust content. */
+.v6-coverage{padding:42px 0!important}.v6-coverage .v6-section-head h2{font-size:30px!important}.v6-coverage .v6-section-head p{font-size:12px!important}.v6-source-link{min-height:48px!important}.v6-source-link span{font-size:12px!important}
+
+/* Remove remaining template-like motion and candy styling. */
+.tabito-v7-professional .animate-float{animation:none!important}
+.tabito-v7-professional .hover-lift:hover,.tabito-v7-professional .feature-card:hover{transform:none!important}
+.tabito-v7-professional .btn-primary,.tabito-v7-professional .btn-secondary{border-radius:7px!important;box-shadow:none!important}
+.tabito-v7-professional .rounded-full:not(.v6-status){border-radius:8px!important}
+.tabito-v7-professional .shadow-2xl,.tabito-v7-professional .shadow-xl,.tabito-v7-professional .shadow-lg{box-shadow:0 8px 22px rgba(24,50,71,.055)!important}
+
+@media(max-width:1120px){
+  .tabito-v7-professional .v7-nav{gap:11px!important}.v7-nav-link{font-size:11px}
+  .v7-hero-clean .v5-hero-layout{grid-template-columns:minmax(0,1fr) 310px!important;gap:42px!important}
+  .v7-tabito-bottom{grid-template-columns:190px minmax(0,1fr) 260px}
+}
+@media(max-width:940px){
+  .v7-hero-clean .v5-hero-layout{grid-template-columns:1fr!important;gap:30px!important}.v7-hero-index{max-width:650px}
+  .v3-results-grid{grid-template-columns:1fr!important;gap:28px!important}
+  .v7-tabito-media-stage{height:190px}.v7-tabito-bottom{grid-template-columns:1fr 1fr}.v7-tabito-links{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:700px){
+  .v7-hero-clean{padding-top:104px!important;padding-bottom:42px!important}.v7-hero-clean .v5-hero-copy .v3-hero-title{font-size:39px!important}.v7-hero-clean .v5-hero-copy .v3-hero-lede{font-size:13.5px!important}.v7-hero-index button{padding:14px 1px}.v7-hero-index button strong{font-size:13px}
+  .v7-program-card--text{min-height:0!important;padding:20px!important}.v7-program-card--art .v5-program-media{height:132px!important}
+  .v4-method{padding:42px 0!important}.v4-method-head h2{font-size:26px!important}
+  .v5-section-head h2{font-size:31px!important}
+  .v7-classroom{padding:34px 0}.v7-tabito-block{border-radius:10px}.v7-tabito-media-stage{grid-template-columns:1fr;height:auto}.v7-tabito-photo{height:150px;border-right:0;border-bottom:1px solid #fff}.v7-tabito-map{height:150px}.v7-tabito-info{padding:18px}.v7-tabito-head{gap:15px}.v7-tabito-head h2{font-size:21px}.v7-tabito-head img{height:34px}.v7-tabito-bottom{grid-template-columns:1fr;gap:11px}.v7-tabito-links{grid-column:auto;grid-template-columns:1fr 1fr}.v7-tabito-links a:last-child{grid-column:1/-1}
+  .v6-coverage-grid{grid-template-columns:1fr!important}
+}
