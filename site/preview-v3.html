@@ -6,9 +6,9 @@
 <title>旅人教育 TABITO｜Preserve + Polish Preview</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
-html,body{margin:0;width:100%;height:100%;background:#f6f4ef;overflow:hidden}
+html,body{margin:0;width:100%;height:100%;background:#f4f8fb;overflow:hidden}
 #preview{display:block;width:100%;height:100vh;border:0;background:white}
-#loading{position:fixed;inset:0;display:grid;place-items:center;background:#f6f4ef;color:#49606f;font:600 14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;z-index:2}
+#loading{position:fixed;inset:0;display:grid;place-items:center;background:#f4f8fb;color:#496878;font:600 14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;z-index:2}
 </style>
 </head>
 <body>
@@ -22,7 +22,7 @@ frame.addEventListener('load',()=>{
     const doc=frame.contentDocument;
     const addCss=(href)=>{const x=doc.createElement('link');x.rel='stylesheet';x.href=href;doc.head.appendChild(x)};
     const addJs=(src,onload)=>{const x=doc.createElement('script');x.src=src;if(onload)x.addEventListener('load',onload);doc.body.appendChild(x)};
-    const v='20260822k';
+    const v='20260822l';
     addCss('polish-v3.css?v='+v);
     addCss('polish-v3-hotfix.css?v='+v);
     addCss('polish-v4-flow.css?v='+v);
@@ -33,6 +33,7 @@ frame.addEventListener('load',()=>{
     addCss('polish-v8-baijin.css?v='+v);
     addCss('polish-v8-assets.css?v='+v);
     addCss('polish-v8-fix.css?v='+v);
+    addCss('polish-v9-cool.css?v='+v);
     addJs('polish-v3.js?v='+v,()=>{
       addJs('polish-v3-hotfix.js?v='+v,()=>{
         addJs('polish-v4-flow.js?v='+v,()=>{
@@ -41,7 +42,9 @@ frame.addEventListener('load',()=>{
               addJs('polish-v6-evidence.js?v='+v,()=>{
                 addJs('polish-v7-professional.js?v='+v,()=>{
                   addJs('polish-v8-baijin.js?v='+v,()=>{
-                    addJs('polish-v8-fix.js?v='+v);
+                    addJs('polish-v8-fix.js?v='+v,()=>{
+                      addJs('polish-v9-cool.js?v='+v);
+                    });
                   });
                 });
               });
