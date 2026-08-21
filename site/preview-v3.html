@@ -22,14 +22,14 @@ frame.addEventListener('load',()=>{
     const doc=frame.contentDocument;
     const addCss=(href)=>{const x=doc.createElement('link');x.rel='stylesheet';x.href=href;doc.head.appendChild(x)};
     const addJs=(src,onload)=>{const x=doc.createElement('script');x.src=src;if(onload)x.addEventListener('load',onload);doc.body.appendChild(x)};
-    addCss('polish-v3.css?v=20260822d');
-    addCss('polish-v3-hotfix.css?v=20260822d');
-    addCss('polish-v4-flow.css?v=20260822d');
-    addCss('polish-v5-editorial.css?v=20260822d');
-    addJs('polish-v3.js?v=20260822d',()=>{
-      addJs('polish-v3-hotfix.js?v=20260822d',()=>{
-        addJs('polish-v4-flow.js?v=20260822d',()=>{
-          addJs('polish-v5-editorial.js?v=20260822d');
+    addCss('polish-v3.css?v=20260822e');
+    addCss('polish-v3-hotfix.css?v=20260822e');
+    addCss('polish-v4-flow.css?v=20260822e');
+    addCss('polish-v5-editorial.css?v=20260822e');
+    addJs('polish-v3.js?v=20260822e',()=>{
+      addJs('polish-v3-hotfix.js?v=20260822e',()=>{
+        addJs('polish-v4-flow.js?v=20260822e',()=>{
+          addJs('polish-v5-editorial.js?v=20260822e');
         });
       });
     });
