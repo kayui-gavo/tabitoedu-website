@@ -21,10 +21,17 @@
       {name:'卢老师',school:'横滨国立大学',subjects:'日语'},
       {name:'沈老师',school:'布里斯托大学',subjects:'英语'}
     ]},
-    {title:'升学・综合',note:'沿用官网公开信息',teachers:[
-      {name:'籍老师',school:'东京理科大学',subjects:'升学指导'},
-      {name:'吴老师',school:'东京理科大学',subjects:'升学指导'},
-      {name:'杨老师',school:'顺天堂大学',subjects:'升学指导'}
+    {title:'升学・综合',note:'沿用现官网公开信息',teachers:[
+      {name:'籍老师',school:'东京理科大学',subjects:''},
+      {name:'吴老师',school:'东京理科大学',subjects:''},
+      {name:'杨老师',school:'顺天堂大学',subjects:''}
+    ]},
+    {title:'美术',note:'实技・作品集・专业方向',teachers:[
+      {name:'妮老师',school:'多摩美术大学',subjects:'美术'},
+      {name:'汤老师',school:'多摩美术大学',subjects:'雕刻'},
+      {name:'张老师',school:'多摩美术大学',subjects:'油画'},
+      {name:'兰老师',school:'东京造型大学大学院',subjects:'染织设计'},
+      {name:'薛老师',school:'北京电影学院',subjects:'动画实战'}
     ]}
   ];
 
@@ -36,11 +43,12 @@
   const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   function facultyRow(t){
-    const body=`<span class="v5-faculty-name">${esc(t.name)}</span><span class="v5-faculty-school">${esc(t.school)}</span><span class="v5-faculty-subject">${esc(t.subjects)}</span><span class="v5-faculty-arrow">${t.href?'详细介绍 ↗':''}</span>`;
+    const subject=t.subjects?esc(t.subjects):'—';
+    const body=`<span class="v5-faculty-name">${esc(t.name)}</span><span class="v5-faculty-school">${esc(t.school)}</span><span class="v5-faculty-subject">${subject}</span><span class="v5-faculty-arrow">${t.href?'详细介绍 ↗':''}</span>`;
     return t.href?`<a class="v5-faculty-row" href="${esc(t.href)}">${body}</a>`:`<div class="v5-faculty-row">${body}</div>`;
   }
 
-  function facultyDirectory(groups,title='师资团队',lede='按学科查看负责教师。教师背景与担当科目直接列出，减少无必要的人像卡片，让信息更容易比较。'){
+  function facultyDirectory(groups,title='师资团队',lede='按学科查看负责教师。学校背景与担当科目一目了然，便于快速确认授课方向。'){
     return `<div class="v3-shell v5-faculty-shell">
       <div class="v5-section-head"><div><p class="v3-kicker">FACULTY</p><h2>${title}</h2><p>${lede}</p></div><span class="v5-faculty-note">教师安排以当期实际开课为准</span></div>
       <div class="v5-faculty-groups">${groups.map(g=>`<section class="v5-faculty-group"><header><h3>${esc(g.title)}</h3><span>${esc(g.note)}</span></header><div>${g.teachers.map(facultyRow).join('')}</div></section>`).join('')}</div>
@@ -53,7 +61,7 @@
     if(!section) return;
     section.className='v5-faculty-section';
     section.id='faculty';
-    section.innerHTML=facultyDirectory(facultyGroups,'师资团队','不靠统一头像营造“名师墙”，直接呈现学校背景与负责科目。学生先按科目找到人，再进入具体课程或讲师介绍。');
+    section.innerHTML=facultyDirectory(facultyGroups,'师资团队','普通科、美术与升学相关教师统一在首页汇总；进入各项目后，仅展示与该课程直接相关的师资。');
   }
 
   function replaceCommonFaculty(){
