@@ -22,7 +22,7 @@ frame.addEventListener('load',()=>{
     const doc=frame.contentDocument;
     const addCss=(href)=>{const x=doc.createElement('link');x.rel='stylesheet';x.href=href;doc.head.appendChild(x)};
     const addJs=(src,onload)=>{const x=doc.createElement('script');x.src=src;if(onload)x.addEventListener('load',onload);doc.body.appendChild(x)};
-    const v='20260822l';
+    const v='20260822m';
     addCss('polish-v3.css?v='+v);
     addCss('polish-v3-hotfix.css?v='+v);
     addCss('polish-v4-flow.css?v='+v);
@@ -34,6 +34,8 @@ frame.addEventListener('load',()=>{
     addCss('polish-v8-assets.css?v='+v);
     addCss('polish-v8-fix.css?v='+v);
     addCss('polish-v9-cool.css?v='+v);
+    addCss('polish-v10-density.css?v='+v);
+    addCss('polish-v10-fix.css?v='+v);
     addJs('polish-v3.js?v='+v,()=>{
       addJs('polish-v3-hotfix.js?v='+v,()=>{
         addJs('polish-v4-flow.js?v='+v,()=>{
@@ -43,7 +45,9 @@ frame.addEventListener('load',()=>{
                 addJs('polish-v7-professional.js?v='+v,()=>{
                   addJs('polish-v8-baijin.js?v='+v,()=>{
                     addJs('polish-v8-fix.js?v='+v,()=>{
-                      addJs('polish-v9-cool.js?v='+v);
+                      addJs('polish-v9-cool.js?v='+v,()=>{
+                        addJs('polish-v10-density.js?v='+v);
+                      });
                     });
                   });
                 });
