@@ -1,0 +1,123 @@
+/* TABITO v5 — obsessive editorial polish: stronger imagery, calmer faculty, clearer hierarchy. */
+.tabito-v5-editorial body{background:#f7f6f2!important}
+
+/* Navigation: tighter, more institutional. */
+.tabito-v5-editorial nav.fixed .max-w-7xl{max-width:1180px!important;padding-top:11px!important;padding-bottom:11px!important}
+.tabito-v5-editorial nav.fixed img[alt*="LOGO"]{height:40px!important}
+.tabito-v5-editorial nav.fixed .text-2xl{font-size:19px!important;letter-spacing:-.02em}
+
+/* Homepage hero: use the existing photograph as a real editorial image rather than a faded wallpaper. */
+.v5-hero>div.absolute{display:none!important}
+.v5-hero{min-height:auto!important;background:#f7f6f2!important;padding-top:116px!important;padding-bottom:64px!important}
+.v5-hero>.relative.z-10{width:min(calc(100% - 40px),1180px)!important;max-width:none!important;padding:0!important}
+.v5-hero-layout{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);gap:52px;align-items:center}
+.v5-hero-copy{text-align:left}
+.v5-hero-copy .v4-hero-eyebrow,.v5-hero-copy .v3-hero-title,.v5-hero-copy .v3-hero-lede{max-width:none!important;margin-left:0!important;margin-right:0!important;text-align:left!important}
+.v5-hero-copy .v3-hero-title{font-size:clamp(46px,5.6vw,72px)!important;margin-bottom:20px!important}
+.v5-hero-copy .v3-hero-brand{font-size:.18em!important;margin-top:14px!important}
+.v5-hero-copy .v3-hero-lede{max-width:660px!important;font-size:17px!important;line-height:1.75!important}
+.v5-hero-copy .v4-hero-actions{justify-content:flex-start!important;margin-top:28px!important}
+.v5-hero-copy .v4-hero-results-link{margin-left:0!important;margin-right:0!important}
+.v5-hero-copy .v3-hero-facts{justify-content:flex-start!important;max-width:620px!important;margin-left:0!important;margin-right:0!important}
+.v5-hero-copy .v3-hero-stat-grid{display:none!important}
+.v5-hero-media{position:relative;height:530px;margin:0;border-radius:18px;overflow:hidden;background:#e9eef0;box-shadow:0 18px 50px rgba(24,50,71,.10)}
+.v5-hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(15,35,49,.45))}
+.v5-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center}
+.v5-hero-media figcaption{position:absolute;left:20px;right:20px;bottom:17px;z-index:2;display:flex;justify-content:space-between;gap:16px;align-items:end;color:#fff;font-size:10px;letter-spacing:.08em}
+.v5-hero-media figcaption strong{font-size:11px;letter-spacing:.12em}.v5-hero-media figcaption span{opacity:.84}
+
+/* Program cards: imagery now carries meaning instead of emoji/icon decoration. */
+.v4-program-card{overflow:hidden;padding:0 22px 22px!important;min-height:420px!important}
+.v5-program-media{position:relative;height:168px;margin:0 -22px 18px;overflow:hidden;background:#e8ecee}
+.v5-program-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.v4-program-card:hover .v5-program-media img{transform:scale(1.025)}
+.v5-program-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 56%,rgba(17,40,55,.38))}
+.v5-program-media figcaption{position:absolute;left:15px;bottom:11px;z-index:1;color:#fff;font-size:9px;font-weight:900;letter-spacing:.13em}
+.v4-program-code{margin-bottom:15px!important;background:transparent!important;padding:0!important;color:#758792!important}
+.v4-program-card h3{font-size:21px!important}
+.v4-program-card ul{padding-top:12px!important}
+
+/* Results: real proof images sit beside the structured public result list. */
+.v5-results-right{min-width:0}
+.v5-result-proof{margin-top:20px;padding-top:18px;border-top:1px solid var(--v3-line)}
+.v5-proof-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.v5-proof-head span{font-size:12px;font-weight:900;color:#334e5e}.v5-proof-head small{font-size:9px;color:#8b989f}
+.v5-proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.v5-proof-grid figure{height:108px;margin:0;padding:4px;overflow:hidden;border:1px solid var(--v3-line);border-radius:8px;background:#fff}
+.v5-proof-grid img{width:100%;height:100%;object-fit:contain;object-position:center}
+
+/* Faculty: no portrait wall. Institutional roster is calmer and easier to compare. */
+.v5-faculty-section{padding:66px 0;background:#fff;border-top:1px solid var(--v3-line)}
+.v5-faculty-shell{max-width:1180px}
+.v5-section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:28px}
+.v5-section-head h2{margin:0;font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.035em;color:var(--v3-ink)}
+.v5-section-head p:not(.v3-kicker){max-width:700px;margin:12px 0 0;color:var(--v3-text);font-size:14px;line-height:1.75}
+.v5-faculty-note{max-width:260px;color:#87949b;font-size:10px;line-height:1.55;text-align:right}
+.v5-faculty-groups{border-top:1px solid #cfd8dd}
+.v5-faculty-group{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--v3-line)}
+.v5-faculty-group>header h3{margin:0;font-size:15px;letter-spacing:-.01em}.v5-faculty-group>header span{display:block;margin-top:6px;color:#8a969d;font-size:10px;line-height:1.55}
+.v5-faculty-group>div{border-top:1px solid #edf0f2}
+.v5-faculty-row{display:grid;grid-template-columns:120px minmax(150px,.8fr) minmax(180px,1.2fr) auto;gap:16px;align-items:center;min-height:47px;padding:8px 2px;border-bottom:1px solid #edf0f2;color:inherit;text-decoration:none}
+.v5-faculty-row:last-child{border-bottom:0}
+a.v5-faculty-row:hover{background:#fafcfc}
+.v5-faculty-name{font-size:13px;font-weight:900;color:#223e50}.v5-faculty-school{font-size:11px;font-weight:700;color:#647680}.v5-faculty-subject{font-size:11px;color:#506b7b}.v5-faculty-arrow{font-size:9px;font-weight:800;color:#2d7199}
+.v5-faculty-section--project{background:#f7f6f2}.v5-faculty-section--project .v5-faculty-group{grid-template-columns:190px minmax(0,1fr)}
+
+/* Common-test editorial: a single relevant photograph breaks up the long text block. */
+.v5-common-media{position:relative;height:250px;margin:4px 0 26px;border-radius:15px;overflow:hidden;background:#e8edef}
+.v5-common-media img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.v5-common-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(20,45,61,.46))}
+.v5-common-media figcaption{position:absolute;left:17px;right:17px;bottom:13px;z-index:1;display:flex;justify-content:space-between;gap:20px;color:#fff;font-size:9px;font-weight:900;letter-spacing:.12em}
+.v5-common-media figcaption span{font-weight:600;letter-spacing:0;opacity:.9}
+
+/* Company: logo becomes a quiet brand signature, not another oversized card. */
+.v5-company-brand{display:flex;align-items:center;gap:13px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--v3-line)}
+.v5-company-brand img{width:auto;height:36px;object-fit:contain}.v5-company-brand span{color:#86939a;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+
+/* Subpage heroes: image is visible, text remains readable. */
+.v5-subhero{min-height:600px!important;overflow:hidden}
+.v5-subhero>div.absolute img{opacity:.42!important;filter:saturate(.75) contrast(.96)!important}
+.v5-subhero>div.absolute>div{background:linear-gradient(90deg,rgba(250,249,246,.96) 0%,rgba(250,249,246,.82) 43%,rgba(250,249,246,.28) 76%,rgba(250,249,246,.12) 100%)!important}
+.v5-subhero>.relative.z-10{text-align:left!important;width:min(calc(100% - 40px),1100px)!important;max-width:none!important}
+.v5-subhero h1,.v5-subhero p{max-width:720px!important;margin-left:0!important;text-align:left!important}
+.v5-subhero .flex.flex-wrap{justify-content:flex-start!important}
+
+/* EJU was previously the visual weak point. Give the added overview one image anchor. */
+.v5-eju-media{position:relative;height:220px;margin:0 0 24px;border-radius:15px;overflow:hidden;background:#e9edef}
+.v5-eju-media img{width:100%;height:100%;object-fit:cover}.v5-eju-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 56%,rgba(18,40,55,.45))}
+.v5-eju-media figcaption{position:absolute;left:16px;bottom:12px;z-index:1;color:#fff;font-size:10px;font-weight:900;letter-spacing:.12em}
+
+/* Art pages should showcase work like a portfolio, not a collection of floating rounded cards. */
+.v5-art-gallery{background:#fbfaf7!important}
+.v5-art-gallery .rounded-3xl:has(img[src*="work-"]){border-radius:6px!important;box-shadow:none!important;border:1px solid #e2e4e4!important;background:#fff!important;padding:5px!important}
+.v5-art-gallery img[src*="student-work-"],.v5-art-gallery img[src*="teacher-work-"]{transition:transform .35s ease!important}
+.v5-art-gallery .rounded-3xl:hover img[src*="work-"]{transform:scale(1.012)!important}
+.v5-art-gallery h2{letter-spacing:-.03em!important}.v5-art-gallery p{line-height:1.75!important}
+
+/* Classroom remains compact; tighten once more. */
+.v4-classroom{padding:28px 0!important}
+.v4-classroom-row{grid-template-columns:185px minmax(0,1fr) 235px!important;gap:20px!important}
+.v4-classroom-photo{height:124px!important;border-radius:11px!important}
+.v4-classroom-main h2{font-size:24px!important}.v4-classroom-main>p:not(.v3-kicker){font-size:11px!important;margin-top:6px!important}.v4-classroom-main address{margin-top:8px!important;font-size:10px!important}
+
+/* Recruitment and contact: cleaner density. */
+.v4-recruit{border-top:1px solid var(--v3-line)!important}.v4-recruit .v3-recruit-item span{font-size:10.5px!important}.v4-contact .grid{gap:12px!important}
+
+/* Hide placeholder portraits if legacy content surfaces them. */
+.v5-unknown-portrait{opacity:.7}
+
+@media(max-width:980px){
+  .v5-hero-layout{grid-template-columns:1fr;gap:28px}.v5-hero-media{height:360px}.v5-hero-copy .v3-hero-title{font-size:clamp(42px,8vw,64px)!important}
+  .v5-faculty-group{grid-template-columns:1fr;gap:12px}.v5-faculty-section--project .v5-faculty-group{grid-template-columns:1fr}
+  .v4-classroom-row{grid-template-columns:150px minmax(0,1fr)!important}.v4-classroom-actions{grid-column:1/-1!important}
+}
+
+@media(max-width:700px){
+  .v5-hero{padding-top:102px!important;padding-bottom:42px!important}.v5-hero>.relative.z-10{width:min(calc(100% - 28px),1180px)!important}.v5-hero-layout{gap:22px}.v5-hero-media{height:240px;border-radius:13px}.v5-hero-media figcaption{left:13px;right:13px;bottom:11px}.v5-hero-copy .v3-hero-title{font-size:40px!important}.v5-hero-copy .v3-hero-lede{font-size:14px!important}.v5-hero-copy .v3-hero-facts{overflow-x:auto}.v5-hero-copy .v3-hero-facts span{min-width:120px;padding-inline:8px!important}
+  .v4-program-card{min-height:0!important}.v5-program-media{height:140px}
+  .v5-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.v5-proof-grid figure{height:118px}
+  .v5-section-head{display:block}.v5-faculty-note{display:block;margin-top:10px;text-align:left}.v5-faculty-row{grid-template-columns:88px minmax(0,1fr);gap:3px 10px;padding:10px 0}.v5-faculty-school{grid-column:2}.v5-faculty-subject{grid-column:2}.v5-faculty-arrow{grid-column:2;margin-top:3px}
+  .v5-common-media{height:180px}.v5-common-media figcaption{display:block}.v5-common-media figcaption span{display:block;margin-top:4px}
+  .v5-subhero{min-height:auto!important}.v5-subhero>div.absolute img{opacity:.26!important}.v5-subhero>div.absolute>div{background:rgba(250,249,246,.78)!important}
+  .v4-classroom{padding:22px 0!important}.v4-classroom-row{grid-template-columns:82px minmax(0,1fr)!important;gap:12px!important}.v4-classroom-photo{height:82px!important}.v4-classroom-main h2{font-size:20px!important}.v4-classroom-main>p:not(.v3-kicker){display:none!important}.v4-classroom-actions{grid-template-columns:1fr 1fr!important}
+}
