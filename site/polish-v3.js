@@ -12,7 +12,7 @@
         {name:'陆老师', school:'东京科学大学', subjects:['数学','物理'], img:'images/teacher_lu.jpg'},
         {name:'周老师', school:'筑波大学', subjects:['生物'], img:'images/teacher_zhou.jpg'},
         {name:'丁老师', school:'千叶大学', subjects:['地学','地理'], gender:'男'},
-        {name:'焦老师', school:'', subjects:['化学']}
+        {name:'焦老师', school:'东京大学', subjects:['化学']}
       ]
     },
     {
