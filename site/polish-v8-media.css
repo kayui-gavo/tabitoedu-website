@@ -1,0 +1,9 @@
+/* Authentic media backgrounds: ranking poster and published 2026 Common Test course flyer. */
+.v8-results{position:relative;overflow:hidden}
+.v8-results:after{content:"";position:absolute;right:-16px;top:50%;width:min(31vw,380px);height:88%;transform:translateY(-50%);background:url('images/v8-pass-ranking.webp') center/contain no-repeat;opacity:.075;filter:saturate(.65);pointer-events:none}
+.v8-results>.max-w-7xl,.v8-results>.v3-shell{position:relative;z-index:1}
+.v8-common-poster{position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(15,47,69,.98) 0%,rgba(15,47,69,.92) 49%,rgba(15,47,69,.43) 100%),url('images/v8-common-course.webp')!important;background-position:center,right center!important;background-size:cover,56% auto!important;background-repeat:no-repeat!important}
+.v8-common-poster:before,.v8-common-poster:after{position:relative;z-index:1}
+.v8-case-visual,.v8-eju-proof-image{background-image:url('images/v8-tokyo-science-evidence.webp')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+@media(max-width:900px){.v8-results:after{width:280px;opacity:.055}.v8-common-poster{background-size:cover,78% auto!important}}
+@media(max-width:700px){.v8-results:after{display:none}.v8-common-poster{background-image:linear-gradient(90deg,rgba(15,47,69,.97),rgba(15,47,69,.78)),url('images/v8-common-course.webp')!important;background-size:cover,cover!important}}
