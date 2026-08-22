@@ -22,7 +22,7 @@ frame.addEventListener('load',()=>{
     const doc=frame.contentDocument;
     const addCss=(href)=>{const x=doc.createElement('link');x.rel='stylesheet';x.href=href;doc.head.appendChild(x)};
     const addJs=(src,onload)=>{const x=doc.createElement('script');x.src=src;if(onload)x.addEventListener('load',onload);doc.body.appendChild(x)};
-    const v='20260823r9full1';
+    const v='20260823r10proof1';
     addCss('polish-v3.css?v='+v);
     addCss('polish-v3-hotfix.css?v='+v);
     addCss('polish-v4-flow.css?v='+v);
@@ -31,7 +31,6 @@ frame.addEventListener('load',()=>{
     addCss('polish-v7-professional.css?v='+v);
     addCss('polish-v7-fix.css?v='+v);
     addCss('polish-v8-baijin.css?v='+v);
-    addCss('polish-v8-assets.css?v='+v);
     addCss('polish-v8-fix.css?v='+v);
     addCss('polish-v9-cool.css?v='+v);
     addCss('polish-v10-density.css?v='+v);
