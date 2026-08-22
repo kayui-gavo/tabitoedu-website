@@ -149,7 +149,7 @@
   function facultyHTML() {
     return `
       <div class="finish-faculty-group finish-faculty-group--math">
-        <header><h3>数学</h3><p>数学担当</p></header>
+        <header><h3>数学</h3></header>
         <div class="finish-teacher-grid finish-teacher-grid--three">${mathTeachers.map(([name,school])=>teacherCard(name,school)).join('')}</div>
       </div>
       <div class="finish-faculty-group finish-faculty-group--science">
@@ -237,7 +237,7 @@
 
       <section id="nakano-classroom" class="finish-classroom"><div class="finish-shell">
         ${sectionHead('03','实体教室','东京・中野实体教室','实体课程与线上课程并行。')}
-        <div class="finish-classroom-grid"><figure><img src="https://kayui-gavo.github.io/assets/tabito-classroom-v5.webp" alt="旅人教育东京中野教室"><figcaption><b>中国旅人教育集团株式会社</b><span>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</span></figcaption></figure><div class="finish-classroom-info"><span class="finish-kicker">NAKANO / TOKYO</span><h3>中野教室</h3><p>实体授课、面谈与升学咨询均可在中野教室进行。</p><dl><div><dt>地址</dt><dd>東京都中野区中野1-55-3 フェリスビル 4F</dd></div><div><dt>授课</dt><dd>实体・线上</dd></div></dl><a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F" target="_blank" rel="noopener noreferrer">Google Maps →</a></div></div>
+        <div class="finish-classroom-grid"><figure><img src="https://kayui-gavo.github.io/assets/tabito-classroom-v5.webp" alt="旅人教育东京中野教室"><figcaption><b>中国旅人教育集团株式会社</b><span>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</span></figcaption></figure><div class="finish-classroom-info"><span class="finish-kicker">东京・中野</span><h3>中野教室</h3><p>实体授课、面谈与升学咨询均可在中野教室进行。</p><dl><div><dt>地址</dt><dd>東京都中野区中野1-55-3 フェリスビル 4F</dd></div><div><dt>授课</dt><dd>实体・线上</dd></div></dl><a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F" target="_blank" rel="noopener noreferrer">在 Google Maps 中查看 →</a></div><div class="finish-map-wrap"><iframe title="旅人教育中野教室地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></div>
       </div></section>
 
       <section id="faculty" class="finish-faculty-section"><div class="finish-shell">
