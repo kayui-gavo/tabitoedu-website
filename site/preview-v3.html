@@ -22,7 +22,7 @@ frame.addEventListener('load',()=>{
     const doc=frame.contentDocument;
     const addCss=(href)=>{const x=doc.createElement('link');x.rel='stylesheet';x.href=href;doc.head.appendChild(x)};
     const addJs=(src,onload)=>{const x=doc.createElement('script');x.src=src;if(onload)x.addEventListener('load',onload);doc.body.appendChild(x)};
-    const v='20260823r7type1';
+    const v='20260823r8full1';
     addCss('polish-v3.css?v='+v);
     addCss('polish-v3-hotfix.css?v='+v);
     addCss('polish-v4-flow.css?v='+v);
@@ -50,11 +50,7 @@ frame.addEventListener('load',()=>{
                       addJs('polish-v9-cool.js?v='+v,()=>{
                         addJs('polish-v10-density.js?v='+v,()=>{
                           addJs('polish-v11-audit.js?v='+v,()=>{
-                            addJs('polish-finishing.js?v='+v,()=>{
-                              /* R6 injects a runtime style block. Reload the correction sheet after it
-                                 so media-visibility and type-scale fixes are guaranteed to win cascade. */
-                              addCss('polish-v8-fix.css?v='+v+'&final=1');
-                            });
+                            addJs('polish-finishing.js?v='+v);
                           });
                         });
                       });
