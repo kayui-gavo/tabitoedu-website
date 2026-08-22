@@ -7,22 +7,36 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const icon = name => `<span class="finish-icon finish-icon--${name}" aria-hidden="true"></span>`;
 
-  const facultyGroups = [
+  const teachingGroups = [
     {
-      key:'stem', label:'理工科', note:'数学・物理・化学・生物・地学',
+      key:'math', label:'数学', note:'数学担当', mode:'simple',
       rows:[
-        ['刘老师','东京大学','物理','https://kayui-gavo.github.io/education/'],
-        ['脇村老师','筑波大学','数学',''],
-        ['坂野老师','早稻田大学','数学',''],
-        ['孙老师','东京大学','物理・化学',''],
-        ['陆老师','东京科学大学','数学・物理',''],
-        ['周老师','筑波大学','生物',''],
-        ['丁老师','千叶大学','地学',''],
-        ['焦老师','东京大学','化学','']
+        ['脇村老师','筑波大学','',''],
+        ['坂野老师','早稻田大学','',''],
+        ['陆老师','东京科学大学','','']
       ]
     },
     {
-      key:'humanities', label:'语言・人文', note:'日语・英语・国语・政经・世界史・地理',
+      key:'science', label:'理科', note:'物理・化学・生物・地学', mode:'science',
+      subjects:[
+        {label:'物理', rows:[
+          ['刘老师','东京大学','','https://kayui-gavo.github.io/education/'],
+          ['陆老师','东京科学大学','','']
+        ]},
+        {label:'化学', rows:[
+          ['孙老师','东京大学','',''],
+          ['焦老师','东京大学','','']
+        ]},
+        {label:'生物', rows:[
+          ['周老师','筑波大学','','']
+        ]},
+        {label:'地学', rows:[
+          ['丁老师','千叶大学','','']
+        ]}
+      ]
+    },
+    {
+      key:'humanities', label:'语言・人文', note:'国语・日语・英语・政经・世界史・地理', mode:'standard',
       rows:[
         ['刘老师','东京大学','国语・英语・政经・世界史',''],
         ['卢老师','横滨国立大学','日语',''],
@@ -31,14 +45,22 @@
       ]
     },
     {
-      key:'ops', label:'事务・运营・产品', note:'非授课成员｜事务、运营与产品开发',
+      key:'art', label:'美术', note:'实技・作品集・专业方向', mode:'standard',
       rows:[
-        ['籍老师','东京理科大学','事务・运营・产品开发',''],
-        ['吴老师','东京理科大学','事务・运营・产品开发',''],
-        ['杨老师','顺天堂大学','事务・运营・产品开发',''],
-        ['谢老师','明治大学','事务・运营・产品开发','']
+        ['妮老师','多摩美术大学','美术',''],
+        ['汤老师','多摩美术大学','雕刻',''],
+        ['张老师','多摩美术大学','油画',''],
+        ['兰老师','东京造型大学大学院','染织设计',''],
+        ['薛老师','北京电影学院','动画实战','']
       ]
     }
+  ];
+
+  const operationsRows = [
+    ['籍老师','东京理科大学'],
+    ['吴老师','东京理科大学'],
+    ['杨老师','顺天堂大学'],
+    ['谢老师','明治大学']
   ];
 
   const proofDoc = (kind, compact = false) => {
@@ -173,16 +195,46 @@
     return `<header class="finish-section-head"><div><span class="finish-section-no">${no}</span><span class="finish-kicker">${kicker}</span><h2>${title}</h2></div>${desc?`<p>${desc}</p>`:''}</header>`;
   }
 
+  function facultySimpleRow([name,school,,href]) {
+    const row = `<span>${esc(name)}</span><small>${esc(school)}</small><i>${href?'↗':''}</i>`;
+    const style = 'grid-template-columns:100px 1fr 18px';
+    return href
+      ? `<a href="${esc(href)}" class="finish-faculty-row" style="${style}">${row}</a>`
+      : `<div class="finish-faculty-row" style="${style}">${row}</div>`;
+  }
+
+  function facultyStandardRow([name,school,subject,href]) {
+    const row = `<span>${esc(name)}</span><small>${esc(school)}</small><em>${esc(subject)}</em><i>${href?'↗':''}</i>`;
+    return href ? `<a href="${esc(href)}" class="finish-faculty-row">${row}</a>` : `<div class="finish-faculty-row">${row}</div>`;
+  }
+
+  function sciencePanel(group) {
+    return `<p class="finish-faculty-note">${esc(group.note)}</p>${group.subjects.map(subject => `
+      <div class="finish-science-group" style="margin-top:12px">
+        <p class="finish-faculty-note" style="margin:0 0 3px!important;padding-top:7px;border-top:1px solid #c8d9e0;color:#31586b!important;font-weight:800">${esc(subject.label)}</p>
+        <div class="finish-faculty-table">${subject.rows.map(facultySimpleRow).join('')}</div>
+      </div>`).join('')}`;
+  }
+
   function facultyHTML() {
-    return `<div class="finish-faculty-tabs" role="tablist" aria-label="讲师分类">
-      ${facultyGroups.map((g,i)=>`<button type="button" data-faculty-tab="${g.key}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><span>${g.label}</span><b>${g.rows.length}</b></button>`).join('')}
-    </div>
-    <div class="finish-faculty-panels">
-      ${facultyGroups.map((g,i)=>`<section data-faculty-panel="${g.key}" class="${i===0?'is-active':''}"><p class="finish-faculty-note">${g.note}</p><div class="finish-faculty-table">${g.rows.map(([name,school,subject,href])=>{
-        const row = `<span>${esc(name)}</span><small>${esc(school)}</small><em>${esc(subject)}</em><i>${href?'↗':''}</i>`;
-        return href ? `<a href="${esc(href)}" class="finish-faculty-row">${row}</a>` : `<div class="finish-faculty-row">${row}</div>`;
-      }).join('')}</div></section>`).join('')}
+    const tabs = teachingGroups.map((g,i) => {
+      const count = g.mode === 'science' ? g.subjects.reduce((sum,s)=>sum+s.rows.length,0) : g.rows.length;
+      return `<button type="button" data-faculty-tab="${g.key}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><span>${g.label}</span><b>${count}</b></button>`;
+    }).join('');
+
+    const panels = teachingGroups.map((g,i) => {
+      const body = g.mode === 'science'
+        ? sciencePanel(g)
+        : `<p class="finish-faculty-note">${esc(g.note)}</p><div class="finish-faculty-table">${g.rows.map(g.mode === 'simple' ? facultySimpleRow : facultyStandardRow).join('')}</div>`;
+      return `<section data-faculty-panel="${g.key}" class="${i===0?'is-active':''}">${body}</section>`;
+    }).join('');
+
+    const ops = `<div class="finish-faculty-ops" style="margin-top:18px;padding-top:15px;border-top:1px solid #cbdbe2">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:5px"><p class="finish-faculty-note" style="margin:0!important;color:#31586b!important;font-weight:800">事务・运营・开发</p><span style="font-size:10.5px;color:#83959d">非授课成员</span></div>
+      <div class="finish-faculty-table">${operationsRows.map(([name,school])=>`<div class="finish-faculty-row" style="grid-template-columns:100px 1fr 18px"><span>${esc(name)}</span><small>${esc(school)}</small><i></i></div>`).join('')}</div>
     </div>`;
+
+    return `<div class="finish-faculty-tabs" role="tablist" aria-label="讲师分类">${tabs}</div><div class="finish-faculty-panels">${panels}</div>${ops}`;
   }
 
   function rebuildHome() {
@@ -245,7 +297,7 @@
       </div></section>
 
       <section id="faculty" class="finish-academic"><div class="finish-shell">
-        ${sectionHead('03','授课与团队','指导流程・部分讲师','以下为部分担当教师及非授课运营成员，实际担当以当期排课为准。')}
+        ${sectionHead('03','授课与团队','部分讲师介绍','以下为部分担当教师。兼任多个领域的教师会重复列出；事务・运营・开发成员另列。实际担当以当期排课为准。')}
         <div class="finish-academic-grid"><div class="finish-workflow"><div class="finish-workflow-list"><div>${icon('target')}<span><b>01　确认目标校</b><small>募集要项・入试方式・考试科目</small></span></div><div>${icon('plan')}<span><b>02　安排科目与进度</b><small>当前基础・考试时间・目标分数</small></span></div><div>${icon('course')}<span><b>03　授课与练习</b><small>数学・理科・语言・人文・美术</small></span></div><div>${icon('document')}<span><b>04　出愿与面试</b><small>材料・手续・模拟面试</small></span></div></div><figure class="finish-workflow-photo"><img src="https://kayui-gavo.github.io/assets/tabito-classroom-v5.webp" alt="旅人教育东京中野教室"><figcaption>东京・中野实体教室</figcaption></figure></div><div class="finish-faculty">${facultyHTML()}</div></div>
       </div></section>
 
@@ -354,7 +406,7 @@
     setupScrollProgress();
     setupSectionSpy();
     syncNav(activePage(), '');
-    document.documentElement.classList.add('tabito-finishing','tabito-finishing-r10');
+    document.documentElement.classList.add('tabito-finishing','tabito-finishing-r11');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
