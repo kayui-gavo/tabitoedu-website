@@ -15,7 +15,7 @@
     window.setTimeout(()=>{
       if(id) document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
       syncNav(page,id);
-    },70);
+    },80);
   }
   function bindRouteLinks(root=document){
     root.querySelectorAll('[data-finish-page]').forEach(el=>{
@@ -37,7 +37,7 @@
     const desktop=nav?.querySelector('.hidden.md\\:flex');
     const mobile=document.querySelector('#mobileMenu .flex.flex-col');
     const items=[
-      ['首页','home',''],['课程','home','programs'],['美术升学','art',''],['共通考试','kyotsu',''],['EJU・校内考','eju',''],['合格实绩','home','results'],['中野教室','home','nakano-classroom'],['升学咨询','home','contact']
+      ['美术升学','art',''],['共通考试','kyotsu',''],['EJU・校内考','eju',''],['合格实绩','home','results'],['讲师','home','faculty'],['中野教室','home','nakano-classroom'],['升学咨询','home','contact']
     ];
     const render=isMobile=>items.map(([label,page,target],i)=>`<a href="#" class="${isMobile?'finish-mobile-nav':'finish-nav-link'}${i===items.length-1&&!isMobile?' finish-nav-cta':''}" data-finish-page="${page}" data-finish-target="${target}" data-nav-page="${page}" data-nav-target="${target}">${label}</a>`).join('');
     if(desktop){desktop.innerHTML=render(false);desktop.className='hidden md:flex finish-nav';bindRouteLinks(desktop);}
@@ -48,10 +48,11 @@
   function syncNav(page,target=''){
     document.querySelectorAll('[data-nav-page]').forEach(a=>{
       const samePage=a.dataset.navPage===page;
-      const sameTarget=target&&a.dataset.navTarget===target;
-      const base=samePage&&(!target&&!a.dataset.navTarget||sameTarget);
-      a.classList.toggle('is-current',!!base);
-      if(base)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+      const targetMatch=target&&a.dataset.navTarget===target;
+      const pageMatch=samePage&&!target&&!a.dataset.navTarget;
+      const on=!!(targetMatch||pageMatch);
+      a.classList.toggle('is-current',on);
+      if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
     });
   }
   function setupScrollProgress(){
@@ -62,6 +63,16 @@
     const observer=new MutationObserver(()=>{syncNav(activePage(),'');requestAnimationFrame(draw);});
     document.querySelectorAll('.page-section').forEach(p=>observer.observe(p,{attributes:true,attributeFilter:['class']}));
   }
+  function setupHomeSectionSpy(){
+    if(!home||!('IntersectionObserver' in window))return;
+    const targets=['results','faculty','nakano-classroom','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+    const io=new IntersectionObserver(entries=>{
+      if(activePage()!=='home')return;
+      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(visible)syncNav('home',visible.target.id);
+    },{rootMargin:'-22% 0px -58%',threshold:[.05,.2,.4]});
+    targets.forEach(x=>io.observe(x));
+  }
 
   function refineHero(){
     if(!home)return;
@@ -70,20 +81,27 @@
     const eyebrow=hero.querySelector('.v4-hero-eyebrow');
     const title=hero.querySelector('.v3-hero-title');
     const lede=hero.querySelector('.v3-hero-lede');
-    if(eyebrow)eyebrow.textContent='日本留学本科升学指导｜东京・中野';
-    if(title)title.innerHTML='<span class="v3-hero-jp">学びの旅に、<br>確かな道しるべを。</span><span class="v3-hero-brand">TABITO EDUCATION · TOKYO</span>';
-    if(lede)lede.innerHTML='共通考试、EJU 一对一、理工科校内考与美术升学。<br class="hidden md:block">先确认目标校与选拔方式，再安排课程、出愿与面试准备。';
+    if(eyebrow)eyebrow.textContent='TABITO EDUCATION｜TOKYO · NAKANO';
+    if(title)title.innerHTML='<span class="finish-hero-main">日本本科升学，<br>先把路线选对。</span><span class="finish-hero-slogan">学びの旅に、確かな道しるべを。</span>';
+    if(lede)lede.textContent='美术升学、共通考试、EJU 一对一与校内考专项。先确认目标校和选拔方式，再安排科目、出愿与面试准备。';
+    const actions=hero.querySelector('.v4-hero-actions');
+    if(actions){
+      actions.innerHTML='<a href="#" data-finish-page="home" data-finish-target="programs">查看课程路线</a><a href="#" data-finish-page="home" data-finish-target="results">查看合格实绩</a>';
+      bindRouteLinks(actions);
+    }
+    const resultsLink=hero.querySelector('.v4-hero-results-link');
+    if(resultsLink){resultsLink.textContent='东京・中野实体教室｜线上课程同步';resultsLink.removeAttribute('href');resultsLink.removeAttribute('onclick');}
     const box=hero.querySelector('.v7-hero-index');
     if(box){
       box.className='v7-hero-index finish-hero-index';
-      box.innerHTML=`<header><span>ROUTE FINDER</span><strong>按选拔方式找到入口</strong></header>
+      box.innerHTML=`<header><span>ROUTE FINDER</span><strong>你的入口是哪一条？</strong></header>
         <div class="finish-hero-routes" role="list">
-          <a href="#" role="listitem" data-finish-page="art" data-route="art"><b>美术升学</b><small>实技・作品集・专业方向</small><i>01</i></a>
-          <a href="#" role="listitem" data-finish-page="kyotsu" data-route="common"><b>共通考试</b><small>按科报名・申请支持</small><i>02</i></a>
-          <a href="#" role="listitem" data-finish-page="eju" data-route="eju"><b>EJU 一对一</b><small>按个人报考计划推进</small><i>03</i></a>
-          <a href="#" role="listitem" data-finish-page="eju" data-finish-target="school-exam-programs" data-route="school"><b>校内考对策</b><small>按目标校开设专项・小班</small><i>04</i></a>
+          <a href="#" role="listitem" data-finish-page="art" data-route="art"><b>美术升学</b><small>作品、实技、专业方向与面试</small><i>01</i></a>
+          <a href="#" role="listitem" data-finish-page="kyotsu" data-route="common"><b>共通考试</b><small>按科课程 + 志愿与申请支持</small><i>02</i></a>
+          <a href="#" role="listitem" data-finish-page="eju" data-route="eju"><b>EJU 一对一</b><small>按个人目标校和考试计划推进</small><i>03</i></a>
+          <a href="#" role="listitem" data-finish-page="eju" data-finish-target="school-exam-programs" data-route="school"><b>校内考对策</b><small>按目标校开设笔试・面试专项</small><i>04</i></a>
         </div>
-        <div class="finish-hero-route-note"><span>东京・中野实体教室</span><span>线上课程同步</span></div>`;
+        <div class="finish-hero-route-note"><span>4 类业务独立查看</span><span>课程前先确认报考路线</span></div>`;
       bindRouteLinks(box);
       box.querySelectorAll('[data-route]').forEach(a=>{
         const set=()=>{box.dataset.activeRoute=a.dataset.route;box.querySelectorAll('[data-route]').forEach(x=>x.classList.toggle('is-preview',x===a));};
@@ -98,21 +116,16 @@
     section.querySelectorAll('.finish-program-directory,.finish-program-explorer').forEach(x=>x.remove());
     const old=section.querySelector('.finish-program-matrix,.grid');if(old)old.style.display='none';
     const title=section.querySelector('h2');const intro=title?.parentElement?.querySelector('p');
-    if(title)title.textContent='课程与升学项目';
-    if(intro)intro.textContent='不是把所有学生放进同一套课程。先选报考路线，再看课程形式、费用与实际教学内容。';
+    if(title)title.textContent='四条升学路线，一屏比较';
+    if(intro)intro.textContent='点击左侧路线，直接比较适用场景、课程内容、费用或实际教学证据。';
     const explorer=document.createElement('div');explorer.className='finish-program-explorer';
-    const tabs=[
-      ['art','美术升学','实技・作品集・专业方向','作品与实技准备'],
-      ['common','共通考试','按科报名・申请支持','2026 共通考试课程'],
-      ['eju','EJU 一对一','目前仅接一对一','个人报考计划'],
-      ['school','校内考对策','按目标校开设专项・小班','东京科学大学重点案例']
-    ];
+    const tabs=[['art','美术升学','作品・实技・面试'],['common','共通考试','按科报名・申请支持'],['eju','EJU 一对一','目前仅接一对一'],['school','校内考对策','按目标校开设']];
     explorer.innerHTML=`<div class="finish-program-tabs" role="tablist" aria-label="课程路线">${tabs.map((x,i)=>`<button type="button" role="tab" aria-selected="${i===0?'true':'false'}" data-program="${x[0]}" class="${i===0?'is-active':''}"><span>0${i+1}</span><b>${x[1]}</b><small>${x[2]}</small><i>→</i></button>`).join('')}</div>
       <div class="finish-program-stages">
-        <article class="finish-program-stage is-active" data-stage="art"><div class="finish-program-visual finish-program-visual--art"><img src="images/student-work-illustration-city.png" alt="旅人教育美术学生插画作品"><img src="images/student-work-bust-charcoal.jpg" alt="旅人教育美术学生素描作品"><img src="images/student-work-stilllife-wires.png" alt="旅人教育美术学生静物作品"></div><div class="finish-program-stage-copy"><span>ART & DESIGN</span><h3>作品、实技与志望专业一起准备</h3><p>按目标校与专业方向组合实技、作品制作、作品说明与面试准备。</p><dl><div><dt>形式</dt><dd>项目制指导</dd></div><div><dt>查看</dt><dd>学生作品・教师作品</dd></div></dl><a href="#" data-finish-page="art">进入美术升学 →</a></div></article>
-        <article class="finish-program-stage" data-stage="common"><div class="finish-program-visual finish-program-visual--proof"><div class="v8-common-poster" aria-hidden="true"></div><span>2026 共通テスト</span></div><div class="finish-program-stage-copy"><span>COMMON TEST</span><h3>先确认利用方式，再决定报考科目</h3><p>课程按科报名，并把志愿规划、报名材料审核与手续指导放进同一条准备线。</p><dl><div><dt>课程费</dt><dd>14,000 元 / 科</dd></div><div><dt>材料费</dt><dd>5,000 元｜4 科起免</dd></div></dl><a href="#" data-finish-page="kyotsu">查看科目与费用 →</a></div></article>
-        <article class="finish-program-stage" data-stage="eju"><div class="finish-program-visual finish-program-visual--eju"><strong>1 : 1</strong><span>EJU</span><ol><li>目标校</li><li>科目</li><li>出愿</li><li>面试</li></ol></div><div class="finish-program-stage-copy"><span>EJU</span><h3>目前仅接一对一</h3><p>围绕报考科目、目标校、文书、出愿与面试，按个人计划推进。</p><dl><div><dt>形式</dt><dd>一对一</dd></div><div><dt>安排</dt><dd>按个人报考计划</dd></div></dl><a href="#" data-finish-page="eju">查看 EJU 一对一 →</a></div></article>
-        <article class="finish-program-stage" data-stage="school"><div class="finish-program-visual finish-program-visual--proof finish-program-visual--school"><div class="v8-case-visual" aria-hidden="true"></div><span>实际教学资料</span></div><div class="finish-program-stage-copy"><span>SCHOOL-SPECIFIC</span><h3>校内考按目标校重新组织</h3><p>根据笔试科目、题型特点与面试要求开设专项或小班。东京科学大学是重点案例之一。</p><dl><div><dt>2026 案例</dt><dd>东京科学大学</dd></div><div><dt>最终合格</dt><dd>2 / 2</dd></div></dl><a href="#" data-finish-page="eju" data-finish-target="school-exam-programs">查看完整案例 →</a></div></article>
+        <article class="finish-program-stage is-active" data-stage="art"><div class="finish-program-visual finish-program-visual--art"><img src="images/student-work-illustration-city.png" alt="旅人教育美术学生插画作品"><img src="images/student-work-bust-charcoal.jpg" alt="旅人教育美术学生素描作品"><img src="images/student-work-stilllife-wires.png" alt="旅人教育美术学生静物作品"></div><div class="finish-program-stage-copy"><span>ART & DESIGN</span><h3>作品、实技与志望专业一起准备</h3><p>面向美术类大学与专业方向，把作品制作、实技训练和面试说明放在同一套准备计划里。</p><ul class="finish-program-points"><li><b>实技</b><span>素描・色彩・专业课</span></li><li><b>作品集</b><span>方向梳理・制作推进</span></li><li><b>面试</b><span>作品说明・志望理由</span></li></ul><a href="#" data-finish-page="art">看学生作品与课程 →</a></div></article>
+        <article class="finish-program-stage" data-stage="common"><div class="finish-program-visual finish-program-visual--proof"><div class="v8-common-poster" aria-hidden="true"></div><span>2026 共通テスト课程资料</span></div><div class="finish-program-stage-copy"><span>COMMON TEST</span><h3>先确认目标校是否利用，再决定科目</h3><p>课程按科报名，同时提供志愿规划、报名材料审核、准备与手续指导。</p><ul class="finish-program-points"><li><b>课程费</b><span>14,000 元 / 科</span></li><li><b>材料费</b><span>5,000 元｜4 科起免</span></li><li><b>科目</b><span>数学・理科・文科・语言</span></li></ul><a href="#" data-finish-page="kyotsu">看科目、费用与支持 →</a></div></article>
+        <article class="finish-program-stage" data-stage="eju"><div class="finish-program-visual finish-program-visual--eju"><strong>1 : 1</strong><span>EJU</span><ol><li>目标校</li><li>科目</li><li>出愿</li><li>面试</li></ol></div><div class="finish-program-stage-copy"><span>EJU</span><h3>目前仅接一对一</h3><p>围绕目标校、报考科目、文书、出愿与面试，按个人考试节点推进。</p><ul class="finish-program-points"><li><b>形式</b><span>一对一</span></li><li><b>规划</b><span>按个人报考计划</span></li><li><b>衔接</b><span>文书・出愿・面试</span></li></ul><a href="#" data-finish-page="eju">看 EJU 一对一 →</a></div></article>
+        <article class="finish-program-stage" data-stage="school"><div class="finish-program-visual finish-program-visual--proof finish-program-visual--school"><div class="v8-case-visual" aria-hidden="true"></div><span>东京科学大学专项｜实际教学资料</span></div><div class="finish-program-stage-copy"><span>SCHOOL-SPECIFIC</span><h3>校内考按目标校重新组织</h3><p>根据笔试科目、题型特点与面试要求开设专项或小班，不把不同学校套进同一模板。</p><ul class="finish-program-points"><li><b>2026 案例</b><span>东京科学大学</span></li><li><b>内容</b><span>数学・物理・化学・面试</span></li><li><b>最终合格</b><span>2 / 2</span></li></ul><a href="#" data-finish-page="eju" data-finish-target="school-exam-programs">看完整校内考案例 →</a></div></article>
       </div>`;
     const container=section.querySelector('.max-w-7xl,.max-w-6xl')||section.firstElementChild||section;container.appendChild(explorer);bindRouteLinks(explorer);
     const activate=key=>{
@@ -129,8 +142,9 @@
     const oldCase=home.querySelector('.v8-case');
     const evidence=oldCase?.querySelector('.v8-case-visual');
     const evidenceHTML=evidence?evidence.outerHTML:'<div class="finish-case-fallback"><span>数学</span><span>物理</span><span>化学</span><span>模拟面试</span></div>';
+    const schools=[['东京科学大学',2],['日本大学',3],['北海道大学',1],['京都产业大学',1],['神奈川工科大学',1],['中央大学',1]];
     results.className='finish-results';
-    results.innerHTML=`<div class="v3-shell finish-results-shell"><section class="finish-results-general"><div class="finish-results-head"><div><span>截至 2026 年 4 月</span><h2>合格实绩</h2></div><div class="finish-results-numbers"><div><b>9</b><small>合格校次</small></div><div><b>6</b><small>所大学</small></div></div></div><p class="finish-results-lede">2025 年 9 月正式开课后的公开合格记录。以下按合格校次统计。</p><div class="finish-result-list"><div><strong>东京科学大学</strong><b>2 名</b></div><div><strong>日本大学</strong><b>3 名</b></div><div><strong>北海道大学</strong><b>1 名</b></div><div><strong>京都产业大学</strong><b>1 名</b></div><div><strong>神奈川工科大学</strong><b>1 名</b></div><div><strong>中央大学</strong><b>1 名</b></div></div><p class="finish-result-note">※ “合格校次”不等同于独立学生人数；同一学生取得多个合格结果时分别计入。</p></section>
+    results.innerHTML=`<div class="v3-shell finish-results-shell"><section class="finish-results-general"><div class="finish-results-head"><div><span>截至 2026 年 4 月</span><h2>合格实绩</h2></div><div class="finish-results-numbers"><div><b>9</b><small>合格校次</small></div><div><b>6</b><small>所大学</small></div></div></div><p class="finish-results-lede">2025 年 9 月正式开课后的公开合格记录。按合格校次统计，一眼确认学校与数量。</p><div class="finish-result-list">${schools.map(([name,n])=>`<div style="--result:${n}"><span><strong>${name}</strong><i></i></span><b>${n} 名</b></div>`).join('')}</div><p class="finish-result-note">※ “合格校次”不等同于独立学生人数；同一学生取得多个合格结果时分别计入。</p></section>
       <article class="finish-flagship-case"><div class="finish-case-copy"><span>2026｜重点案例</span><h3>东京科学大学（理工学系）<br>数理化笔试对策小班</h3><p>数学・物理・化学 + 原创模拟题 + 模拟面试</p><div class="finish-case-steps" role="tablist" aria-label="东京科学大学案例进度"><button type="button" class="is-active" data-case-step="entry"><b>2</b><small>报名</small></button><button type="button" data-case-step="written"><b>2</b><small>笔试合格</small></button><button type="button" data-case-step="final"><b>2</b><small>最终合格</small></button></div><div class="finish-case-stepnote" aria-live="polite">数学・物理・化学三科同步准备，并配套原创模拟题。</div><div class="finish-case-students"><span>41026 · 经营工学系</span><span>41064 · 融合理工学系</span></div><button type="button" class="finish-case-link" data-finish-page="eju" data-finish-target="school-exam-programs">查看完整课程案例 →</button></div><div class="finish-case-media">${evidenceHTML}<span class="finish-case-media-label">ACTUAL MATERIALS</span></div></article></div>`;
     oldCase?.remove();bindRouteLinks(results);
     const notes={entry:'数学・物理・化学三科同步准备，并配套原创模拟题。',written:'2 名报名学生均通过笔试，随后衔接面试准备。',final:'2 名学生均取得最终合格：经营工学系、融合理工学系。'};
@@ -146,7 +160,7 @@
     if(!home||home.querySelector('.finish-academic-hub'))return;
     const method=home.querySelector('#how-we-work');const faculty=home.querySelector('#faculty');const groups=extractFaculty();if(!method&&!faculty)return;
     const hub=document.createElement('section');hub.className='finish-academic-hub';
-    hub.innerHTML=`<div class="v3-shell finish-academic-grid"><div id="how-we-work" class="finish-method-panel"><span class="finish-overline">HOW WE WORK</span><h2>先把准备顺序排清楚</h2><p>课程对应实际报考节点。目标校、科目、授课和出愿面试不是四件互不相关的事。</p><ol><li><i>01</i><b>目标校确认</b><span>核对募集要项、入试方式与科目。</span></li><li><i>02</i><b>科目与进度规划</b><span>按基础、考试时间和目标分数安排。</span></li><li><i>03</i><b>对应学科授课</b><span>数学、理科、语言、人文与美术分科担当。</span></li><li><i>04</i><b>出愿・面试衔接</b><span>材料、手续与面试同步推进。</span></li></ol></div><div id="faculty" class="finish-faculty-panel"><div class="finish-faculty-head"><div><span class="finish-overline">部分讲师介绍</span><h2>按领域看担当教师</h2></div><small>具体排课以当期课程为准</small></div>${groups.length?`<div class="finish-faculty-tabs" role="tablist">${groups.map((g,i)=>`<button type="button" data-faculty-tab="${i}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><b>${esc(g.title)}</b><span>${g.rows.length}</span></button>`).join('')}</div><div class="finish-faculty-panels">${groups.map((g,i)=>`<section data-faculty-panel="${i}" class="${i===0?'is-active':''}"><header><span>${esc(g.note)}</span></header><div>${g.rows.map(facultyRowHTML).join('')}</div></section>`).join('')}</div>`:'<p>讲师信息以当期课程安排为准。</p>'}</div></div>`;
+    hub.innerHTML=`<div class="v3-shell finish-academic-grid"><div id="how-we-work" class="finish-method-panel"><span class="finish-overline">HOW WE WORK</span><h2>课程跟着报考节点走</h2><p>把目标校、科目、授课、出愿和面试放进一条时间线，减少重复准备与信息断层。</p><ol><li><i>01</i><b>目标校确认</b><span>核对募集要项、入试方式与科目。</span></li><li><i>02</i><b>科目与进度</b><span>按基础、考试时间和目标分数安排。</span></li><li><i>03</i><b>对应学科授课</b><span>数学、理科、语言、人文与美术分科担当。</span></li><li><i>04</i><b>出愿・面试</b><span>材料、手续与面试同步推进。</span></li></ol></div><div id="faculty" class="finish-faculty-panel"><div class="finish-faculty-head"><div><span class="finish-overline">部分讲师介绍</span><h2>按领域看担当教师</h2></div><small>具体排课以当期课程为准</small></div>${groups.length?`<div class="finish-faculty-tabs" role="tablist">${groups.map((g,i)=>`<button type="button" data-faculty-tab="${i}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><b>${esc(g.title)}</b><span>${g.rows.length}</span></button>`).join('')}</div><div class="finish-faculty-panels">${groups.map((g,i)=>`<section data-faculty-panel="${i}" class="${i===0?'is-active':''}"><header><span>${esc(g.note)}</span></header><div>${g.rows.map(facultyRowHTML).join('')}</div></section>`).join('')}</div>`:'<p>讲师信息以当期课程安排为准。</p>'}</div></div>`;
     const anchor=method||faculty;anchor.insertAdjacentElement('beforebegin',hub);method?.remove();faculty?.remove();
     hub.querySelectorAll('[data-faculty-tab]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.facultyTab;hub.querySelectorAll('[data-faculty-tab]').forEach(x=>{const on=x===b;x.classList.toggle('is-active',on);x.setAttribute('aria-selected',on?'true':'false');});hub.querySelectorAll('[data-faculty-panel]').forEach(p=>p.classList.toggle('is-active',p.dataset.facultyPanel===k));}));
   }
@@ -156,12 +170,12 @@
     const old=home.querySelector('.v8-insight');if(!old)return;
     const found=[...old.querySelectorAll('a.v6-source-link')].slice(0,3).map(a=>({href:a.href,label:text(a.querySelector('span'))||text(a),meta:text(a.querySelector('small'))}));
     const links=found.length?found:[{href:'https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ',label:'共通考试政策解读',meta:'旅人教育公众号'},{href:'https://xhslink.cn/o/5Djzx1FPbYQ',label:'栗子老师介绍共通考试',meta:'小红书'},{href:'https://xhslink.cn/o/17CWJJBamPK',label:'逆袭！日本大学一般入试合格学生采访',meta:'学生采访'}];
-    const strip=document.createElement('section');strip.className='finish-insight-strip';strip.innerHTML=`<div class="v3-shell"><div class="finish-insight-copy"><span class="finish-overline">GUIDE & STORIES</span><h2>会影响报考判断的信息，单独整理</h2><p>政策解读、路线说明与学生案例作为课程之外的判断依据。</p></div><div class="finish-insight-links">${links.map((x,i)=>`<a href="${esc(x.href)}" target="_blank" rel="noopener noreferrer"><i>0${i+1}</i><span><strong>${esc(x.label)}</strong><small>${esc(x.meta)}</small></span><b>↗</b></a>`).join('')}</div><details class="finish-insight-more"><summary>展开共通考试路线说明</summary><div class="finish-insight-legacy"></div></details></div>`;old.insertAdjacentElement('beforebegin',strip);strip.querySelector('.finish-insight-legacy').appendChild(old);
+    const strip=document.createElement('section');strip.className='finish-insight-strip';strip.innerHTML=`<div class="v3-shell"><div class="finish-insight-copy"><span class="finish-overline">GUIDE & STORIES</span><h2>影响报考判断的信息，集中整理</h2><p>政策解读、路线说明与学生案例独立于课程销售内容，方便先判断路线。</p></div><div class="finish-insight-links">${links.map((x,i)=>`<a href="${esc(x.href)}" target="_blank" rel="noopener noreferrer"><i>0${i+1}</i><span><strong>${esc(x.label)}</strong><small>${esc(x.meta)}</small></span><b>↗</b></a>`).join('')}</div><details class="finish-insight-more"><summary>展开共通考试路线说明</summary><div class="finish-insight-legacy"></div></details></div>`;old.insertAdjacentElement('beforebegin',strip);strip.querySelector('.finish-insight-legacy').appendChild(old);
   }
 
   function buildFeeEstimator(){
     const course=kyotsu?.querySelector('#common-course-2026');if(!course||course.querySelector('.finish-fee-estimator'))return;
-    const box=document.createElement('aside');box.className='finish-fee-estimator';box.innerHTML=`<div><span class="finish-overline">费用快速确认</span><h3>按科目数查看课程费用</h3><p>课程费 14,000 元 / 科；材料费 5,000 元，4 科及以上免材料费。</p></div><div class="finish-fee-controls" role="group" aria-label="选择科目数"><button type="button" class="is-active" data-subject-count="1">1 科</button><button type="button" data-subject-count="2">2 科</button><button type="button" data-subject-count="3">3 科</button><button type="button" data-subject-count="4">4 科+</button></div><div class="finish-fee-result" aria-live="polite"><small>参考合计</small><strong>19,000 元</strong><span>课程费 14,000 + 材料费 5,000</span></div>`;
+    const box=document.createElement('aside');box.className='finish-fee-estimator';box.innerHTML=`<div class="finish-fee-copy"><span class="finish-overline">2026 COURSE DASHBOARD</span><h3>科目与费用先确认</h3><p>课程费 14,000 元 / 科；材料费 5,000 元，4 科及以上免材料费。</p></div><div class="finish-fee-controls" role="group" aria-label="选择科目数"><button type="button" class="is-active" data-subject-count="1">1 科</button><button type="button" data-subject-count="2">2 科</button><button type="button" data-subject-count="3">3 科</button><button type="button" data-subject-count="4">4 科+</button></div><div class="finish-fee-result" aria-live="polite"><small>参考合计</small><strong>19,000 元</strong><span>课程费 14,000 + 材料费 5,000</span></div><div class="finish-common-subjects"><div><b>数学</b><span>数学 1A・数学 2BC</span></div><div><b>理科</b><span>物理・化学・生物・地学</span></div><div><b>文科</b><span>地理・政经・世界史</span></div><div><b>语言</b><span>日语・国语</span></div></div>`;
     const container=course.querySelector('.max-w-7xl,.max-w-6xl,.max-w-5xl')||course.firstElementChild||course;container.insertAdjacentElement('afterbegin',box);
     box.querySelectorAll('[data-subject-count]').forEach(b=>b.addEventListener('click',()=>{const n=Number(b.dataset.subjectCount);box.querySelectorAll('[data-subject-count]').forEach(x=>x.classList.toggle('is-active',x===b));const fee=n*14000;const material=n>=4?0:5000;const total=fee+material;box.querySelector('.finish-fee-result strong').textContent=n>=4?`${total.toLocaleString('en-US')} 元起`:`${total.toLocaleString('en-US')} 元`;box.querySelector('.finish-fee-result span').textContent=n>=4?`4 科课程费 ${fee.toLocaleString('en-US')} 起｜材料费 0`:`课程费 ${fee.toLocaleString('en-US')} + 材料费 ${material.toLocaleString('en-US')}`;}));
   }
@@ -169,7 +183,7 @@
   function buildEjuRouteSwitcher(){
     if(!eju||eju.querySelector('.finish-eju-switcher'))return;
     const snap=eju.querySelector('.v10-snapshot--eju');const nav=eju.querySelector('.v10-local-nav')||snap;if(!nav)return;
-    const box=document.createElement('section');box.className='finish-eju-switcher';box.innerHTML=`<div class="v3-shell"><div class="finish-eju-switch-tabs" role="tablist"><button type="button" class="is-active" data-eju-route="eju" aria-selected="true"><span>01</span><b>EJU 一对一</b></button><button type="button" data-eju-route="school" aria-selected="false"><span>02</span><b>校内考专项</b></button></div><div class="finish-eju-switch-panels"><article data-eju-panel="eju" class="is-active"><span>EJU</span><h2>目前仅接一对一</h2><p>围绕科目、目标校、文书、出愿与面试，按个人报考计划推进。</p><button type="button" data-finish-page="eju" data-finish-target="eju-overview">查看 EJU 内容 →</button></article><article data-eju-panel="school"><span>SCHOOL-SPECIFIC</span><h2>按目标校开设专项或小班</h2><p>根据笔试科目、题型与面试要求组织。东京科学大学是 2026 年重点案例之一。</p><button type="button" data-finish-page="eju" data-finish-target="school-exam-programs">查看校内考案例 →</button></article></div></div>`;nav.insertAdjacentElement('afterend',box);bindRouteLinks(box);
+    const box=document.createElement('section');box.className='finish-eju-switcher';box.innerHTML=`<div class="v3-shell"><div class="finish-eju-switch-tabs" role="tablist"><button type="button" class="is-active" data-eju-route="eju" aria-selected="true"><span>01</span><b>EJU 一对一</b><small>个人报考计划</small></button><button type="button" data-eju-route="school" aria-selected="false"><span>02</span><b>校内考专项</b><small>按目标校开设</small></button></div><div class="finish-eju-switch-panels"><article data-eju-panel="eju" class="is-active"><div><span>EJU</span><h2>目前仅接一对一</h2><p>围绕科目、目标校、文书、出愿与面试，按个人报考计划推进。</p></div><dl><div><dt>形式</dt><dd>1 : 1</dd></div><div><dt>核心</dt><dd>择校・文书・出愿</dd></div><div><dt>后段</dt><dd>模拟面试</dd></div></dl><button type="button" data-finish-page="eju" data-finish-target="eju-overview">查看 EJU 内容 →</button></article><article data-eju-panel="school"><div><span>SCHOOL-SPECIFIC</span><h2>按目标校开设专项或小班</h2><p>根据笔试科目、题型与面试要求组织，不限定东京科学大学。</p></div><dl><div><dt>形式</dt><dd>专项 / 小班</dd></div><div><dt>核心</dt><dd>笔试科目・题型</dd></div><div><dt>案例</dt><dd>东京科学大学 2 / 2</dd></div></dl><button type="button" data-finish-page="eju" data-finish-target="school-exam-programs">查看校内考案例 →</button></article></div></div>`;nav.insertAdjacentElement('afterend',box);bindRouteLinks(box);
     box.querySelectorAll('[data-eju-route]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.ejuRoute;box.querySelectorAll('[data-eju-route]').forEach(x=>{const on=x===b;x.classList.toggle('is-active',on);x.setAttribute('aria-selected',on?'true':'false');});box.querySelectorAll('[data-eju-panel]').forEach(p=>p.classList.toggle('is-active',p.dataset.ejuPanel===k));}));
   }
 
@@ -178,26 +192,33 @@
     const teacher=findSection(art,/教师作品展示/);
     const imgs=[...art.querySelectorAll('.v11-student-mosaic img'),...(teacher?[...teacher.querySelectorAll('img')]:[])];
     if(!imgs.length)return;
-    const modal=document.createElement('div');modal.className='finish-lightbox';modal.setAttribute('aria-hidden','true');modal.innerHTML='<button type="button" class="finish-lightbox-close" aria-label="关闭作品预览">×</button><figure><img alt=""><figcaption></figcaption></figure><span class="finish-lightbox-hint">ESC 关闭</span>';document.body.appendChild(modal);
-    const open=img=>{const out=modal.querySelector('img');out.src=img.currentSrc||img.src;out.alt=img.alt||'作品预览';modal.querySelector('figcaption').textContent=img.alt||'';modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('finish-modal-open');modal.querySelector('.finish-lightbox-close').focus();};
+    let current=0;
+    const modal=document.createElement('div');modal.className='finish-lightbox';modal.setAttribute('aria-hidden','true');modal.innerHTML='<button type="button" class="finish-lightbox-close" aria-label="关闭作品预览">×</button><button type="button" class="finish-lightbox-prev" aria-label="上一件作品">‹</button><figure><img alt=""><figcaption></figcaption></figure><button type="button" class="finish-lightbox-next" aria-label="下一件作品">›</button><span class="finish-lightbox-count"></span><span class="finish-lightbox-hint">← → 切换 · ESC 关闭</span>';document.body.appendChild(modal);
+    const show=i=>{current=(i+imgs.length)%imgs.length;const img=imgs[current];const out=modal.querySelector('img');out.src=img.currentSrc||img.src;out.alt=img.alt||'作品预览';modal.querySelector('figcaption').textContent=img.alt||'';modal.querySelector('.finish-lightbox-count').textContent=`${current+1} / ${imgs.length}`;};
+    const open=img=>{show(imgs.indexOf(img));modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('finish-modal-open');modal.querySelector('.finish-lightbox-close').focus();};
     const close=()=>{modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('finish-modal-open');};
     imgs.forEach(img=>{img.classList.add('finish-lightboxable');img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label',`${img.alt||'作品'}，点击放大`);img.addEventListener('click',()=>open(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(img);}});});
-    modal.querySelector('.finish-lightbox-close').addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close();});addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))close();});
+    modal.querySelector('.finish-lightbox-close').addEventListener('click',close);modal.querySelector('.finish-lightbox-prev').addEventListener('click',()=>show(current-1));modal.querySelector('.finish-lightbox-next').addEventListener('click',()=>show(current+1));modal.addEventListener('click',e=>{if(e.target===modal)close();});addEventListener('keydown',e=>{if(!modal.classList.contains('is-open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1);});
   }
 
   function refineSubpages(){
-    if(art){const snap=art.querySelector('.v10-snapshot--art');if(snap){snap.classList.add('finish-subpage-snapshot');const h=snap.querySelector('h2');if(h)h.textContent='美术升学｜作品、实技与专业方向';}art.querySelector('.v11-student-mosaic')?.setAttribute('aria-label','学生作品选集');const more=art.querySelector('.v11-gallery-more>summary');if(more)more.textContent=more.textContent.replace('查看全部教师作品','展开教师作品集');setupArtLightbox();}
-    if(kyotsu){const snap=kyotsu.querySelector('.v10-snapshot--common');if(snap){snap.classList.add('finish-subpage-snapshot','finish-common-snapshot');const h=snap.querySelector('h2');const p=snap.querySelector('.v10-snapshot-copy>p');if(h)h.textContent='共通考试｜对象、科目、费用先确认';if(p)p.textContent='先确认目标校是否利用共通成绩，再决定报考科目。课程、收费与申请支持集中展示。';}const nav=kyotsu.querySelector('.v10-local-nav')||snap;const course=kyotsu.querySelector('#common-course-2026');if(nav&&course&&nav.nextElementSibling!==course)nav.insertAdjacentElement('afterend',course);buildFeeEstimator();}
-    if(eju){const snap=eju.querySelector('.v10-snapshot--eju');if(snap){snap.classList.add('finish-subpage-snapshot','finish-eju-snapshot');const h=snap.querySelector('h2');const p=snap.querySelector('.v10-snapshot-copy>p');if(h)h.textContent='EJU 一对一・校内考专项';if(p)p.textContent='EJU 目前仅接一对一；校内考根据目标校需求开设专项或小班。东京科学大学为重点案例之一。';}const nav=eju.querySelector('.v10-local-nav')||snap;const program=eju.querySelector('#school-exam-programs');if(nav&&program&&nav.nextElementSibling!==program)nav.insertAdjacentElement('afterend',program);buildEjuRouteSwitcher();}
+    if(art){const snap=art.querySelector('.v10-snapshot--art');if(snap){snap.classList.add('finish-subpage-snapshot','finish-art-snapshot');const h=snap.querySelector('h2');const p=snap.querySelector('.v10-snapshot-copy>p');if(h)h.textContent='美术升学｜先看作品，再看课程';if(p)p.textContent='实技、作品集、专业方向与面试准备按目标校组合。学生作品和教师作品优先展示教学结果。';}art.querySelector('.v11-student-mosaic')?.setAttribute('aria-label','学生作品选集');const more=art.querySelector('.v11-gallery-more>summary');if(more)more.textContent=more.textContent.replace('查看全部教师作品','展开教师作品集');setupArtLightbox();}
+    if(kyotsu){const snap=kyotsu.querySelector('.v10-snapshot--common');if(snap){snap.classList.add('finish-subpage-snapshot','finish-common-snapshot');const h=snap.querySelector('h2');const p=snap.querySelector('.v10-snapshot-copy>p');if(h)h.textContent='共通考试｜适用对象、科目、费用先确认';if(p)p.textContent='先确认目标校是否利用共通成绩，再决定报考科目。课程、收费与申请支持集中展示。';}const nav=kyotsu.querySelector('.v10-local-nav')||snap;const course=kyotsu.querySelector('#common-course-2026');if(nav&&course&&nav.nextElementSibling!==course)nav.insertAdjacentElement('afterend',course);buildFeeEstimator();}
+    if(eju){const snap=eju.querySelector('.v10-snapshot--eju');if(snap){snap.classList.add('finish-subpage-snapshot','finish-eju-snapshot');const h=snap.querySelector('h2');const p=snap.querySelector('.v10-snapshot-copy>p');if(h)h.textContent='EJU 一对一・校内考专项';if(p)p.textContent='两条业务分开：EJU 目前仅接一对一；校内考根据目标校需求开设专项或小班。';}const nav=eju.querySelector('.v10-local-nav')||snap;const program=eju.querySelector('#school-exam-programs');if(nav&&program&&nav.nextElementSibling!==program)nav.insertAdjacentElement('afterend',program);buildEjuRouteSwitcher();}
     document.querySelectorAll('.v10-local-nav').forEach(n=>n.classList.add('finish-local-nav'));
   }
 
   function refineClassroomAndInstitution(){
-    const classroom=home?.querySelector('#nakano-classroom');if(classroom){classroom.classList.add('finish-classroom');const h=classroom.querySelector('h2');const p=classroom.querySelector('.v7-tabito-head p');if(h)h.textContent='东京・中野教室';if(p)p.textContent='中国旅人教育集团株式会社';}
+    const classroom=home?.querySelector('#nakano-classroom');
+    if(classroom){
+      classroom.classList.add('finish-classroom');const h=classroom.querySelector('h2');const p=classroom.querySelector('.v7-tabito-head p');
+      if(h)h.textContent='东京・中野教室';if(p)p.textContent='中国旅人教育集团株式会社';
+      if(p&&!classroom.querySelector('.finish-classroom-info'))p.insertAdjacentHTML('afterend','<div class="finish-classroom-info"><span><b>地址</b>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</span><span><b>授课</b>实体教室・线上课程同步</span></div>');
+    }
     const hub=home?.querySelector('#institution');if(hub){hub.classList.add('finish-institution');const p=hub.querySelector('.v11-institution-head p');if(p)p.textContent='法人信息、升学资讯与兼职讲师招聘集中收纳。';hub.querySelectorAll(':scope details').forEach(d=>d.addEventListener('toggle',()=>{if(!d.open)return;hub.querySelectorAll(':scope details').forEach(x=>{if(x!==d)x.open=false;});}));}
   }
   function refineContact(){
-    const contact=home?.querySelector('#contact');if(!contact)return;contact.classList.add('finish-contact');const h=contact.querySelector('h2');const p=h?.parentElement?.querySelector('p');if(h)h.textContent='升学咨询';if(p)p.textContent='把目标校、当前成绩和预计入学时间告诉我们。先确认报考路线，再决定需要的课程。';contact.querySelector('.finish-contact-facts')?.remove();if(p)p.insertAdjacentHTML('afterend','<div class="finish-contact-facts"><span><b>目标校</b>学校・学部・入试方式</span><span><b>当前成绩</b>EJU / 共通 / 校内考基础</span><span><b>时间</b>预计入学年度・考试节点</span></div>');
+    const contact=home?.querySelector('#contact');if(!contact)return;contact.classList.add('finish-contact');const h=contact.querySelector('h2');const p=h?.parentElement?.querySelector('p');if(h)h.textContent='升学咨询';if(p)p.textContent='先把目标校、当前成绩和预计入学时间告诉我们，再确认报考路线和课程。';contact.querySelector('.finish-contact-facts')?.remove();contact.querySelector('.finish-contact-flow')?.remove();if(p){p.insertAdjacentHTML('afterend','<div class="finish-contact-facts"><span><b>目标校</b>学校・学部・入试方式</span><span><b>当前成绩</b>EJU / 共通 / 校内考基础</span><span><b>时间</b>预计入学年度・考试节点</span></div><div class="finish-contact-flow"><span><i>01</i>发送基本情况</span><span><i>02</i>确认报考路线</span><span><i>03</i>决定课程与准备顺序</span></div>');}
   }
   function reorderHome(){
     if(!home)return;const hero=home.querySelector('.finish-hero')||home.querySelector('.v8-hero')||home.querySelector('section.hero-bg');if(!hero)return;
@@ -206,14 +227,14 @@
   function setupReveal(){
     const targets=document.querySelectorAll('#home>section,.page-section>section,.finish-program-explorer,.finish-results-shell,.finish-academic-grid');targets.forEach(x=>x.classList.add('finish-reveal'));
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){targets.forEach(x=>x.classList.add('is-visible'));return;}
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -6%'});targets.forEach(x=>io.observe(x));
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.07,rootMargin:'0px 0px -5%'});targets.forEach(x=>io.observe(x));
   }
   function protectMobileConsultation(){
     const floating=document.querySelector('.v11-floating-consult');const contact=home?.querySelector('#contact');if(!floating||!contact||!('IntersectionObserver'in window))return;const observer=new IntersectionObserver(entries=>floating.classList.toggle('finish-consult-hidden',entries.some(x=>x.isIntersecting)),{threshold:.08});observer.observe(contact);
   }
 
   function init(){
-    removeFormerTeacher();compactPrimaryNavigation();refineHero();buildProgramExplorer();buildResultsStage();buildAcademicHub();buildInsightStrip();refineSubpages();refineClassroomAndInstitution();refineContact();reorderHome();protectMobileConsultation();bindRouteLinks();setupScrollProgress();setupReveal();document.documentElement.classList.add('tabito-finishing','tabito-finishing-r3');
+    removeFormerTeacher();compactPrimaryNavigation();refineHero();buildProgramExplorer();buildResultsStage();buildAcademicHub();buildInsightStrip();refineSubpages();refineClassroomAndInstitution();refineContact();reorderHome();protectMobileConsultation();bindRouteLinks();setupScrollProgress();setupHomeSectionSpy();setupReveal();document.documentElement.classList.add('tabito-finishing','tabito-finishing-r4');
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
