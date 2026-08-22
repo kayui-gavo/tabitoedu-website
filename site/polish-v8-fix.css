@@ -13,4 +13,32 @@
 .v8-insight .v6-source-link b,.v8-coverage .v6-source-link b{font-size:12px!important}
 .tabito-v8-baijin #company{padding-top:64px!important;padding-bottom:64px!important}
 .tabito-v8-baijin #recruit{padding-top:58px!important;padding-bottom:58px!important}
-@media(max-width:700px){.v8-hero .v4-hero-actions{grid-template-columns:1fr 1fr!important;width:100%!important}.v8-hero .v4-hero-actions a{min-width:0!important}.v8-case-visual{min-height:300px!important}.v8-trust-bar strong{font-size:13px!important}.v8-program-caption{position:static!important;margin-top:20px!important}.v8-program{min-height:0!important}.v8-faculty .v5-faculty-note{display:none!important}}
+
+/* Tokyo Science evidence: the source material is a document-oriented composite image. Using cover on shallow tiles cropped most of the useful content away. Keep the full sheet visible wherever R6 reuses it. */
+html.tabito-finishing .finish-mini-proof>.v8-case-visual,
+html.tabito-finishing .finish-media-tile--proof>.v8-case-visual,
+html.tabito-finishing .finish-program-visual--school>.v8-case-visual,
+html.tabito-finishing .finish-proof-main>.v8-case-visual,
+html.tabito-finishing .finish-titech-evidence-main>.v8-eju-proof-image{
+  display:block!important;opacity:1!important;visibility:visible!important;
+  background-size:contain!important;background-position:center!important;background-repeat:no-repeat!important;
+  background-color:#f4f8fa!important;filter:none!important;
+}
+html.tabito-finishing .finish-mini-proof>.v8-case-visual:after,
+html.tabito-finishing .finish-media-tile--proof>.v8-case-visual:after,
+html.tabito-finishing .finish-program-visual--school>.v8-case-visual:after,
+html.tabito-finishing .finish-proof-main>.v8-case-visual:after{display:none!important}
+html.tabito-finishing .finish-mini-proof{background:#eef4f6!important}
+html.tabito-finishing .finish-mini-proof>.v8-case-visual{position:absolute!important;inset:4px!important;width:auto!important;height:auto!important;min-height:0!important}
+html.tabito-finishing .finish-media-tile--proof>.v8-case-visual{position:absolute!important;inset:10px 10px 38px!important;width:auto!important;height:auto!important;min-height:0!important;box-shadow:0 8px 22px rgba(14,48,67,.16)!important;border:1px solid #d6e2e7!important}
+html.tabito-finishing .finish-program-visual--school>.v8-case-visual{inset:18px!important;width:auto!important;height:auto!important;box-shadow:0 18px 40px rgba(14,48,67,.16)!important;border:1px solid #d7e2e7!important}
+html.tabito-finishing .finish-proof-main{padding:18px!important;background:#e7f0f4!important}
+html.tabito-finishing .finish-proof-main>.v8-case-visual{position:relative!important;inset:auto!important;width:100%!important;height:100%!important;min-height:0!important;background-color:#fff!important;box-shadow:0 16px 42px rgba(8,34,50,.2)!important;border:1px solid rgba(25,65,86,.12)!important}
+html.tabito-finishing .finish-proof-shot>.v8-case-visual{opacity:1!important;visibility:visible!important;background-repeat:no-repeat!important;background-color:#f5f8fa!important}
+
+@media(max-width:700px){
+  .v8-hero .v4-hero-actions{grid-template-columns:1fr 1fr!important;width:100%!important}.v8-hero .v4-hero-actions a{min-width:0!important}.v8-case-visual{min-height:300px!important}.v8-trust-bar strong{font-size:13px!important}.v8-program-caption{position:static!important;margin-top:20px!important}.v8-program{min-height:0!important}.v8-faculty .v5-faculty-note{display:none!important}
+  html.tabito-finishing .finish-media-tile--proof>.v8-case-visual{inset:7px 7px 31px!important}
+  html.tabito-finishing .finish-program-visual--school>.v8-case-visual{inset:10px!important}
+  html.tabito-finishing .finish-proof-main{padding:10px!important}
+}
