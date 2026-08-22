@@ -5,9 +5,10 @@
   const art=document.getElementById('art');
   const kyotsu=document.getElementById('kyotsu');
   const eju=document.getElementById('eju');
-  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
   const text=el=>(el?.textContent||'').replace(/\s+/g,' ').trim();
   const findSection=(root,re)=>[...root?.querySelectorAll('section')||[]].find(s=>[...s.querySelectorAll('h2,h3')].some(h=>re.test(text(h))));
+  const icon=k=>`<span class="finish-lineicon finish-lineicon--${k}" aria-hidden="true"></span>`;
 
   function activePage(){return document.querySelector('.page-section.active')?.id||'home';}
   function go(page,id=''){
@@ -105,17 +106,35 @@
     const box=hero.querySelector('.v7-hero-index');
     if(box){
       box.className='v7-hero-index finish-hero-index';
-      box.innerHTML=`<header><span>升学项目</span><strong>按报考方式查看</strong></header>
+      box.innerHTML=`<div class="finish-hero-miniatures">
+          <figure><img src="images/student-work-illustration-city.png" alt="美术学生作品"><figcaption>美术</figcaption></figure>
+          <figure><img src="images/hero_background_1.jpg" alt="共通考试课程视觉"><figcaption>共通</figcaption></figure>
+          <figure class="finish-mini-proof"><div class="v8-case-visual" aria-hidden="true"></div><figcaption>校内考</figcaption></figure>
+        </div>
+        <header><span>升学项目</span><strong>按报考方式查看</strong></header>
         <div class="finish-hero-routes" role="list">
-          <a href="#" role="listitem" data-finish-page="art" data-route="art"><b>美术升学</b><small>实技・作品集・面试</small><i>01</i></a>
-          <a href="#" role="listitem" data-finish-page="kyotsu" data-route="common"><b>共通考试</b><small>按科课程・升学申请支持</small><i>02</i></a>
-          <a href="#" role="listitem" data-finish-page="eju" data-route="eju"><b>EJU 一对一</b><small>目前仅接一对一</small><i>03</i></a>
-          <a href="#" role="listitem" data-finish-page="eju" data-finish-target="school-exam-programs" data-route="school"><b>校内考对策</b><small>按目标校开设专项或小班</small><i>04</i></a>
+          <a href="#" role="listitem" data-finish-page="art" data-route="art">${icon('art')}<span><b>美术升学</b><small>实技・作品集・面试</small></span><i>01</i></a>
+          <a href="#" role="listitem" data-finish-page="kyotsu" data-route="common">${icon('common')}<span><b>共通考试</b><small>按科课程・升学申请支持</small></span><i>02</i></a>
+          <a href="#" role="listitem" data-finish-page="eju" data-route="eju">${icon('eju')}<span><b>EJU 一对一</b><small>目前仅接一对一</small></span><i>03</i></a>
+          <a href="#" role="listitem" data-finish-page="eju" data-finish-target="school-exam-programs" data-route="school">${icon('school')}<span><b>校内考对策</b><small>按目标校开设专项或小班</small></span><i>04</i></a>
         </div>
         <div class="finish-hero-route-note"><span>东京・中野教室</span><span>线上授课</span></div>`;
       bindRouteLinks(box);
       box.querySelectorAll('[data-route]').forEach(a=>{const set=()=>{box.dataset.activeRoute=a.dataset.route;box.querySelectorAll('[data-route]').forEach(x=>x.classList.toggle('is-preview',x===a));};a.addEventListener('mouseenter',set);a.addEventListener('focus',set);});
     }
+  }
+
+  function buildHomeMediaRail(){
+    if(!home||home.querySelector('.finish-home-media-rail'))return;
+    const trust=home.querySelector('.v8-trust-bar');if(!trust)return;
+    const rail=document.createElement('section');rail.className='finish-home-media-rail';
+    rail.innerHTML=`<div class="finish-media-rail-grid">
+      <a href="#" data-finish-page="art" class="finish-media-tile finish-media-tile--art"><img src="images/student-work-hat-stilllife.jpg" alt="美术学生作品"><span><b>美术升学</b><small>学生作品</small></span></a>
+      <a href="#" data-finish-page="kyotsu" class="finish-media-tile finish-media-tile--common"><img src="images/hero_background_1.jpg" alt="共通考试课程"><span><b>共通考试</b><small>2026 课程</small></span></a>
+      <a href="#" data-finish-page="eju" data-finish-target="school-exam-programs" class="finish-media-tile finish-media-tile--proof"><div class="v8-case-visual" aria-hidden="true"></div><span><b>东京科学大学</b><small>实际课程资料</small></span></a>
+      <a href="#" data-finish-page="home" data-finish-target="nakano-classroom" class="finish-media-tile finish-media-tile--classroom"><img src="https://kayui-gavo.github.io/assets/tabito-classroom-v5.webp" alt="旅人教育东京中野教室"><span><b>东京・中野</b><small>实体教室</small></span></a>
+    </div>`;
+    trust.insertAdjacentElement('afterend',rail);bindRouteLinks(rail);
   }
 
   function buildProgramExplorer(){
@@ -128,7 +147,7 @@
     if(intro)intro.textContent='按报考方式查看课程内容、费用及相关教学资料。';
     const tabs=[['art','美术升学','实技・作品集・面试'],['common','共通考试','按科报名・申请支持'],['eju','EJU 一对一','目前仅接一对一'],['school','校内考对策','按目标校开设']];
     const explorer=document.createElement('div');explorer.className='finish-program-explorer';
-    explorer.innerHTML=`<div class="finish-program-tabs" role="tablist" aria-label="课程路线">${tabs.map((x,i)=>`<button type="button" role="tab" aria-selected="${i===0?'true':'false'}" data-program="${x[0]}" class="${i===0?'is-active':''}"><span>0${i+1}</span><b>${x[1]}</b><small>${x[2]}</small><i>→</i></button>`).join('')}</div>
+    explorer.innerHTML=`<div class="finish-program-tabs" role="tablist" aria-label="课程路线">${tabs.map((x,i)=>`<button type="button" role="tab" aria-selected="${i===0?'true':'false'}" data-program="${x[0]}" class="${i===0?'is-active':''}">${icon(x[0])}<span>0${i+1}</span><b>${x[1]}</b><small>${x[2]}</small><i>→</i></button>`).join('')}</div>
       <div class="finish-program-stages">
         <article class="finish-program-stage is-active" data-stage="art">
           <div class="finish-program-visual finish-program-visual--art"><img src="images/student-work-illustration-city.png" alt="旅人教育美术学生插画作品"><img src="images/student-work-bust-charcoal.jpg" alt="旅人教育美术学生素描作品"><img src="images/student-work-stilllife-wires.png" alt="旅人教育美术学生静物作品"></div>
@@ -171,6 +190,7 @@
     results.innerHTML=`<div class="v3-shell finish-results-shell">
       <section class="finish-results-general"><div class="finish-results-head"><div><span>截至 2026 年 4 月</span><h2>合格实绩</h2></div><div class="finish-results-numbers"><div><b>9</b><small>合格校次</small></div><div><b>6</b><small>所大学</small></div></div></div><p class="finish-results-lede">2025 年 9 月正式开课以来的合格记录。</p><div class="finish-result-list">${schools.map(([name,n])=>`<div style="--result:${n}"><span><strong>${name}</strong><i></i></span><b>${n} 名</b></div>`).join('')}</div><p class="finish-result-note">※ “合格校次”不等同于独立学生人数；同一学生取得多个合格结果时分别计入。</p></section>
       <article class="finish-flagship-case"><div class="finish-case-copy"><span>2026 东京科学大学</span><h3>理工学系<br>数理化笔试对策小班</h3><p>数学・物理・化学 / 原创模拟题 / 模拟面试</p><div class="finish-case-steps" role="tablist" aria-label="东京科学大学案例进度"><button type="button" class="is-active" data-case-step="entry"><b>2</b><small>报名</small></button><button type="button" data-case-step="written"><b>2</b><small>笔试合格</small></button><button type="button" data-case-step="final"><b>2</b><small>最终合格</small></button></div><div class="finish-case-stepnote" aria-live="polite">数学、物理、化学三科授课，并使用原创模拟题进行练习。</div><div class="finish-case-students"><span>41026 · 经营工学系</span><span>41064 · 融合理工学系</span></div><button type="button" class="finish-case-link" data-finish-page="eju" data-finish-target="school-exam-programs">查看东京科学大学课程案例 →</button></div><div class="finish-case-media"><div class="finish-proof-main">${evidenceHTML}<span>课程实际使用资料</span></div>${proofTiles()}</div></article>
+      <section class="finish-success-gallery"><header><span>部分合格资料</span><small>原官网公开素材</small></header><div>${[1,2,3,4].map((n,i)=>`<figure><img src="images/success_student${n}.png" alt="合格资料 ${n}" loading="lazy"><figcaption>0${i+1}</figcaption></figure>`).join('')}</div></section>
     </div>`;
     oldCase?.remove();bindRouteLinks(results);
     const notes={entry:'数学、物理、化学三科授课，并使用原创模拟题进行练习。',written:'2 名报名学生均通过笔试。笔试后进行面试准备。',final:'2 名学生均取得最终合格：经营工学系、融合理工学系。'};
@@ -186,7 +206,7 @@
     if(!home||home.querySelector('.finish-academic-hub'))return;
     const method=home.querySelector('#how-we-work');const faculty=home.querySelector('#faculty');const groups=extractFaculty();if(!method&&!faculty)return;
     const hub=document.createElement('section');hub.className='finish-academic-hub';
-    hub.innerHTML=`<div class="v3-shell finish-academic-grid"><div id="how-we-work" class="finish-method-panel"><span class="finish-overline">指导流程</span><h2>从目标校确认到出愿面试</h2><p>先核对当年度募集要项，再安排科目与进度。</p><ol><li><i>01</i><b>目标校确认</b><span>募集要项・入试方式・科目</span></li><li><i>02</i><b>科目与进度</b><span>基础・考试时间・目标分数</span></li><li><i>03</i><b>课程</b><span>数学・理科・语言・人文・美术</span></li><li><i>04</i><b>出愿・面试</b><span>材料・手续・模拟面试</span></li></ol></div><div id="faculty" class="finish-faculty-panel"><div class="finish-faculty-head"><div><span class="finish-overline">部分讲师介绍</span><h2>担当教师</h2></div><small>具体排课以当期课程为准</small></div>${groups.length?`<div class="finish-faculty-tabs" role="tablist">${groups.map((g,i)=>`<button type="button" data-faculty-tab="${i}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><b>${esc(g.title)}</b><span>${g.rows.length}</span></button>`).join('')}</div><div class="finish-faculty-panels">${groups.map((g,i)=>`<section data-faculty-panel="${i}" class="${i===0?'is-active':''}"><header><span>${esc(g.note)}</span></header><div>${g.rows.map(facultyRowHTML).join('')}</div></section>`).join('')}</div>`:'<p>讲师信息以当期课程安排为准。</p>'}</div></div>`;
+    hub.innerHTML=`<div class="v3-shell finish-academic-grid"><div id="how-we-work" class="finish-method-panel"><span class="finish-overline">指导流程</span><h2>从目标校确认到出愿面试</h2><p>先核对当年度募集要项，再安排科目与进度。</p><ol><li>${icon('target')}<i>01</i><b>目标校确认</b><span>募集要项・入试方式・科目</span></li><li>${icon('plan')}<i>02</i><b>科目与进度</b><span>基础・考试时间・目标分数</span></li><li>${icon('course')}<i>03</i><b>课程</b><span>数学・理科・语言・人文・美术</span></li><li>${icon('document')}<i>04</i><b>出愿・面试</b><span>材料・手续・模拟面试</span></li></ol><figure class="finish-method-photo"><img src="https://kayui-gavo.github.io/assets/tabito-classroom-v5.webp" alt="东京中野教室"><figcaption>东京・中野教室</figcaption></figure></div><div id="faculty" class="finish-faculty-panel"><div class="finish-faculty-head"><div><span class="finish-overline">部分讲师介绍</span><h2>担当教师・运营成员</h2></div><small>具体排课以当期课程为准</small></div>${groups.length?`<div class="finish-faculty-tabs" role="tablist">${groups.map((g,i)=>`<button type="button" data-faculty-tab="${i}" class="${i===0?'is-active':''}" aria-selected="${i===0?'true':'false'}"><b>${esc(g.title)}</b><span>${g.rows.length}</span></button>`).join('')}</div><div class="finish-faculty-panels">${groups.map((g,i)=>`<section data-faculty-panel="${i}" class="${i===0?'is-active':''}"><header><span>${esc(g.note)}</span></header><div>${g.rows.map(facultyRowHTML).join('')}</div></section>`).join('')}</div>`:'<p>讲师信息以当期课程安排为准。</p>'}</div></div>`;
     const anchor=method||faculty;anchor.insertAdjacentElement('beforebegin',hub);method?.remove();faculty?.remove();
     hub.querySelectorAll('[data-faculty-tab]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.facultyTab;hub.querySelectorAll('[data-faculty-tab]').forEach(x=>{const on=x===b;x.classList.toggle('is-active',on);x.setAttribute('aria-selected',on?'true':'false');});hub.querySelectorAll('[data-faculty-panel]').forEach(p=>p.classList.toggle('is-active',p.dataset.facultyPanel===k));}));
   }
@@ -260,9 +280,13 @@
   function refineContact(){
     const contact=home?.querySelector('#contact');if(!contact)return;contact.classList.add('finish-contact');const h=contact.querySelector('h2');const p=h?.parentElement?.querySelector('p');if(h)h.textContent='升学咨询';if(p)p.textContent='咨询时请附上目标校、当前成绩和预计入学时间。';contact.querySelector('.finish-contact-facts')?.remove();contact.querySelector('.finish-contact-flow')?.remove();if(p)p.insertAdjacentHTML('afterend','<div class="finish-contact-facts"><span><b>目标校</b>学校・学部・入试方式</span><span><b>当前成绩</b>EJU / 共通 / 校内考基础</span><span><b>时间</b>预计入学年度・考试节点</span></div>');
   }
+  function markHomeSections(){
+    const marks=[[home?.querySelector('#programs'),'01'],[home?.querySelector('#results'),'02'],[home?.querySelector('.finish-academic-hub'),'03'],[home?.querySelector('.finish-insight-strip'),'04'],[home?.querySelector('#nakano-classroom'),'05']];
+    marks.forEach(([el,n])=>{if(el)el.dataset.homeIndex=n;});
+  }
   function reorderHome(){
     if(!home)return;const hero=home.querySelector('.finish-hero')||home.querySelector('.v8-hero')||home.querySelector('section.hero-bg');if(!hero)return;
-    const order=[home.querySelector('.v8-trust-bar'),home.querySelector('#programs'),home.querySelector('#results'),home.querySelector('.finish-academic-hub'),home.querySelector('.finish-insight-strip'),home.querySelector('#nakano-classroom'),home.querySelector('#institution'),home.querySelector('#contact')].filter(Boolean);let anchor=hero;order.forEach(section=>{anchor.insertAdjacentElement('afterend',section);anchor=section;});
+    const order=[home.querySelector('.v8-trust-bar'),home.querySelector('.finish-home-media-rail'),home.querySelector('#programs'),home.querySelector('#results'),home.querySelector('.finish-academic-hub'),home.querySelector('.finish-insight-strip'),home.querySelector('#nakano-classroom'),home.querySelector('#institution'),home.querySelector('#contact')].filter(Boolean);let anchor=hero;order.forEach(section=>{anchor.insertAdjacentElement('afterend',section);anchor=section;});
   }
   function setupReveal(){
     const targets=document.querySelectorAll('#home>section,.page-section>section,.finish-program-explorer,.finish-results-shell,.finish-academic-grid');targets.forEach(x=>x.classList.add('finish-reveal'));
@@ -273,8 +297,98 @@
     const floating=document.querySelector('.v11-floating-consult');const contact=home?.querySelector('#contact');if(!floating||!contact||!('IntersectionObserver'in window))return;const observer=new IntersectionObserver(entries=>floating.classList.toggle('finish-consult-hidden',entries.some(x=>x.isIntersecting)),{threshold:.08});observer.observe(contact);
   }
 
+  function installHomeR6Styles(){
+    if(document.getElementById('finish-r6-home-style'))return;
+    const style=document.createElement('style');style.id='finish-r6-home-style';style.textContent=`
+      /* R6 homepage art-direction layer */
+      #home [data-home-index]{position:relative;isolation:isolate}
+      #home [data-home-index]::before{content:attr(data-home-index);position:absolute;right:max(18px,calc((100vw - 1160px)/2));top:24px;z-index:0;font:700 clamp(70px,8vw,116px)/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:-.08em;color:rgba(29,77,102,.035);pointer-events:none}
+      .finish-lineicon{position:relative;display:inline-block;flex:0 0 auto;width:30px;height:30px;border:1px solid #aac4d0;background:rgba(246,251,253,.88);box-sizing:border-box}
+      .finish-lineicon::before,.finish-lineicon::after{content:"";position:absolute;box-sizing:border-box}
+      .finish-lineicon--art::before{left:6px;top:6px;width:17px;height:17px;border:1.5px solid #477f99;border-radius:50%;background:radial-gradient(circle at 35% 33%,#477f99 0 1.4px,transparent 1.6px),radial-gradient(circle at 68% 38%,#477f99 0 1.4px,transparent 1.6px),radial-gradient(circle at 48% 69%,#477f99 0 1.4px,transparent 1.6px)}
+      .finish-lineicon--art::after{right:4px;bottom:4px;width:8px;height:8px;border:1.5px solid #477f99;border-radius:50%;background:#f6fbfd}
+      .finish-lineicon--common::before{left:6px;top:7px;width:8px;height:16px;border:1.5px solid #477f99;border-right:0;background:#fff}
+      .finish-lineicon--common::after{right:6px;top:7px;width:8px;height:16px;border:1.5px solid #477f99;border-left:0;background:#fff;box-shadow:-1px 0 0 #477f99}
+      .finish-lineicon--eju::before{left:6px;top:7px;width:7px;height:7px;border:1.5px solid #477f99;border-radius:50%;box-shadow:10px 0 0 -1.5px #f6fbfd,10px 0 0 0 #477f99}
+      .finish-lineicon--eju::after{left:5px;bottom:6px;width:19px;height:8px;border:1.5px solid #477f99;border-radius:9px 9px 2px 2px}
+      .finish-lineicon--school::before,.finish-lineicon--target::before{left:5px;top:5px;width:19px;height:19px;border:1.5px solid #477f99;border-radius:50%;box-shadow:inset 0 0 0 4px #f6fbfd,inset 0 0 0 5.5px #477f99}
+      .finish-lineicon--school::after,.finish-lineicon--target::after{left:14px;top:3px;width:1px;height:23px;background:#477f99;box-shadow:-11px 11px 0 -0.1px #477f99;transform:rotate(45deg)}
+      .finish-lineicon--plan::before{left:7px;top:6px;width:16px;height:18px;border:1.5px solid #477f99;background:repeating-linear-gradient(to bottom,transparent 0 4px,#c2d5de 4px 5px)}
+      .finish-lineicon--plan::after{left:10px;top:4px;width:10px;height:4px;border:1.5px solid #477f99;background:#f6fbfd}
+      .finish-lineicon--course::before{left:6px;top:7px;width:18px;height:15px;border:1.5px solid #477f99;background:linear-gradient(90deg,transparent 48%,#477f99 48% 52%,transparent 52%)}
+      .finish-lineicon--document::before{left:7px;top:5px;width:16px;height:20px;border:1.5px solid #477f99;background:repeating-linear-gradient(to bottom,transparent 0 5px,#c2d5de 5px 6px)}
+      .finish-lineicon--document::after{right:7px;top:5px;width:6px;height:6px;border-left:1.5px solid #477f99;border-bottom:1.5px solid #477f99;background:#f6fbfd}
+
+      .finish-hero-index{overflow:hidden!important}
+      .finish-hero-miniatures{display:grid;grid-template-columns:1.05fr .82fr .95fr;height:94px;border-bottom:1px solid #d7e4e9;background:#eaf2f5}
+      .finish-hero-miniatures figure{position:relative;overflow:hidden;margin:0;border-right:1px solid rgba(255,255,255,.8)}
+      .finish-hero-miniatures figure:last-child{border-right:0}
+      .finish-hero-miniatures img,.finish-hero-miniatures .v8-case-visual{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;object-fit:cover;background-size:cover!important;background-position:center!important;filter:saturate(.72) contrast(.98)}
+      .finish-hero-miniatures .v8-case-visual:after{display:none!important}
+      .finish-hero-miniatures figcaption{position:absolute;left:7px;bottom:6px;z-index:3;padding:3px 5px;background:rgba(10,43,62,.78);color:#fff;font-size:7px;font-weight:800;letter-spacing:.05em}
+      .finish-hero-routes a{grid-template-columns:30px minmax(0,1fr) auto!important;column-gap:11px!important;align-items:center!important}
+      .finish-hero-routes a>span:not(.finish-lineicon){display:grid;gap:3px}
+      .finish-hero-routes a>span:not(.finish-lineicon) b{font-size:13.5px}
+      .finish-hero-routes a>span:not(.finish-lineicon) small{color:#71858f;font-size:9.5px}
+      .finish-hero-routes a>i{grid-column:3!important;grid-row:1!important}
+      .finish-hero-routes .finish-lineicon{grid-column:1;grid-row:1;width:28px;height:28px;background:#f8fbfc;border-color:#bad0da}
+
+      .finish-home-media-rail{padding:0;background:#0e334b;border-bottom:1px solid rgba(255,255,255,.08)}
+      .finish-media-rail-grid{display:grid;grid-template-columns:1.15fr .9fr 1.05fr .9fr;max-width:1440px;height:174px;margin:0 auto}
+      .finish-media-tile{position:relative;overflow:hidden;display:block;border-right:1px solid rgba(255,255,255,.13);color:#fff;text-decoration:none;background:#173e54}
+      .finish-media-tile:last-child{border-right:0}
+      .finish-media-tile>img,.finish-media-tile>.v8-case-visual{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;object-fit:cover;background-size:cover!important;background-position:center!important;filter:saturate(.68) contrast(.97);transition:transform .45s ease,filter .3s ease}
+      .finish-media-tile>.v8-case-visual:after{display:none!important}
+      .finish-media-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 33%,rgba(7,31,45,.78) 100%)}
+      .finish-media-tile>span{position:absolute;left:15px;right:14px;bottom:13px;z-index:3;display:flex;align-items:end;justify-content:space-between;gap:12px}
+      .finish-media-tile b{font-size:11px}.finish-media-tile small{color:#b7d0dc;font-size:8px}
+      .finish-media-tile:hover>img,.finish-media-tile:hover>.v8-case-visual{transform:scale(1.035);filter:saturate(.9) contrast(1)}
+
+      .finish-program-tabs button{grid-template-columns:32px 29px minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;gap:4px 9px!important}
+      .finish-program-tabs button>.finish-lineicon{grid-row:1/3;grid-column:1;width:28px;height:28px;align-self:center}
+      .finish-program-tabs button>span:not(.finish-lineicon){grid-row:1/3!important;grid-column:2!important;align-self:center}
+      .finish-program-tabs button>b{grid-column:3}.finish-program-tabs button>small{grid-column:3!important}.finish-program-tabs button>i{grid-column:4!important}
+      .finish-program-stage-copy{position:relative}
+      .finish-program-stage-copy::after{content:"";position:absolute;right:25px;top:25px;width:52px;height:52px;border-top:1px solid #d9e6eb;border-right:1px solid #d9e6eb;opacity:.8}
+
+      .finish-results-shell{grid-template-columns:minmax(0,.7fr) minmax(600px,1.3fr)!important}
+      .finish-success-gallery{grid-column:1/-1;margin-top:1px;border-top:1px solid #cbdde5;padding-top:16px}
+      .finish-success-gallery header{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.finish-success-gallery header span{color:#31566a;font-size:10px;font-weight:850}.finish-success-gallery header small{color:#81959f;font-size:8px}
+      .finish-success-gallery>div{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+      .finish-success-gallery figure{position:relative;height:116px;margin:0;overflow:hidden;background:#dfe9ed;border:1px solid #d2e0e6}
+      .finish-success-gallery img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(.98);transition:transform .35s ease}
+      .finish-success-gallery figure:hover img{transform:scale(1.025)}
+      .finish-success-gallery figcaption{position:absolute;right:7px;bottom:6px;padding:3px 5px;background:rgba(14,52,75,.82);color:#fff;font-size:7px;font-weight:800}
+
+      .finish-method-panel ol li{grid-template-columns:30px 25px 112px 1fr!important;align-items:center!important}
+      .finish-method-panel ol li>.finish-lineicon{grid-column:1;width:28px;height:28px}
+      .finish-method-panel ol li>i{grid-column:2!important}.finish-method-panel ol li>b{grid-column:3}.finish-method-panel ol li>span{grid-column:4}
+      .finish-method-photo{position:relative;height:138px;margin:19px 0 0;overflow:hidden;background:#dfe9ed}
+      .finish-method-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.62) contrast(.97)}
+      .finish-method-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,43,62,.72))}
+      .finish-method-photo figcaption{position:absolute;left:10px;bottom:8px;z-index:2;color:#fff;font-size:8px;font-weight:800}
+      .finish-faculty-tabs button:last-child{margin-right:0}
+      .finish-faculty-tabs button:has(b:nth-child(1)){transition:background .16s ease}
+
+      @media(max-width:1080px){
+        .finish-media-rail-grid{grid-template-columns:repeat(2,1fr);height:300px}.finish-media-tile{min-height:150px}
+        .finish-results-shell{grid-template-columns:1fr!important}
+      }
+      @media(max-width:767px){
+        #home [data-home-index]::before{right:10px;top:15px;font-size:64px}
+        .finish-hero-miniatures{height:78px}
+        .finish-media-rail-grid{grid-template-columns:1fr 1fr;height:250px}.finish-media-tile{min-height:125px}
+        .finish-program-tabs button{grid-template-columns:27px minmax(0,1fr)!important;grid-template-rows:auto auto!important}
+        .finish-program-tabs button>.finish-lineicon{grid-column:1;grid-row:1/3;width:25px;height:25px}
+        .finish-program-tabs button>span:not(.finish-lineicon){display:none}.finish-program-tabs button>b{grid-column:2}.finish-program-tabs button>small{grid-column:2!important}.finish-program-tabs button>i{display:none}
+        .finish-success-gallery>div{grid-template-columns:1fr 1fr}.finish-success-gallery figure{height:105px}
+        .finish-method-panel ol li{grid-template-columns:30px 21px 96px 1fr!important;gap:7px!important}.finish-method-photo{height:120px}
+      }
+    `;document.head.appendChild(style);
+  }
+
   function init(){
-    removeFormerTeacher();naturalizeLegacyCopy();compactPrimaryNavigation();refineHero();buildProgramExplorer();buildResultsStage();buildAcademicHub();buildInsightStrip();refineSubpages();refineClassroomAndInstitution();refineContact();reorderHome();protectMobileConsultation();bindRouteLinks();setupScrollProgress();setupHomeSectionSpy();setupReveal();document.documentElement.classList.add('tabito-finishing','tabito-finishing-r5');
+    removeFormerTeacher();naturalizeLegacyCopy();installHomeR6Styles();compactPrimaryNavigation();refineHero();buildHomeMediaRail();buildProgramExplorer();buildResultsStage();buildAcademicHub();buildInsightStrip();refineSubpages();refineClassroomAndInstitution();refineContact();markHomeSections();reorderHome();protectMobileConsultation();bindRouteLinks();setupScrollProgress();setupHomeSectionSpy();setupReveal();document.documentElement.classList.add('tabito-finishing','tabito-finishing-r6');
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

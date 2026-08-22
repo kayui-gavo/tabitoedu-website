@@ -13,18 +13,20 @@
       {name:'孙老师',school:'东京大学',subjects:'物理・化学'},
       {name:'陆老师',school:'东京科学大学',subjects:'数学・物理'},
       {name:'周老师',school:'筑波大学',subjects:'生物'},
-      {name:'丁老师',school:'千叶大学',subjects:'地学・地理'},
+      {name:'丁老师',school:'千叶大学',subjects:'地学'},
       {name:'焦老师',school:'东京大学',subjects:'化学'}
     ]},
-    {title:'语言・人文',note:'国语・日语・英语・政经・世界史',teachers:[
+    {title:'语言・人文',note:'国语・日语・英语・政经・世界史・地理',teachers:[
       {name:'刘老师',school:'东京大学',subjects:'国语・英语・政经・世界史'},
+      {name:'丁老师',school:'千叶大学',subjects:'地理'},
       {name:'卢老师',school:'横滨国立大学',subjects:'日语'},
       {name:'沈老师',school:'布里斯托大学',subjects:'英语'}
     ]},
-    {title:'升学・综合',note:'沿用现官网公开信息',teachers:[
+    {title:'事务・运营・产品',note:'事务・运营・产品开发',teachers:[
       {name:'籍老师',school:'东京理科大学',subjects:''},
       {name:'吴老师',school:'东京理科大学',subjects:''},
-      {name:'杨老师',school:'顺天堂大学',subjects:''}
+      {name:'杨老师',school:'顺天堂大学',subjects:''},
+      {name:'谢老师',school:'明治大学',subjects:''}
     ]},
     {title:'美术',note:'实技・作品集・专业方向',teachers:[
       {name:'妮老师',school:'多摩美术大学',subjects:'美术'},
