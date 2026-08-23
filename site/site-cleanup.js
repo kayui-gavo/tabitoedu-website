@@ -2,8 +2,6 @@
   'use strict';
 
   function removeDeprecatedContent() {
-    document.querySelectorAll('a[href="https://life.china.com/2026-04/29/content_571768.html"]').forEach(el => el.remove());
-
     const removeCard = el => {
       const card = el.closest('article,.feature-card,li,div.bg-white,[class*="rounded-2xl"],[class*="rounded-3xl"]');
       (card || el).remove();
