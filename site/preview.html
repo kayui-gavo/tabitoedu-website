@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>旅人教育 TABITO｜官网预览</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+html,body{margin:0;width:100%;height:100%;background:#f4f8fb;overflow:hidden}
+#preview{display:block;width:100%;height:100vh;border:0;background:#fff;visibility:hidden;opacity:0;transition:opacity .12s ease}
+#preview.is-ready{visibility:visible;opacity:1}
+#loading{position:fixed;inset:0;display:grid;place-items:center;background:#f4f8fb;color:#496878;font:600 14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;z-index:2}
+#loading.is-hidden{display:none}
+</style>
+</head>
+<body>
+<div id="loading">正在载入旅人教育官网…</div>
+<iframe id="preview" src="index.html" title="旅人教育官网预览"></iframe>
+<script>
+const frame=document.getElementById('preview');
+const loading=document.getElementById('loading');
+frame.addEventListener('load',async()=>{
+  try{
+    const doc=frame.contentDocument;
+    const cache='20260823clean3';
+    const addCss=href=>new Promise(resolve=>{
+      const el=doc.createElement('link');el.rel='stylesheet';el.href=href;
+      el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.head.appendChild(el);
+    });
+    const addJs=src=>new Promise(resolve=>{
+      const el=doc.createElement('script');el.src=src;
+      el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.body.appendChild(el);
+    });
+    await addCss('site.css?v='+cache);
+    await addJs('site.js?v='+cache);
+    await addJs('site-cleanup.js?v='+cache);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      frame.classList.add('is-ready');loading.classList.add('is-hidden');
+    }));
+  }catch(err){
+    loading.textContent='预览载入失败，请刷新页面重试。';console.error(err);
+  }
+});
+</script>
+</body>
+</html>
