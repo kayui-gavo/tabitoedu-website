@@ -22,24 +22,13 @@ const loading=document.getElementById('loading');
 frame.addEventListener('load',async()=>{
   try{
     const doc=frame.contentDocument;
-    const cache='20260823r18typeprogramqr1';
-    const addCss=href=>new Promise(resolve=>{
-      const el=doc.createElement('link');el.rel='stylesheet';el.href=href;
-      el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.head.appendChild(el);
-    });
-    const addJs=src=>new Promise(resolve=>{
-      const el=doc.createElement('script');el.src=src;
-      el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.body.appendChild(el);
-    });
+    const cache='20260824r19realrebuild1';
+    const addCss=href=>new Promise(resolve=>{const el=doc.createElement('link');el.rel='stylesheet';el.href=href;el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.head.appendChild(el);});
+    const addJs=src=>new Promise(resolve=>{const el=doc.createElement('script');el.src=src;el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.body.appendChild(el);});
     await addCss('site.css?v='+cache);
     await addJs('site.js?v='+cache);
-    await addJs('site-cleanup.js?v='+cache);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      frame.classList.add('is-ready');loading.classList.add('is-hidden');
-    }));
-  }catch(err){
-    loading.textContent='预览载入失败，请刷新页面重试。';console.error(err);
-  }
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{frame.classList.add('is-ready');loading.classList.add('is-hidden');}));
+  }catch(err){loading.textContent='预览载入失败，请刷新页面重试。';console.error(err);}
 });
 </script>
 </body>
