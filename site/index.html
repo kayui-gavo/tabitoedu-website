@@ -10,7 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=20260824r23static1">
+  <link rel="stylesheet" href="site.css?v=20260824r25clickable-careers">
+  <style>
+    .site-nav{gap:14px}.site-nav-link{font-size:13px}.site-program-card{color:inherit;text-decoration:none;cursor:pointer;transition:background-color .16s ease,border-color .16s ease}.site-program-card:hover{background:#fff;border-top-color:#2d708d}.site-program-card:focus-visible{outline:3px solid rgba(60,134,164,.35);outline-offset:3px}.site-campus-media.single{grid-template-columns:1fr}.site-careers{padding:56px 0 60px;background:#fff;border-top:1px solid var(--line)}.careers-grid{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(0,1.25fr);gap:56px;align-items:start}.site-careers header>span{display:block;color:#748994;font-size:13.5px;font-weight:800}.site-careers h2{margin:6px 0 0;color:var(--navy);font-size:30px;line-height:1.25}.site-careers header p{margin:12px 0 0;color:#647a85;font-size:14.5px;line-height:1.7}.site-careers header a{display:inline-flex;align-items:center;gap:18px;margin-top:20px;padding:9px 0;border-bottom:1px solid #9bb3bf;color:#245b72;font-size:13.5px;font-weight:800;text-decoration:none}.site-careers header i{font-style:normal}.career-requirements{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--navy);border-bottom:1px solid var(--line)}.career-requirements>div{padding:20px 22px}.career-requirements>div+div{border-left:1px solid var(--line)}.career-requirements b{color:#294f61;font-size:15px}.career-requirements ul{margin:12px 0 0;padding-left:1.2em;color:#667d88;font-size:13.5px;line-height:1.8}.career-requirements li+li{margin-top:3px}@media(max-width:1050px){.site-nav{gap:10px}.site-nav-link{font-size:12.2px}}@media(max-width:820px){.careers-grid{grid-template-columns:1fr;gap:24px}.career-requirements{grid-template-columns:1fr}.career-requirements>div+div{border-left:0;border-top:1px solid var(--line)}}@media(max-width:620px){.site-careers{padding:44px 0}.career-requirements>div{padding:18px 0}}
+  </style>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -27,29 +30,21 @@
 <body>
   <nav class="fixed" aria-label="主导航">
     <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="旅人教育 TABITO 首页">
-        <img src="images/logo1.png" alt="旅人教育 TABITO">
-        <span>旅人教育 TABITO</span>
-      </a>
+      <a class="brand" href="#top" aria-label="旅人教育 TABITO 首页"><img src="images/logo1.png" alt="旅人教育 TABITO"><span>旅人教育 TABITO</span></a>
       <div class="site-nav" aria-label="桌面导航">
-        <a class="site-nav-link" href="art.html">美术升学</a>
-        <a class="site-nav-link" href="kyotsu.html">共通考试</a>
-        <a class="site-nav-link" href="eju.html">EJU 一对一</a>
-        <a class="site-nav-link" href="school.html">校内考</a>
+        <a class="site-nav-link course-link" href="./art.html">美术升学</a>
+        <a class="site-nav-link course-link" href="./kyotsu.html">共通考试</a>
+        <a class="site-nav-link course-link" href="./eju.html">EJU 一对一</a>
+        <a class="site-nav-link course-link" href="./school.html">校内考</a>
         <a class="site-nav-link" href="#results">合格实绩</a>
         <a class="site-nav-link" href="#faculty">讲师</a>
+        <a class="site-nav-link" href="#careers">招贤纳士</a>
         <a class="site-nav-link site-nav-cta" href="#contact">升学咨询</a>
       </div>
       <button class="mobile-trigger" id="mobileMenuBtn" type="button" aria-label="打开导航" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
     <div id="mobileMenu" class="mobile-menu">
-      <a href="art.html">美术升学</a>
-      <a href="kyotsu.html">共通考试</a>
-      <a href="eju.html">EJU 一对一</a>
-      <a href="school.html">校内考</a>
-      <a href="#results">合格实绩</a>
-      <a href="#faculty">讲师</a>
-      <a href="#contact">升学咨询</a>
+      <a href="./art.html">美术升学</a><a href="./kyotsu.html">共通考试</a><a href="./eju.html">EJU 一对一</a><a href="./school.html">校内考</a><a href="#results">合格实绩</a><a href="#faculty">讲师</a><a href="#careers">招贤纳士</a><a href="#contact">升学咨询</a>
     </div>
   </nav>
 
@@ -64,42 +59,36 @@
           <p class="site-brand-line">学びの旅に、確かな道しるべを。</p>
           <div class="site-hero-actions"><a href="#programs">课程介绍</a><a href="#contact">升学咨询</a></div>
         </div>
-        <div class="site-hero-visual" aria-label="旅人教育教学与作品实景">
-          <figure class="main"><img src="images/tabito-classroom-teaching.webp" alt="旅人教育课堂授课实景"><figcaption>课堂实景</figcaption></figure>
+        <div class="site-hero-visual" aria-label="旅人教育教学实景">
+          <figure class="main"><img src="images/tabito-classroom-teaching.webp" alt="旅人教育课堂授课实景"><figcaption>课堂授课</figcaption></figure>
           <figure><img src="images/student-work-illustration-city.png" alt="美术学生作品"><figcaption>学生作品</figcaption></figure>
-          <figure><img src="images/tabito-classroom-seminar.webp" alt="旅人教育授课空间"><figcaption>授课空间</figcaption></figure>
+          <figure><img src="images/tabito-classroom-screen.webp" alt="旅人教育教室大屏"><figcaption>教学设备</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <section class="site-facts" aria-label="合格记录与课程范围">
-      <div class="site-shell site-facts-grid">
-        <div><b>9</b><span>合格校次</span></div>
-        <div><b>6</b><span>所大学</span></div>
-        <div><b>4</b><span>类升学课程</span></div>
-      </div>
-    </section>
+    <section class="site-facts" aria-label="合格记录与课程范围"><div class="site-shell site-facts-grid"><div><b>9</b><span>合格校次</span></div><div><b>6</b><span>所大学</span></div><div><b>4</b><span>类升学课程</span></div></div></section>
 
     <section id="programs" class="site-programs">
       <div class="site-shell">
         <header class="site-section-head"><div><span>课程</span><h2>四类升学课程</h2></div><p>根据报考方式、目标校与当前成绩选择对应课程。</p></header>
         <div class="site-program-grid">
-          <article class="site-program-card art">
-            <div class="site-program-media"><img src="images/tabito-classroom-art.webp" alt="美术教室"><img src="images/student-work-bust-charcoal.jpg" alt="美术学生作品"></div>
-            <div class="site-program-copy"><span>实技・作品集・面试</span><h3>美术升学</h3><p>实技训练、作品制作、志望理由与面试准备。</p><div class="site-program-facts"><b>实技</b><b>作品集</b><b>出愿・面试</b></div><a class="site-program-link" href="art.html">美术升学详情 <i>→</i></a></div>
-          </article>
-          <article class="site-program-card common">
-            <div class="site-program-media"><img src="images/tabito-classroom-teaching.webp" alt="共通考试课堂"><img src="images/tabito-classroom-seminar.webp" alt="授课空间"></div>
-            <div class="site-program-copy"><span>大学入学共通テスト</span><h3>共通考试</h3><p>按目标校要求选择数学、理科、文科与语言科目。</p><div class="site-program-facts"><b>11 科可选</b><b>14,000 元 / 科</b><b>4 科起免材料费</b></div><a class="site-program-link" href="kyotsu.html">共通考试详情 <i>→</i></a></div>
-          </article>
-          <article class="site-program-card eju">
-            <div class="site-program-media"><img src="images/tabito-classroom-seminar.webp" alt="EJU 一对一授课空间"><img src="images/tabito-classroom-teaching.webp" alt="课堂授课实景"></div>
-            <div class="site-program-copy"><span>仅一对一</span><h3>EJU 一对一</h3><p>按目标校、报考科目和当前进度安排个别辅导。</p><div class="site-program-facts"><b>1 : 1</b><b>科目辅导</b><b>文书・出愿・面试</b></div><a class="site-program-link" href="eju.html">EJU 一对一详情 <i>→</i></a></div>
-          </article>
-          <article class="site-program-card school">
-            <div class="site-program-media"><img src="images/success_students1.png" alt="合格资料"><img src="images/tabito-classroom-teaching.webp" alt="校内考授课实景"></div>
-            <div class="site-program-copy"><span>目标校专项</span><h3>校内考对策</h3><p>按募集要项、笔试科目、历年题型与面试要求准备。</p><div class="site-program-facts"><b>目标校专项</b><b>笔试</b><b>模拟面试</b></div><a class="site-program-link" href="school.html">校内考对策详情 <i>→</i></a></div>
-          </article>
+          <a class="site-program-card art" href="./art.html" aria-label="查看美术升学课程">
+            <div class="site-program-media"><img src="images/tabito-classroom-art.webp" alt="美术教室与实技材料"><img src="images/student-work-bust-charcoal.jpg" alt="美术学生素描作品"></div>
+            <div class="site-program-copy"><span>实技・作品集・面试</span><h3>美术升学</h3><p>实技训练、作品制作、志望理由与面试准备。</p><div class="site-program-facts"><b>实技</b><b>作品集</b><b>出愿・面试</b></div><span class="site-program-link">美术升学详情 <i>→</i></span></div>
+          </a>
+          <a class="site-program-card common" href="./kyotsu.html" aria-label="查看共通考试课程">
+            <div class="site-program-media"><img src="images/tabito-classroom-seminar.webp" alt="共通考试授课教室"><img src="images/hero_background_1.jpg" alt="共通考试课程资料"></div>
+            <div class="site-program-copy"><span>大学入学共通テスト</span><h3>共通考试</h3><p>按目标校要求选择数学、理科、文科与语言科目。</p><div class="site-program-facts"><b>11 科可选</b><b>14,000 元 / 科</b><b>4 科起免材料费</b></div><span class="site-program-link">共通考试详情 <i>→</i></span></div>
+          </a>
+          <a class="site-program-card eju" href="./eju.html" aria-label="查看 EJU 一对一课程">
+            <div class="site-program-media"><img src="images/tabito-classroom-art-day.webp" alt="日间教室实景"><img src="images/tabito-classroom-general.webp" alt="一对一授课空间"></div>
+            <div class="site-program-copy"><span>仅一对一</span><h3>EJU 一对一</h3><p>按目标校、报考科目和当前进度安排个别辅导。</p><div class="site-program-facts"><b>1 : 1</b><b>科目辅导</b><b>文书・出愿・面试</b></div><span class="site-program-link">EJU 一对一详情 <i>→</i></span></div>
+          </a>
+          <a class="site-program-card school" href="./school.html" aria-label="查看校内考对策课程">
+            <div class="site-program-media"><img src="images/success_students1.png" alt="合格资料"><img src="images/success_student4.png" alt="合格记录资料"></div>
+            <div class="site-program-copy"><span>目标校专项</span><h3>校内考对策</h3><p>按募集要项、笔试科目、历年题型与面试要求准备。</p><div class="site-program-facts"><b>目标校专项</b><b>笔试</b><b>模拟面试</b></div><span class="site-program-link">校内考对策详情 <i>→</i></span></div>
+          </a>
         </div>
         <a class="site-art-note" href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><span>美术升学专题</span><b>【日本美大捷径】用中文去考京都精华大学！</b><i>查看内容 ↗</i></a>
       </div>
@@ -111,24 +100,12 @@
         <div class="site-results-grid">
           <article class="site-results-overview">
             <div class="site-result-big"><span><b>9</b><small>合格校次</small></span><span><b>6</b><small>所大学</small></span></div>
-            <div class="site-result-list">
-              <div><span>东京科学大学</span><b>2</b></div><div><span>日本大学</span><b>3</b></div><div><span>北海道大学</span><b>1</b></div><div><span>京都产业大学</span><b>1</b></div><div><span>神奈川工科大学</span><b>1</b></div><div><span>中央大学</span><b>1</b></div>
-            </div>
+            <div class="site-result-list"><div><span>东京科学大学</span><b>2</b></div><div><span>日本大学</span><b>3</b></div><div><span>北海道大学</span><b>1</b></div><div><span>京都产业大学</span><b>1</b></div><div><span>神奈川工科大学</span><b>1</b></div><div><span>中央大学</span><b>1</b></div></div>
             <p>※ 合格校次不等同于独立学生人数。</p>
           </article>
-          <aside class="site-case">
-            <span>2026 校内考案例</span><h3>东京科学大学（理工学系）</h3>
-            <div class="site-case-flow"><b>2 名报名</b><i></i><b>2 名笔试合格</b><i></i><b>2 名最终合格</b></div>
-            <p>数学・物理・化学｜原创模拟题｜模拟面试</p>
-            <a class="site-program-link" href="school.html">校内考对策详情 <i>→</i></a>
-          </aside>
+          <aside class="site-case"><span>2026 校内考案例</span><h3>东京科学大学（理工学系）</h3><div class="site-case-flow"><b>2 名报名</b><i></i><b>2 名笔试合格</b><i></i><b>2 名最终合格</b></div><p>数学・物理・化学｜原创模拟题｜模拟面试</p><a class="site-program-link" href="./school.html">校内考对策详情 <i>→</i></a></aside>
         </div>
-        <div class="site-result-gallery" aria-label="部分合格资料">
-          <figure class="main"><img src="images/success_students.jpg" alt="部分合格资料"><figcaption>部分合格资料</figcaption></figure>
-          <figure><img src="images/success_student1.png" alt="合格资料"></figure>
-          <figure><img src="images/success_student2.png" alt="合格资料"></figure>
-          <figure><img src="images/success_student3.png" alt="合格资料"></figure>
-        </div>
+        <div class="site-result-gallery" aria-label="部分合格资料"><figure class="main"><img src="images/success_students.jpg" alt="部分合格资料"><figcaption>部分合格资料</figcaption></figure><figure><img src="images/success_student1.png" alt="合格资料"></figure><figure><img src="images/success_student2.png" alt="合格资料"></figure><figure><img src="images/success_student3.png" alt="合格资料"></figure></div>
       </div>
     </section>
 
@@ -137,52 +114,40 @@
         <header class="site-section-head no-eyebrow"><div><h2>部分讲师介绍</h2></div><p>实际担当以当期排课为准。</p></header>
         <div class="site-faculty-directory">
           <div class="site-faculty-row"><header><h3>数学</h3></header><div class="site-person-grid cols-3"><div class="site-person"><b>脇村老师</b><span>筑波大学</span></div><div class="site-person"><b>坂野老师</b><span>早稻田大学</span></div><div class="site-person"><b>陆老师</b><span>东京科学大学</span></div></div></div>
-          <div class="site-faculty-row"><header><h3>理科</h3><p>物理・化学・生物・地学</p></header><div class="site-science-grid"><div class="site-science-group"><h4>物理</h4><a class="site-person" href="https://kayui-gavo.github.io/education/"><b>刘老师</b><span>东京大学</span><i>↗</i></a><div class="site-person"><b>陆老师</b><span>东京科学大学</span></div></div><div class="site-science-group"><h4>化学</h4><div class="site-person"><b>孙老师</b><span>东京大学</span></div><div class="site-person"><b>焦老师</b><span>东京大学</span></div></div><div class="site-science-group"><h4>生物</h4><div class="site-person"><b>周老师</b><span>筑波大学</span></div></div><div class="site-science-group"><h4>地学</h4><div class="site-person"><b>丁老师</b><span>千叶大学</span></div></div></div></div>
+          <div class="site-faculty-row"><header><h3>理科</h3><p>物理・化学・生物・地学</p></header><div class="site-science-grid"><div class="site-science-group"><h4>物理</h4><a class="site-person" href="https://kayui-gavo.github.io/education/"><b>刘老师</b><span>东京大学</span><i>↗</i></a><div class="site-person"><b>陆老师</b><span>东京科学大学</span></div></div><div class="site-science-group"><h4>化学</h4><div class="site-person"><b>孙老师</b><span>东京大学</span></div><div class="site-person"><b>焦老师</b><span>东京大学</span></div></div><div class="site-science-group"><h4>生物</h4><div class="site-person"><b>周老师</b><span>名古屋大学</span></div></div><div class="site-science-group"><h4>地学</h4><div class="site-person"><b>丁老师</b><span>千叶大学</span></div></div></div></div>
           <div class="site-faculty-row"><header><h3>语言・人文</h3></header><div class="site-person-grid cols-4"><div class="site-person"><b>刘老师</b><span>东京大学</span><small>国语・英语・政经・世界史</small></div><div class="site-person"><b>卢老师</b><span>横滨国立大学</span><small>日语</small></div><div class="site-person"><b>沈老师</b><span>布里斯托大学</span><small>英语</small></div><div class="site-person"><b>丁老师</b><span>千叶大学</span><small>地理</small></div></div></div>
           <div class="site-faculty-row"><header><h3>美术</h3></header><div class="site-person-grid cols-5"><div class="site-person"><b>妮老师</b><span>多摩美术大学</span><small>美术</small></div><div class="site-person"><b>汤老师</b><span>多摩美术大学</span><small>雕刻</small></div><div class="site-person"><b>张老师</b><span>多摩美术大学</span><small>油画</small></div><div class="site-person"><b>兰老师</b><span>东京造型大学大学院</span><small>染织设计</small></div><div class="site-person"><b>薛老师</b><span>北京电影学院</span><small>动画实战</small></div></div></div>
-          <div class="site-ops-row"><header><h3>事务・运营・开发</h3></header><div><span><b>籍老师</b><small>东京理科大学</small></span><span><b>吴老师</b><small>东京理科大学</small></span><span><b>杨老师</b><small>顺天堂大学</small></span><span><b>谢老师</b><small>明治大学</small></span><span><b>周老师</b><small>名古屋大学</small></span></div></div>
+          <div class="site-ops-row"><header><h3>事务・运营・开发</h3></header><div><span><b>籍老师</b><small>东京理科大学</small></span><span><b>吴老师</b><small>东京理科大学</small></span><span><b>杨老师</b><small>顺天堂大学</small></span><span><b>谢老师</b><small>明治大学</small></span></div></div>
         </div>
       </div>
     </section>
 
-    <section id="insights" class="site-insights">
-      <div class="site-shell">
-        <header class="site-section-head no-eyebrow"><div><h2>升学资讯</h2></div></header>
-        <div class="site-insight-grid">
-          <a href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer"><span>共通考试</span><b>共通考试政策说明</b><i>微信公众号 ↗</i></a>
-          <a href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer"><span>学生采访</span><b>逆袭！日本大学一般入试合格学生采访</b><i>小红书 ↗</i></a>
-          <a href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><span>美术升学</span><b>【日本美大捷径】用中文去考京都精华大学！</b><i>小红书 ↗</i></a>
+    <section id="insights" class="site-insights"><div class="site-shell"><header class="site-section-head"><div><span>公开内容</span><h2>升学资讯</h2></div></header><div class="site-insight-grid"><a href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer"><span>共通考试</span><b>共通考试政策说明</b><i>微信公众号 ↗</i></a><a href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer"><span>学生采访</span><b>逆袭！日本大学一般入试合格学生采访</b><i>小红书 ↗</i></a><a href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><span>美术升学</span><b>【日本美大捷径】用中文去考京都精华大学！</b><i>小红书 ↗</i></a></div><div class="site-more-links"><a href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">共通考试教师介绍 ↗</a><a href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">中华网｜2026.04.30 ↗</a><a href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">官方小红书 ↗</a></div></div></section>
+
+    <section id="careers" class="site-careers">
+      <div class="site-shell careers-grid">
+        <header><span>招贤纳士</span><h2>应聘</h2><p>欢迎应聘授课岗位。请提供简历、可授课科目及相关考试或授课经历。</p><a href="#contact">联系应聘 <i>→</i></a></header>
+        <div class="career-requirements">
+          <div><b>基本条件</b><ul><li>本科及以上学历</li><li>中文母语者或 HSK 6 级优先</li><li>JLPT N2 以上</li><li>能够独立备课并按时完成授课准备</li></ul></div>
+          <div><b>相关经验</b><ul><li>有 EJU / 共通考试考试经验者优先</li><li>有培训机构工作经验者优先</li><li>教材、题库或课程设计经验者优先</li><li>能够反馈学生学习情况，并与教务顺畅沟通</li><li>不确定的升学信息能够先核实再答复</li></ul></div>
         </div>
-        <div class="site-more-links"><a href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">共通考试教师介绍 ↗</a><a href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">中华网｜2026.04.30 ↗</a><a href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">官方小红书 ↗</a></div>
       </div>
     </section>
 
     <section id="contact" class="site-contact">
       <div class="site-shell">
-        <header class="site-section-head no-eyebrow"><div><h2>升学咨询</h2></div><p>请提供目标校、当前成绩和预计考试或入学时间。</p></header>
+        <header class="site-section-head"><div><span>联系</span><h2>升学咨询</h2></div><p>请提供目标校、当前成绩和预计考试或入学时间。</p></header>
         <div class="site-contact-grid">
-          <div class="site-contact-main">
-            <div class="site-contact-facts"><div><b>目标校</b><span>学校・学部・入试方式</span></div><div><b>当前成绩</b><span>EJU / 共通 / 校内考基础</span></div><div><b>时间</b><span>考试节点・预计入学年度</span></div></div>
-            <div class="site-qr-grid"><figure><img src="images/wechat_qr1.jpeg" alt="微信二维码"><figcaption><b>微信咨询</b><span>扫码添加微信好友</span><small>9:00–21:00</small></figcaption></figure><figure><img src="images/qq_qr1.jpeg" alt="QQ 二维码"><figcaption><b>QQ 咨询</b><span>扫码添加 QQ 好友</span><small>9:00–21:00</small></figcaption></figure></div>
-          </div>
-          <aside class="site-campus">
-            <div class="site-campus-media"><img src="images/tabito-classroom-art.webp" alt="中野教室美术空间"><img src="images/tabito-classroom-seminar.webp" alt="中野教室授课空间"></div>
-            <div class="site-campus-body"><div><span>东京・中野</span><h3>中野教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>线下授课・线上课程</small></div><iframe title="中野教室地图" loading="lazy" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div>
-          </aside>
+          <div class="site-contact-main"><div class="site-contact-facts"><div><b>目标校</b><span>学校・学部・入试方式</span></div><div><b>当前成绩</b><span>EJU / 共通 / 校内考基础</span></div><div><b>时间</b><span>考试节点・预计入学年度</span></div></div><div class="site-qr-grid"><figure><img src="images/wechat_qr1.jpeg" alt="微信二维码"><figcaption><b>微信咨询</b><span>扫码添加微信好友</span><small>9:00–21:00</small></figcaption></figure><figure><img src="images/qq_qr1.jpeg" alt="QQ二维码"><figcaption><b>QQ 咨询</b><span>扫码添加 QQ 好友</span><small>9:00–21:00</small></figcaption></figure></div></div>
+          <aside class="site-campus"><div class="site-campus-media single"><img src="images/tabito-classroom-wide.webp" alt="中野教室全景"></div><div class="site-campus-body"><div><span>东京・中野</span><h3>中野教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>线下授课・线上课程</small></div><iframe title="中野教室地图" loading="lazy" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></aside>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer"><div><span>中国旅人教育集团株式会社</span><span>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</span><span>© 2026 TABITO Education</span></div></footer>
-
+  <footer class="site-footer"><div class="site-shell"><span>中国旅人教育集团株式会社</span><span>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</span><span>© 2026 TABITO Education</span></div></footer>
   <script>
-    (()=>{
-      const btn=document.getElementById('mobileMenuBtn');
-      const menu=document.getElementById('mobileMenu');
-      btn?.addEventListener('click',()=>{const open=menu.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(open));});
-      menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('is-open');btn?.setAttribute('aria-expanded','false');}));
-    })();
+    (()=>{const btn=document.getElementById('mobileMenuBtn'),menu=document.getElementById('mobileMenu');btn?.addEventListener('click',()=>{const open=menu.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(open));});menu?.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('is-open');btn?.setAttribute('aria-expanded','false');}));})();
   </script>
 </body>
 </html>
