@@ -1,7 +1,0 @@
-/* v7 responsive guard: preserve the legacy mobile-menu breakpoint. */
-@media(max-width:767px){
-  .tabito-v7-professional .v7-nav{display:none!important}
-}
-@media(min-width:768px){
-  .tabito-v7-professional .v7-nav{display:flex!important}
-}

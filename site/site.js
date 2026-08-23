@@ -247,14 +247,14 @@
           <a href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer"><small>学生采访</small><b>逆袭！日本大学一般入试合格学生采访</b><span>查看采访 ↗</span></a>
           <a href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><small>小红书｜美术升学</small><b>【日本美大捷径】用中文去考京都精华大学！</b><span>查看内容 ↗</span></a>
         </div>
-        <div class="finish-more-links"><span>更多公开内容</span><a href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">共通考试教师介绍 ↗</a><a href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">中华网｜2026.04.30 ↗</a><a href="https://life.china.com/2026-04/29/content_571768.html" target="_blank" rel="noopener noreferrer">中华网生活｜2026.04.29 ↗</a><a href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">官方小红书 ↗</a></div>
+        <div class="finish-more-links"><span>更多公开内容</span><a href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">共通考试教师介绍 ↗</a><a href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">中华网｜2026.04.30 ↗</a><a href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">官方小红书 ↗</a></div>
       </div></section>
 
       <section id="contact" class="finish-contact"><div class="finish-shell finish-contact-layout">
         <div class="finish-contact-copy"><span class="finish-kicker finish-kicker--light">升学咨询</span><h2>咨询时请提供基本情况</h2><p>目标校、当前成绩，以及预计考试或入学时间。</p><div class="finish-contact-facts"><span><b>目标校</b><small>学校・学部・入试方式</small></span><span><b>当前成绩</b><small>EJU / 共通 / 校内考基础</small></span><span><b>时间</b><small>考试节点・预计入学年度</small></span></div><div class="finish-contact-qr"><img src="images/wechat_qr.jpeg" alt="旅人教育微信二维码"><span><b>微信咨询</b><small>扫码添加咨询</small></span></div></div>
         <aside class="finish-campus-card">
           <div class="finish-campus-gallery"><img src="images/tabito-classroom-art.webp" alt="旅人教育美术教室"><img src="images/tabito-classroom-seminar.webp" alt="旅人教育授课教室"></div>
-          <div class="finish-campus-bottom"><div class="finish-campus-info"><span class="finish-kicker">东京・中野</span><h3>旅人教育实体教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>实体课程・线上课程</small></div><div class="finish-campus-map"><iframe title="旅人教育中野教室地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></div>
+          <div class="finish-campus-bottom"><div class="finish-campus-info"><span class="finish-kicker">东京・中野</span><h3>旅人教育实体教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>实体课程・线上课程</small></div><div class="finish-campus-map"><iframe title="旅人教育中野教室地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></div>
         </aside>
       </div></section>`;
 
