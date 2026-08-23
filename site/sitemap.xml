@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.tabitoedu.com/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.tabitoedu.com/images/logo1.png</image:loc>
-    </image:image>
+    <lastmod>2026-08-24</lastmod>
+    <image:image><image:loc>https://www.tabitoedu.com/images/logo1.png</image:loc></image:image>
   </url>
+  <url><loc>https://www.tabitoedu.com/art.html</loc><lastmod>2026-08-24</lastmod></url>
+  <url><loc>https://www.tabitoedu.com/kyotsu.html</loc><lastmod>2026-08-24</lastmod></url>
+  <url><loc>https://www.tabitoedu.com/eju.html</loc><lastmod>2026-08-24</lastmod></url>
+  <url><loc>https://www.tabitoedu.com/school.html</loc><lastmod>2026-08-24</lastmod></url>
   <url>
     <loc>https://www.tabitoedu.com/teachers/liu-kewei.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <image:image>
-      <image:loc>https://www.tabitoedu.com/images/teacher_liu.jpg</image:loc>
-    </image:image>
+    <lastmod>2026-08-24</lastmod>
+    <image:image><image:loc>https://www.tabitoedu.com/images/teacher_liu.jpg</image:loc></image:image>
   </url>
 </urlset>
