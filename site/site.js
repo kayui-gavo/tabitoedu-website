@@ -80,12 +80,12 @@
 
   function removeFormerTeacher() {
     document.querySelectorAll('img[src*="teacher_li.jpg"],img[alt="李老师"]').forEach(el => {
-      const block = el.closest('article,.v5-faculty-row,.v3-teacher-card,li');
+      const block = el.closest('article,.feature-card,li,[class*="rounded-2xl"],[class*="rounded-3xl"]');
       (block || el).remove();
     });
     document.querySelectorAll('h2,h3,h4,p,span,strong').forEach(el => {
       if ((el.textContent || '').replace(/\s+/g,'').includes('李老师')) {
-        const block = el.closest('article,.v5-faculty-row,.v3-teacher-card');
+        const block = el.closest('article,.feature-card,li,[class*="rounded-2xl"],[class*="rounded-3xl"]');
         if (block) block.remove();
       }
     });
@@ -172,9 +172,26 @@
         <div class="finish-person-grid finish-person-grid--five">${artTeachers.map(([name,school,subject])=>person(name,school,subject)).join('')}</div>
       </div>
       <div class="finish-ops-strip">
-        <header><h3>事务・运营・开发</h3></header>
-        <div>${operations.map(([name,school])=>`<span><b>${esc(name)}</b><small>${esc(school)}</small></span>`).join('')}</div>
+        <header><h3>事务・运营・产品开发</h3></header>
+        <div>${operations.map(([name,school])=>`<span><b>${esc(name)}</b><small>${esc(school)}｜非授课</small></span>`).join('')}</div>
       </div>`;
+  }
+
+  function programCard({number,title,subtitle,body,fact,link,page,target='',images=[],contain=false}) {
+    return `
+      <article class="finish-program-card">
+        <div class="finish-program-media${contain?' is-contain':''}">
+          ${images.map((src,i)=>`<img src="${src}" alt="${esc(title)}相关资料 ${i+1}">`).join('')}
+          <span class="finish-program-number">${number}</span>
+        </div>
+        <div class="finish-program-body">
+          <span class="finish-program-label">${subtitle}</span>
+          <h3>${title}</h3>
+          <p>${body}</p>
+          <div class="finish-program-meta">${fact}</div>
+          <a href="#" data-finish-page="${page}"${target?` data-finish-target="${target}"`:''}>${link} →</a>
+        </div>
+      </article>`;
   }
 
   function rebuildHome() {
@@ -183,17 +200,17 @@
       <section class="finish-hero">
         <div class="finish-shell finish-hero-layout">
           <div class="finish-hero-copy">
-            <span class="finish-kicker">日本留学升学指导</span>
-            <h1>日本本科升学<br>共通考试・EJU・校内考・美术</h1>
+            <span class="finish-kicker">旅人教育 TABITO｜东京・中野</span>
+            <h1>日本本科升学指导</h1>
             <p class="finish-brand-line">学びの旅に、確かな道しるべを。</p>
-            <p class="finish-hero-lede">面向准备日本本科升学的中国学生，提供共通考试、EJU 一对一、目标校校内考及美术升学指导。</p>
+            <p class="finish-hero-lede">面向准备日本大学本科升学的中国学生。共通考试、EJU 一对一、目标校校内考、美术升学四类课程，按实际报考要求安排准备。</p>
             <div class="finish-hero-actions"><a href="#" data-finish-page="home" data-finish-target="programs">查看课程</a><a href="#" data-finish-page="home" data-finish-target="contact">升学咨询</a></div>
             <div class="finish-hero-tags"><span>共通考试</span><span>EJU 一对一</span><span>校内考</span><span>美术升学</span></div>
           </div>
           <div class="finish-hero-media">
-            <figure class="finish-hero-teaching"><img src="images/tabito-classroom-teaching.webp" alt="旅人教育课堂授课实景"><figcaption><b>课堂实景</b><span>实体授课</span></figcaption></figure>
-            <figure class="finish-hero-art"><img src="images/student-work-illustration-city.png" alt="旅人教育美术学生作品"><figcaption><b>美术升学</b><span>学生作品</span></figcaption></figure>
-            <div class="finish-hero-price"><small>2026 共通考试</small><b>14,000 元 / 科</b><span>4 科及以上免材料费</span></div>
+            <figure class="finish-hero-main"><img src="images/tabito-classroom-teaching.webp" alt="旅人教育中野教室课堂实景"><figcaption><b>中野教室</b><span>课堂实景</span></figcaption></figure>
+            <figure><img src="images/student-work-illustration-city.png" alt="旅人教育美术学生作品"><figcaption><b>美术升学</b><span>学生作品</span></figcaption></figure>
+            <figure class="finish-hero-proof"><img src="images/success_students1.png" alt="旅人教育部分合格资料"><figcaption><b>合格实绩</b><span>部分资料</span></figcaption></figure>
           </div>
         </div>
       </section>
@@ -205,17 +222,32 @@
       </div></section>
 
       <section id="programs" class="finish-programs"><div class="finish-shell">
-        ${sectionHead('升学课程','四类课程','共通考试、EJU 一对一、目标校校内考与美术升学。')}
-        <div class="finish-program-layout">
-          <article class="finish-art-feature">
-            <div class="finish-art-grid"><img src="images/student-work-illustration-city.png" alt="学生插画作品"><img src="images/student-work-bust-charcoal.jpg" alt="学生素描作品"><img src="images/student-work-stilllife-wires.png" alt="学生静物作品"></div>
-            <div class="finish-art-copy"><span>美术升学</span><h3>实技・作品集・志望理由・面试</h3><p>按目标校和专业方向安排实技训练、作品制作及面试准备。</p><div class="finish-inline-links"><a href="#" data-finish-page="art">美术课程 →</a><a href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer">京都精华大学中文考试介绍 ↗</a></div></div>
-          </article>
-          <div class="finish-program-list">
-            <article><div class="finish-program-fact finish-program-fact--dark"><small>共通テスト</small><b>14,000</b><span>元 / 科</span></div><div><h3>共通考试</h3><p>11 科按科报名。材料费 5,000 元，4 科及以上免材料费。</p><small>志愿规划・报名材料・手续指导</small><a href="#" data-finish-page="kyotsu">科目与费用 →</a></div></article>
-            <article><div class="finish-program-fact"><small>授课形式</small><b>1 : 1</b><span>一对一</span></div><div><h3>EJU 一对一</h3><p>按目标校和报考科目安排授课，覆盖文书、出愿和面试准备。</p><a href="#" data-finish-page="eju">EJU 指导 →</a></div></article>
-            <article><div class="finish-program-fact"><small>目标校专项</small><b>校内考</b><span>笔试・面试</span></div><div><h3>校内考对策</h3><p>按目标校的考试科目、历年题型和面试要求安排专项课程或小班。</p><small>2026 对策案例：东京科学大学（理工学系）</small><a href="#" data-finish-page="eju" data-finish-target="school-exam-programs">校内考内容 →</a></div></article>
-          </div>
+        ${sectionHead('升学课程','四类课程','四类课程分别对应不同的报考方式与准备内容。')}
+        <div class="finish-program-grid">
+          ${programCard({
+            number:'01', title:'美术升学', subtitle:'实技・作品集・面试',
+            body:'按目标校与专业方向安排实技训练、作品制作、志望理由和面试准备。',
+            fact:'学生作品・专业方向指导', link:'查看美术课程', page:'art',
+            images:['images/student-work-illustration-city.png','images/student-work-bust-charcoal.jpg']
+          })}
+          ${programCard({
+            number:'02', title:'共通考试', subtitle:'2026 共通テスト',
+            body:'11 科按科报名，数学、理科、文科与语言科目按目标校要求组合。',
+            fact:'14,000 元 / 科｜材料费 5,000 元｜4 科及以上免材料费', link:'查看科目与费用', page:'kyotsu',
+            images:['images/hero_background_1.jpg','images/hero_background_3.jpg']
+          })}
+          ${programCard({
+            number:'03', title:'EJU 一对一', subtitle:'授课形式 1 : 1',
+            body:'根据目标校和报考科目安排一对一辅导，并提供文书、出愿与面试准备。',
+            fact:'科目辅导・文书・出愿・面试', link:'查看 EJU 指导', page:'eju',
+            images:['images/hero_background_6.jpg','images/tabito-classroom-seminar.webp']
+          })}
+          ${programCard({
+            number:'04', title:'校内考对策', subtitle:'目标校专项',
+            body:'根据目标校募集要项、考试科目、历年题型和面试要求安排专项课程或小班。',
+            fact:'2026 东京科学大学（理工学系）：2 名报名，2 名最终合格', link:'查看校内考内容', page:'eju', target:'school-exam-programs', contain:true,
+            images:['images/success_students1.png','images/success_student4.png']
+          })}
         </div>
       </div></section>
 
@@ -227,10 +259,18 @@
             <div class="finish-result-list">${universities.map(([name,n])=>`<div><span>${name}</span><b>${n}</b></div>`).join('')}</div>
             <p>※ 合格校次不等同于独立学生人数；同一学生取得多个合格结果时分别计入。</p>
           </article>
-          <div class="finish-results-side">
-            <article class="finish-case"><span>2026 校内考案例</span><h3>东京科学大学（理工学系）</h3><p><b>2 名报名</b><i>→</i><b>2 名笔试合格</b><i>→</i><b>2 名最终合格</b></p><small>数学・物理・化学｜原创模拟题｜模拟面试</small><div><em>41026｜经营工学系</em><em>41064｜融合理工学系</em></div></article>
-            <figure class="finish-results-proof"><img src="images/success_students1.png" alt="旅人教育部分合格资料"><figcaption>部分合格资料</figcaption></figure>
-          </div>
+          <article class="finish-case">
+            <span>2026 校内考案例</span><h3>东京科学大学（理工学系）</h3>
+            <div class="finish-case-flow"><b>2 名报名</b><i></i><b>2 名笔试合格</b><i></i><b>2 名最终合格</b></div>
+            <p>数学・物理・化学｜原创模拟题｜模拟面试</p>
+            <small>41026｜经营工学系　　41064｜融合理工学系</small>
+          </article>
+        </div>
+        <div class="finish-proof-strip">
+          <figure><img src="images/success_student1.png" alt="部分合格资料 1"></figure>
+          <figure><img src="images/success_student2.png" alt="部分合格资料 2"></figure>
+          <figure><img src="images/success_student3.png" alt="部分合格资料 3"></figure>
+          <figure><img src="images/success_student4.png" alt="部分合格资料 4"></figure>
         </div>
       </div></section>
 
@@ -250,12 +290,21 @@
         <div class="finish-more-links"><span>更多公开内容</span><a href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">共通考试教师介绍 ↗</a><a href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">中华网｜2026.04.30 ↗</a><a href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">官方小红书 ↗</a></div>
       </div></section>
 
-      <section id="contact" class="finish-contact"><div class="finish-shell finish-contact-layout">
-        <div class="finish-contact-copy"><span class="finish-kicker finish-kicker--light">升学咨询</span><h2>咨询时请提供基本情况</h2><p>目标校、当前成绩，以及预计考试或入学时间。</p><div class="finish-contact-facts"><span><b>目标校</b><small>学校・学部・入试方式</small></span><span><b>当前成绩</b><small>EJU / 共通 / 校内考基础</small></span><span><b>时间</b><small>考试节点・预计入学年度</small></span></div><div class="finish-contact-qr"><img src="images/wechat_qr.jpeg" alt="旅人教育微信二维码"><span><b>微信咨询</b><small>扫码添加咨询</small></span></div></div>
-        <aside class="finish-campus-card">
-          <div class="finish-campus-gallery"><img src="images/tabito-classroom-art.webp" alt="旅人教育美术教室"><img src="images/tabito-classroom-seminar.webp" alt="旅人教育授课教室"></div>
-          <div class="finish-campus-bottom"><div class="finish-campus-info"><span class="finish-kicker">东京・中野</span><h3>旅人教育实体教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>实体课程・线上课程</small></div><div class="finish-campus-map"><iframe title="旅人教育中野教室地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></div>
-        </aside>
+      <section id="contact" class="finish-contact"><div class="finish-shell">
+        ${sectionHead('升学咨询','咨询与中野教室','咨询时请提供目标校、当前成绩和预计考试或入学时间。')}
+        <div class="finish-contact-layout">
+          <div class="finish-contact-left">
+            <div class="finish-contact-facts"><span><b>目标校</b><small>学校・学部・入试方式</small></span><span><b>当前成绩</b><small>EJU / 共通 / 校内考基础</small></span><span><b>时间</b><small>考试节点・预计入学年度</small></span></div>
+            <div class="finish-qr-grid">
+              <figure><img src="images/wechat_qr1.jpeg" alt="旅人教育微信咨询二维码"><figcaption><b>微信咨询</b><span>扫码添加微信</span></figcaption></figure>
+              <figure><img src="images/qq_qr1.jpeg" alt="旅人教育 QQ 咨询二维码"><figcaption><b>QQ 咨询</b><span>扫码添加 QQ</span></figcaption></figure>
+            </div>
+          </div>
+          <aside class="finish-campus-card">
+            <div class="finish-campus-gallery"><img src="images/tabito-classroom-art.webp" alt="旅人教育中野教室"><img src="images/tabito-classroom-seminar.webp" alt="旅人教育中野教室授课空间"></div>
+            <div class="finish-campus-bottom"><div class="finish-campus-info"><span class="finish-kicker">东京・中野</span><h3>中野教室</h3><p>中国旅人教育集团株式会社<br>〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F</p><small>线下授课・线上课程</small></div><div class="finish-campus-map"><iframe title="旅人教育中野教室地图" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%87%8E%E5%8C%BA%E4%B8%AD%E9%87%8E1-55-3%20%E3%83%95%E3%82%A7%E3%83%AA%E3%82%B9%E3%83%93%E3%83%AB%204F&output=embed"></iframe></div></div>
+          </aside>
+        </div>
       </div></section>`;
 
     bindRoutes(home);
@@ -300,7 +349,7 @@
     setupScrollProgress();
     setupSectionSpy();
     syncNav(activePage(), '');
-    document.documentElement.classList.add('tabito-finishing','tabito-finishing-r16');
+    document.documentElement.classList.add('tabito-finishing','tabito-finishing-r18');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
