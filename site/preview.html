@@ -22,7 +22,7 @@ const loading=document.getElementById('loading');
 frame.addEventListener('load',async()=>{
   try{
     const doc=frame.contentDocument;
-    const cache='20260823clean3';
+    const cache='20260823r18typeprogramqr1';
     const addCss=href=>new Promise(resolve=>{
       const el=doc.createElement('link');el.rel='stylesheet';el.href=href;
       el.addEventListener('load',resolve,{once:true});el.addEventListener('error',resolve,{once:true});doc.head.appendChild(el);
