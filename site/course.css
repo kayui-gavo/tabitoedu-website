@@ -1,6 +1,6 @@
 @import url('./course-core.css');
 
-/* r31 — imagery has a job: architecture recedes, evidence and portfolios stay visible */
+/* r32 — imagery has a job: architecture recedes, evidence and portfolios stay visible */
 .course-hero{position:relative;isolation:isolate;overflow:hidden}
 .course-hero:has(img[src="images/hero_background_1.jpg"])::before{content:'';position:absolute;inset:0;background:url('images/hero_background_1.jpg') center 30%/cover no-repeat;opacity:.055;filter:saturate(.75);z-index:-2}
 .course-hero:has(img[src="images/hero_background_1.jpg"])::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.995),rgba(255,255,255,.93) 58%,rgba(255,255,255,.82));z-index:-1}
@@ -43,7 +43,30 @@
 .teacher-portfolio figure:nth-child(12){grid-column:span 3}
 .portfolio-note{margin:13px 0 0;color:#71858e;font-size:11.5px}
 
-/* school — actual documents are evidence, shown beside the factual record */
+/* school — evidence is organised as a compact case study, not a screenshot wall */
+.school-hero{background:linear-gradient(180deg,#fbfcfd,#f5f9fa)}
+.school-hero-case{justify-self:end;width:min(100%,430px);border-top:2px solid #173f55;border-bottom:1px solid #cad7dd;background:#fff}
+.school-hero-proof{position:relative;padding:16px 16px 12px;background:#f6f9fa;border-bottom:1px solid #d9e3e7}
+.school-hero-proof img{display:block;width:100%;height:190px;object-fit:contain;background:#fff;border:1px solid #e0e7ea}
+.school-hero-proof span{position:absolute;left:25px;bottom:20px;padding:5px 8px;background:rgba(16,47,67,.88);color:#fff;font-size:10px;font-weight:800;letter-spacing:.04em}
+.school-hero-result{padding:17px 19px 19px}
+.school-hero-result small{display:block;color:#6e838c;font-size:10.5px;font-weight:800;letter-spacing:.03em}.school-hero-result strong{display:block;margin-top:5px;color:#173f55;font-size:30px;letter-spacing:.03em}.school-hero-result p{margin:3px 0 0;color:#6d7f87;font-size:11.5px}.school-hero-result>div{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.school-hero-result b{padding:4px 7px;border:1px solid #cedbe0;color:#315767;font-size:10.5px;background:#fff}
+
+.school-case-section .case-report{margin-bottom:0}
+.school-proof-block{margin-top:28px;padding-top:24px;border-top:1px solid #c9d6dc}
+.school-proof-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px}
+.school-proof-heading>div span{display:block;color:#6f8790;font-size:10.5px;font-weight:800;letter-spacing:.04em}.school-proof-heading h3{margin:4px 0 0;color:#173f55;font-size:21px}.school-proof-heading p{margin:0;max-width:420px;color:#70838c;font-size:11.5px;line-height:1.6;text-align:right}
+.school-proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;align-items:stretch}
+.school-proof-grid figure{position:relative;margin:0;min-height:250px;background:#fff;border:1px solid #d7e1e6;overflow:hidden}
+.school-proof-grid figure[hidden]{display:none!important}
+.school-proof-grid img{display:block;width:100%;height:198px;object-fit:contain;background:#f8fafb}
+.school-proof-grid figcaption{padding:10px 12px 12px;border-top:1px solid #e0e7ea;background:#fff}
+.school-proof-grid figcaption small{display:block;color:#879aa2;font-size:9.5px;font-weight:800;letter-spacing:.055em}.school-proof-grid figcaption b{display:block;margin-top:3px;color:#254e61;font-size:12.5px}.school-proof-grid figcaption span{display:block;margin-top:3px;color:#71838b;font-size:10.5px;line-height:1.45}
+.school-proof-grid .evidence-result{border-top:3px solid #173f55}.school-proof-grid .evidence-teaching{border-top:3px solid #5d8798}.school-proof-grid .evidence-question{border-top:3px solid #96aeb8}.school-proof-grid .evidence-wide{grid-column:span 2}
+.school-case-method{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;border-top:1px solid #cad8de;border-bottom:1px solid #cad8de}
+.school-case-method>div{padding:15px 16px;border-right:1px solid #dbe4e8}.school-case-method>div:last-child{border-right:0}.school-case-method small{display:block;color:#8a9ba2;font-size:10px;font-weight:800}.school-case-method b{display:block;margin-top:4px;color:#315767;font-size:12.5px}.school-case-method span{display:block;margin-top:3px;color:#72858e;font-size:10.8px;line-height:1.5}
+
+/* legacy school evidence stays compatible */
 .school-evidence figure img,.case-report img{object-fit:contain;background:#f8fafb}
 .school-evidence-ledger{display:grid;grid-template-columns:360px minmax(0,1fr);gap:0;margin-top:24px;border-top:2px solid #173f55;border-bottom:1px solid #d7e2e7;background:#fff}
 .school-evidence-ledger figure{position:relative;margin:0;min-height:270px;padding:18px;background:#f6f9fa;border-right:1px solid #d7e2e7;overflow:hidden}
@@ -54,7 +77,6 @@
 .school-evidence-list>div:nth-child(2n){border-right:0}.school-evidence-list>div:nth-last-child(-n+2){border-bottom:0}
 .school-evidence-list small{display:block;color:#8799a1;font-size:10.5px;font-weight:800;letter-spacing:.04em}.school-evidence-list b{display:block;margin-top:5px;color:#315767;font-size:14px}.school-evidence-list span{display:block;margin-top:5px;color:#6c8089;font-size:11.8px;line-height:1.55}
 
-/* prepared gallery rules for additional school assets once the corresponding files exist */
 .school-materials{margin-top:24px;padding-top:22px;border-top:1px solid #cbd9df}
 .school-materials-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:13px}
 .school-materials-head h3{margin:0;color:#173f55;font-size:18px}.school-materials-head p{margin:0;color:#71858e;font-size:11.5px}
@@ -67,12 +89,14 @@
 @media(max-width:1080px){
   .course-hero-media:has(img[src^="images/hero_background_"]){justify-self:start;width:min(100%,520px);height:280px}
   .student-portfolio{grid-auto-rows:132px}.teacher-portfolio{grid-auto-rows:104px}
+  .school-hero-case{justify-self:start;width:min(100%,560px)}
   .school-evidence-ledger{grid-template-columns:320px 1fr}
   .school-material-grid{grid-template-columns:1.2fr 1fr 1fr;grid-auto-rows:140px}.school-material-grid figure:first-child{grid-row:span 2}
 }
 @media(max-width:760px){
   .student-portfolio{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}.student-portfolio figure,.student-portfolio figure:nth-child(n){grid-column:auto;grid-row:auto}.student-portfolio figure:first-child{grid-column:1/3}
   .teacher-portfolio{grid-template-columns:repeat(3,1fr);grid-auto-rows:145px}.teacher-portfolio figure,.teacher-portfolio figure:nth-child(n){grid-column:auto;grid-row:auto}.teacher-portfolio figure:first-child{grid-column:span 2;grid-row:span 2}.teacher-portfolio figure:nth-child(7){grid-row:span 2}
+  .school-proof-heading{display:block}.school-proof-heading p{margin-top:7px;text-align:left}.school-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.school-proof-grid .evidence-wide{grid-column:span 2}.school-case-method{grid-template-columns:1fr}.school-case-method>div{border-right:0;border-bottom:1px solid #dbe4e8}.school-case-method>div:last-child{border-bottom:0}
   .school-evidence-ledger{grid-template-columns:1fr}.school-evidence-ledger figure{border-right:0;border-bottom:1px solid #d7e2e7}.school-evidence-list{grid-template-columns:1fr 1fr}
   .school-material-grid{grid-template-columns:1fr 1fr;grid-auto-rows:145px}.school-material-grid figure:first-child{grid-column:1/3;grid-row:span 2}
 }
@@ -80,6 +104,7 @@
   .course-hero-media:has(img[src^="images/hero_background_"]){width:100%;height:220px}.course-hero:has(img[src="images/hero_background_1.jpg"])::before{opacity:.035}.art-hero::before{display:none}
   .art-hero .course-hero-media{height:310px;grid-template-rows:152px 152px}
   .student-portfolio{grid-auto-rows:145px}.teacher-portfolio{grid-template-columns:1fr 1fr;grid-auto-rows:132px}.teacher-portfolio figure:first-child{grid-column:1/3;grid-row:span 2}.teacher-portfolio figure:nth-child(7){grid-row:auto}
+  .school-hero-proof img{height:166px}.school-hero-result strong{font-size:26px}.school-proof-grid{grid-template-columns:1fr}.school-proof-grid .evidence-wide{grid-column:auto}.school-proof-grid img{height:210px}
   .school-evidence-list{grid-template-columns:1fr}.school-evidence-list>div{border-right:0;border-bottom:1px solid #e0e7ea!important}.school-evidence-list>div:last-child{border-bottom:0!important}
   .school-material-grid{grid-auto-rows:130px}.school-material-grid figure:first-child{grid-row:span 2}.school-materials-head{display:block}.school-materials-head p{margin-top:6px}
 }
