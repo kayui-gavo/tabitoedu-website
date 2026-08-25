@@ -1,6 +1,6 @@
 @import url('./site-core.css');
 
-/* r30 — imagery with a job: proof stays visible; decorative architecture recedes */
+/* r32 — imagery with a job: proof stays visible; decorative architecture recedes */
 .hero{position:relative;isolation:isolate;overflow:hidden;background:#fff}
 .hero::before{content:'';position:absolute;inset:0;background:url('images/hero_background_4.jpg') center 30%/cover no-repeat;opacity:.055;filter:saturate(.75) contrast(.92);z-index:-2}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.995) 0%,rgba(255,255,255,.97) 46%,rgba(255,255,255,.84) 100%);z-index:-1}
@@ -15,6 +15,10 @@
 .results-evidence{grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:15px;margin-top:18px}
 .proof-gallery{grid-template-columns:1.7fr .62fr .62fr;height:166px}
 .proof-gallery figure:nth-child(4){display:none}
+.result-case-brief{position:relative;overflow:hidden;padding-top:92px!important}
+.result-case-thumb{position:absolute;left:0;right:0;top:0;height:78px;background:#f1f5f7;border-bottom:1px solid rgba(255,255,255,.16);overflow:hidden}
+.result-case-thumb img{display:block;width:100%;height:100%;object-fit:contain;background:#f7f9fa}
+.result-case-thumb span{position:absolute;left:9px;bottom:7px;padding:3px 6px;background:rgba(13,45,63,.86);color:#fff;font-size:9px;font-weight:800;letter-spacing:.03em}
 
 /* course media: art = work, school = teaching material, common/EJU = restrained placeholders */
 .catalogue-row figure{position:relative;isolation:isolate}
@@ -25,6 +29,9 @@
 .catalogue-row:nth-child(3) figure img{display:none}
 .catalogue-row:nth-child(3) figure::before{content:'';position:absolute;width:120px;height:120px;border:1px solid rgba(64,118,140,.16);border-radius:50%;right:-28px;top:-42px}
 .catalogue-row:nth-child(3) figure::after{content:'EJU\A1 : 1';white-space:pre;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#28566a;font-size:16px;line-height:1.45;font-weight:800;letter-spacing:.04em}
+.catalogue-row:nth-child(4) figure{background:#f6f9fa}
+.catalogue-row:nth-child(4) figure img{object-fit:contain;padding:6px;background:#f7f9fa}
+.catalogue-row:nth-child(4) figure figcaption{position:absolute;left:7px;bottom:7px;padding:3px 6px;background:rgba(15,49,68,.86);color:#fff;font-size:8.5px;font-weight:800;line-height:1.25}
 
 /* art-school architecture is a quiet accent, not the content itself */
 .feature-link{position:relative;isolation:isolate;overflow:hidden;padding-left:10px;padding-right:10px;background:rgba(255,255,255,.92)}
@@ -40,6 +47,6 @@
 .insight-grid b{margin:0;font-size:13.5px}
 .insight-grid span{margin:0;padding:0;font-size:11px}
 
-@media(max-width:1080px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-media{justify-self:start}.results-evidence{grid-template-columns:1fr}.proof-gallery{height:178px}}
+@media(max-width:1080px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero-media{justify-self:start}.results-evidence{grid-template-columns:1fr}.proof-gallery{height:178px}.result-case-brief{padding-top:100px!important}.result-case-thumb{height:86px}}
 @media(max-width:760px){.hero::before{background-position:60% 30%;opacity:.04}.hero-grid{padding:38px 0 42px}.hero-media{width:min(100%,340px);height:205px}.hero-media .hero-photo-main{height:205px}.proof-gallery{height:215px;grid-template-columns:1.45fr .7fr .7fr}.catalogue-row:nth-child(2) figure::after,.catalogue-row:nth-child(3) figure::after{font-size:11px}.insight-grid a>div{grid-template-columns:1fr auto;gap:8px 14px}.insight-grid small{grid-column:1/3}.insight-grid b{font-size:13px}.feature-link::before{inset:0 0 0 72%}}
-@media(max-width:520px){.hero-media{width:100%;height:190px}.hero-media .hero-photo-main{height:190px}.proof-gallery{height:198px;grid-template-columns:1.5fr 1fr}.proof-gallery figure:nth-child(3){display:none}.catalogue-row:nth-child(2) figure::after,.catalogue-row:nth-child(3) figure::after{font-size:9px;line-height:1.35}}
+@media(max-width:520px){.hero-media{width:100%;height:190px}.hero-media .hero-photo-main{height:190px}.proof-gallery{height:198px;grid-template-columns:1.5fr 1fr}.proof-gallery figure:nth-child(3){display:none}.catalogue-row:nth-child(2) figure::after,.catalogue-row:nth-child(3) figure::after{font-size:9px;line-height:1.35}.result-case-brief{padding-top:92px!important}.result-case-thumb{height:78px}}
