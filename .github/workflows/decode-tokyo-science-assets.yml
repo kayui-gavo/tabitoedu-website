@@ -24,35 +24,92 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import base64, re, zipfile, io
+          import base64, re, zipfile, io, struct, zlib
 
           payload = Path('site/images/tokyo-science-2026/_payload')
           out = Path('site/images/tokyo-science-2026')
           out.mkdir(parents=True, exist_ok=True)
+          allowed = {'.webp', '.png', '.jpg', '.jpeg'}
 
           def decode_text(path: Path):
               text = path.read_text(errors='ignore')
+              start = text.find('UEsDB')
+              if start >= 0:
+                  text = text[start:]
               clean = re.sub(r'[^A-Za-z0-9+/=]', '', text)
               clean += '=' * ((-len(clean)) % 4)
               return base64.b64decode(clean, validate=False)
 
-          # Preferred refreshed bundle: decode and extract all image files safely.
+          def write_asset(name, data, label='BUNDLE'):
+              name = Path(name).name
+              if Path(name).suffix.lower() not in allowed:
+                  return False
+              target = out / name
+              target.write_bytes(data)
+              print(f'{label} {target} ({len(data)} bytes)')
+              return True
+
+          def salvage_local_entries(data: bytes):
+              pos = 0
+              extracted = 0
+              while True:
+                  idx = data.find(b'PK\x03\x04', pos)
+                  if idx < 0 or idx + 30 > len(data):
+                      break
+                  try:
+                      sig, ver, flags, comp, mtime, mdate, crc, csize, usize, nlen, xlen = struct.unpack_from('<IHHHHHIIIHH', data, idx)
+                  except struct.error:
+                      break
+                  header_end = idx + 30 + nlen + xlen
+                  if header_end > len(data):
+                      break
+                  name = data[idx+30:idx+30+nlen].decode('utf-8', errors='replace')
+                  if flags & 0x08:
+                      print(f'SKIP {name}: data-descriptor ZIP entry is not recoverable without central directory')
+                      pos = header_end
+                      continue
+                  data_end = header_end + csize
+                  if data_end > len(data):
+                      print(f'SKIP {name}: truncated ZIP entry ({len(data)-header_end} < {csize} bytes)')
+                      break
+                  raw = data[header_end:data_end]
+                  try:
+                      if comp == 0:
+                          body = raw
+                      elif comp == 8:
+                          body = zlib.decompress(raw, -15)
+                      else:
+                          print(f'SKIP {name}: unsupported compression {comp}')
+                          pos = data_end
+                          continue
+                  except Exception as exc:
+                      print(f'SKIP {name}: decompress failed: {exc}')
+                      pos = data_end
+                      continue
+                  if usize and len(body) != usize:
+                      print(f'SKIP {name}: size mismatch {len(body)} != {usize}')
+                      pos = data_end
+                      continue
+                  if write_asset(name, body, 'SALVAGE'):
+                      extracted += 1
+                  pos = data_end
+              return extracted
+
           bundle = payload / 'tokyo-science-2026-assets.zip.b64'
           if bundle.exists():
               data = decode_text(bundle)
-              with zipfile.ZipFile(io.BytesIO(data)) as zf:
-                  for info in zf.infolist():
-                      if info.is_dir():
-                          continue
-                      name = Path(info.filename).name
-                      suffix = Path(name).suffix.lower()
-                      if suffix not in {'.webp', '.png', '.jpg', '.jpeg'}:
-                          continue
-                      target = out / name
-                      target.write_bytes(zf.read(info))
-                      print(f'BUNDLE {target} ({target.stat().st_size} bytes)')
+              print(f'Decoded bundle payload: {len(data)} bytes')
+              try:
+                  with zipfile.ZipFile(io.BytesIO(data)) as zf:
+                      for info in zf.infolist():
+                          if info.is_dir():
+                              continue
+                          write_asset(info.filename, zf.read(info))
+              except zipfile.BadZipFile:
+                  print('Bundle central directory is incomplete; recovering complete local entries instead.')
+                  recovered = salvage_local_entries(data)
+                  print(f'Recovered {recovered} complete image entries from bundle.')
 
-          # Backward-compatible single / multipart WebP payloads.
           groups = {}
           for p in payload.glob('*.webp.b64'):
               groups[p.name[:-4]] = [p]
@@ -95,5 +152,5 @@ jobs:
             echo 'No decoded asset changes.'
             exit 0
           fi
-          git commit -m 'Decode refreshed Tokyo Science 2026 assets'
+          git commit -m 'Recover refreshed Tokyo Science 2026 assets'
           git push origin HEAD:gh-pages
