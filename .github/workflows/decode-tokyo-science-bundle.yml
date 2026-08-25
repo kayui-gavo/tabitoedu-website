@@ -4,7 +4,7 @@ on:
   push:
     branches: [gh-pages]
     paths:
-      - 'site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64'
+      - 'site/images/tokyo-science-2026/_payload/**'
       - '.github/workflows/decode-tokyo-science-bundle.yml'
   workflow_dispatch:
 
@@ -26,13 +26,20 @@ jobs:
           from pathlib import Path
           import base64, re, zipfile
 
-          payload = Path('site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64')
+          payload_dir = Path('site/images/tokyo-science-2026/_payload')
           out = Path('site/images/tokyo-science-2026')
-          if not payload.exists():
+          parts = sorted(payload_dir.glob('tokyo-science-2026-assets.zip.b64.part*'))
+          single = payload_dir / 'tokyo-science-2026-assets.zip.b64'
+          if parts:
+              text = ''.join(p.read_text(errors='ignore') for p in parts)
+              used = parts
+          elif single.exists():
+              text = single.read_text(errors='ignore')
+              used = [single]
+          else:
               print('Bundle payload not present; nothing to do.')
               raise SystemExit(0)
 
-          text = payload.read_text(errors='ignore')
           clean = re.sub(r'[^A-Za-z0-9+/=]', '', text)
           clean += '=' * ((-len(clean)) % 4)
           data = base64.b64decode(clean, validate=False)
@@ -54,18 +61,20 @@ jobs:
           ]
           for name in expected:
               p = out / name
-              data = p.read_bytes() if p.exists() else b''
-              if len(data) < 12 or data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+              body = p.read_bytes() if p.exists() else b''
+              if len(body) < 12 or body[:4] != b'RIFF' or body[8:12] != b'WEBP':
                   raise SystemExit(f'Invalid or missing WebP: {name}')
-              print(f'OK {name}: {len(data)} bytes')
-          payload.unlink()
+              print(f'OK {name}: {len(body)} bytes')
+          for p in used:
+              p.unlink(missing_ok=True)
+          single.unlink(missing_ok=True)
           PY
       - name: Commit decoded image assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
-          git config user.email '4189828+github-actions[bot]@users.noreply.github.com'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A site/images/tokyo-science-2026
           if git diff --cached --quiet; then
             echo 'No asset changes.'
