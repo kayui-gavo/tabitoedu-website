@@ -22,34 +22,51 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PAYLOAD='site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64'
-          OUT='site/images/tokyo-science-2026'
-          test -f "$PAYLOAD" || { echo 'Bundle payload not present; nothing to do.'; exit 0; }
-          mkdir -p "$OUT"
-          base64 -d "$PAYLOAD" > /tmp/tokyo-science-assets.zip
-          unzip -o /tmp/tokyo-science-assets.zip -d "$OUT"
-          expected=(
-            tokyo-science-2026-interview-training-cover.webp
-            tokyo-science-2026-original-mock-exam-cover.webp
-            tokyo-science-2026-original-math-q2.webp
-            tokyo-science-2026-original-physics-q2-part1.webp
-            tokyo-science-2026-original-physics-q2-part2.webp
-            tokyo-science-2026-official-pass-list-1.webp
-            tokyo-science-2026-official-pass-list-2.webp
-            tokyo-science-2026-class-pass-announcement.webp
-          )
-          for f in "${expected[@]}"; do
-            test -s "$OUT/$f" || { echo "Missing $f"; exit 1; }
-            file "$OUT/$f" | grep -qi 'Web/P image' || { echo "Invalid WebP: $f"; exit 1; }
-          done
-          rm -f "$PAYLOAD"
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, re, zipfile
+
+          payload = Path('site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64')
+          out = Path('site/images/tokyo-science-2026')
+          if not payload.exists():
+              print('Bundle payload not present; nothing to do.')
+              raise SystemExit(0)
+
+          text = payload.read_text(errors='ignore')
+          clean = re.sub(r'[^A-Za-z0-9+/=]', '', text)
+          clean += '=' * ((-len(clean)) % 4)
+          data = base64.b64decode(clean, validate=False)
+          zip_path = Path('/tmp/tokyo-science-assets.zip')
+          zip_path.write_bytes(data)
+          out.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(zip_path) as zf:
+              zf.extractall(out)
+
+          expected = [
+              'tokyo-science-2026-interview-training-cover.webp',
+              'tokyo-science-2026-original-mock-exam-cover.webp',
+              'tokyo-science-2026-original-math-q2.webp',
+              'tokyo-science-2026-original-physics-q2-part1.webp',
+              'tokyo-science-2026-original-physics-q2-part2.webp',
+              'tokyo-science-2026-official-pass-list-1.webp',
+              'tokyo-science-2026-official-pass-list-2.webp',
+              'tokyo-science-2026-class-pass-announcement.webp',
+          ]
+          for name in expected:
+              p = out / name
+              data = p.read_bytes() if p.exists() else b''
+              if len(data) < 12 or data[:4] != b'RIFF' or data[8:12] != b'WEBP':
+                  raise SystemExit(f'Invalid or missing WebP: {name}')
+              print(f'OK {name}: {len(data)} bytes')
+          payload.unlink()
+          PY
       - name: Commit decoded image assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/images/tokyo-science-2026 .github/workflows/decode-tokyo-science-bundle.yml
+          git config user.email '4189828+github-actions[bot]@users.noreply.github.com'
+          git add -A site/images/tokyo-science-2026
           if git diff --cached --quiet; then
             echo 'No asset changes.'
             exit 0
