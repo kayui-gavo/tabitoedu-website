@@ -1,6 +1,6 @@
 @import url('./course-core.css');
 
-/* r30 — architecture decorates; actual class/work/result materials carry information */
+/* r31 — imagery has a job: architecture recedes, evidence and portfolios stay visible */
 .course-hero{position:relative;isolation:isolate;overflow:hidden}
 .course-hero:has(img[src="images/hero_background_1.jpg"])::before{content:'';position:absolute;inset:0;background:url('images/hero_background_1.jpg') center 30%/cover no-repeat;opacity:.055;filter:saturate(.75);z-index:-2}
 .course-hero:has(img[src="images/hero_background_1.jpg"])::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.995),rgba(255,255,255,.93) 58%,rgba(255,255,255,.82));z-index:-1}
@@ -8,16 +8,78 @@
 .course-hero-media:has(img[src^="images/hero_background_"]) img[src^="images/hero_background_"]{display:none}
 .course-hero-media:has(img[src^="images/hero_background_"]) img:not([src^="images/hero_background_"]){display:block;width:100%;height:100%;object-fit:cover;grid-row:auto}
 
-/* never use the art-school building as literal EJU evidence */
 .course-hero:has(img[src="images/hero_background_5.jpg"])::before{content:'';position:absolute;right:-90px;top:-90px;width:360px;height:360px;border:1px solid rgba(60,117,140,.12);border-radius:50%;z-index:-1}
 .course-hero:has(img[src="images/hero_background_5.jpg"])::after{content:'';position:absolute;right:55px;bottom:-120px;width:250px;height:250px;border:1px solid rgba(60,117,140,.08);border-radius:50%;z-index:-1}
 
-/* art keeps rich imagery because the work itself is the course evidence */
+/* art — classroom is context; the work itself is the strongest evidence */
 .art-hero{position:relative;isolation:isolate}
-.art-hero::before{content:'';position:absolute;inset:0 0 0 68%;background:url('images/hero_background_5.jpg') center 34%/cover no-repeat;opacity:.045;z-index:-1}
+.art-hero::before{content:'';position:absolute;inset:0 0 0 68%;background:url('images/hero_background_5.jpg') center 34%/cover no-repeat;opacity:.04;z-index:-1}
+.art-hero .course-hero-media{grid-template-columns:1.2fr .8fr;grid-template-rows:180px 180px;height:366px}
+.art-hero .course-hero-media>figure:first-child{grid-row:1/3}
+.art-hero .course-hero-media figure:nth-child(2) img,.art-hero .course-hero-media figure:nth-child(3) img{object-position:center}
 
-/* school documents remain uncropped evidence */
+.student-portfolio{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:142px;gap:7px;grid-auto-flow:dense}
+.student-portfolio figure,.teacher-portfolio figure{position:relative;margin:0;overflow:hidden;background:#e5ebee;border:1px solid #dde6ea}
+.student-portfolio img,.teacher-portfolio img{width:100%;height:100%;object-fit:cover}
+.student-portfolio figcaption,.teacher-portfolio figcaption{position:absolute;left:0;bottom:0;padding:6px 9px;background:rgba(16,47,67,.8);color:#fff;font-size:10.5px;font-weight:700}
+.student-portfolio figure:nth-child(1){grid-column:span 5;grid-row:span 2}
+.student-portfolio figure:nth-child(2){grid-column:span 4;grid-row:span 2}
+.student-portfolio figure:nth-child(3){grid-column:span 3}
+.student-portfolio figure:nth-child(4){grid-column:span 3}
+.student-portfolio figure:nth-child(5){grid-column:span 3}
+
+.teacher-portfolio{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:112px;gap:7px;grid-auto-flow:dense}
+.teacher-portfolio figure:nth-child(1){grid-column:span 4;grid-row:span 2}
+.teacher-portfolio figure:nth-child(2){grid-column:span 3;grid-row:span 2}
+.teacher-portfolio figure:nth-child(3){grid-column:span 3}
+.teacher-portfolio figure:nth-child(4){grid-column:span 2}
+.teacher-portfolio figure:nth-child(5){grid-column:span 3}
+.teacher-portfolio figure:nth-child(6){grid-column:span 2}
+.teacher-portfolio figure:nth-child(7){grid-column:span 3;grid-row:span 2}
+.teacher-portfolio figure:nth-child(8){grid-column:span 3}
+.teacher-portfolio figure:nth-child(9){grid-column:span 3}
+.teacher-portfolio figure:nth-child(10){grid-column:span 3}
+.teacher-portfolio figure:nth-child(11){grid-column:span 3}
+.teacher-portfolio figure:nth-child(12){grid-column:span 3}
+.portfolio-note{margin:13px 0 0;color:#71858e;font-size:11.5px}
+
+/* school — actual documents are evidence, shown beside the factual record */
 .school-evidence figure img,.case-report img{object-fit:contain;background:#f8fafb}
+.school-evidence-ledger{display:grid;grid-template-columns:360px minmax(0,1fr);gap:0;margin-top:24px;border-top:2px solid #173f55;border-bottom:1px solid #d7e2e7;background:#fff}
+.school-evidence-ledger figure{position:relative;margin:0;min-height:270px;padding:18px;background:#f6f9fa;border-right:1px solid #d7e2e7;overflow:hidden}
+.school-evidence-ledger figure img{width:100%;height:234px;object-fit:contain;background:#fff}
+.school-evidence-ledger figure figcaption{position:absolute;left:18px;right:18px;bottom:18px;padding:7px 9px;background:rgba(15,49,68,.86);color:#fff;font-size:10.5px;font-weight:700}
+.school-evidence-list{display:grid;grid-template-columns:1fr 1fr}
+.school-evidence-list>div{padding:22px 24px;border-right:1px solid #e0e7ea;border-bottom:1px solid #e0e7ea}
+.school-evidence-list>div:nth-child(2n){border-right:0}.school-evidence-list>div:nth-last-child(-n+2){border-bottom:0}
+.school-evidence-list small{display:block;color:#8799a1;font-size:10.5px;font-weight:800;letter-spacing:.04em}.school-evidence-list b{display:block;margin-top:5px;color:#315767;font-size:14px}.school-evidence-list span{display:block;margin-top:5px;color:#6c8089;font-size:11.8px;line-height:1.55}
 
-@media(max-width:1080px){.course-hero-media:has(img[src^="images/hero_background_"]){justify-self:start;width:min(100%,520px);height:280px}}
-@media(max-width:620px){.course-hero-media:has(img[src^="images/hero_background_"]){width:100%;height:220px}.course-hero:has(img[src="images/hero_background_1.jpg"])::before{opacity:.035}.art-hero::before{display:none}}
+/* prepared gallery rules for additional school assets once the corresponding files exist */
+.school-materials{margin-top:24px;padding-top:22px;border-top:1px solid #cbd9df}
+.school-materials-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:13px}
+.school-materials-head h3{margin:0;color:#173f55;font-size:18px}.school-materials-head p{margin:0;color:#71858e;font-size:11.5px}
+.school-material-grid{display:grid;grid-template-columns:1.25fr repeat(3,1fr);grid-auto-rows:150px;gap:7px;grid-auto-flow:dense}
+.school-material-grid figure{position:relative;margin:0;overflow:hidden;background:#f7f9fa;border:1px solid #d9e3e7}
+.school-material-grid figure:first-child{grid-row:span 2}
+.school-material-grid img{width:100%;height:100%;object-fit:contain;background:#f9fbfc}
+.school-material-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:7px 9px;background:rgba(15,49,68,.84);color:#fff;font-size:10.5px;font-weight:700}
+
+@media(max-width:1080px){
+  .course-hero-media:has(img[src^="images/hero_background_"]){justify-self:start;width:min(100%,520px);height:280px}
+  .student-portfolio{grid-auto-rows:132px}.teacher-portfolio{grid-auto-rows:104px}
+  .school-evidence-ledger{grid-template-columns:320px 1fr}
+  .school-material-grid{grid-template-columns:1.2fr 1fr 1fr;grid-auto-rows:140px}.school-material-grid figure:first-child{grid-row:span 2}
+}
+@media(max-width:760px){
+  .student-portfolio{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}.student-portfolio figure,.student-portfolio figure:nth-child(n){grid-column:auto;grid-row:auto}.student-portfolio figure:first-child{grid-column:1/3}
+  .teacher-portfolio{grid-template-columns:repeat(3,1fr);grid-auto-rows:145px}.teacher-portfolio figure,.teacher-portfolio figure:nth-child(n){grid-column:auto;grid-row:auto}.teacher-portfolio figure:first-child{grid-column:span 2;grid-row:span 2}.teacher-portfolio figure:nth-child(7){grid-row:span 2}
+  .school-evidence-ledger{grid-template-columns:1fr}.school-evidence-ledger figure{border-right:0;border-bottom:1px solid #d7e2e7}.school-evidence-list{grid-template-columns:1fr 1fr}
+  .school-material-grid{grid-template-columns:1fr 1fr;grid-auto-rows:145px}.school-material-grid figure:first-child{grid-column:1/3;grid-row:span 2}
+}
+@media(max-width:620px){
+  .course-hero-media:has(img[src^="images/hero_background_"]){width:100%;height:220px}.course-hero:has(img[src="images/hero_background_1.jpg"])::before{opacity:.035}.art-hero::before{display:none}
+  .art-hero .course-hero-media{height:310px;grid-template-rows:152px 152px}
+  .student-portfolio{grid-auto-rows:145px}.teacher-portfolio{grid-template-columns:1fr 1fr;grid-auto-rows:132px}.teacher-portfolio figure:first-child{grid-column:1/3;grid-row:span 2}.teacher-portfolio figure:nth-child(7){grid-row:auto}
+  .school-evidence-list{grid-template-columns:1fr}.school-evidence-list>div{border-right:0;border-bottom:1px solid #e0e7ea!important}.school-evidence-list>div:last-child{border-bottom:0!important}
+  .school-material-grid{grid-auto-rows:130px}.school-material-grid figure:first-child{grid-row:span 2}.school-materials-head{display:block}.school-materials-head p{margin-top:6px}
+}
