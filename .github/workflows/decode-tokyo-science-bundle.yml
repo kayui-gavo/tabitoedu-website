@@ -1,0 +1,58 @@
+name: Decode Tokyo Science asset bundle
+
+on:
+  push:
+    branches: [gh-pages]
+    paths:
+      - 'site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64'
+      - '.github/workflows/decode-tokyo-science-bundle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - name: Decode and verify Tokyo Science assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAYLOAD='site/images/tokyo-science-2026/_payload/tokyo-science-2026-assets.zip.b64'
+          OUT='site/images/tokyo-science-2026'
+          test -f "$PAYLOAD" || { echo 'Bundle payload not present; nothing to do.'; exit 0; }
+          mkdir -p "$OUT"
+          base64 -d "$PAYLOAD" > /tmp/tokyo-science-assets.zip
+          unzip -o /tmp/tokyo-science-assets.zip -d "$OUT"
+          expected=(
+            tokyo-science-2026-interview-training-cover.webp
+            tokyo-science-2026-original-mock-exam-cover.webp
+            tokyo-science-2026-original-math-q2.webp
+            tokyo-science-2026-original-physics-q2-part1.webp
+            tokyo-science-2026-original-physics-q2-part2.webp
+            tokyo-science-2026-official-pass-list-1.webp
+            tokyo-science-2026-official-pass-list-2.webp
+            tokyo-science-2026-class-pass-announcement.webp
+          )
+          for f in "${expected[@]}"; do
+            test -s "$OUT/$f" || { echo "Missing $f"; exit 1; }
+            file "$OUT/$f" | grep -qi 'Web/P image' || { echo "Invalid WebP: $f"; exit 1; }
+          done
+          rm -f "$PAYLOAD"
+      - name: Commit decoded image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site/images/tokyo-science-2026 .github/workflows/decode-tokyo-science-bundle.yml
+          if git diff --cached --quiet; then
+            echo 'No asset changes.'
+            exit 0
+          fi
+          git commit -m 'Add Tokyo Science 2026 case-study image assets'
+          git push origin HEAD:gh-pages
