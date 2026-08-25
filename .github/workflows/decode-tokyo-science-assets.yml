@@ -147,12 +147,11 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/images/tokyo-science-2026/*.webp site/images/tokyo-science-2026/*.png site/images/tokyo-science-2026/*.jpg site/images/tokyo-science-2026/*.jpeg 2>/dev/null || true
+          find site/images/tokyo-science-2026 -maxdepth 1 -type f \( -name '*.webp' -o -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -print0 | xargs -0 -r git add --
+          git status --short site/images/tokyo-science-2026
           if git diff --cached --quiet; then
             echo 'No decoded asset changes.'
             exit 0
           fi
           git commit -m 'Recover refreshed Tokyo Science 2026 assets'
           git push origin HEAD:gh-pages
-
-# final complete-asset decode trigger
