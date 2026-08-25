@@ -18,18 +18,41 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: gh-pages
-      - name: Decode valid image payloads
+      - name: Decode refreshed asset bundle
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import base64, re
+          import base64, re, zipfile, io
 
           payload = Path('site/images/tokyo-science-2026/_payload')
           out = Path('site/images/tokyo-science-2026')
           out.mkdir(parents=True, exist_ok=True)
 
+          def decode_text(path: Path):
+              text = path.read_text(errors='ignore')
+              clean = re.sub(r'[^A-Za-z0-9+/=]', '', text)
+              clean += '=' * ((-len(clean)) % 4)
+              return base64.b64decode(clean, validate=False)
+
+          # Preferred refreshed bundle: decode and extract all image files safely.
+          bundle = payload / 'tokyo-science-2026-assets.zip.b64'
+          if bundle.exists():
+              data = decode_text(bundle)
+              with zipfile.ZipFile(io.BytesIO(data)) as zf:
+                  for info in zf.infolist():
+                      if info.is_dir():
+                          continue
+                      name = Path(info.filename).name
+                      suffix = Path(name).suffix.lower()
+                      if suffix not in {'.webp', '.png', '.jpg', '.jpeg'}:
+                          continue
+                      target = out / name
+                      target.write_bytes(zf.read(info))
+                      print(f'BUNDLE {target} ({target.stat().st_size} bytes)')
+
+          # Backward-compatible single / multipart WebP payloads.
           groups = {}
           for p in payload.glob('*.webp.b64'):
               groups[p.name[:-4]] = [p]
@@ -56,21 +79,21 @@ jobs:
                   continue
               target = out / stem.replace('.b64', '')
               target.write_bytes(data[:declared])
-              print(f'OK   {target} ({declared} bytes)')
+              print(f'WEBP   {target} ({declared} bytes)')
           PY
 
-          find site/images/tokyo-science-2026 -maxdepth 1 -name '*.webp' -print -exec file {} \;
+          find site/images/tokyo-science-2026 -maxdepth 1 -type f \( -name '*.webp' -o -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -print -exec file {} \;
 
-      - name: Commit decoded WebP assets
+      - name: Commit decoded assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/images/tokyo-science-2026/*.webp 2>/dev/null || true
+          git add site/images/tokyo-science-2026/*.webp site/images/tokyo-science-2026/*.png site/images/tokyo-science-2026/*.jpg site/images/tokyo-science-2026/*.jpeg 2>/dev/null || true
           if git diff --cached --quiet; then
             echo 'No decoded asset changes.'
             exit 0
           fi
-          git commit -m 'Decode valid Tokyo Science 2026 image assets'
+          git commit -m 'Decode refreshed Tokyo Science 2026 assets'
           git push origin HEAD:gh-pages
