@@ -154,3 +154,5 @@ jobs:
           fi
           git commit -m 'Recover refreshed Tokyo Science 2026 assets'
           git push origin HEAD:gh-pages
+
+# final complete-asset decode trigger
