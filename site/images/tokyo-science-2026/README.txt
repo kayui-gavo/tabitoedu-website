@@ -1,0 +1,1 @@
+Validated image assets for the Tokyo Science 2026 case are stored in this directory.
