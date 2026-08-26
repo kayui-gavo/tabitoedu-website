@@ -1,0 +1,245 @@
+/* r50 — discipline pass over r49.
+   Goal: remove the remaining floating-card feeling, stabilize the photographic layout,
+   strengthen typographic hierarchy, and tighten desktop/mobile rhythm without adding UI chrome. */
+@import url('./site-r49.css');
+
+:root{
+  --r50-navy:#0d3043;
+  --r50-ink:#244957;
+  --r50-text:#617780;
+  --r50-muted:#8799a0;
+  --r50-line:#d5e0e4;
+  --r50-paper:#f5f8f9;
+}
+
+/* global discipline */
+.section-heading{grid-template-columns:minmax(0,1fr) minmax(300px,405px)!important;gap:54px!important}
+.section-heading>div{position:relative;padding-top:13px}
+.section-heading>div::before{content:'';position:absolute;left:0;top:0;width:42px;height:1px;background:#8fa9b4}
+.section-heading.light>div::before{background:rgba(255,255,255,.38)}
+.section-heading>div>span{margin-bottom:8px!important;color:#82959d!important;font-size:8.5px!important;letter-spacing:.18em!important}
+.section-heading.light>div>span{color:#a9bdc6!important}
+.section-heading h2{font-size:36px!important;letter-spacing:-.043em!important}
+.section-heading p{padding-top:12px;font-size:11.35px!important;line-height:1.84!important}
+
+/* header: cleaner institutional rhythm */
+.site-header{backdrop-filter:blur(18px)!important}
+.header-main{min-height:65px!important}
+.utility-nav .nav-contact{padding:7px 12px!important;border-color:#c7d5db!important}
+.course-nav .shell-wide{justify-content:flex-start}
+.course-nav a::after{bottom:-8px!important;height:1px!important}
+
+/* hero: remove floating collage / shadows; use a disciplined asymmetric photo plate */
+.hero-grid{grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr)!important;gap:62px!important;min-height:625px!important;padding:62px 0 64px!important}
+.hero-copy{max-width:600px!important}
+.hero-copy h1{font-size:61px!important;max-width:550px!important}
+.hero-statement{font-size:18.5px!important;max-width:545px!important}
+.hero-lede{font-size:12.25px!important;max-width:545px!important}
+.hero-actions a:not(.primary){font-size:10.75px!important}
+.hero-proofline{max-width:545px!important;margin-top:25px!important}
+.hero-proofline strong{font-size:22px!important}
+.hero-proofline span{font-size:9.25px!important}
+.hero-proofline .hero-proof-location b{font-size:9.75px!important;line-height:1.6!important}
+
+.hero-visual{display:grid!important;position:relative!important;grid-template-columns:minmax(0,1.58fr) minmax(150px,.62fr)!important;grid-template-rows:1fr 1fr 31px!important;gap:7px!important;min-height:482px!important;overflow:hidden!important}
+.hero-visual figure{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;margin:0!important;box-shadow:none!important;overflow:hidden!important;background:#e7edef!important}
+.hero-main-photo{grid-column:1!important;grid-row:1/3!important}
+.hero-sub-photo:nth-of-type(2){grid-column:2!important;grid-row:1!important}
+.hero-sub-photo:nth-of-type(3){grid-column:2!important;grid-row:2!important}
+.hero-main-photo img{object-position:center 37%!important}
+.hero-sub-photo:nth-of-type(2) img{object-position:center 41%!important}
+.hero-sub-photo:nth-of-type(3) img{object-position:center 48%!important}
+.hero-visual figcaption{left:0!important;bottom:0!important;padding:4px 7px!important;background:rgba(12,42,58,.72)!important;font-size:7.75px!important}
+.hero-visual-meta{position:static!important;grid-column:1/3!important;grid-row:3!important;height:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;border-top:1px solid #c8d5da!important;border-bottom:0!important;color:#70848d!important;font-size:8.9px!important}
+.hero-visual-meta span:first-child{color:#486673!important;font-weight:700!important}
+
+/* achievements: typography and documents, not a white card floating in dark */
+.results-section{padding:78px 0 74px!important;background:#0f3346!important}
+.results-summary{border-top-color:rgba(255,255,255,.25)!important;border-bottom-color:rgba(255,255,255,.14)!important}
+.result-total{padding:20px 0 18px!important}
+.result-total>small{width:105px!important;font-size:8.75px!important;letter-spacing:.1em}
+.big-number strong{font-size:50px!important;font-weight:700!important}
+.big-number span{font-size:9.75px!important}
+.result-schoolline{grid-template-columns:repeat(6,minmax(0,1fr));border-bottom-color:rgba(255,255,255,.14)!important}
+.result-schoolline>div{padding-top:14px!important;padding-bottom:14px!important}
+.result-schoolline b{font-size:10.1px!important}
+.result-schoolline span{font-size:14px!important}
+
+.results-evidence{grid-template-columns:minmax(0,1.7fr) minmax(225px,.3fr)!important;gap:16px!important;margin-top:26px!important}
+.result-case-brief{grid-template-columns:304px minmax(0,1fr)!important;min-height:304px!important;background:#f8fafb!important;border:0!important}
+.result-case-artifact{padding:22px 21px 25px!important;background:#edf2f4!important;border-right:1px solid #d7e1e5!important}
+.case-docs{gap:10px!important}
+.case-docs img{width:122px!important;max-height:210px!important;box-shadow:none!important;border:1px solid #dbe3e6}
+.result-case-copy{padding:31px 34px!important}
+.result-case-copy>small{font-size:8.75px!important;color:#7e9098!important}
+.result-case-copy h3{font-size:25px!important}
+.result-flow{margin-top:17px!important}
+.result-flow b{font-size:26px!important}
+.case-tags{margin-top:15px!important}
+.result-case-copy>strong{margin-top:17px!important;font-size:9.75px!important}
+.proof-gallery{height:304px!important;gap:5px!important}
+.proof-gallery figure{border:1px solid rgba(255,255,255,.08)!important}
+.result-note{margin-top:13px!important;font-size:9.4px!important;color:#a7bac2!important}
+
+/* programmes: more air, more evidence, no pseudo-card hover */
+.programs-section{padding:88px 0 84px!important}
+.course-catalogue{border-top:1px solid #a8bbc3!important;border-bottom:1px solid #a8bbc3!important}
+.catalogue-row,.catalogue-row:nth-child(odd),.catalogue-row:nth-child(even){grid-template-columns:48px minmax(0,1fr) 338px!important;min-height:222px!important;padding:23px 0!important;background:#fff!important;transition:none!important}
+.catalogue-row:hover{background:#fff!important}
+.catalogue-row:hover .course-visual img{transform:none!important;filter:none!important}
+.catalogue-index{font-size:9px!important;letter-spacing:.12em!important;color:#94a6ad!important}
+.catalogue-copy{padding-right:66px!important}
+.catalogue-copy small{font-size:8.75px!important;letter-spacing:.11em!important;color:#82969f!important}
+.catalogue-copy h3{font-size:27px!important}
+.catalogue-copy p{max-width:620px!important;font-size:11.35px!important;line-height:1.82!important}
+.catalogue-facts b{font-size:9.2px!important}
+.catalogue-row figure.course-visual,.catalogue-row:nth-child(odd) figure.course-visual,.catalogue-row:nth-child(even) figure.course-visual{width:338px!important;height:174px!important;border:0!important;background:#eef3f5!important}
+.catalogue-cta{margin-top:14px!important;font-size:9.3px!important}
+.common-sheet{padding:17px 19px!important}
+.common-sheet>strong{font-size:24px!important}
+.common-subjects span,.common-subjects b{font-size:8.85px!important}
+.feature-link{margin-top:14px!important;border-top:0!important;border-bottom:1px solid #d8e2e6!important;padding:12px 0!important}
+
+/* admissions flow: editorial timeline, less four-box module */
+.approach-section{padding:72px 0!important;background:#f3f6f7!important}
+.approach-flow{grid-template-columns:repeat(4,1fr)!important;border-top:1px solid #a8bbc3!important;border-bottom:1px solid #a8bbc3!important}
+.approach-flow>div{min-height:145px!important;padding:20px 25px 20px 0!important}
+.approach-flow>div+div{padding-left:25px!important;border-left:0!important}
+.approach-flow>div+div::before{content:'';position:absolute;left:0;top:22px;bottom:22px;width:1px;background:#d5e0e4}
+.approach-flow em{font-size:15px!important;color:#a6b6bd!important}
+.approach-flow b{margin-top:11px!important;font-size:14px!important}
+.approach-flow span{font-size:10.25px!important;line-height:1.7!important}
+.approach-flow i{right:-5px!important;top:26px!important;background:#f3f6f7!important;color:#93a8b1!important}
+
+/* faculty: clearer reading, less dense roster-wall */
+.faculty-section{padding:84px 0 80px!important}
+.faculty-board{grid-template-columns:.78fr 1.38fr 1.15fr 1.22fr!important;border-top:1px solid #a8bbc3!important;border-bottom:1px solid #a8bbc3!important}
+.faculty-board>section{padding:22px 22px 24px 0!important}
+.faculty-board>section+section{padding-left:22px!important;border-left:1px solid #e0e7ea!important}
+.faculty-board h3{font-size:14.75px!important;letter-spacing:-.01em}
+.person-list p,.subject-list p,.teacher-profile{padding:7px 0!important}
+.person-list b,.subject-list b{font-size:11.9px!important}
+.person-list span,.subject-list span{font-size:10px!important;line-height:1.55!important}
+.subject-list>div>small{font-size:8.45px!important}
+.faculty-note{margin-top:12px!important;font-size:9.25px!important}
+
+/* guides: keep asymmetry but reduce component feel */
+.insights-section{padding:72px 0 70px!important;background:#fff!important;border-top:1px solid #edf1f3!important}
+.insight-grid{border-top:1px solid #a8bbc3!important;border-bottom:1px solid #a8bbc3!important}
+.insight-grid a:first-child{min-height:215px!important;padding:24px 32px 24px 0!important}
+.insight-grid a:nth-child(2),.insight-grid a:nth-child(3){padding-left:23px!important}
+.insight-grid a:first-child b{font-size:18.5px!important;line-height:1.52!important}
+.insight-grid b{font-size:12.25px!important}
+.insight-grid small{font-size:8.9px!important}
+.insight-grid span{font-size:9.2px!important}
+.text-links{margin-top:11px!important}
+.text-links a{font-size:9.3px!important}
+
+/* contact: make consultation action and physical campus equally legible */
+.contact-section{padding:80px 0 82px!important;background:#0e3245!important}
+.contact-layout{grid-template-columns:minmax(0,.86fr) minmax(450px,1.14fr)!important;gap:42px!important}
+.contact-instruction{margin-bottom:14px!important;padding:12px 0 13px!important;font-size:10.65px!important}
+.consult-meta p{grid-template-columns:82px minmax(0,1fr)!important;padding:8px 0!important}
+.consult-meta b{font-size:10px!important}
+.consult-meta span{font-size:9.65px!important}
+.qr-grid{margin-top:16px!important}
+.qr-grid figure{grid-template-columns:124px minmax(0,1fr)!important;gap:13px!important;padding:9px!important}
+.qr-grid img{width:124px!important;max-width:124px!important}
+.qr-grid figcaption b{font-size:11.5px!important}
+.campus-panel{min-height:338px!important}
+.campus-panel iframe{min-height:338px!important}
+
+/* footer: even quieter */
+.footer-career{padding:14px 0!important}
+.footer-career small{font-size:8px!important}
+.footer-career b{font-size:10px!important}
+.footer-career span,.footer-career a{font-size:9px!important}
+.footer-main{padding-top:27px!important;padding-bottom:25px!important}
+.footer-brand p{font-size:10.5px!important}
+.footer-nav a{font-size:10px!important}
+
+/* quarantine known legacy leaks so later content edits do not revive old core modules */
+.hero-scope .scope-item{width:auto!important;height:auto!important;background:transparent!important;border-radius:0!important}
+.result-case-brief{padding:0!important;border-top:0!important}
+.consult-panel{background:transparent!important;border-top:0!important}
+.qr-grid img{border:0!important}
+
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:minmax(0,.9fr) minmax(445px,1.1fr)!important;gap:42px!important}
+  .hero-copy h1{font-size:54px!important}
+  .catalogue-row,.catalogue-row:nth-child(odd),.catalogue-row:nth-child(even){grid-template-columns:44px minmax(0,1fr) 285px!important}
+  .catalogue-row figure.course-visual,.catalogue-row:nth-child(odd) figure.course-visual,.catalogue-row:nth-child(even) figure.course-visual{width:285px!important;height:162px!important}
+  .catalogue-copy{padding-right:44px!important}
+  .contact-layout{grid-template-columns:1fr 1fr!important;gap:34px!important}
+  .qr-grid figure{grid-template-columns:108px minmax(0,1fr)!important}
+  .qr-grid img{width:108px!important;max-width:108px!important}
+}
+
+@media(max-width:820px){
+  .section-heading{grid-template-columns:1fr!important;gap:7px!important}
+  .section-heading p{padding-top:0!important;max-width:600px!important}
+  .hero-grid{grid-template-columns:1fr!important;gap:31px!important;min-height:0!important;padding:46px 0 50px!important}
+  .hero-copy{max-width:none!important}
+  .hero-copy h1{font-size:48px!important}
+  .hero-visual{min-height:405px!important}
+  .result-schoolline{grid-template-columns:repeat(3,1fr)!important}
+  .result-schoolline>div:nth-child(4){border-left:0!important}
+  .result-schoolline>div:nth-child(n+4){border-top:1px solid rgba(255,255,255,.10)}
+  .results-evidence{grid-template-columns:1fr!important}
+  .result-case-brief{grid-template-columns:270px minmax(0,1fr)!important}
+  .proof-gallery{grid-template-columns:1fr 1fr!important;grid-template-rows:1fr!important;height:180px!important}
+  .catalogue-row,.catalogue-row:nth-child(odd),.catalogue-row:nth-child(even){grid-template-columns:40px minmax(0,1fr) 220px!important;min-height:190px!important}
+  .catalogue-row figure.course-visual,.catalogue-row:nth-child(odd) figure.course-visual,.catalogue-row:nth-child(even) figure.course-visual{width:220px!important;height:142px!important}
+  .catalogue-copy{padding-right:28px!important}
+  .approach-flow{grid-template-columns:1fr 1fr!important}
+  .approach-flow>div:nth-child(3){border-top:1px solid #d5e0e4!important}
+  .approach-flow>div:nth-child(3)::before{display:none}
+  .approach-flow>div:nth-child(4){border-top:1px solid #d5e0e4!important}
+  .approach-flow>div:nth-child(2) i{display:none!important}
+  .faculty-board{grid-template-columns:1fr 1fr!important}
+  .faculty-board>section:nth-child(3){border-left:0!important;border-top:1px solid #e0e7ea!important;padding-left:0!important}
+  .faculty-board>section:nth-child(4){border-top:1px solid #e0e7ea!important}
+  .contact-layout{grid-template-columns:1fr!important;gap:30px!important}
+  .qr-grid figure{grid-template-columns:124px minmax(0,1fr)!important}
+  .qr-grid img{width:124px!important;max-width:124px!important}
+}
+
+@media(max-width:560px){
+  .hero-grid{padding-top:39px!important}
+  .hero-copy h1{font-size:40px!important}
+  .hero-statement{font-size:15px!important}
+  .hero-visual{grid-template-columns:1.45fr .7fr!important;min-height:340px!important}
+  .hero-visual-meta{font-size:8px!important}
+  .results-section{padding-top:64px!important;padding-bottom:62px!important}
+  .result-total{gap:16px!important;flex-wrap:wrap!important}
+  .result-total>small{width:100%!important;padding-top:0!important}
+  .big-number+.big-number{padding-left:16px!important}
+  .big-number strong{font-size:42px!important}
+  .result-schoolline{grid-template-columns:1fr 1fr!important}
+  .result-schoolline>div:nth-child(3),.result-schoolline>div:nth-child(5){border-left:0!important}
+  .result-schoolline>div:nth-child(4){border-left:1px solid rgba(255,255,255,.10)!important}
+  .result-schoolline>div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.10)}
+  .result-case-brief{grid-template-columns:1fr!important}
+  .result-case-artifact{min-height:205px!important}
+  .case-docs img{width:105px!important;max-height:178px!important}
+  .result-case-copy{padding:22px!important}
+  .proof-gallery{height:155px!important}
+  .catalogue-row,.catalogue-row:nth-child(odd),.catalogue-row:nth-child(even){grid-template-columns:30px minmax(0,1fr)!important;grid-template-rows:auto 150px!important;padding:20px 0 22px!important}
+  .catalogue-copy{grid-column:2!important;padding-right:0!important}
+  .catalogue-copy h3{font-size:23px!important}
+  .catalogue-row figure.course-visual,.catalogue-row:nth-child(odd) figure.course-visual,.catalogue-row:nth-child(even) figure.course-visual{grid-column:1/3!important;grid-row:2!important;width:100%!important;height:150px!important;margin-top:16px!important}
+  .approach-flow{grid-template-columns:1fr!important}
+  .approach-flow>div,.approach-flow>div+div{min-height:0!important;padding:16px 0!important;border-top:1px solid #d5e0e4!important}
+  .approach-flow>div:first-child{border-top:0!important}
+  .approach-flow>div+div::before{display:none!important}
+  .approach-flow i{display:none!important}
+  .faculty-board{grid-template-columns:1fr!important}
+  .faculty-board>section,.faculty-board>section+section,.faculty-board>section:nth-child(3){padding:18px 0 19px!important;border-left:0!important;border-top:1px solid #e0e7ea!important}
+  .faculty-board>section:first-child{border-top:0!important}
+  .qr-grid{grid-template-columns:1fr!important}
+  .qr-grid figure{grid-template-columns:112px minmax(0,1fr)!important}
+  .qr-grid img{width:112px!important;max-width:112px!important}
+  .campus-panel,.campus-panel iframe{min-height:300px!important}
+  .footer-career{display:grid!important;gap:7px!important}
+  .footer-career>div{display:grid!important;gap:3px!important}
+}
