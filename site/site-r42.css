@@ -179,7 +179,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #6d9bae;outline-offset:4p
   .recruitment-line>div{display:grid;gap:5px}
 }
 
-/* r44 — cascade repair after full homepage audit.
+/* r44/r45 — cascade repair after full homepage audit.
    r41 still imports site-core.css; neutralize only legacy rules that visibly leak into r42/r43. */
 .hero-scope .scope-item{width:auto!important;height:auto!important;background:transparent!important;border-radius:0!important}
 .result-total>small{margin-bottom:0}
@@ -190,8 +190,20 @@ a:focus-visible,button:focus-visible{outline:2px solid #6d9bae;outline-offset:4p
 .insight-grid a{min-height:0;border-top:0;background:transparent}
 .insight-grid a>div{min-height:0;padding:0}
 .consult-panel{background:transparent;border-top:0}
+.consult-meta p{display:block;border-right:0}
 .qr-grid img{border:0}
 .campus-panel{border-top:0}
+
+/* The legacy core switched to mobile at 1080px. The current homepage is designed
+   to keep the full editorial header and two-column section headings until 820px. */
+@media(min-width:821px) and (max-width:1080px){
+  .utility-nav{display:flex}
+  .course-nav{display:block}
+  .mobile-trigger{display:none}
+  .mobile-menu{display:none!important}
+  .section-heading{grid-template-columns:minmax(0,1fr) minmax(280px,420px);gap:30px}
+  .hero-grid{padding:50px 0 52px}
+}
 
 @media(max-width:820px){
   .feature-link{grid-template-columns:1fr auto}
