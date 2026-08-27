@@ -1,9 +1,13 @@
 (()=>{
-  /* Header brand now uses the real logo directly from CSS. No JS insertion, color filtering or
-     synthetic fallback mark: the reserved background-image footprint is stable from first paint. */
+  /* Header brand now uses the real logo directly from CSS. */
 
-  /* Faculty: keep the useful role information, remove the redundant Chinese-course note and
-     make the external teacher profile read like an editorial credit rather than an ad. */
+  /* Homepage course intro: keep it concrete and student-facing. */
+  const programsIntro=document.querySelector('#programs .section-head p');
+  if(programsIntro){
+    programsIntro.textContent='不同学校、不同入试方式，要准备的东西也不一样。共通考试、EJU、校内考和美术升学，可按自己的报考方向选择。';
+  }
+
+  /* Faculty: remove the redundant Chinese-course note and keep the lead teacher credit concise. */
   document.querySelector('.faculty-note')?.remove();
   const leadTeacherLink=document.querySelector('.team-head > a[href="https://kayui-gavo.github.io/education/"]');
   if(leadTeacherLink){
@@ -12,8 +16,9 @@
     leadTeacherLink.innerHTML='<span>刘老师介绍</span><small>教育营业1部部长・共通考试课程负责人</small><b aria-hidden="true">↗</b>';
   }
 
-  /* Restore the company profile that existed on the original site. Keep it factual and place it
-     between the teaching team and consultation rather than turning it into a separate landing page. */
+  const baikeUrl='https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E6%97%85%E4%BA%BA%E6%95%99%E8%82%B2%E9%9B%86%E5%9B%A2%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE';
+
+  /* Restore the compact company profile and expose the Baidu Baike entry as a secondary source link. */
   const contact=document.getElementById('contact');
   if(contact&&!document.getElementById('company')){
     const company=document.createElement('section');
@@ -23,11 +28,11 @@
       <div class="shell">
         <header class="section-head">
           <h2>公司介绍</h2>
-          <p>中国旅人教育集团株式会社</p>
+          <p><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(16,56,74,.28);padding-bottom:2px">百度百科 ↗</a></p>
         </header>
         <div class="company-overview">
           <div class="company-copy">
-            <h3>中国旅人教育集团株式会社</h3>
+            <h3><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">中国旅人教育集团株式会社</a></h3>
             <p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 Ferris大厦4层。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p>
           </div>
           <dl class="company-facts">
@@ -99,7 +104,6 @@
   setPanelSources('course-panel-school',courseMedia['course-panel-school']);
   setPanelSources('course-panel-art',courseMedia['course-panel-art']);
 
-  /* Prewarm the small hidden-panel assets shortly after parsing. */
   const warmUrls=urls=>urls.forEach(src=>{const image=new Image();image.decoding='async';image.src=src;});
   const warmAll=()=>{
     warmUrls(courseMedia['course-panel-eju']);
