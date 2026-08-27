@@ -1,7 +1,5 @@
 (()=>{
-  /* Restore the real logo deterministically. The current homepage markup intentionally keeps
-     the wordmark text, so inject the small 26 KB mark here and fall back to a CSS mark only
-     if the asset itself ever fails. */
+  /* Brand mark */
   const brand=document.querySelector('.brand');
   if(brand&&!brand.querySelector('img')){
     const logo=document.createElement('img');
@@ -15,31 +13,87 @@
     brand.insertBefore(logo,brand.firstChild);
   }
 
-  /* Homepage course media previously referenced several 0.3–3.7 MB originals. Replace those
-     DOM URLs with already-existing lightweight assets before any tab is opened. The first panel
-     uses ~190 KB total; the other three panels remain data-src and are warmed after window load. */
+  /* Restore the company profile that existed on the original site. Keep it factual and place it
+     between the teaching team and consultation rather than turning it into a separate landing page. */
+  const contact=document.getElementById('contact');
+  if(contact&&!document.getElementById('company')){
+    const company=document.createElement('section');
+    company.id='company';
+    company.className='company-section';
+    company.innerHTML=`
+      <div class="shell">
+        <header class="section-head">
+          <h2>公司介绍</h2>
+          <p>中国旅人教育集团株式会社</p>
+        </header>
+        <div class="company-overview">
+          <div class="company-copy">
+            <span class="company-kicker">教育服务企业</span>
+            <h3>中国旅人教育集团株式会社</h3>
+            <p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 Ferris大厦4层。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p>
+          </div>
+          <dl class="company-facts">
+            <div><dt>成立时间</dt><dd>2025年3月27日</dd></div>
+            <div><dt>核心业务</dt><dd>留学服务</dd></div>
+            <div><dt>总部地址</dt><dd>日本东京都中野区中野1-55-3 Ferris大厦4层</dd></div>
+          </dl>
+        </div>
+        <div class="company-details">
+          <section class="company-detail">
+            <span class="company-no">01</span><h3>发展历程</h3>
+            <p><b class="company-date">2025年5月8日</b> 设立国际贸易部；10月启动日本语言学校及旅行资质申办，并在东京都青梅市购置项目用地。</p>
+            <p><b class="company-date">2026年1月起</b> 在河北省沧州市筹办国际高中。</p>
+          </section>
+          <section class="company-detail">
+            <span class="company-no">02</span><h3>分支机构</h3>
+            <ul><li>沧州旅人教育科技有限公司</li><li>沧州旅者教育科技有限公司</li></ul>
+          </section>
+          <section class="company-detail">
+            <span class="company-no">03</span><h3>管理团队</h3>
+            <dl class="company-team">
+              <div><dt>董事长</dt><dd>籍诚</dd></div>
+              <div><dt>专务董事</dt><dd>汤阳</dd></div>
+              <div><dt>常务董事</dt><dd>吴子吟</dd></div>
+              <div><dt>董事</dt><dd>刘可惟</dd></div>
+            </dl>
+          </section>
+        </div>
+      </div>`;
+    contact.before(company);
+  }
+
+  /* Restore company navigation without changing the existing header markup contract. */
+  const utilityNav=document.querySelector('.utility-nav');
+  if(utilityNav&&!utilityNav.querySelector('a[href="#company"]')){
+    const link=document.createElement('a');link.href='#company';link.textContent='公司介绍';
+    utilityNav.insertBefore(link,utilityNav.querySelector('.nav-contact'));
+  }
+  const mobileMenu=document.getElementById('mobileMenu');
+  if(mobileMenu&&!mobileMenu.querySelector('a[href="#company"]')){
+    const link=document.createElement('a');link.href='#company';link.textContent='公司介绍';
+    const contactLink=mobileMenu.querySelector('a[href="#contact"]');
+    mobileMenu.insertBefore(link,contactLink);
+  }
+  const footerSiteNav=document.querySelector('.footer-nav[aria-label="网站链接"]');
+  if(footerSiteNav&&!footerSiteNav.querySelector('a[href="#company"]')){
+    const link=document.createElement('a');link.href='#company';link.textContent='公司介绍';
+    const contactLink=footerSiteNav.querySelector('a[href="#contact"]');
+    footerSiteNav.insertBefore(link,contactLink);
+  }
+
+  /* Use lightweight existing files for homepage course media. */
   const courseMedia={
     'course-panel-common':['images/hero_background_1.jpg','images/tabito-classroom-teaching.webp','images/hero_background_3.jpg'],
     'course-panel-eju':['images/hero_background_0.jpg','images/tabito-classroom-seminar.webp','images/hero_background_9.webp'],
     'course-panel-school':['images/hero_background_9.webp'],
     'course-panel-art':['images/student-work-figure-study.jpg','images/student-work-bust-charcoal.jpg','images/tabito-classroom-art.webp']
   };
-
   const setPanelSources=(panelId,urls,showNow=false)=>{
-    const panel=document.getElementById(panelId);
-    if(!panel)return;
-    const imgs=[...panel.querySelectorAll('.course-panel-visual img')];
-    imgs.forEach((img,index)=>{
+    const panel=document.getElementById(panelId);if(!panel)return;
+    [...panel.querySelectorAll('.course-panel-visual img')].forEach((img,index)=>{
       const src=urls[Math.min(index,urls.length-1)];
-      img.removeAttribute('src');
-      img.dataset.src=src;
-      img.decoding='async';
-      if(showNow){
-        img.loading='lazy';
-        img.fetchPriority='low';
-        img.src=src;
-        delete img.dataset.src;
-      }
+      img.removeAttribute('src');img.dataset.src=src;img.decoding='async';
+      if(showNow){img.loading='lazy';img.fetchPriority='low';img.src=src;delete img.dataset.src;}
     });
   };
   setPanelSources('course-panel-common',courseMedia['course-panel-common'],true);
@@ -47,28 +101,27 @@
   setPanelSources('course-panel-school',courseMedia['course-panel-school']);
   setPanelSources('course-panel-art',courseMedia['course-panel-art']);
 
-  /* Warm the hidden course assets only after the critical hero has finished. This does not
-     control visibility or rendering; it merely fills the browser cache so tab changes feel instant. */
+  /* Prewarm the small hidden-panel assets shortly after parsing; do not wait for the 2 MB hero
+     request to finish. This fills cache without deciding whether content is visible. */
   const warmUrls=urls=>urls.forEach(src=>{const image=new Image();image.decoding='async';image.src=src;});
   const warmAll=()=>{
     warmUrls(courseMedia['course-panel-eju']);
     warmUrls(courseMedia['course-panel-school']);
     warmUrls(courseMedia['course-panel-art']);
   };
-  if(document.readyState==='complete')setTimeout(warmAll,120);
-  else window.addEventListener('load',()=>setTimeout(warmAll,120),{once:true});
-
+  const scheduleWarm=()=>{
+    if('requestIdleCallback' in window)requestIdleCallback(warmAll,{timeout:850});
+    else setTimeout(warmAll,320);
+  };
+  scheduleWarm();
   document.querySelectorAll('.course-choice').forEach(choice=>{
-    const panelId=choice.getAttribute('aria-controls');
-    const urls=courseMedia[panelId];
-    if(!urls)return;
+    const urls=courseMedia[choice.getAttribute('aria-controls')];if(!urls)return;
     const warm=()=>warmUrls(urls);
     choice.addEventListener('pointerenter',warm,{once:true,passive:true});
     choice.addEventListener('focus',warm,{once:true});
   });
 
-  /* Keep the stable r68 result-gallery hydration. Five records are tiny, so deterministic
-     parallel loading is preferable to observer-driven loading. */
+  /* Deterministic result-gallery hydration. */
   const cards=[...document.querySelectorAll('[data-result-b64]')];
   const hydrate=async card=>{
     if(card.dataset.imageSrc)return card.dataset.imageSrc;
@@ -79,14 +132,8 @@
       const src=`data:image/webp;base64,${base64}`;
       const img=card.querySelector('img');
       if(img){img.src=src;img.loading='eager';try{await img.decode?.();}catch(_){} }
-      card.dataset.imageSrc=src;
-      card.dataset.loaded='true';
-      return src;
-    }catch(error){
-      card.dataset.error='true';
-      console.error('Result image failed to load',error);
-      return null;
-    }
+      card.dataset.imageSrc=src;card.dataset.loaded='true';return src;
+    }catch(error){card.dataset.error='true';console.error('Result image failed to load',error);return null;}
   };
   cards.forEach(hydrate);
 })();
