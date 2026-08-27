@@ -8,6 +8,17 @@
     document.head.append(style);
   }
 
+  /* Keep the homepage Common Test summary aligned with the actual course page. */
+  const commonTab=document.getElementById('course-tab-common');
+  if(commonTab){const note=commonTab.querySelector('small');if(note)note.textContent='15 科开设课程';}
+  const commonPanel=document.getElementById('course-panel-common');
+  if(commonPanel){
+    const copy=commonPanel.querySelector('.course-panel-copy p');
+    if(copy)copy.textContent='开设 15 科。根据目标大学采用的科目、配点和报考方式安排备考。';
+    const visualTitle=commonPanel.querySelector('.visual-label strong');
+    if(visualTitle)visualTitle.textContent='15 科开设课程';
+  }
+
   /* Compact access + recruiting strip at the very bottom of the homepage. */
   const footer=document.querySelector('.footer');
   const footerBottom=footer?.querySelector('.footer-bottom');
