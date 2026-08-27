@@ -1,11 +1,71 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* r84 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
+  /* Contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
   if(!document.querySelector('link[data-home-r77]')){
     const style=document.createElement('link');
     style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r84';style.dataset.homeR77='';
     document.head.append(style);
+  }
+  if(!document.querySelector('link[data-home-r89]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='site-home-r89.css?v=20260828r89';style.dataset.homeR89='';
+    document.head.append(style);
+  }
+
+  /* Faculty r89: keep four clear science subjects; every teacher has an affiliation. */
+  const facultyDirectory=document.querySelector('.faculty-directory');
+  if(facultyDirectory){
+    facultyDirectory.classList.add('faculty-directory--structured');
+    facultyDirectory.innerHTML=`
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">01</span><h3>数学</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>脇村</b><div class="faculty-meta"><span class="faculty-school">筑波大学</span></div></div>
+          <div class="faculty-person"><b>坂野</b><div class="faculty-meta"><span class="faculty-school">早稻田大学</span></div></div>
+          <div class="faculty-person"><b>陆</b><div class="faculty-meta"><span class="faculty-school">东京科学大学</span></div></div>
+          <div class="faculty-person"><b>胡</b><div class="faculty-meta"><span class="faculty-school">东京大学</span></div></div>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured faculty-line--science">
+        <span class="faculty-no">02</span><h3>理科</h3>
+        <div class="faculty-science-grid" aria-label="理科授课教师">
+          <section class="faculty-subject-col"><h4>物理</h4><div class="faculty-subject-teachers">
+            <p><b>刘</b><span>东京大学</span></p>
+            <p><b>陆</b><span>东京科学大学</span></p>
+            <p><b>金</b><span>早稻田大学</span></p>
+          </div></section>
+          <section class="faculty-subject-col"><h4>化学</h4><div class="faculty-subject-teachers">
+            <p><b>孙</b><span>东京大学</span></p>
+            <p><b>焦</b><span>东京大学</span></p>
+          </div></section>
+          <section class="faculty-subject-col"><h4>生物</h4><div class="faculty-subject-teachers">
+            <p><b>周</b><span>筑波大学</span></p>
+          </div></section>
+          <section class="faculty-subject-col"><h4>地学</h4><div class="faculty-subject-teachers">
+            <p><b>丁</b><span>千叶大学</span></p>
+          </div></section>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">03</span><h3>语言・人文</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>刘</b><div class="faculty-meta"><span class="faculty-duty">国语・英语・政经・世界史</span><span class="faculty-school">东京大学</span></div></div>
+          <div class="faculty-person"><b>卢</b><div class="faculty-meta"><span class="faculty-duty">日语</span><span class="faculty-school">横滨国立大学</span></div></div>
+          <div class="faculty-person"><b>沈</b><div class="faculty-meta"><span class="faculty-duty">英语</span><span class="faculty-school">布里斯托大学</span></div></div>
+          <div class="faculty-person"><b>丁</b><div class="faculty-meta"><span class="faculty-duty">地理</span><span class="faculty-school">千叶大学</span></div></div>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">04</span><h3>美术</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>妮</b><div class="faculty-meta"><span class="faculty-duty">美术</span><span class="faculty-school">多摩美术大学</span></div></div>
+          <div class="faculty-person"><b>汤</b><div class="faculty-meta"><span class="faculty-duty">雕刻</span><span class="faculty-school">多摩美术大学</span></div></div>
+          <div class="faculty-person"><b>张</b><div class="faculty-meta"><span class="faculty-duty">油画</span><span class="faculty-school">多摩美术大学</span></div></div>
+          <div class="faculty-person"><b>兰</b><div class="faculty-meta"><span class="faculty-duty">染织设计</span><span class="faculty-school">东京造型大学大学院</span></div></div>
+          <div class="faculty-person"><b>薛</b><div class="faculty-meta"><span class="faculty-duty">动画实战</span><span class="faculty-school">北京电影学院</span></div></div>
+        </div>
+      </section>`;
   }
 
   /* Ultra-light page progress line on the fixed header. */
