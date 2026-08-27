@@ -32,26 +32,30 @@
   .faculty-subject-teachers p:hover{background:rgba(54,111,132,.035)}
 }
 
-/* r90 — five-source reading rail: platform is explicit, content stays compact. */
-.resource-rail--expanded{grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);background:rgba(255,255,255,.16)}
-.resource-rail--expanded .resource-link{min-width:0;padding:15px 14px 16px;border-left:1px solid var(--line);border-top:0}
+/* r91 — four reading resources; official social accounts live together beside the heading. */
+.resource-rail--expanded{grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);background:rgba(255,255,255,.16)}
+.resource-rail--expanded .resource-link{min-width:0;padding:15px 16px 16px;border-left:1px solid var(--line);border-top:0}
 .resource-rail--expanded .resource-link:first-child{padding-left:0;border-left:0}
 .resource-rail--expanded .resource-link:last-child{padding-right:0}
 .resource-rail--expanded .resource-link small{color:#7c929b;font-size:9.4px;line-height:1.45;font-weight:750;letter-spacing:.02em}
-.resource-rail--expanded .resource-link b{margin-top:6px;color:#284f60;font-size:11.9px;line-height:1.55;font-weight:750}
+.resource-rail--expanded .resource-link b{margin-top:6px;color:#284f60;font-size:12px;line-height:1.55;font-weight:750}
 .resource-rail--expanded .resource-link span{margin-top:8px;color:#347b92;font-size:9.8px;font-weight:750}
 .resource-rail--expanded .resource-link span::after{display:none!important}
+.official-social-links{display:flex;align-items:center;justify-content:flex-end;gap:0;flex-wrap:wrap}
+.resources-head .official-social-link{display:inline-flex;align-items:center;min-height:28px;padding:5px 0;color:#6b818a;font-size:10px;line-height:1.4;font-weight:700;text-decoration:none;white-space:nowrap;transition:color .16s ease,transform .16s ease}
+.resources-head .official-social-link+.official-social-link{margin-left:14px;padding-left:14px;border-left:1px solid #d5e0e4}
 @media(hover:hover){
   .resource-rail--expanded .resource-link:hover{background:rgba(54,111,132,.035);transform:translateY(-1px)}
   .resource-rail--expanded .resource-link:hover b{color:#174d62}
+  .resources-head .official-social-link:hover{color:#214f61;transform:translateY(-1px)}
 }
 
 @media(max-width:1000px){
-  .resource-rail--expanded{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .resource-rail--expanded{grid-template-columns:repeat(2,minmax(0,1fr))}
   .resource-rail--expanded .resource-link,.resource-rail--expanded .resource-link:first-child,.resource-rail--expanded .resource-link:last-child{padding:14px 15px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
-  .resource-rail--expanded .resource-link:nth-child(-n+3){border-top:0}
-  .resource-rail--expanded .resource-link:nth-child(3n+1){padding-left:0;border-left:0}
-  .resource-rail--expanded .resource-link:nth-child(3n){padding-right:0}
+  .resource-rail--expanded .resource-link:nth-child(-n+2){border-top:0}
+  .resource-rail--expanded .resource-link:nth-child(odd){padding-left:0;border-left:0}
+  .resource-rail--expanded .resource-link:nth-child(even){padding-right:0}
 }
 
 @media(max-width:900px){
@@ -67,12 +71,8 @@
 }
 
 @media(max-width:700px){
-  .resource-rail--expanded{grid-template-columns:1fr 1fr}
-  .resource-rail--expanded .resource-link,.resource-rail--expanded .resource-link:first-child,.resource-rail--expanded .resource-link:last-child,.resource-rail--expanded .resource-link:nth-child(3n+1),.resource-rail--expanded .resource-link:nth-child(3n){padding:14px 13px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
-  .resource-rail--expanded .resource-link:nth-child(-n+2){border-top:0}
-  .resource-rail--expanded .resource-link:nth-child(odd){padding-left:0;border-left:0}
-  .resource-rail--expanded .resource-link:nth-child(even){padding-right:0}
-  .resource-rail--expanded .resource-link:last-child{grid-column:1/3;padding-right:0;border-left:0}
+  .resources-head{align-items:flex-start}
+  .official-social-links{justify-content:flex-start}
 }
 
 @media(max-width:640px){
@@ -94,8 +94,10 @@
 
 @media(max-width:480px){
   .resource-rail--expanded{grid-template-columns:1fr}
-  .resource-rail--expanded .resource-link,.resource-rail--expanded .resource-link:first-child,.resource-rail--expanded .resource-link:last-child,.resource-rail--expanded .resource-link:nth-child(odd),.resource-rail--expanded .resource-link:nth-child(even){grid-column:auto;padding:13px 0;border-left:0;border-top:1px solid var(--line)}
+  .resource-rail--expanded .resource-link,.resource-rail--expanded .resource-link:first-child,.resource-rail--expanded .resource-link:last-child,.resource-rail--expanded .resource-link:nth-child(odd),.resource-rail--expanded .resource-link:nth-child(even){padding:13px 0;border-left:0;border-top:1px solid var(--line)}
   .resource-rail--expanded .resource-link:first-child{border-top:0}
+  .resources-head .official-social-link{font-size:9.8px}
+  .resources-head .official-social-link+.official-social-link{margin-left:10px;padding-left:10px}
 }
 
 @media(max-width:420px){
@@ -108,5 +110,6 @@
 }
 
 @media(prefers-reduced-motion:reduce){
-  .faculty-person,.faculty-subject-teachers p,.resource-rail--expanded .resource-link{transition:none!important}
+  .faculty-person,.faculty-subject-teachers p,.resource-rail--expanded .resource-link,.resources-head .official-social-link{transition:none!important}
+  .resources-head .official-social-link:hover{transform:none!important}
 }
