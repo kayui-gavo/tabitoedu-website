@@ -1,0 +1,73 @@
+/* r99 — Common Test scanability and state interaction refinement. */
+
+/* Sticky navigation: current section is easier to locate without becoming a tab bar. */
+.kyotsu-page .kyotsu-jumpnav a{font-size:11.4px}
+.kyotsu-page .kyotsu-jumpnav a.is-current{background:#f7fafb;color:#173f55}
+.kyotsu-page .kyotsu-jumpnav a:focus-visible{outline:2px solid #4c879e;outline-offset:-3px}
+
+/* Schedule: clearer hierarchy between active, upcoming and completed stages. */
+.kyotsu-schedule-status{font-size:11.8px;line-height:1.62;padding:10px 13px}
+.kyotsu-schedule-tools{display:flex;justify-content:flex-end;margin:-3px 0 10px}
+.kyotsu-schedule-toggle{min-height:30px;padding:5px 9px;border:1px solid #cbd9de;background:#fff;color:#4c6e7c;font:inherit;font-size:10px;line-height:1.4;font-weight:750;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+@media(hover:hover){.kyotsu-schedule-toggle:hover{background:#f3f7f8;border-color:#9fb7c1;color:#173f55}}
+.kyotsu-schedule-toggle:focus-visible{outline:2px solid #4c879e;outline-offset:2px}
+
+.kyotsu-schedule-item{transition:background-color .15s ease,opacity .15s ease}
+.kyotsu-schedule-item b{font-size:12.7px;line-height:1.45}
+.kyotsu-schedule-item time{font-size:10.9px;line-height:1.58}
+.kyotsu-schedule-item>span:not(.kyotsu-schedule-countdown){font-size:9.9px;line-height:1.56}
+.kyotsu-schedule-countdown{margin-top:8px!important;padding:4px 8px!important;font-size:9.9px!important}
+.kyotsu-schedule-item.is-active-window{background:#edf5f7!important;box-shadow:inset 0 2px 0 #4f8498}
+.kyotsu-schedule-item.is-active-window b{color:#173f55}
+.kyotsu-schedule-item.is-active-window .kyotsu-schedule-countdown{border-color:#83a9b8;background:#fff;color:#245d73!important}
+.kyotsu-schedule-item.is-upcoming{background:#fff}
+.kyotsu-schedule-item.is-upcoming .kyotsu-schedule-countdown{color:#526f7b!important}
+.kyotsu-schedule-item.is-ended{opacity:.68}
+.kyotsu-schedule-section.is-hiding-ended .kyotsu-schedule-item.is-ended{display:none}
+@media(hover:hover){
+  .kyotsu-schedule-item.is-upcoming:hover{background:#f8fafb}
+  .kyotsu-schedule-item.is-ended:hover{opacity:.82}
+}
+
+/* Subjects: a little larger and easier to track across the two-column matrix. */
+.kyotsu-subject-group{position:relative;padding-top:17px;padding-bottom:17px;transition:background-color .15s ease}
+.kyotsu-subject-group header h3{font-size:15.7px}
+.kyotsu-subject-group header span{font-size:9.7px}
+.kyotsu-subject-group b{font-size:12.2px;line-height:1.5}
+.kyotsu-subject-group li span{font-size:10.3px;line-height:1.56}
+@media(hover:hover){
+  .kyotsu-subject-group:hover{background:#fbfcfc}
+  .kyotsu-subject-group li:hover{background:#f4f8f9}
+}
+
+/* Fees and preparation: restore body-sized text where r94 became too caption-like. */
+.kyotsu-panel-head h3{font-size:18.5px}
+.kyotsu-fee-rules b{font-size:11.4px;line-height:1.5}
+.kyotsu-fee-rules span{font-size:10.3px;line-height:1.62}
+.kyotsu-page .kyotsu-fee-examples>div{transition:background-color .15s ease}
+.kyotsu-page .kyotsu-fee-examples small{font-size:9.4px}
+.kyotsu-page .kyotsu-fee-examples strong{font-size:16.6px}
+.kyotsu-page .kyotsu-fee-examples span{font-size:9.4px;line-height:1.48}
+@media(hover:hover){.kyotsu-page .kyotsu-fee-examples>div:hover{background:#f3f7f8}.kyotsu-page .kyotsu-fee-examples>div:last-child:hover{background:#e8f1f4}}
+.kyotsu-planning-lines li{transition:background-color .15s ease,padding-left .15s ease}
+.kyotsu-planning-lines b{font-size:12.1px}
+.kyotsu-planning-lines span{font-size:10.6px;line-height:1.64}
+.kyotsu-planning-note{font-size:10.5px;line-height:1.66}
+@media(hover:hover){.kyotsu-planning-lines li:hover{padding-left:5px;background:#f8fafb}}
+
+/* Stronger focus feedback for the links users actually act on. */
+.kyotsu-page .course-actions a:focus-visible,.kyotsu-source-link:focus-visible,.kyotsu-policy-link:focus-visible,.kyotsu-page .course-cta a:focus-visible{outline:2px solid #4c879e;outline-offset:3px}
+
+@media(max-width:620px){
+  .kyotsu-schedule-status{font-size:11.2px}
+  .kyotsu-schedule-item b{font-size:12px}
+  .kyotsu-schedule-item time{font-size:10.3px}
+  .kyotsu-schedule-countdown{font-size:9.4px!important}
+  .kyotsu-subject-group b{font-size:12px}
+  .kyotsu-subject-group li span{font-size:10.1px}
+  .kyotsu-fee-rules b{font-size:11.2px}
+  .kyotsu-fee-rules span,.kyotsu-planning-lines span{font-size:10.4px}
+}
+@media(prefers-reduced-motion:reduce){
+  .kyotsu-page *,.kyotsu-page *::before,.kyotsu-page *::after{transition:none!important;animation:none!important}
+}
