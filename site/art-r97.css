@@ -1,0 +1,109 @@
+/* r97 — art page readability pass: fewer columns, larger type, real Nakano art classroom. */
+
+/* Hero copy: readable first, compact second. */
+.art-page .art-r96-hero{padding-top:46px;padding-bottom:40px}
+.art-page .art-r96-hero .course-hero-grid{grid-template-columns:minmax(0,1.06fr) minmax(330px,.7fr);gap:48px}
+.art-page .art-r96-hero h1{font-size:clamp(46px,5vw,68px)}
+.art-jp-line{font-size:clamp(24px,2.45vw,34px)}
+.art-hero-lede{max-width:690px;font-size:14px;line-height:1.82}
+.art-hero-facts b{font-size:12.8px}
+.art-hero-facts span{font-size:10.4px;line-height:1.5}
+.art-page .art-r96-hero .course-hero-media{max-width:500px;justify-self:end}
+.art-page .art-r96-hero .course-hero-media figure{height:248px!important}
+.art-page .art-r96-hero .course-hero-media img{object-position:center center!important}
+.art-page .art-r96-hero .course-hero-media figcaption{font-size:10.5px;line-height:1.45}
+
+/* Section heads were too small in r96. */
+.art-page .course-section{padding-top:44px;padding-bottom:44px}
+.art-page .course-head{grid-template-columns:120px minmax(0,1fr);gap:31px;margin-bottom:21px}
+.art-page .course-head>span{font-size:10.8px}
+.art-page .course-head h2{font-size:30px;line-height:1.28}
+.art-page .course-head p{max-width:800px;font-size:13.2px;line-height:1.82}
+
+/* Routes: keep two columns but use real body type, not caption-sized copy. */
+.art-route{padding-top:22px;padding-bottom:23px}
+.art-route small{font-size:9.8px}
+.art-route h3{font-size:19px;margin-top:6px;margin-bottom:8px}
+.art-route p{font-size:12.6px;line-height:1.8}
+.art-route-note{font-size:11.5px;line-height:1.75;padding:11px 13px}
+
+/* Six target schools in 3 × 2: less cramped, easier to scan. */
+.art-school-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+.art-school-strip>div{padding:15px 15px}
+.art-school-strip>div:nth-child(4){padding-left:0;border-left:0;border-top:1px solid var(--art-line)}
+.art-school-strip>div:nth-child(n+4){border-top:1px solid var(--art-line)}
+.art-school-strip b{font-size:12.3px;line-height:1.5}
+.art-school-strip span{font-size:10.4px;line-height:1.55}
+
+/* Course overview: 3 × 2 instead of six narrow cells. */
+.art-course-overview{grid-template-columns:repeat(3,minmax(0,1fr))}
+.art-course-overview>div{padding:14px 15px}
+.art-course-overview>div:nth-child(4){padding-left:0;border-left:0;border-top:1px solid var(--art-line)}
+.art-course-overview>div:nth-child(n+4){border-top:1px solid var(--art-line)}
+.art-course-overview b{font-size:12.2px;line-height:1.5}
+.art-course-overview span{font-size:10.4px;line-height:1.55}
+.art-price-note{margin:10px 0 0;color:#788b93;font-size:10.8px;line-height:1.5}
+
+/* Prices stay expandable, but the text is now actually readable. */
+.art-price-groups{gap:12px 14px;margin-top:17px}
+.art-price-group summary{padding:15px 16px;font-size:12.8px;line-height:1.45}
+.art-price-table{min-width:560px}
+.art-price-table th,.art-price-table td{padding:11px 12px;font-size:11.2px;line-height:1.6}
+.art-price-table th{width:40%;font-size:11.4px}
+.art-price-table td strong{font-size:12px}
+
+/* Portfolio guidance: 2 × 2, larger copy. */
+.art-portfolio-guide{grid-template-columns:repeat(2,1fr)}
+.art-portfolio-guide>div{padding:19px 20px 20px}
+.art-portfolio-guide>div:nth-child(3){padding-left:0;border-left:0;border-top:1px solid var(--art-line)}
+.art-portfolio-guide>div:nth-child(4){border-top:1px solid var(--art-line)}
+.art-portfolio-guide h3{font-size:13.8px;margin-bottom:8px}
+.art-portfolio-guide p{font-size:11.7px;line-height:1.75}
+
+/* Team information is not metadata: make affiliations legible. */
+.art-team-result{grid-template-columns:minmax(0,1.62fr) minmax(230px,.5fr);gap:30px}
+.art-team-person{padding:15px 15px}
+.art-team-person b{font-size:12.8px}
+.art-team-person span{font-size:10.7px;line-height:1.65}
+.art-result-note small{font-size:9.8px}
+.art-result-note strong{font-size:19px}
+.art-result-note span{font-size:10.7px}
+
+/* Work rails remain horizontal; captions and touch area are larger. */
+.art-work-head h3{font-size:14px}
+.art-work-head span{font-size:10px}
+.art-work-rail{grid-auto-columns:minmax(170px,21%);gap:10px}
+.art-work-rail figure{height:190px}
+.art-work-rail figcaption{padding:6px 8px;font-size:9.8px}
+.art-xhs-link{font-size:10.8px;line-height:1.5}
+
+@media(max-width:1000px){
+  .art-page .art-r96-hero .course-hero-grid{grid-template-columns:1fr;gap:26px}
+  .art-page .art-r96-hero .course-hero-media{justify-self:start;max-width:580px;width:100%}
+  .art-page .art-r96-hero .course-hero-media figure{height:250px!important}
+  .art-work-rail{grid-auto-columns:minmax(170px,30%)}
+}
+
+@media(max-width:760px){
+  .art-page .course-head{grid-template-columns:1fr;gap:5px;margin-bottom:18px}
+  .art-page .course-head h2{font-size:27px}
+  .art-page .course-head p{font-size:12.6px}
+  .art-route p{font-size:12.2px}
+  .art-school-strip,.art-course-overview{grid-template-columns:1fr 1fr}
+  .art-school-strip>div,.art-school-strip>div:nth-child(4),.art-course-overview>div,.art-course-overview>div:nth-child(4){padding:13px 12px;border-left:1px solid var(--art-line);border-top:1px solid var(--art-line)}
+  .art-school-strip>div:nth-child(-n+2),.art-course-overview>div:nth-child(-n+2){border-top:0}
+  .art-school-strip>div:nth-child(odd),.art-course-overview>div:nth-child(odd){padding-left:0;border-left:0}
+  .art-team-result{grid-template-columns:1fr}
+  .art-work-rail{grid-auto-columns:minmax(165px,43%)}
+}
+
+@media(max-width:520px){
+  .art-page .art-r96-hero{padding-top:36px;padding-bottom:31px}
+  .art-hero-lede{font-size:13.2px;line-height:1.78}
+  .art-page .art-r96-hero .course-hero-media figure{height:205px!important}
+  .art-portfolio-guide{grid-template-columns:1fr}
+  .art-portfolio-guide>div,.art-portfolio-guide>div:nth-child(3),.art-portfolio-guide>div:nth-child(4){padding:15px 0;border-left:0;border-top:1px solid var(--art-line)}
+  .art-portfolio-guide>div:first-child{border-top:0}
+  .art-price-group summary{font-size:12.2px}
+  .art-price-table th,.art-price-table td{font-size:10.9px}
+}
