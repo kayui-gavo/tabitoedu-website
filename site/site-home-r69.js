@@ -40,12 +40,12 @@
         <div class="company-overview">
           <div class="company-copy">
             <h3><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">中国旅人教育集团株式会社</a></h3>
-            <p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 Ferris大厦4层。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p>
+            <p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 <span style="white-space:nowrap">Ferris大厦4层</span>。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p>
           </div>
           <dl class="company-facts">
             <div><dt>成立时间</dt><dd>2025年3月27日</dd></div>
             <div><dt>核心业务</dt><dd>留学服务</dd></div>
-            <div><dt>总部地址</dt><dd>日本东京都中野区中野1-55-3 Ferris大厦4层</dd></div>
+            <div><dt>总部地址</dt><dd>日本东京都中野区中野1-55-3<br><span style="white-space:nowrap">Ferris大厦4层</span></dd></div>
           </dl>
         </div>
         <div class="company-details">
