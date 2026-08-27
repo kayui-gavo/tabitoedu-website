@@ -188,10 +188,24 @@
   };
   cards.forEach(hydrate);
 
+  const loadR92=()=>{
+    if(document.querySelector('script[data-home-r92]'))return;
+    const script=document.createElement('script');
+    script.src='site-home-r92.js?v=20260828r92';script.dataset.homeR92='';
+    document.body.append(script);
+  };
+
   /* Start the independent r76 enhancement layer only after the stable content setup is complete. */
-  if(!document.querySelector('script[data-home-r76]')){
+  const existingR76=document.querySelector('script[data-home-r76]');
+  if(!existingR76){
     const script=document.createElement('script');
     script.src='site-home-r76.js?v=20260828r76';script.dataset.homeR76='';
+    script.addEventListener('load',loadR92,{once:true});
     document.body.append(script);
+  }else if(existingR76.dataset.loaded==='true'){
+    loadR92();
+  }else{
+    existingR76.addEventListener('load',loadR92,{once:true});
+    window.setTimeout(loadR92,1200);
   }
 })();
