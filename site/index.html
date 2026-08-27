@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="site-home-r61.css?v=20260827r61">
   <link rel="stylesheet" href="site-home-r63.css?v=20260827r63">
   <link rel="stylesheet" href="site-home-r64.css?v=20260827r64">
+  <link rel="stylesheet" href="site-home-r65.css?v=20260827r65">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"旅人教育 TABITO","legalName":"中国旅人教育集团株式会社","description":"东京中野与 Online 的日本本科升学指导，提供共通考试、EJU、校内考与美术升学相关课程和出愿、面试准备。","url":"https://www.tabitoedu.com/","logo":"https://www.tabitoedu.com/images/logo1.png","address":{"@type":"PostalAddress","postalCode":"164-0001","addressRegion":"東京都","addressLocality":"中野区","streetAddress":"中野1-55-3 フェリスビル 4F","addressCountry":"JP"},"sameAs":["https://xhslink.cn/m/5QyfLyRRHK1"]}</script>
 </head>
 <body>
@@ -62,23 +63,28 @@
 <section id="results" class="results-section">
   <div class="shell">
     <header class="section-head light"><h2>合格实绩</h2><p>截至 2026 年 4 月，共 9 个合格校次，涉及 6 所大学。</p></header>
-    <div class="results-overview">
-      <button class="evidence-view" type="button" data-lightbox-src="images/success_students1.png" data-lightbox-alt="旅人教育部分合格资料" aria-label="放大查看部分合格资料">
-        <img src="images/success_students1.png" alt="旅人教育部分合格资料" loading="lazy" decoding="async"><span>部分合格资料 · 点击查看</span>
-      </button>
-      <div class="result-story">
-        <div class="result-numbers"><div class="result-number"><strong>9</strong><span>合格校次</span></div><div class="result-number"><strong>6</strong><span>所大学</span></div></div>
+    <div class="results-summary">
+      <div class="result-numbers"><div class="result-number"><strong>9</strong><span>合格校次</span></div><div class="result-number"><strong>6</strong><span>所大学</span></div></div>
+      <div>
         <div class="school-list" aria-label="合格大学明细">
           <div><b>日本大学</b><span>3</span></div><div><b>东京科学大学</b><span>2</span></div><div><b>北海道大学</b><span>1</span></div><div><b>京都产业大学</b><span>1</span></div><div><b>神奈川工科大学</b><span>1</span></div><div><b>中央大学</b><span>1</span></div>
         </div>
         <p class="result-note">※ “合格校次”按录取学校次数统计，不等同于独立学生人数。</p>
       </div>
     </div>
-    <a class="case-feature" href="school.html#tokyo-science-case">
-      <div class="case-intro"><small>2026 合格案例</small><h3>东京科学大学（理工学系）</h3></div>
-      <div class="case-flow"><span><b>2</b><em>报名</em></span><i>→</i><span><b>2</b><em>笔试合格</em></span><i>→</i><span><b>2</b><em>最终合格</em></span></div>
-      <div class="case-doc-wrap"><div class="case-docs"><img src="images/tokyo-science-2026/tokyo-science-2026-original-mock-exam-cover.webp?v=20260827r61" alt="东京科学大学原创模拟试验封面" loading="lazy" decoding="async"><img src="images/tokyo-science-2026/tokyo-science-2026-interview-training-cover.webp?v=20260827r61" alt="东京科学大学面试对策讲义" loading="lazy" decoding="async"></div><strong class="case-link">查看案例 →</strong></div>
-    </a>
+    <div class="results-gallery-head">
+      <div><small>PASS RECORDS</small><strong>部分合格记录</strong></div>
+      <div class="results-gallery-controls" aria-label="合格记录画廊控制"><button id="resultGalleryPrev" type="button" aria-label="向左查看">←</button><button id="resultGalleryNext" type="button" aria-label="向右查看">→</button></div>
+    </div>
+    <div class="results-gallery-wrap">
+      <div class="result-gallery" id="resultGallery" tabindex="0" aria-label="可左右滑动查看部分合格记录">
+        <button class="result-gallery-card" type="button" data-lightbox-src="images/success_students1.png" data-lightbox-alt="旅人教育合格实绩总览"><img src="images/success_students1.png" alt="旅人教育合格实绩总览" loading="lazy" decoding="async"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-lightbox-src="images/success_student1.png" data-lightbox-alt="旅人教育合格记录一"><img src="images/success_student1.png" alt="旅人教育合格记录一" loading="lazy" decoding="async"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-lightbox-src="images/success_student2.png" data-lightbox-alt="旅人教育合格记录二"><img src="images/success_student2.png" alt="旅人教育合格记录二" loading="lazy" decoding="async"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-lightbox-src="images/success_student3.png" data-lightbox-alt="旅人教育合格记录三"><img src="images/success_student3.png" alt="旅人教育合格记录三" loading="lazy" decoding="async"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-lightbox-src="images/success_student4.png" data-lightbox-alt="旅人教育合格记录四"><img src="images/success_student4.png" alt="旅人教育合格记录四" loading="lazy" decoding="async"><span>查看大图</span></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -182,6 +188,24 @@
   const coursePanels=courseButtons.map(button=>document.getElementById(button.getAttribute('aria-controls')));
   const setCourse=(index,focus=false)=>{courseButtons.forEach((button,i)=>{const active=i===index;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;coursePanels[i].hidden=!active;});if(focus)courseButtons[index].focus();};
   courseButtons.forEach((button,index)=>{button.addEventListener('click',()=>setCourse(index));button.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowDown'||event.key==='ArrowRight')next=(index+1)%courseButtons.length;else if(event.key==='ArrowUp'||event.key==='ArrowLeft')next=(index-1+courseButtons.length)%courseButtons.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=courseButtons.length-1;else return;event.preventDefault();setCourse(next,true);});});
+
+  const gallery=document.getElementById('resultGallery');
+  const galleryPrev=document.getElementById('resultGalleryPrev');
+  const galleryNext=document.getElementById('resultGalleryNext');
+  if(gallery&&galleryPrev&&galleryNext){
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let galleryTicking=false;
+    const galleryStep=()=>Math.min(gallery.clientWidth*.78,320);
+    const updateGalleryButtons=()=>{const max=Math.max(0,gallery.scrollWidth-gallery.clientWidth);galleryPrev.disabled=gallery.scrollLeft<=4;galleryNext.disabled=gallery.scrollLeft>=max-4;galleryTicking=false;};
+    const requestGallerySync=()=>{if(!galleryTicking){galleryTicking=true;requestAnimationFrame(updateGalleryButtons);}};
+    const moveGallery=direction=>gallery.scrollBy({left:direction*galleryStep(),behavior:reduced.matches?'auto':'smooth'});
+    galleryPrev.addEventListener('click',()=>moveGallery(-1));
+    galleryNext.addEventListener('click',()=>moveGallery(1));
+    gallery.addEventListener('scroll',requestGallerySync,{passive:true});
+    gallery.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();moveGallery(-1);}else if(event.key==='ArrowRight'){event.preventDefault();moveGallery(1);}});
+    window.addEventListener('resize',requestGallerySync,{passive:true});
+    updateGalleryButtons();
+  }
 
   const dialog=document.getElementById('imageLightbox');
   const lightboxImage=document.getElementById('lightboxImage');
