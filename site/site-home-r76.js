@@ -1,22 +1,22 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* r82 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
+  /* r83 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
   if(!document.querySelector('link[data-home-r77]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r82';style.dataset.homeR77='';
+    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r83';style.dataset.homeR77='';
     document.head.append(style);
   }
 
-  /* Keep the homepage Common Test summary aligned with the actual course page. */
+  /* Keep the homepage Common Test summary concise; the number of subjects is not the selling point. */
   const commonTab=document.getElementById('course-tab-common');
-  if(commonTab){const note=commonTab.querySelector('small');if(note)note.textContent='15 科开设课程';}
+  if(commonTab){const note=commonTab.querySelector('small');if(note)note.textContent='按目标校科目安排';}
   const commonPanel=document.getElementById('course-panel-common');
   if(commonPanel){
     const copy=commonPanel.querySelector('.course-panel-copy p');
-    if(copy)copy.textContent='开设 15 科。根据目标大学采用的科目、配点和报考方式安排备考。';
+    if(copy)copy.textContent='根据目标大学采用的科目、配点和报考方式安排备考。';
     const visualTitle=commonPanel.querySelector('.visual-label strong');
-    if(visualTitle)visualTitle.textContent='15 科开设课程';
+    if(visualTitle)visualTitle.textContent='共通考试课程';
   }
 
   /* Access belongs with the Nakano classroom and map. */
@@ -68,7 +68,7 @@
     });
   }
 
-  /* Recruiting belongs in the unused lower-left space of admissions consultation. */
+  /* Recruiting and collaboration stay in the unused lower-left area of admissions consultation. */
   const contactCopy=document.querySelector('#contact .contact-copy');
   if(contactCopy&&!contactCopy.querySelector('.contact-recruit')){
     const recruit=document.createElement('aside');
@@ -84,9 +84,10 @@
         <div class="contact-recruit-role"><b>学科讲师</b><span>共通考试・EJU・校内考・美术课程</span></div>
         <div class="contact-recruit-role"><b>SNS 运营</b><span>小红书・微信公众号等内容与账号运营</span></div>
         <div class="contact-recruit-role"><b>招生宣传</b><span>升学咨询・课程介绍・活动宣传与学生沟通</span></div>
+        <div class="contact-recruit-role"><b>商务合作</b><span>课程合作・渠道合作・学校及机构合作</span></div>
       </div>
-      <p class="contact-recruit-note">应聘请将<b>简历</b>发送至下方邮箱，并注明希望负责的岗位或科目、相关经历及应聘来意。</p>
-      <a href="mailto:ryukayuiii@gmail.com?subject=%E6%97%85%E4%BA%BA%E6%95%99%E8%82%B2%E5%BA%94%E8%81%98">ryukayuiii@gmail.com <span aria-hidden="true">↗</span></a>`;
+      <p class="contact-recruit-note">应聘请将<b>简历</b>发送至下方邮箱，并注明岗位或科目及相关经历；商务合作请在邮件中说明合作事项。</p>
+      <a href="mailto:ryukayuiii@gmail.com?subject=%E6%97%85%E4%BA%BA%E6%95%99%E8%82%B2%EF%BD%9C%E5%BA%94%E8%81%98%E3%83%BB%E5%90%88%E4%BD%9C">ryukayuiii@gmail.com <span aria-hidden="true">↗</span></a>`;
     contactCopy.append(recruit);
   }
 
