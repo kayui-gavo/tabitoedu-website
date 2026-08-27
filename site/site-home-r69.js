@@ -1,10 +1,17 @@
 (()=>{
+  /* Load the r76 interaction layer last, without disturbing the established homepage structure. */
+  if(!document.querySelector('link[data-home-r76]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='site-home-r76.css?v=20260828r76';style.dataset.homeR76='';
+    document.head.append(style);
+  }
+
   /* Header brand now uses the real logo directly from CSS. */
 
-  /* Homepage course intro: describe how the study plan is decided, not just how courses are selected. */
+  /* Homepage course intro: one concise principle, not a process explanation. */
   const programsIntro=document.querySelector('#programs .section-head p');
   if(programsIntro){
-    programsIntro.textContent='我们会结合当前成绩、擅长科目、兴趣和性格特点，对照目标校的入试要求，选择更能发挥自身优势的报考方式，并安排相应的备考内容。';
+    programsIntro.textContent='成绩、兴趣、性格和目标校不同，升学方案也应不同。';
   }
 
   /* Faculty: remove the redundant Chinese-course note and keep the lead teacher credit concise. */
@@ -137,4 +144,11 @@
     }catch(error){card.dataset.error='true';console.error('Result image failed to load',error);return null;}
   };
   cards.forEach(hydrate);
+
+  /* Start the independent r76 enhancement layer only after the stable content setup is complete. */
+  if(!document.querySelector('script[data-home-r76]')){
+    const script=document.createElement('script');
+    script.src='site-home-r76.js?v=20260828r76';script.dataset.homeR76='';
+    document.body.append(script);
+  }
 })();
