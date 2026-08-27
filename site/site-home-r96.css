@@ -1,0 +1,10 @@
+/* r96 — official phone/email replace the former personal recruiting mailbox. */
+.contact-direct{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.18)}
+.contact-direct a{color:#edf5f7;font-size:10.2px;line-height:1.5;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.42);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
+.contact-recruit-contact{display:flex;flex-wrap:wrap;gap:6px 15px;margin-top:9px}
+.contact-recruit .contact-recruit-contact a{margin-top:0}
+.footer-direct-contact{display:flex;flex-wrap:wrap;gap:5px 13px;margin-top:8px}
+.footer-direct-contact a{color:inherit;font-size:9.5px;line-height:1.45;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.26)}
+@media(hover:hover){.contact-direct a:hover,.contact-direct a:focus-visible,.contact-recruit-contact a:hover,.contact-recruit-contact a:focus-visible{border-color:#fff;transform:translateX(1px)}}
+@media(max-width:560px){.contact-direct,.contact-recruit-contact{display:grid;gap:6px}}
+@media(prefers-reduced-motion:reduce){.contact-direct a,.contact-recruit-contact a{transition:none!important}.contact-direct a:hover,.contact-recruit-contact a:hover{transform:none!important}}
