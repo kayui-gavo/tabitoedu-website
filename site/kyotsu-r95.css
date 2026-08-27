@@ -1,0 +1,45 @@
+/* r95 — policy-article-grounded Common Test intro, written as plain website copy. */
+
+/* Keep the exam definition factual; course sales information belongs later. */
+.kyotsu-page .kyotsu-definition{padding-top:14px;padding-bottom:14px}
+.kyotsu-page .kyotsu-definition p{font-size:13px;line-height:1.72}
+.kyotsu-page .kyotsu-definition .kyotsu-definition-note{margin-top:7px;color:#667d87;font-size:11.3px;line-height:1.62}
+.kyotsu-definition-takeaway{margin:10px 0 0;padding-left:11px;border-left:2px solid #7398a8;color:#456674;font-size:11.1px;line-height:1.62;font-weight:650}
+
+/* Four facts now describe the exam itself, not the course price. */
+.kyotsu-hero-facts b{font-size:13.1px}
+.kyotsu-hero-facts span{font-size:9.5px}
+
+/* The classroom image and the two admission routes share one restrained aside. */
+.kyotsu-hero-aside figure{height:210px}
+.kyotsu-route-brief{padding:14px 0 1px}
+.kyotsu-route-brief>small{display:block;margin-bottom:7px;color:#7d919a;font-size:9.3px;line-height:1.4;font-weight:800;letter-spacing:.055em}
+.kyotsu-route-line{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:baseline;padding:8px 0;border-top:1px solid #e0e8eb}
+.kyotsu-route-line:first-of-type{border-top:1px solid #cad8de}
+.kyotsu-route-line b{color:#244f61;font-size:11.3px;line-height:1.45;font-weight:800}
+.kyotsu-route-line span{color:#647b85;font-size:10.1px;line-height:1.55}
+.kyotsu-route-note{margin:8px 0 0;color:#748891;font-size:9.7px;line-height:1.58}
+.kyotsu-policy-link{display:inline-flex;margin-top:9px;padding-bottom:2px;border-bottom:1px solid #9aafb8;color:#39768e;font-size:9.8px;line-height:1.4;font-weight:750;text-decoration:none;transition:color .16s ease,border-color .16s ease,transform .16s ease}
+@media(hover:hover){.kyotsu-policy-link:hover{color:#173f55;border-color:#648a9a;transform:translateX(2px)}}
+
+/* The page is compact enough that two jump targets are sufficient. */
+.kyotsu-page .kyotsu-jumpnav .course-shell{gap:0}
+
+/* Plain-language section copy. */
+.kyotsu-page .kyotsu-subject-section .course-head p,
+.kyotsu-page .kyotsu-essentials-section .course-head p{max-width:720px}
+
+@media(max-width:980px){
+  .kyotsu-hero-aside{grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr)}
+  .kyotsu-hero-aside figure{height:188px}
+  .kyotsu-route-brief{padding:13px 20px}
+}
+
+@media(max-width:560px){
+  .kyotsu-hero-aside figure{height:170px}
+  .kyotsu-route-brief{padding:12px 0 1px}
+  .kyotsu-route-line{grid-template-columns:64px minmax(0,1fr);gap:9px}
+  .kyotsu-definition-takeaway{font-size:10.6px}
+}
+
+@media(prefers-reduced-motion:reduce){.kyotsu-policy-link{transition:none!important}.kyotsu-policy-link:hover{transform:none!important}}
