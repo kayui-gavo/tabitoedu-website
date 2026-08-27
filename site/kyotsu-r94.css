@@ -1,0 +1,155 @@
+/* r94 — Common Test page: compact editorial hierarchy, less vertical repetition. */
+
+.kyotsu-page{--ky-navy:#173f55;--ky-text:#315767;--ky-sub:#6c818b;--ky-muted:#8799a1;--ky-line:#d8e2e6;--ky-soft:#f4f8f9;--ky-accent:#3f7e96}
+#overview,#subjects,#fees,#planning{scroll-margin-top:120px}
+
+/* Compact hero: definition first, one real classroom image only. */
+.kyotsu-page .kyotsu-hero{padding:48px 0 42px;background:#fff}
+.kyotsu-hero-grid{grid-template-columns:minmax(0,1.12fr) minmax(310px,.72fr)!important;gap:54px!important;align-items:center!important}
+.kyotsu-hero-copy{min-width:0}
+.kyotsu-page .kyotsu-hero h1{margin-bottom:18px;font-size:clamp(46px,5.3vw,72px);line-height:1.02;letter-spacing:-.055em}
+.kyotsu-definition{max-width:720px;padding:15px 0 16px;border-top:1px solid #cad8de;border-bottom:1px solid #dbe4e8}
+.kyotsu-definition>small{display:block;margin-bottom:6px;color:var(--ky-accent);font-size:10px;line-height:1.4;font-weight:800;letter-spacing:.06em}
+.kyotsu-page .kyotsu-definition p{margin:0;max-width:none;color:#405f6c;font-size:13.2px;line-height:1.75}
+.kyotsu-page .kyotsu-definition .kyotsu-definition-note{margin-top:5px;color:#72868f;font-size:11.2px;line-height:1.65}
+.kyotsu-hero-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:17px;border-top:1px solid var(--ky-line);border-bottom:1px solid var(--ky-line)}
+.kyotsu-hero-facts>div{min-width:0;padding:12px 13px;border-left:1px solid var(--ky-line)}
+.kyotsu-hero-facts>div:first-child{padding-left:0;border-left:0}
+.kyotsu-hero-facts b{display:block;color:var(--ky-navy);font-size:13.5px;line-height:1.35;font-weight:800}
+.kyotsu-hero-facts span{display:block;margin-top:3px;color:#7b8e96;font-size:9.6px;line-height:1.45;font-weight:600}
+.kyotsu-page .kyotsu-hero .course-actions{margin-top:19px}
+
+.kyotsu-hero-aside{min-width:0;border-top:2px solid var(--ky-navy);border-bottom:1px solid var(--ky-line);background:#fff}
+.kyotsu-hero-aside figure{position:relative;margin:0;height:242px;overflow:hidden;background:#e7eef1}
+.kyotsu-hero-aside img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 34%;transition:transform .35s ease}
+.kyotsu-hero-aside figcaption{position:absolute;left:0;bottom:0;padding:6px 9px;background:rgba(16,47,67,.86);color:#fff;font-size:9.5px;font-weight:750}
+.kyotsu-page .kyotsu-hero-aside>p{margin:0;padding:12px 2px 1px;max-width:none;color:#6d818a;font-size:10.8px;line-height:1.65}
+@media(hover:hover){.kyotsu-hero-aside:hover img{transform:scale(1.012)}}
+
+/* Sticky nav remains useful, but visually lighter after the compact hero. */
+.kyotsu-page .kyotsu-jumpnav{box-shadow:0 5px 18px rgba(20,53,68,.025)}
+.kyotsu-page .kyotsu-jumpnav .course-shell{min-height:40px}
+.kyotsu-page .kyotsu-jumpnav a{min-height:40px}
+
+/* Tighter section rhythm. */
+.kyotsu-page .course-section{padding-top:46px;padding-bottom:46px}
+.kyotsu-page .course-head{grid-template-columns:118px minmax(0,1fr);gap:30px;margin-bottom:20px}
+.kyotsu-page .course-head h2{font-size:28px;line-height:1.23;letter-spacing:-.025em}
+.kyotsu-page .course-head p{margin-top:6px;max-width:760px;font-size:11.8px;line-height:1.7}
+
+/* Subject matrix: two balanced editorial columns instead of seven tall rows + a duplicate summary. */
+.kyotsu-subject-section{background:#fbfcfc!important}
+.kyotsu-subject-matrix{column-count:2;column-gap:42px;column-rule:1px solid var(--ky-line);border-top:2px solid var(--ky-navy);border-bottom:1px solid var(--ky-line);background:#fff}
+.kyotsu-subject-group{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;break-inside:avoid;padding:16px 0;border-top:1px solid #e1e8eb}
+.kyotsu-subject-group:first-child{border-top:0}
+.kyotsu-subject-group header{display:grid;grid-template-columns:25px minmax(0,1fr);gap:6px;align-items:start;min-width:0}
+.kyotsu-subject-group header small{padding-top:3px;color:#8da0a8;font-size:8.8px;font-weight:800;letter-spacing:.07em}
+.kyotsu-subject-group header h3{margin:0;color:var(--ky-navy);font-size:15px;line-height:1.35;font-weight:800}
+.kyotsu-subject-group header span{display:block;margin-top:3px;color:#879aa2;font-size:9.2px;line-height:1.4}
+.kyotsu-subject-group ul{display:grid;grid-template-columns:1fr;margin:0;padding:0;list-style:none;min-width:0}
+.kyotsu-subject-group li{min-width:0;padding:6px 0;border-top:1px solid #edf1f3}
+.kyotsu-subject-group li:first-child{border-top:0;padding-top:1px}
+.kyotsu-subject-group b{display:block;color:#315767;font-size:11.6px;line-height:1.45;font-weight:750}
+.kyotsu-subject-group li span{display:block;margin-top:2px;color:#758991;font-size:9.8px;line-height:1.5}
+.kyotsu-subject-group--science ul{grid-template-columns:1fr 1fr;gap:0 16px}
+.kyotsu-subject-group--science li:nth-child(2){border-top:0;padding-top:1px}
+.kyotsu-subject-group--science li.wide{grid-column:1/3}
+.kyotsu-subject-group--science li.wide span{max-width:460px}
+.kyotsu-subject-matrix+.kyotsu-source-link{margin-top:14px}
+@media(hover:hover){
+  .kyotsu-subject-group li{transition:padding-left .15s ease,background-color .15s ease}
+  .kyotsu-subject-group li:hover{padding-left:4px;background:#f8fafb}
+}
+
+/* Fees + planning share one section and one visual system. */
+.kyotsu-essentials-section{background:#fff!important}
+.kyotsu-essentials-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);border-top:2px solid var(--ky-navy);border-bottom:1px solid var(--ky-line);background:#fff}
+.kyotsu-fee-panel,.kyotsu-planning-panel{min-width:0;padding:22px 24px 23px}
+.kyotsu-fee-panel{padding-left:0}
+.kyotsu-planning-panel{padding-right:0;border-left:1px solid var(--ky-line)}
+.kyotsu-panel-head{display:flex;align-items:baseline;gap:11px;margin-bottom:14px}
+.kyotsu-panel-head small{color:#82969f;font-size:9.4px;font-weight:800;letter-spacing:.065em}
+.kyotsu-panel-head h3{margin:0;color:var(--ky-navy);font-size:18px;line-height:1.35;letter-spacing:-.015em}
+.kyotsu-fee-lead{display:flex;align-items:baseline;gap:6px;padding:4px 0 14px;border-bottom:1px solid var(--ky-line)}
+.kyotsu-fee-lead strong{color:var(--ky-navy);font-size:36px;line-height:1;font-weight:800;letter-spacing:-.045em}
+.kyotsu-fee-lead span{color:#71868f;font-size:11px;font-weight:700}
+.kyotsu-fee-rules{display:grid;grid-template-columns:1fr 1fr}
+.kyotsu-fee-rules>div{min-width:0;padding:10px 12px 10px 0;border-top:1px solid #e6ecef}
+.kyotsu-fee-rules>div:nth-child(even){padding-left:13px;padding-right:0;border-left:1px solid #e2e9ec}
+.kyotsu-fee-rules b{display:block;color:#315767;font-size:10.8px;line-height:1.45}
+.kyotsu-fee-rules span{display:block;margin-top:3px;color:#748991;font-size:9.7px;line-height:1.55}
+
+.kyotsu-page .kyotsu-fee-examples{display:grid;grid-template-columns:repeat(4,1fr);margin-top:12px;border-top:1px solid var(--ky-line);border-bottom:0;background:#f8fafb}
+.kyotsu-page .kyotsu-fee-examples>div{min-height:0;padding:10px 11px;border-right:1px solid var(--ky-line);background:transparent}
+.kyotsu-page .kyotsu-fee-examples>div:last-child{border-right:0;background:#eef5f7}
+.kyotsu-page .kyotsu-fee-examples small{font-size:8.8px}
+.kyotsu-page .kyotsu-fee-examples strong{margin-top:3px;color:var(--ky-navy);font-size:15px;line-height:1.3}
+.kyotsu-page .kyotsu-fee-examples span{margin-top:2px;color:#768b94;font-size:8.7px;line-height:1.4}
+
+.kyotsu-planning-lines{margin:0;padding:0;list-style:none;border-top:1px solid var(--ky-line)}
+.kyotsu-planning-lines li{display:grid;grid-template-columns:31px minmax(0,1fr);gap:11px;padding:13px 0;border-bottom:1px solid #e2e9ec}
+.kyotsu-planning-lines em{padding-top:1px;color:#8ba0a9;font-size:9.3px;font-style:normal;font-weight:800;letter-spacing:.05em}
+.kyotsu-planning-lines b{display:block;color:#315767;font-size:11.7px;line-height:1.45}
+.kyotsu-planning-lines span{display:block;margin-top:3px;color:#70858e;font-size:10px;line-height:1.58}
+.kyotsu-planning-note{margin:12px 0 0;padding:10px 12px;border-left:2px solid #789dab;background:#f3f7f8;color:#627a84;font-size:9.9px;line-height:1.62}
+
+/* Bottom of page: keep useful navigation but avoid another huge vertical beat. */
+.kyotsu-page .course-switch{padding-top:38px;padding-bottom:38px}
+.kyotsu-page .course-cta{padding-top:30px;padding-bottom:30px}
+
+@media(max-width:980px){
+  .kyotsu-hero-grid{grid-template-columns:1fr!important;gap:28px!important}
+  .kyotsu-hero-aside{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);align-items:center}
+  .kyotsu-hero-aside figure{height:190px}
+  .kyotsu-page .kyotsu-hero-aside>p{padding:18px 22px;font-size:11px}
+  .kyotsu-subject-matrix{column-gap:28px}
+  .kyotsu-subject-group{grid-template-columns:88px minmax(0,1fr);gap:14px}
+  .kyotsu-essentials-grid{grid-template-columns:1fr}
+  .kyotsu-fee-panel{padding:21px 0 23px}
+  .kyotsu-planning-panel{padding:22px 0 3px;border-left:0;border-top:1px solid var(--ky-line)}
+}
+
+@media(max-width:760px){
+  .kyotsu-page .kyotsu-hero{padding:38px 0 34px}
+  .kyotsu-page .kyotsu-hero h1{font-size:48px}
+  .kyotsu-hero-facts{grid-template-columns:1fr 1fr}
+  .kyotsu-hero-facts>div:nth-child(3){padding-left:0;border-left:0;border-top:1px solid var(--ky-line)}
+  .kyotsu-hero-facts>div:nth-child(4){border-top:1px solid var(--ky-line)}
+  .kyotsu-page .course-head{grid-template-columns:1fr;gap:5px;margin-bottom:17px}
+  .kyotsu-page .course-section{padding-top:39px;padding-bottom:39px}
+  .kyotsu-subject-matrix{column-count:1;column-rule:0}
+  .kyotsu-subject-group{grid-template-columns:96px minmax(0,1fr);padding:14px 0}
+  .kyotsu-subject-group:nth-child(n+2){border-top:1px solid var(--ky-line)}
+  .kyotsu-planning-panel{padding-top:20px}
+}
+
+@media(max-width:560px){
+  #overview,#subjects,#fees,#planning{scroll-margin-top:102px}
+  .kyotsu-page .kyotsu-hero h1{font-size:42px}
+  .kyotsu-page .kyotsu-definition p{font-size:12.6px;line-height:1.72}
+  .kyotsu-page .kyotsu-definition .kyotsu-definition-note{font-size:10.6px}
+  .kyotsu-hero-aside{display:block}
+  .kyotsu-hero-aside figure{height:172px}
+  .kyotsu-page .kyotsu-hero-aside>p{padding:11px 0 1px}
+  .kyotsu-subject-group{grid-template-columns:1fr;gap:7px;padding:13px 0}
+  .kyotsu-subject-group header{grid-template-columns:26px minmax(0,1fr)}
+  .kyotsu-subject-group ul{padding-left:32px}
+  .kyotsu-subject-group--science ul{grid-template-columns:1fr 1fr;gap:0 12px}
+  .kyotsu-fee-rules{grid-template-columns:1fr}
+  .kyotsu-fee-rules>div,.kyotsu-fee-rules>div:nth-child(even){padding:9px 0;border-left:0}
+  .kyotsu-page .kyotsu-fee-examples{grid-template-columns:1fr 1fr}
+  .kyotsu-page .kyotsu-fee-examples>div:nth-child(2){border-right:0}
+  .kyotsu-page .kyotsu-fee-examples>div:nth-child(-n+2){border-bottom:1px solid var(--ky-line)}
+  .kyotsu-fee-lead strong{font-size:32px}
+}
+
+@media(max-width:390px){
+  .kyotsu-subject-group--science ul{grid-template-columns:1fr}
+  .kyotsu-subject-group--science li:nth-child(2){border-top:1px solid #edf1f3;padding-top:6px}
+  .kyotsu-subject-group--science li.wide{grid-column:auto}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .kyotsu-hero-aside img{transition:none!important}
+  .kyotsu-hero-aside:hover img{transform:none!important}
+}
