@@ -1,4 +1,16 @@
 (()=>{
+  /* r98 enhancement is loaded from the existing schedule module so the page markup stays stable. */
+  if(!document.querySelector('link[data-kyotsu-r98]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='kyotsu-r98.css?v=20260828r98';style.dataset.kyotsuR98='';
+    document.head.append(style);
+  }
+  if(!document.querySelector('script[data-kyotsu-r98]')){
+    const script=document.createElement('script');
+    script.src='kyotsu-r98.js?v=20260828r98';script.dataset.kyotsuR98='';
+    document.head.append(script);
+  }
+
   const status=document.querySelector('[data-kyotsu-schedule-status]');
   if(!status)return;
 
