@@ -1,34 +1,39 @@
-/* r80 — readable campus access + compact recruiting inside the consultation column. */
+/* r81 — readable campus access on the actual WHITE campus panel + compact recruiting inside consultation. */
 .footer-access-recruit{display:none!important}
 
-/* Campus access sits inside the Nakano classroom block. Use strong contrast on the dark panel. */
-.campus-access{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.24)}
-.campus-access h4{margin:0 0 10px;color:#fff;font-size:12px;font-weight:800;letter-spacing:.02em}
+/* Campus panel is white. Give the access copy real body-text contrast and enough width. */
+.campus-panel{grid-template-columns:minmax(285px,.78fr) minmax(0,1.22fr)}
+.campus-copy{padding:24px 25px}
+.campus-access{margin-top:18px;padding-top:16px;border-top:1px solid #ccd9de}
+.campus-access h4{margin:0 0 11px;color:#10384a;font-size:13px;line-height:1.35;font-weight:800;letter-spacing:.01em}
 .campus-access-list{display:grid;gap:0}
-.campus-access-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 16px;align-items:start;padding:9px 0;border-top:1px solid rgba(255,255,255,.13)}
+.campus-access-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;align-items:start;padding:10px 0;border-top:1px solid #e0e8eb}
 .campus-access-item:first-child{padding-top:0;border-top:0}
-.campus-access-item b{color:#f5f8f9;font-size:11px;line-height:1.55;font-weight:750}
-.campus-access-item>span{color:#d8e4e7;font-size:10.2px;line-height:1.55;font-weight:650;white-space:nowrap}
-.campus-access-item small{grid-column:1/-1;margin-top:2px;color:#c4d4d9;font-size:9.4px;line-height:1.65}
+.campus-access-item b{color:#173f50;font-size:11.7px;line-height:1.58;font-weight:750}
+.campus-access-item>span{color:#315f70;font-size:10.8px;line-height:1.58;font-weight:750;white-space:nowrap}
+.campus-access-item small{grid-column:1/-1;margin-top:3px;color:#4f6c78;font-size:10.2px;line-height:1.68;font-weight:600}
 
 /* Recruiting uses the empty lower-left area of admissions consultation, below the QR block. */
 .contact-copy .contact-recruit{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.20);color:#eef5f7}
 .contact-recruit-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px}
 .contact-recruit h3{margin:0;color:#fff;font-size:14px;font-weight:800;letter-spacing:.02em}
-.contact-recruit-head small{color:#9fb4bc;font-size:9.5px;font-weight:650;letter-spacing:.04em}
+.contact-recruit-head small{color:#b6c7cd;font-size:9.5px;font-weight:650;letter-spacing:.04em}
 .contact-recruit-roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 12px}
-.contact-recruit-role{min-width:0;padding:9px 10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.035)}
-.contact-recruit-role b{display:block;color:#f1f6f7;font-size:10.5px;line-height:1.45;font-weight:750}
-.contact-recruit-role span{display:block;margin-top:3px;color:#b5c7cd;font-size:9px;line-height:1.55}
-.contact-recruit-note{margin:0;color:#c2d0d5;font-size:9.8px;line-height:1.7}
-.contact-recruit-note b{color:#edf4f6;font-weight:750}
-.contact-recruit a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#fff;font-size:10.2px;font-weight:750;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.36);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
+.contact-recruit-role{min-width:0;padding:9px 10px;border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.045)}
+.contact-recruit-role b{display:block;color:#fff;font-size:10.5px;line-height:1.45;font-weight:750}
+.contact-recruit-role span{display:block;margin-top:3px;color:#c4d2d7;font-size:9px;line-height:1.55}
+.contact-recruit-note{margin:0;color:#d0dcdf;font-size:9.8px;line-height:1.7}
+.contact-recruit-note b{color:#fff;font-weight:750}
+.contact-recruit a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#fff;font-size:10.2px;font-weight:750;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.48);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
 .contact-recruit a:hover,.contact-recruit a:focus-visible{border-color:#fff;transform:translateX(2px)}
 
 @media(max-width:900px){
+  .campus-panel{grid-template-columns:minmax(270px,.74fr) minmax(0,1.26fr)}
   .contact-recruit-roles{grid-template-columns:1fr 1fr 1fr}
 }
 @media(max-width:640px){
+  .campus-panel{grid-template-columns:1fr}
+  .campus-copy{padding:22px}
   .campus-access-item{grid-template-columns:1fr;gap:2px}
   .campus-access-item>span{white-space:normal}
   .campus-access-item small{grid-column:auto}
