@@ -1,10 +1,10 @@
 (()=>{
   /* Header brand now uses the real logo directly from CSS. */
 
-  /* Homepage course intro: keep it concrete and student-facing. */
+  /* Homepage course intro: describe how the study plan is decided, not just how courses are selected. */
   const programsIntro=document.querySelector('#programs .section-head p');
   if(programsIntro){
-    programsIntro.textContent='不同学校、不同入试方式，要准备的东西也不一样。共通考试、EJU、校内考和美术升学，可按自己的报考方向选择。';
+    programsIntro.textContent='我们会结合当前成绩、擅长科目、兴趣和性格特点，对照目标校的入试要求，选择更能发挥自身优势的报考方式，并安排相应的备考内容。';
   }
 
   /* Faculty: remove the redundant Chinese-course note and keep the lead teacher credit concise. */
