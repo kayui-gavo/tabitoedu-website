@@ -28,7 +28,6 @@
 
   const setState=()=>{
     const today=todayNumber();
-    let hasActive=false;
 
     items.forEach((item,index)=>{
       const config=schedule[index];
@@ -56,7 +55,6 @@
         label=untilStart===1?'还有 1 天':`还有 ${untilStart} 天`;
       }else{
         item.classList.add('is-active-window','is-current');
-        hasActive=true;
         if(config.kind==='available'){
           label=today===start?'今天开始':'已开放';
         }else if(config.kind==='exam'){
@@ -81,7 +79,7 @@
   /* Re-evaluate after Tokyo midnight if the page stays open. */
   const now=new Date();
   const tokyoNowParts=new Intl.DateTimeFormat('en-US',{
-    timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false
+    timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'
   }).formatToParts(now);
   const read=type=>Number(tokyoNowParts.find(p=>p.type===type)?.value||0);
   const secondsToday=read('hour')*3600+read('minute')*60+read('second');
