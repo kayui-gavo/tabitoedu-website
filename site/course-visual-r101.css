@@ -1,0 +1,105 @@
+/* r101 — shared visual anchors for Art + Common Test. Restrained line icons, no card-wall redesign. */
+.r101-icon,.r101-mini-icon,.r101-icon-tile{display:inline-grid;place-items:center;flex:0 0 auto;color:#4d7f92}
+.r101-icon svg,.r101-mini-icon svg,.r101-icon-tile svg{display:block;width:100%;height:100%}
+.r101-mini-icon{width:17px;height:17px}
+.r101-icon-tile{width:34px;height:34px;padding:7px;border:1px solid #cfdbdf;background:#f5f8f9;color:#47788b}
+
+/* ---------------- ART ---------------- */
+.art-page .art-hero-facts>div{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 10px;align-items:center}
+.art-page .art-hero-facts>div>.r101-icon-tile{grid-row:1/3}
+.art-page .art-hero-facts b,.art-page .art-hero-facts span{grid-column:2}
+.art-page .art-hero-facts>div:hover .r101-icon-tile{border-color:#aec2ca;background:#eef4f6;color:#2f687f}
+
+.art-page .art-route{position:relative;padding-right:66px}
+.art-page .r101-route-icon{position:absolute;right:18px;top:22px;width:34px;height:34px;padding:7px;border:1px solid #cfdbdf;background:#f7f9fa;color:#5c8494}
+.art-page .art-route:hover .r101-route-icon{border-color:#abc0c8;background:#eef4f6;color:#2d657b}
+.art-page .art-route-note{display:flex;align-items:center;gap:8px}
+.art-page .art-route-note>.r101-mini-icon{width:16px;height:16px}
+
+.art-page .art-school-strip>div{display:grid;grid-template-columns:24px minmax(0,1fr);grid-template-rows:auto auto;column-gap:8px;align-items:center}
+.art-page .art-school-strip>div>.r101-mini-icon{grid-row:1/3;width:20px;height:20px;color:#7b96a1}
+.art-page .art-school-strip b,.art-page .art-school-strip span{grid-column:2}
+.art-page .art-school-strip>div:hover>.r101-mini-icon{color:#3d7186}
+
+.art-page .art-course-overview>div{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 10px;align-items:center}
+.art-page .art-course-overview>div>.r101-icon-tile{grid-row:1/3;width:32px;height:32px;padding:7px}
+.art-page .art-course-overview b,.art-page .art-course-overview span{grid-column:2}
+.art-page .art-course-overview>div:hover .r101-icon-tile{border-color:#adc1c9;background:#eef4f6;color:#326a80}
+
+.art-page .art-price-group summary{justify-content:flex-start;gap:10px}
+.art-page .art-price-group summary::after{margin-left:auto}
+.art-page .r101-summary-icon{width:21px;height:21px;color:#648797}
+.art-page .art-price-group[open] .r101-summary-icon{color:#2f6d84}
+
+.art-page .art-portfolio-guide>div{display:grid;grid-template-columns:38px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 11px;align-items:start}
+.art-page .art-portfolio-guide>div>.r101-icon-tile{grid-row:1/3;width:36px;height:36px;padding:8px}
+.art-page .art-portfolio-guide h3,.art-page .art-portfolio-guide p{grid-column:2}
+.art-page .art-portfolio-guide>div:hover .r101-icon-tile{border-color:#aebfc7;background:#eef4f6;color:#2d687f}
+
+.art-page .art-work-head h3{display:inline-flex;align-items:center;gap:7px}
+.art-page .art-work-head h3>.r101-mini-icon{width:16px;height:16px;color:#628492}
+.art-page .course-cta .art-contact-lines a{gap:7px}
+.art-page .r101-contact-icon{width:17px;height:17px;color:#d7e8ee}
+.art-page .course-cta .art-contact-lines a:hover .r101-contact-icon{color:#fff}
+
+/* ---------------- COMMON TEST ---------------- */
+.kyotsu-page .kyotsu-hero-facts>div{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 10px;align-items:center}
+.kyotsu-page .kyotsu-hero-facts>div>.r101-icon-tile{grid-row:1/3}
+.kyotsu-page .kyotsu-hero-facts b,.kyotsu-page .kyotsu-hero-facts span{grid-column:2}
+.kyotsu-page .kyotsu-hero-facts>div:hover .r101-icon-tile{border-color:#aec2ca;background:#eef4f6;color:#2f687f}
+
+.kyotsu-page .kyotsu-definition>small{display:flex;align-items:center;gap:7px}
+.kyotsu-page .kyotsu-definition>small>.r101-mini-icon{width:16px;height:16px}
+.kyotsu-use-strip{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:11px;padding-top:10px;border-top:1px solid #e4eaed}
+.kyotsu-use-strip>span{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:1px solid #d5e0e4;background:#f8fafb;color:#536f7b;font-size:9.8px;line-height:1.35;font-weight:700}
+.kyotsu-use-strip>.kyotsu-use-label{padding-left:0;border:0;background:transparent;color:#81949c;font-size:9.4px;font-weight:750}
+.kyotsu-use-strip .r101-mini-icon{width:14px;height:14px;color:#5a8596}
+
+.kyotsu-page .kyotsu-route-line{display:grid;grid-template-columns:22px 86px minmax(0,1fr);gap:7px;align-items:center}
+.kyotsu-page .kyotsu-route-line>.r101-mini-icon{width:17px;height:17px;color:#698d9c}
+.kyotsu-page .kyotsu-route-line b,.kyotsu-page .kyotsu-route-line span{min-width:0}
+
+.kyotsu-page .kyotsu-schedule-status::before{display:none!important}
+.kyotsu-page .kyotsu-schedule-status>.r101-mini-icon{width:17px;height:17px;color:#4b8195}
+.kyotsu-page .kyotsu-schedule-item b{display:flex;align-items:center;gap:6px}
+.kyotsu-page .kyotsu-schedule-item b>.r101-mini-icon{width:16px;height:16px;color:#79949f}
+.kyotsu-page .kyotsu-schedule-item.is-active-window b>.r101-mini-icon{color:#2f6f87}
+.kyotsu-page .kyotsu-schedule-item.is-ended b>.r101-mini-icon{color:#9aa9af}
+
+.kyotsu-page .kyotsu-subject-group header>div{display:grid;grid-template-columns:30px minmax(0,1fr);grid-template-rows:auto auto;gap:1px 7px;align-items:center}
+.kyotsu-page .kyotsu-subject-group header>div>.r101-icon-tile{grid-row:1/3;width:28px;height:28px;padding:6px;border-color:#d7e1e5;background:#f7f9fa;color:#678a99}
+.kyotsu-page .kyotsu-subject-group header h3,.kyotsu-page .kyotsu-subject-group header span{grid-column:2}
+.kyotsu-page .kyotsu-subject-group:hover header>div>.r101-icon-tile{border-color:#abc0c8;background:#eef4f6;color:#306b82}
+
+.kyotsu-page .kyotsu-fee-lead{align-items:center}
+.kyotsu-page .kyotsu-fee-lead>.r101-icon-tile{width:36px;height:36px;margin-right:4px}
+.kyotsu-page .kyotsu-planning-lines li>div{display:grid;grid-template-columns:27px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 8px;align-items:start}
+.kyotsu-page .kyotsu-planning-lines li>div>.r101-mini-icon{grid-row:1/3;width:20px;height:20px;margin-top:1px;color:#6e909e}
+.kyotsu-page .kyotsu-planning-lines b,.kyotsu-page .kyotsu-planning-lines span{grid-column:2}
+
+/* More visual breathing room without adding height-heavy cards. */
+.art-page .art-hero-facts,.art-page .art-course-overview,.kyotsu-page .kyotsu-hero-facts{background:linear-gradient(180deg,#fff,#fbfcfc)}
+.art-page .art-portfolio-guide>div,.kyotsu-page .kyotsu-subject-group{transition:background-color .15s ease}
+
+@media(max-width:760px){
+  .art-page .art-route{padding-right:52px}
+  .art-page .r101-route-icon{right:8px}
+  .kyotsu-page .kyotsu-route-line{grid-template-columns:20px 78px minmax(0,1fr)}
+}
+@media(max-width:520px){
+  .r101-icon-tile{width:31px;height:31px;padding:7px}
+  .art-page .art-hero-facts>div,.art-page .art-course-overview>div,.kyotsu-page .kyotsu-hero-facts>div{grid-template-columns:31px minmax(0,1fr);gap:2px 8px}
+  .art-page .art-route{padding-right:44px}
+  .art-page .r101-route-icon{width:30px;height:30px;padding:6px;right:3px;top:17px}
+  .art-page .art-school-strip>div{grid-template-columns:21px minmax(0,1fr);column-gap:6px}
+  .art-page .art-school-strip>div>.r101-mini-icon{width:18px;height:18px}
+  .art-page .art-portfolio-guide>div{grid-template-columns:34px minmax(0,1fr);gap:2px 9px}
+  .art-page .art-portfolio-guide>div>.r101-icon-tile{width:32px;height:32px;padding:7px}
+  .kyotsu-page .kyotsu-subject-group header>div{grid-template-columns:28px minmax(0,1fr)}
+  .kyotsu-page .kyotsu-route-line{grid-template-columns:18px 72px minmax(0,1fr);gap:6px}
+  .kyotsu-use-strip{gap:5px}
+  .kyotsu-use-strip>span{font-size:9.4px}
+}
+@media(prefers-reduced-motion:reduce){
+  .r101-icon,.r101-mini-icon,.r101-icon-tile{transition:none!important}
+}
