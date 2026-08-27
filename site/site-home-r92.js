@@ -19,4 +19,8 @@
     teacher.innerHTML='<b>纪</b><span>东京理科大学</span>';
     chemistryTeachers.append(teacher);
   }
+
+  const kurikoResource=[...document.querySelectorAll('.resource-link')].find(link=>link.href.includes('xhslink.cn/o/5Djzx1FPbYQ'));
+  const kurikoPlatform=kurikoResource?.querySelector('small');
+  if(kurikoPlatform)kurikoPlatform.textContent='小红书 · 共通考试';
 })();
