@@ -1,16 +1,15 @@
 (()=>{
-  /* Brand mark */
-  const brand=document.querySelector('.brand');
-  if(brand&&!brand.querySelector('img')){
-    const logo=document.createElement('img');
-    logo.src='images/logo1.png';
-    logo.alt='';
-    logo.width=36;
-    logo.height=36;
-    logo.decoding='async';
-    logo.fetchPriority='high';
-    logo.addEventListener('error',()=>{logo.remove();brand.classList.add('logo-fallback');},{once:true});
-    brand.insertBefore(logo,brand.firstChild);
+  /* Header brand now uses the real logo directly from CSS. No JS insertion, color filtering or
+     synthetic fallback mark: the reserved background-image footprint is stable from first paint. */
+
+  /* Faculty: keep the useful role information, remove the redundant Chinese-course note and
+     make the external teacher profile read like an editorial credit rather than an ad. */
+  document.querySelector('.faculty-note')?.remove();
+  const leadTeacherLink=document.querySelector('.team-head > a[href="https://kayui-gavo.github.io/education/"]');
+  if(leadTeacherLink){
+    leadTeacherLink.classList.add('lead-teacher-link');
+    leadTeacherLink.setAttribute('aria-label','刘老师介绍：教育营业1部部长、共通考试课程负责人');
+    leadTeacherLink.innerHTML='<span>刘老师介绍</span><small>教育营业1部部长・共通考试课程负责人</small><b aria-hidden="true">↗</b>';
   }
 
   /* Restore the company profile that existed on the original site. Keep it factual and place it
@@ -28,7 +27,6 @@
         </header>
         <div class="company-overview">
           <div class="company-copy">
-            <span class="company-kicker">教育服务企业</span>
             <h3>中国旅人教育集团株式会社</h3>
             <p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 Ferris大厦4层。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p>
           </div>
@@ -40,16 +38,16 @@
         </div>
         <div class="company-details">
           <section class="company-detail">
-            <span class="company-no">01</span><h3>发展历程</h3>
+            <h3>发展历程</h3>
             <p><b class="company-date">2025年5月8日</b> 设立国际贸易部；10月启动日本语言学校及旅行资质申办，并在东京都青梅市购置项目用地。</p>
             <p><b class="company-date">2026年1月起</b> 在河北省沧州市筹办国际高中。</p>
           </section>
           <section class="company-detail">
-            <span class="company-no">02</span><h3>分支机构</h3>
+            <h3>分支机构</h3>
             <ul><li>沧州旅人教育科技有限公司</li><li>沧州旅者教育科技有限公司</li></ul>
           </section>
           <section class="company-detail">
-            <span class="company-no">03</span><h3>管理团队</h3>
+            <h3>管理团队</h3>
             <dl class="company-team">
               <div><dt>董事长</dt><dd>籍诚</dd></div>
               <div><dt>专务董事</dt><dd>汤阳</dd></div>
@@ -101,8 +99,7 @@
   setPanelSources('course-panel-school',courseMedia['course-panel-school']);
   setPanelSources('course-panel-art',courseMedia['course-panel-art']);
 
-  /* Prewarm the small hidden-panel assets shortly after parsing; do not wait for the 2 MB hero
-     request to finish. This fills cache without deciding whether content is visible. */
+  /* Prewarm the small hidden-panel assets shortly after parsing. */
   const warmUrls=urls=>urls.forEach(src=>{const image=new Image();image.decoding='async';image.src=src;});
   const warmAll=()=>{
     warmUrls(courseMedia['course-panel-eju']);
