@@ -1,0 +1,36 @@
+/* r98 — adaptive countdown and completed-state treatment for the official schedule. */
+
+.kyotsu-schedule-countdown{
+  display:inline-flex!important;align-items:center!important;width:max-content!important;max-width:100%;
+  margin-top:7px!important;padding:3px 7px!important;border:1px solid #c9d8de;border-radius:999px;
+  background:#f5f8f9;color:#426b7a!important;font-size:9.4px!important;line-height:1.35!important;
+  font-weight:800!important;letter-spacing:.005em;white-space:normal
+}
+.kyotsu-schedule-item.is-active-window .kyotsu-schedule-countdown{
+  border-color:#9dbbc6;background:#eaf3f5;color:#285e72!important
+}
+.kyotsu-schedule-item.is-upcoming .kyotsu-schedule-countdown{
+  border-color:#d6e0e4;background:#fff;color:#607984!important
+}
+.kyotsu-schedule-item.is-ended{
+  background:#fafbfb!important
+}
+.kyotsu-schedule-item.is-ended>b,
+.kyotsu-schedule-item.is-ended>time,
+.kyotsu-schedule-item.is-ended>span:not(.kyotsu-schedule-countdown){
+  color:#98a6ac!important;text-decoration-line:line-through;text-decoration-thickness:1px;text-decoration-color:#9eabb0
+}
+.kyotsu-schedule-item.is-ended>small{color:#a5b0b5!important}
+.kyotsu-schedule-item.is-ended .kyotsu-schedule-countdown{
+  border-color:#dde4e7;background:#f3f5f6;color:#8b9a9f!important;text-decoration:none!important
+}
+.kyotsu-schedule-item.is-ended::after{display:none!important}
+
+/* The r97 NOW marker is meaningful only while that exact window is active. */
+.kyotsu-countdown-ready .kyotsu-schedule-item:not(.is-active-window)::after{display:none!important}
+
+@media(max-width:520px){
+  .kyotsu-schedule-countdown{margin-top:6px!important;padding:3px 6px!important;font-size:9px!important}
+}
+
+@media(prefers-reduced-motion:reduce){.kyotsu-schedule-countdown{transition:none!important}}
