@@ -1,47 +1,223 @@
-/* r81 — readable campus access on the actual WHITE campus panel + compact recruiting inside consultation. */
+/* r82 — unified campus information hierarchy + restrained micro-interactions. */
 .footer-access-recruit{display:none!important}
 
-/* Campus panel is white. Give the access copy real body-text contrast and enough width. */
-.campus-panel{grid-template-columns:minmax(285px,.78fr) minmax(0,1.22fr)}
-.campus-copy{padding:24px 25px}
-.campus-access{margin-top:18px;padding-top:16px;border-top:1px solid #ccd9de}
-.campus-access h4{margin:0 0 11px;color:#10384a;font-size:13px;line-height:1.35;font-weight:800;letter-spacing:.01em}
-.campus-access-list{display:grid;gap:0}
-.campus-access-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;align-items:start;padding:10px 0;border-top:1px solid #e0e8eb}
-.campus-access-item:first-child{padding-top:0;border-top:0}
-.campus-access-item b{color:#173f50;font-size:11.7px;line-height:1.58;font-weight:750}
-.campus-access-item>span{color:#315f70;font-size:10.8px;line-height:1.58;font-weight:750;white-space:nowrap}
-.campus-access-item small{grid-column:1/-1;margin-top:3px;color:#4f6c78;font-size:10.2px;line-height:1.68;font-weight:600}
+/* Nakano classroom: one coherent editorial system on the WHITE campus panel. */
+.campus-panel{
+  grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);
+  overflow:hidden;
+  border:1px solid #d9e3e7;
+  background:#fff;
+  color:#173f50;
+}
+.campus-copy{
+  --campus-title:#10384a;
+  --campus-text:#405f6c;
+  --campus-sub:#667f89;
+  --campus-muted:#7f949c;
+  --campus-line:#dbe4e7;
+  --campus-accent:#2f7289;
+  padding:27px 28px 25px;
+  background:#fbfcfc;
+}
+.campus-copy>span{
+  display:block;
+  margin:0;
+  color:var(--campus-muted);
+  font-size:9.5px;
+  line-height:1.4;
+  font-weight:750;
+  letter-spacing:.08em;
+}
+.campus-copy h3{
+  margin:5px 0 11px;
+  color:var(--campus-title);
+  font-size:24px;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+.campus-copy>p{
+  margin:0;
+  color:var(--campus-text);
+  font-size:11.3px;
+  line-height:1.82;
+  font-weight:500;
+}
+.campus-copy>small{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:12px;
+  padding:4px 8px;
+  border:1px solid #d8e3e7;
+  background:#f0f5f6;
+  color:#526f7b;
+  font-size:9.4px;
+  line-height:1.4;
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.campus-copy>small::before{
+  content:'';
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#4b8296;
+}
 
-/* Recruiting uses the empty lower-left area of admissions consultation, below the QR block. */
-.contact-copy .contact-recruit{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.20);color:#eef5f7}
+/* Useful, quiet actions instead of decorative UI. */
+.campus-tools{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 14px;
+  margin-top:13px;
+}
+.campus-tools button,.campus-tools a{
+  appearance:none;
+  padding:0 0 2px;
+  border:0;
+  border-bottom:1px solid #b7c9d0;
+  background:transparent;
+  color:#426b7b;
+  font:inherit;
+  font-size:9.5px;
+  line-height:1.5;
+  font-weight:750;
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .16s ease,border-color .16s ease,transform .16s ease;
+}
+.campus-tools button:hover,.campus-tools button:focus-visible,.campus-tools a:hover,.campus-tools a:focus-visible{
+  color:#174c61;
+  border-color:#56869a;
+  transform:translateY(-1px);
+}
+
+/* Access is a secondary information group, using the SAME type scale and color logic. */
+.campus-access{
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid var(--campus-line);
+}
+.campus-access h4{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 6px;
+  color:var(--campus-title);
+  font-size:11.5px;
+  line-height:1.4;
+  font-weight:800;
+  letter-spacing:.025em;
+}
+.campus-access h4::before{
+  content:'';
+  width:18px;
+  height:1px;
+  background:#6d99a9;
+}
+.campus-access-list{display:grid;gap:0}
+.campus-access-item{
+  position:relative;
+  display:block;
+  margin:0 -8px;
+  padding:10px 8px 10px 20px;
+  border-top:1px solid #e3eaed;
+  transition:background-color .16s ease,transform .16s ease;
+}
+.campus-access-item:first-child{border-top:0}
+.campus-access-item::before{
+  content:'';
+  position:absolute;
+  left:8px;
+  top:17px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#6b9aaa;
+}
+.campus-access-item b{
+  display:block;
+  color:var(--campus-title);
+  font-size:11.3px;
+  line-height:1.58;
+  font-weight:750;
+}
+.campus-access-item>span{
+  display:block;
+  margin-top:2px;
+  color:var(--campus-accent);
+  font-size:10.4px;
+  line-height:1.55;
+  font-weight:750;
+}
+.campus-access-item small{
+  display:block;
+  margin-top:4px;
+  color:var(--campus-sub);
+  font-size:9.7px;
+  line-height:1.65;
+  font-weight:550;
+}
+@media(hover:hover){
+  .campus-access-item:hover{
+    background:#f2f6f7;
+    transform:translateX(2px);
+  }
+}
+.campus-panel iframe{
+  border-left:1px solid #e1e8eb!important;
+  background:#eef3f4;
+}
+
+/* Recruiting stays inside the unused lower-left area of admissions consultation. */
+.contact-copy .contact-recruit{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22);color:#eef5f7}
 .contact-recruit-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:12px}
 .contact-recruit h3{margin:0;color:#fff;font-size:14px;font-weight:800;letter-spacing:.02em}
 .contact-recruit-head small{color:#b6c7cd;font-size:9.5px;font-weight:650;letter-spacing:.04em}
 .contact-recruit-roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 12px}
-.contact-recruit-role{min-width:0;padding:9px 10px;border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.045)}
+.contact-recruit-role{
+  min-width:0;
+  padding:10px 10px;
+  border:1px solid rgba(255,255,255,.21);
+  background:rgba(255,255,255,.045);
+  transition:border-color .16s ease,background-color .16s ease,transform .16s ease;
+}
 .contact-recruit-role b{display:block;color:#fff;font-size:10.5px;line-height:1.45;font-weight:750}
-.contact-recruit-role span{display:block;margin-top:3px;color:#c4d2d7;font-size:9px;line-height:1.55}
-.contact-recruit-note{margin:0;color:#d0dcdf;font-size:9.8px;line-height:1.7}
+.contact-recruit-role span{display:block;margin-top:3px;color:#c9d6da;font-size:9px;line-height:1.55}
+@media(hover:hover){
+  .contact-recruit-role:hover{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.075);transform:translateY(-2px)}
+}
+.contact-recruit-note{margin:0;color:#d4dfe2;font-size:9.8px;line-height:1.7}
 .contact-recruit-note b{color:#fff;font-weight:750}
-.contact-recruit a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#fff;font-size:10.2px;font-weight:750;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.48);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
+.contact-recruit a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#fff;font-size:10.2px;font-weight:750;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.50);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
 .contact-recruit a:hover,.contact-recruit a:focus-visible{border-color:#fff;transform:translateX(2px)}
 
+/* Small global polish: interactive content should communicate state without looking like an app dashboard. */
+.course-choice{transition:color .16s ease,background-color .16s ease}
+@media(hover:hover){
+  .course-choice:hover{background:#f7f9fa}
+  .resource-link{transition:transform .16s ease}
+  .resource-link:hover{transform:translateY(-2px)}
+}
+
 @media(max-width:900px){
-  .campus-panel{grid-template-columns:minmax(270px,.74fr) minmax(0,1.26fr)}
+  .campus-panel{grid-template-columns:minmax(285px,.78fr) minmax(0,1.22fr)}
   .contact-recruit-roles{grid-template-columns:1fr 1fr 1fr}
 }
 @media(max-width:640px){
   .campus-panel{grid-template-columns:1fr}
-  .campus-copy{padding:22px}
-  .campus-access-item{grid-template-columns:1fr;gap:2px}
-  .campus-access-item>span{white-space:normal}
-  .campus-access-item small{grid-column:auto}
+  .campus-copy{padding:23px 22px}
+  .campus-copy h3{font-size:23px}
+  .campus-panel iframe{border-left:0!important;border-top:1px solid #e1e8eb!important}
+  .campus-access-item{margin:0 -5px;padding-left:17px;padding-right:5px}
+  .campus-access-item::before{left:5px}
   .contact-recruit-head{display:block}
   .contact-recruit-head small{display:block;margin-top:3px}
   .contact-recruit-roles{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
-  .contact-recruit a{transition:none}
-  .contact-recruit a:hover{transform:none}
+  .campus-tools button,.campus-tools a,.campus-access-item,.contact-recruit-role,.contact-recruit a,.course-choice,.resource-link{transition:none!important}
+  .campus-tools button:hover,.campus-tools a:hover,.campus-access-item:hover,.contact-recruit-role:hover,.contact-recruit a:hover,.resource-link:hover{transform:none!important}
 }
