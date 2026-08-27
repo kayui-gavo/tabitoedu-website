@@ -1,59 +1,45 @@
 (()=>{
-  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  const constrained=Boolean(connection?.saveData)||['slow-2g','2g'].includes(connection?.effectiveType||'');
-  const idle=callback=>('requestIdleCallback'in window?requestIdleCallback(callback,{timeout:900}):setTimeout(callback,180));
+  /* Header logo: if the original asset ever fails, hide only the icon and keep the wordmark.
+     This prevents the browser broken-image symbol from appearing over the hero. */
+  const logo=document.querySelector('.brand img');
+  if(logo){
+    logo.addEventListener('error',()=>{logo.style.display='none';},{once:true});
+  }
 
-  /* Prime the first records quietly after the critical hero has had a chance to paint.
-     The existing gallery loader then reads them from the HTTP cache instead of waiting. */
-  const resultUrls=[...document.querySelectorAll('[data-result-b64]')].map(card=>card.dataset.resultB64).filter(Boolean);
-  const primeResults=()=>{
-    const count=constrained?1:Math.min(3,resultUrls.length);
-    resultUrls.slice(0,count).forEach(url=>fetch(url,{cache:'force-cache'}).catch(()=>{}));
+  /* Load the currently visible Common-Test imagery immediately with native lazy loading.
+     The other hidden panels are still loaded by the existing tab logic when selected. */
+  const common=document.getElementById('course-panel-common');
+  common?.querySelectorAll('img[data-src]').forEach(img=>{
+    img.loading='lazy';
+    img.fetchPriority='low';
+    img.src=img.dataset.src;
+    delete img.dataset.src;
+  });
+
+  /* Result images are tiny text-encoded assets. Load all five deterministically instead of
+     waiting for viewport observers; this removes the intermittent blank-gallery state. */
+  const cards=[...document.querySelectorAll('[data-result-b64]')];
+  const hydrate=async card=>{
+    if(card.dataset.imageSrc)return card.dataset.imageSrc;
+    try{
+      const response=await fetch(card.dataset.resultB64,{cache:'force-cache'});
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const base64=(await response.text()).replace(/\s+/g,'');
+      const src=`data:image/webp;base64,${base64}`;
+      const img=card.querySelector('img');
+      if(img){
+        img.src=src;
+        img.loading='eager';
+        try{await img.decode?.();}catch(_){}
+      }
+      card.dataset.imageSrc=src;
+      card.dataset.loaded='true';
+      return src;
+    }catch(error){
+      card.dataset.error='true';
+      console.error('Result image failed to load',error);
+      return null;
+    }
   };
-  if(document.readyState==='complete')idle(primeResults);
-  else window.addEventListener('load',()=>idle(primeResults),{once:true});
-
-  /* Course imagery is deliberately absent from the initial request waterfall.
-     Load the visible Common-Test panel shortly before the section enters view,
-     then prewarm another panel only when the visitor expresses intent. */
-  const panels=[...document.querySelectorAll('.course-panel')];
-  const choices=[...document.querySelectorAll('.course-choice')];
-  const warmPanel=panel=>{
-    if(!panel)return;
-    panel.querySelectorAll('img[data-src]').forEach(img=>{
-      if(img.dataset.warmed)return;
-      img.dataset.warmed='true';
-      img.loading='lazy';
-      img.fetchPriority='low';
-      img.src=img.dataset.src;
-      delete img.dataset.src;
-    });
-  };
-  const programs=document.getElementById('programs');
-  if(programs&&panels[0]){
-    if('IntersectionObserver'in window){
-      const observer=new IntersectionObserver(entries=>{
-        if(entries.some(entry=>entry.isIntersecting)){
-          warmPanel(panels[0]);
-          observer.disconnect();
-        }
-      },{rootMargin:'900px 0px'});
-      observer.observe(programs);
-    }else idle(()=>warmPanel(panels[0]));
-  }
-  if(!constrained){
-    choices.forEach((choice,index)=>{
-      const warm=()=>idle(()=>warmPanel(panels[index]));
-      choice.addEventListener('pointerenter',warm,{once:true,passive:true});
-      choice.addEventListener('focus',warm,{once:true});
-    });
-  }
-
-  /* Decode visible result images off the interaction path when possible. */
-  const decodeVisible=()=>document.querySelectorAll('.result-gallery-card[data-loaded="true"] img').forEach(img=>img.decode?.().catch(()=>{}));
-  const gallery=document.getElementById('resultGallery');
-  if(gallery&&'MutationObserver'in window){
-    const observer=new MutationObserver(()=>idle(decodeVisible));
-    observer.observe(gallery,{subtree:true,attributes:true,attributeFilter:['data-loaded','src']});
-  }
+  cards.forEach(hydrate);
 })();
