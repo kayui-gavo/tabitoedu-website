@@ -14,8 +14,19 @@
     programsIntro.textContent='成绩、兴趣、性格和目标校不同，升学方案也应不同。';
   }
 
-  /* Faculty: remove the redundant Chinese-course note and keep the lead teacher credit concise. */
+  /* Faculty: remove the redundant Chinese-course note, update the directory, and keep the lead teacher credit concise. */
   document.querySelector('.faculty-note')?.remove();
+  const facultyLines=[...document.querySelectorAll('.faculty-line')];
+  const mathLine=facultyLines.find(line=>line.querySelector('h3')?.textContent.trim()==='数学');
+  if(mathLine){
+    const p=mathLine.querySelector('p');
+    if(p)p.innerHTML='<b>脇村</b>｜筑波大学　　<b>坂野</b>｜早稻田大学　　<b>陆</b>｜东京科学大学　　<b>胡</b>｜东京大学';
+  }
+  const scienceLine=facultyLines.find(line=>line.querySelector('h3')?.textContent.trim()==='理科');
+  if(scienceLine){
+    const p=scienceLine.querySelector('p');
+    if(p)p.innerHTML='<b>刘・陆</b>｜物理　　<b>金</b>｜早稻田大学・物理　　<b>孙・焦</b>｜化学　　<b>周</b>｜生物　　<b>丁</b>｜地学';
+  }
   const leadTeacherLink=document.querySelector('.team-head > a[href="https://kayui-gavo.github.io/education/"]');
   if(leadTeacherLink){
     leadTeacherLink.classList.add('lead-teacher-link');
