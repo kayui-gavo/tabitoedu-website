@@ -1,12 +1,30 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* r83 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
+  /* r84 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
   if(!document.querySelector('link[data-home-r77]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r83';style.dataset.homeR77='';
+    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r84';style.dataset.homeR77='';
     document.head.append(style);
   }
+
+  /* Ultra-light page progress line on the fixed header. */
+  let progressTicking=false;
+  const syncPageProgress=()=>{
+    const root=document.documentElement;
+    const max=Math.max(1,root.scrollHeight-window.innerHeight);
+    const progress=Math.min(1,Math.max(0,window.scrollY/max));
+    root.style.setProperty('--page-progress',String(progress));
+    progressTicking=false;
+  };
+  const requestPageProgress=()=>{
+    if(progressTicking)return;
+    progressTicking=true;
+    requestAnimationFrame(syncPageProgress);
+  };
+  window.addEventListener('scroll',requestPageProgress,{passive:true});
+  window.addEventListener('resize',requestPageProgress,{passive:true});
+  syncPageProgress();
 
   /* Keep the homepage Common Test summary concise; the number of subjects is not the selling point. */
   const commonTab=document.getElementById('course-tab-common');
@@ -49,7 +67,7 @@
     const address='〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F';
     const tools=document.createElement('div');
     tools.className='campus-tools';
-    tools.innerHTML=`<button type="button" class="campus-copy-address">复制地址</button><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" target="_blank" rel="noopener">Google Maps ↗</a>`;
+    tools.innerHTML=`<button type="button" class="campus-copy-address" aria-live="polite">复制地址</button><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" target="_blank" rel="noopener">Google Maps ↗</a>`;
     const access=campusCopy.querySelector('.campus-access');
     campusCopy.insertBefore(tools,access||null);
     const copyButton=tools.querySelector('.campus-copy-address');
@@ -171,9 +189,9 @@
         if(el.classList.contains('section-head'))el.classList.add('r76-seen');
         if(!reduced&&el.animate){
           el.animate([
-            {opacity:.72,transform:'translateY(9px)'},
+            {opacity:.76,transform:'translateY(7px)'},
             {opacity:1,transform:'translateY(0)'}
-          ],{duration:360,easing:'cubic-bezier(.22,.61,.36,1)',fill:'none'});
+          ],{duration:330,easing:'cubic-bezier(.22,.61,.36,1)',fill:'none'});
         }
         observer.unobserve(el);
       });
