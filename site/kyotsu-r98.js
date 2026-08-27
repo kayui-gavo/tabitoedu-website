@@ -2,6 +2,14 @@
   const items=[...document.querySelectorAll('.kyotsu-schedule-item[data-stage]')];
   if(!items.length)return;
 
+  if(!document.querySelector('link[data-kyotsu-r99]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';
+    style.href='kyotsu-r99.css?v=20260828r99';
+    style.dataset.kyotsuR99='';
+    document.head.append(style);
+  }
+
   const schedule=[
     {start:'2026-07-01',end:'2026-10-02',kind:'range'},
     {start:'2026-09-15',end:'2026-10-02',kind:'range'},
@@ -11,6 +19,24 @@
     {start:'2027-01-16',end:'2027-01-17',kind:'exam'},
     {start:'2027-01-23',end:'2027-01-24',kind:'exam'}
   ];
+
+  const scheduleSection=document.querySelector('.kyotsu-schedule-section');
+  const status=document.querySelector('[data-kyotsu-schedule-status]');
+  let tools=scheduleSection?.querySelector('.kyotsu-schedule-tools');
+  let toggleButton=null;
+  if(scheduleSection&&status&&!tools){
+    tools=document.createElement('div');
+    tools.className='kyotsu-schedule-tools';
+    tools.hidden=true;
+    tools.innerHTML='<button class="kyotsu-schedule-toggle" type="button" aria-pressed="false">隐藏已结束</button>';
+    status.insertAdjacentElement('afterend',tools);
+    toggleButton=tools.querySelector('button');
+    toggleButton.addEventListener('click',()=>{
+      const hiding=scheduleSection.classList.toggle('is-hiding-ended');
+      toggleButton.setAttribute('aria-pressed',String(hiding));
+      toggleButton.textContent=hiding?'显示全部':'隐藏已结束';
+    });
+  }else toggleButton=tools?.querySelector('button')||null;
 
   const tokyoDateParts=()=>{
     const parts=new Intl.DateTimeFormat('en-CA',{
@@ -28,6 +54,7 @@
 
   const setState=()=>{
     const today=todayNumber();
+    let endedCount=0;
 
     items.forEach((item,index)=>{
       const config=schedule[index];
@@ -48,11 +75,13 @@
 
       let label='';
       if(today>end){
+        endedCount++;
         item.classList.add('is-ended');
         label='已结束';
       }else if(today<start){
         item.classList.add('is-upcoming');
-        label=untilStart===1?'还有 1 天':`还有 ${untilStart} 天`;
+        if(untilStart===1)label='还有 1 天';
+        else label=`还有 ${untilStart} 天`;
       }else{
         item.classList.add('is-active-window','is-current');
         if(config.kind==='available'){
@@ -71,6 +100,13 @@
       badge.textContent=label;
     });
 
+    if(tools){
+      tools.hidden=endedCount===0;
+      if(endedCount===0&&scheduleSection?.classList.contains('is-hiding-ended')){
+        scheduleSection.classList.remove('is-hiding-ended');
+        if(toggleButton){toggleButton.setAttribute('aria-pressed','false');toggleButton.textContent='隐藏已结束';}
+      }
+    }
     document.documentElement.classList.add('kyotsu-countdown-ready');
   };
 
