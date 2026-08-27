@@ -1,0 +1,27 @@
+/* r77 — compact access + recruiting information in the footer. */
+.footer-access-recruit{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(250px,.65fr);gap:38px;padding:24px 0 25px;border-top:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.10)}
+.footer-access h3,.footer-recruit h3{margin:0;color:#f3f7f8;font-size:13px;font-weight:750;letter-spacing:.02em}
+.footer-access-grid{display:grid;grid-template-columns:1fr 1fr 1.18fr;gap:0;margin-top:12px}
+.footer-access-item{min-width:0;padding:0 18px;border-left:1px solid rgba(255,255,255,.11)}
+.footer-access-item:first-child{padding-left:0;border-left:0}
+.footer-access-item:last-child{padding-right:0}
+.footer-access-item small{display:block;margin-bottom:4px;color:#7895a2;font-size:9px;font-weight:750;letter-spacing:.04em;text-transform:uppercase}
+.footer-access-item b{display:block;color:#e7eff2;font-size:11.5px;line-height:1.55;font-weight:700}
+.footer-access-item span{display:block;margin-top:2px;color:#93a8b1;font-size:10px;line-height:1.6}
+.footer-access-item .bus-lines{margin-top:5px;color:#b4c3c9;font-size:9.5px;line-height:1.6}
+.footer-recruit{padding-left:28px;border-left:1px solid rgba(255,255,255,.13)}
+.footer-recruit p{margin:8px 0 0;color:#93a8b1;font-size:10.5px;line-height:1.7}
+.footer-recruit a{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#eef5f7;font-size:10.5px;font-weight:750;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.24);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
+.footer-recruit a:hover,.footer-recruit a:focus-visible{border-color:rgba(255,255,255,.72);transform:translateX(2px)}
+
+@media(max-width:900px){
+  .footer-access-recruit{grid-template-columns:1fr;gap:20px;padding:22px 0}
+  .footer-recruit{padding:18px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.11)}
+}
+@media(max-width:640px){
+  .footer-access-grid{grid-template-columns:1fr;gap:0;margin-top:9px}
+  .footer-access-item,.footer-access-item:first-child,.footer-access-item:last-child{padding:9px 0;border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .footer-access-item:first-child{border-top:0}
+  .footer-access-recruit{padding:18px 0 20px}
+}
+@media(prefers-reduced-motion:reduce){.footer-recruit a{transition:none}.footer-recruit a:hover{transform:none}}
