@@ -1,0 +1,92 @@
+/* r99 — art page interaction + contrast + readability refinement. */
+.art-page{font-feature-settings:"palt" 1;text-rendering:optimizeLegibility}
+.art-page :focus-visible{outline:2px solid #4c879e;outline-offset:3px}
+
+/* Thin reading progress. */
+.art-read-progress{position:fixed;left:0;right:0;top:0;height:2px;z-index:120;pointer-events:none}
+.art-read-progress span{display:block;width:100%;height:100%;background:#427f96;transform:scaleX(0);transform-origin:left center;will-change:transform}
+
+/* Sticky section navigation now has an actual current state. */
+.art-jumpnav a{position:relative;font-size:11.4px;transition:color .16s ease,background-color .16s ease}
+.art-jumpnav a::after{content:"";position:absolute;left:19px;right:19px;bottom:-1px;height:2px;background:#3f7e96;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
+.art-jumpnav a:first-child::after{left:0}
+.art-jumpnav a.is-current{color:#173f55;background:#f8fafb}
+.art-jumpnav a.is-current::after{transform:scaleX(1)}
+
+/* Clickable controls should feel clickable; static information should stay quiet. */
+.art-page .course-actions a,.art-xhs-link,.art-page .course-switch-grid a{transition:transform .16s ease,background-color .16s ease,color .16s ease,border-color .16s ease}
+@media(hover:hover){
+  .art-page .course-actions .primary:hover{background:#1a4a62;transform:translateY(-1px)}
+  .art-page .course-actions .secondary:hover,.art-xhs-link:hover{color:#173f55;border-color:#648a9a;transform:translateX(2px)}
+  .art-page .course-switch-grid a:not(.active):hover{background:#fff;color:#173f55}
+  .art-page .art-r96-hero .course-hero-media img{transition:transform .28s ease}
+  .art-page .art-r96-hero .course-hero-media figure:hover img{transform:scale(1.012)}
+}
+
+/* Price accordion: clearer open/closed state and larger hit area. */
+.art-price-group{transition:border-color .16s ease,box-shadow .16s ease}
+.art-price-group summary{min-height:49px;cursor:pointer;user-select:none;transition:background-color .16s ease,color .16s ease}
+.art-price-group summary::after{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #cbd9de;border-radius:50%;font-size:13px;line-height:1}
+.art-price-group[open]{border-color:#bfcfd5;box-shadow:0 8px 22px rgba(23,63,85,.045)}
+.art-price-group[open] summary{color:#173f55;background:#f4f8f9}
+@media(hover:hover){.art-price-group summary:hover{background:#f7fafb}}
+.art-price-table tbody tr{transition:background-color .14s ease}
+@media(hover:hover){.art-price-table tbody tr:hover{background:#f8fafb}.art-price-table tbody tr:hover th{background:#f4f8f9}}
+
+/* Body copy: keep the line measure comfortable rather than shrinking it further. */
+.art-route p{max-width:560px}
+.art-route-note{max-width:920px}
+.art-portfolio-guide p{max-width:520px}
+.art-team-person span{color:#667d87}
+
+/* Works: visible controls, progress and usable mouse/touch behavior. */
+.art-work-head{align-items:center;margin-bottom:11px}
+.art-work-head>span{font-size:10.5px;color:#758a93}
+.art-work-controls{display:flex;align-items:center;gap:6px;margin-left:auto}
+.art-work-controls button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid #cbd8dd;background:#fff;color:#315767;font:inherit;font-size:15px;line-height:1;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease,transform .15s ease}
+.art-work-controls button:disabled{opacity:.34;cursor:default}
+@media(hover:hover){.art-work-controls button:not(:disabled):hover{background:#f2f7f8;border-color:#9db5bf;color:#173f55;transform:translateY(-1px)}}
+.art-work-progress{position:relative;width:62px;height:2px;margin-left:4px;overflow:hidden;background:#dbe4e7}
+.art-work-progress span{position:absolute;inset:0 auto 0 0;width:100%;background:#5e8fa2;transform:scaleX(.2);transform-origin:left center;will-change:transform}
+.art-work-rail{cursor:grab;overscroll-behavior-inline:contain;scrollbar-color:#9fb4bd #e6edef;scrollbar-width:thin}
+.art-work-rail.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.art-work-rail figure{cursor:zoom-in;transition:border-color .16s ease,box-shadow .16s ease}
+.art-work-rail figure:focus-visible{outline:2px solid #4c879e;outline-offset:2px}
+@media(hover:hover){.art-work-rail figure:hover{border-color:#a9bdc5;box-shadow:0 7px 18px rgba(23,63,85,.06)}}
+
+/* Artwork lightbox. */
+.art-lightbox{width:min(920px,calc(100% - 36px));max-height:calc(100vh - 36px);padding:0;border:0;background:transparent}
+.art-lightbox::backdrop{background:rgba(9,30,42,.76);backdrop-filter:blur(4px)}
+.art-lightbox-inner{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;max-height:calc(100vh - 36px);background:#fff;box-shadow:0 28px 80px rgba(0,0,0,.28)}
+.art-lightbox img{display:block;width:100%;max-height:calc(100vh - 105px);object-fit:contain;background:#eef2f3}
+.art-lightbox-caption{padding:10px 14px;color:#526d79;font-size:12px;line-height:1.55}
+.art-lightbox-close{position:absolute;right:10px;top:10px;z-index:2;display:grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid rgba(255,255,255,.7);background:rgba(16,47,67,.78);color:#fff;font-size:21px;line-height:1;cursor:pointer}
+
+/* Fix: contact links were inheriting the generic white CTA button background. */
+.art-page .course-cta .art-contact-lines{gap:8px 20px;margin-top:10px}
+.art-page .course-cta .art-contact-lines a{
+  display:inline-flex!important;align-items:center!important;padding:2px 0 3px!important;
+  background:transparent!important;color:#f3f7f9!important;border:0!important;border-bottom:1px solid rgba(235,245,248,.55)!important;
+  font-size:12.3px!important;line-height:1.5!important;font-weight:700!important;text-decoration:none!important;
+  transition:color .16s ease,border-color .16s ease,transform .16s ease
+}
+@media(hover:hover){.art-page .course-cta .art-contact-lines a:hover{color:#fff!important;border-bottom-color:#fff!important;transform:translateY(-1px)}}
+.art-page .course-cta> .course-shell> a{min-width:126px;justify-content:center}
+
+@media(max-width:760px){
+  .art-jumpnav a{font-size:11.1px}
+  .art-work-controls{gap:5px}
+  .art-work-controls button{width:32px;height:32px}
+  .art-work-progress{width:48px}
+  .art-price-table th,.art-price-table td{font-size:11.4px!important;line-height:1.62}
+}
+@media(max-width:520px){
+  .art-work-head{align-items:flex-start;flex-wrap:wrap}
+  .art-work-controls{margin-left:0;width:100%}
+  .art-work-progress{flex:1;max-width:86px}
+  .art-page .course-cta .art-contact-lines{display:grid;gap:7px}
+  .art-page .course-cta .art-contact-lines a{width:max-content;max-width:100%;font-size:12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .art-page *,.art-page *::before,.art-page *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
