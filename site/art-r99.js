@@ -1,4 +1,15 @@
 (()=>{
+  if(!document.querySelector('link[data-course-visual-r101]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='course-visual-r101.css?v=20260828r101';style.dataset.courseVisualR101='';
+    document.head.append(style);
+  }
+  if(!document.querySelector('script[data-course-visual-r101]')){
+    const script=document.createElement('script');
+    script.src='course-visual-r101.js?v=20260828r101';script.dataset.courseVisualR101='';script.async=false;
+    document.head.append(script);
+  }
+
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Thin reading progress. */
