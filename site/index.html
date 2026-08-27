@@ -6,7 +6,7 @@
   <meta name="description" content="旅人教育 TABITO｜东京中野与 Online 的日本本科升学指导。提供共通考试、EJU 一对一、校内考、美术升学，以及出愿和面试准备。">
   <meta name="theme-color" content="#10384a">
   <meta property="og:title" content="旅人教育 TABITO｜日本本科升学">
-  <meta property="og:description" content="东京・中野 / Online。根据目标大学和学部的募集要项，准备共通考试、EJU、校内考、美术实技、出愿与面试。">
+  <meta property="og:description" content="东京・中野 / Online。打破信息差，独立思考，选择真正适合自己的道路。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tabitoedu.com/">
   <meta property="og:image" content="https://www.tabitoedu.com/images/hero_background_4.jpg">
@@ -45,7 +45,7 @@
       <span class="hero-location">东京・中野 / Online</span>
       <h1>日本本科升学</h1>
       <p class="brand-line">学びの旅に、<br>確かな道しるべを。</p>
-      <p class="hero-lede">报考科目、出愿材料和校内考要求，都以目标校的募集要项为准。</p>
+      <p class="hero-lede">打破信息差，独立思考，选择真正适合自己的道路。</p>
       <div class="hero-actions"><a class="primary" href="#programs">查看课程</a><a href="#results">合格实绩</a><a href="#contact">升学咨询</a></div>
     </div>
     <figure class="hero-media"><img src="images/hero_background_4.jpg" alt="" fetchpriority="high" decoding="async"><figcaption>日本本科升学</figcaption></figure>
@@ -78,11 +78,11 @@
     </div>
     <div class="results-gallery-wrap">
       <div class="result-gallery" id="resultGallery" tabindex="0" aria-label="可左右滑动查看部分合格记录">
-        <button class="result-gallery-card" type="button" data-lightbox-src="images/results-2025-overview-r67.webp" data-lightbox-alt="2025 年度合格实绩总览"><img src="images/results-2025-overview-r67.webp" alt="2025 年度合格实绩总览" loading="lazy" decoding="async"><span>查看大图</span></button>
-        <button class="result-gallery-card" type="button" data-lightbox-src="images/results-2025-hokkaido-chuo-r67.webp" data-lightbox-alt="北海道大学与中央大学合格记录"><img src="images/results-2025-hokkaido-chuo-r67.webp" alt="北海道大学与中央大学合格记录" loading="lazy" decoding="async"><span>查看大图</span></button>
-        <button class="result-gallery-card" type="button" data-lightbox-src="images/results-2025-kyoto-kanagawa-r67.webp" data-lightbox-alt="京都产业大学与神奈川工科大学合格记录"><img src="images/results-2025-kyoto-kanagawa-r67.webp" alt="京都产业大学与神奈川工科大学合格记录" loading="lazy" decoding="async"><span>查看大图</span></button>
-        <button class="result-gallery-card" type="button" data-lightbox-src="images/results-2025-nihon-r67.webp" data-lightbox-alt="日本大学合格记录"><img src="images/results-2025-nihon-r67.webp" alt="日本大学合格记录" loading="lazy" decoding="async"><span>查看大图</span></button>
-        <button class="result-gallery-card" type="button" data-lightbox-src="images/results-2025-tokyo-science-r67.webp" data-lightbox-alt="东京科学大学合格记录"><img src="images/results-2025-tokyo-science-r67.webp" alt="东京科学大学合格记录" loading="lazy" decoding="async"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-result-b64="images/results-r68/overview.b64" data-lightbox-alt="2025 年度合格实绩总览"><img alt="2025 年度合格实绩总览" loading="lazy" decoding="async" width="240" height="320"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-result-b64="images/results-r68/hokkaido-chuo.b64" data-lightbox-alt="北海道大学与中央大学合格记录"><img alt="北海道大学与中央大学合格记录" loading="lazy" decoding="async" width="240" height="320"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-result-b64="images/results-r68/kyoto-kanagawa.b64" data-lightbox-alt="京都产业大学与神奈川工科大学合格记录"><img alt="京都产业大学与神奈川工科大学合格记录" loading="lazy" decoding="async" width="240" height="320"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-result-b64="images/results-r68/nihon.b64" data-lightbox-alt="日本大学合格记录"><img alt="日本大学合格记录" loading="lazy" decoding="async" width="240" height="320"><span>查看大图</span></button>
+        <button class="result-gallery-card" type="button" data-result-b64="images/results-r68/tokyo-science.b64" data-lightbox-alt="东京科学大学合格记录"><img alt="东京科学大学合格记录" loading="lazy" decoding="async" width="240" height="320"><span>查看大图</span></button>
       </div>
     </div>
   </div>
@@ -190,6 +190,32 @@
   const setCourse=(index,focus=false)=>{courseButtons.forEach((button,i)=>{const active=i===index;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;coursePanels[i].hidden=!active;if(active)loadPanelImages(coursePanels[i]);});if(focus)courseButtons[index].focus();};
   courseButtons.forEach((button,index)=>{button.addEventListener('click',()=>setCourse(index));button.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowDown'||event.key==='ArrowRight')next=(index+1)%courseButtons.length;else if(event.key==='ArrowUp'||event.key==='ArrowLeft')next=(index-1+courseButtons.length)%courseButtons.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=courseButtons.length-1;else return;event.preventDefault();setCourse(next,true);});});
 
+  const resultCards=[...document.querySelectorAll('[data-result-b64]')];
+  const loadResultCard=async card=>{
+    if(card.dataset.imageSrc)return card.dataset.imageSrc;
+    if(card.dataset.loading==='true')return null;
+    card.dataset.loading='true';
+    try{
+      const response=await fetch(card.dataset.resultB64,{cache:'force-cache'});
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const base64=(await response.text()).trim();
+      const src=`data:image/webp;base64,${base64}`;
+      const img=card.querySelector('img');
+      img.src=src;
+      card.dataset.imageSrc=src;
+      card.dataset.loaded='true';
+      return src;
+    }catch(error){
+      card.dataset.error='true';
+      console.error('Result image failed to load',error);
+      return null;
+    }finally{delete card.dataset.loading;}
+  };
+  if('IntersectionObserver' in window){
+    const resultObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){loadResultCard(entry.target);resultObserver.unobserve(entry.target);}}),{rootMargin:'360px'});
+    resultCards.forEach(card=>resultObserver.observe(card));
+  }else resultCards.forEach(loadResultCard);
+
   const gallery=document.getElementById('resultGallery');
   const galleryPrev=document.getElementById('resultGalleryPrev');
   const galleryNext=document.getElementById('resultGalleryNext');
@@ -212,6 +238,7 @@
   const lightboxImage=document.getElementById('lightboxImage');
   const closeLightbox=()=>dialog.open&&dialog.close();
   document.querySelectorAll('[data-lightbox-src]').forEach(trigger=>trigger.addEventListener('click',()=>{lightboxImage.src=trigger.dataset.lightboxSrc;lightboxImage.alt=trigger.dataset.lightboxAlt||'';dialog.showModal();}));
+  resultCards.forEach(card=>card.addEventListener('click',async()=>{const src=card.dataset.imageSrc||await loadResultCard(card);if(!src)return;lightboxImage.src=src;lightboxImage.alt=card.dataset.lightboxAlt||card.querySelector('img')?.alt||'';dialog.showModal();}));
   dialog.querySelector('.lightbox-close').addEventListener('click',closeLightbox);
   dialog.addEventListener('click',event=>{if(event.target===dialog)closeLightbox();});
 
