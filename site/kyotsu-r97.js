@@ -2,6 +2,18 @@
   const status=document.querySelector('[data-kyotsu-schedule-status]');
   if(!status)return;
 
+  const ticketItem=document.querySelector('.kyotsu-schedule-item[data-stage="ticket"]');
+  const examItem=document.querySelector('.kyotsu-schedule-item[data-stage="exam"]');
+  const makeupItem=document.querySelector('.kyotsu-schedule-item[data-stage="makeup"]');
+  if(ticketItem){
+    const label=ticketItem.querySelector('b');
+    const note=ticketItem.querySelector('span');
+    if(label)label.textContent='准考证（受験票）';
+    if(note)note.textContent='从个人页面取得并打印';
+  }
+  if(examItem){const label=examItem.querySelector('b');if(label)label.textContent='正式考试（本試験）';}
+  if(makeupItem){const label=makeupItem.querySelector('b');if(label)label.textContent='追试（追試験）';}
+
   const todayParts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
   const get=type=>todayParts.find(p=>p.type===type)?.value||'';
   const today=Number(`${get('year')}${get('month')}${get('day')}`);
