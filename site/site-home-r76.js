@@ -9,7 +9,7 @@
   }
   if(!document.querySelector('link[data-home-r89]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r89.css?v=20260828r90';style.dataset.homeR89='';
+    style.rel='stylesheet';style.href='site-home-r89.css?v=20260828r91';style.dataset.homeR89='';
     document.head.append(style);
   }
 
@@ -68,7 +68,7 @@
       </section>`;
   }
 
-  /* Resources r90: expose the source platform and keep all five links in one consistent rail. */
+  /* Resources r91: content links stay in the rail; official accounts sit together beside the heading. */
   const resourceRail=document.querySelector('.resource-rail');
   if(resourceRail){
     resourceRail.classList.add('resource-rail--expanded');
@@ -76,8 +76,28 @@
       <a class="resource-link" href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer"><small>微信公众号 · 共通考试</small><b>共通考试｜政策与报考说明</b><span>阅读全文 ↗</span></a>
       <a class="resource-link" href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer"><small>小红书 · 教师介绍</small><b>栗子老师｜共通考试介绍</b><span>查看内容 ↗</span></a>
       <a class="resource-link" href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer"><small>小红书 · 合格学生采访</small><b>日本大学一般入试</b><span>查看内容 ↗</span></a>
-      <a class="resource-link" href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><small>小红书 · 美术升学</small><b>京都精华大学｜中文入试与美术升学</b><span>查看内容 ↗</span></a>
-      <a class="resource-link" href="https://v.douyin.com/2SzMKWb4gys/" target="_blank" rel="noopener noreferrer"><small>抖音 · 官方账号</small><b>旅人教育官方抖音</b><span>查看主页 ↗</span></a>`;
+      <a class="resource-link" href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><small>小红书 · 美术升学</small><b>京都精华大学｜中文入试与美术升学</b><span>查看内容 ↗</span></a>`;
+  }
+
+  const officialXhs=document.querySelector('.resources-head a[href="https://xhslink.cn/m/5QyfLyRRHK1"]') || [...document.querySelectorAll('a[href="https://xhslink.cn/m/5QyfLyRRHK1"]')].find(a=>a.textContent.includes('官方小红书'));
+  if(officialXhs){
+    let group=officialXhs.closest('.official-social-links');
+    if(!group){
+      group=document.createElement('div');
+      group.className='official-social-links';
+      officialXhs.before(group);
+      group.append(officialXhs);
+    }
+    officialXhs.classList.add('official-social-link');
+    if(!group.querySelector('.official-douyin-link')){
+      const douyin=document.createElement('a');
+      douyin.className='official-social-link official-douyin-link';
+      douyin.href='https://v.douyin.com/2SzMKWb4gys/';
+      douyin.target='_blank';
+      douyin.rel='noopener noreferrer';
+      douyin.textContent='官方抖音 ↗';
+      group.append(douyin);
+    }
   }
 
   /* Ultra-light page progress line on the fixed header. */
