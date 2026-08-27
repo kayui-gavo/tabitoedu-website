@@ -78,7 +78,7 @@
 .kyotsu-page .kyotsu-planning-lines b,.kyotsu-page .kyotsu-planning-lines span{grid-column:2}
 
 /* More visual breathing room without adding height-heavy cards. */
-.art-page .art-hero-facts,.art-page .art-course-overview,.kyotsu-page .kyotsu-hero-facts{background:linear-gradient(180deg,#fff,#fbfcfc)}
+.art-page .art-hero-facts,.art-page .art-course-overview,.kyotsu-page .kyotsu-hero-facts{background:#fbfcfc}
 .art-page .art-portfolio-guide>div,.kyotsu-page .kyotsu-subject-group{transition:background-color .15s ease}
 
 @media(max-width:760px){
