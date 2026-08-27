@@ -1,10 +1,10 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* r79 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
+  /* r80 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
   if(!document.querySelector('link[data-home-r77]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r79';style.dataset.homeR77='';
+    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r80';style.dataset.homeR77='';
     document.head.append(style);
   }
 
@@ -44,21 +44,33 @@
     campusCopy.append(access);
   }
 
-  /* Recruiting belongs directly below admissions consultation. */
-  const contactLayout=document.querySelector('#contact .contact-layout');
-  if(contactLayout&&!document.querySelector('#contact .contact-recruit')){
-    const recruit=document.createElement('div');
-    recruit.className='shell contact-recruit';
+  /* Recruiting belongs in the unused lower-left space of admissions consultation. */
+  const contactCopy=document.querySelector('#contact .contact-copy');
+  if(contactCopy&&!contactCopy.querySelector('.contact-recruit')){
+    const recruit=document.createElement('aside');
+    recruit.className='contact-recruit';
     recruit.id='careers';
+    recruit.setAttribute('aria-labelledby','careers-title');
     recruit.innerHTML=`
-      <h3>招贤纳士</h3>
-      <p><b>招聘学科讲师与运营成员。</b> 应聘请附简历，并注明希望负责的科目或业务方向及相关经历；请在邮件中说明应聘来意。</p>
+      <div class="contact-recruit-head">
+        <h3 id="careers-title">招贤纳士</h3>
+        <small>JOIN TABITO</small>
+      </div>
+      <div class="contact-recruit-roles">
+        <div class="contact-recruit-role"><b>学科讲师</b><span>共通考试・EJU・校内考・美术课程</span></div>
+        <div class="contact-recruit-role"><b>SNS 运营</b><span>小红书・微信公众号等内容与账号运营</span></div>
+        <div class="contact-recruit-role"><b>招生宣传</b><span>升学咨询・课程介绍・活动宣传与学生沟通</span></div>
+      </div>
+      <p class="contact-recruit-note">应聘请将<b>简历</b>发送至下方邮箱，并注明希望负责的岗位或科目、相关经历及应聘来意。</p>
       <a href="mailto:ryukayuiii@gmail.com?subject=%E6%97%85%E4%BA%BA%E6%95%99%E8%82%B2%E5%BA%94%E8%81%98">ryukayuiii@gmail.com <span aria-hidden="true">↗</span></a>`;
-    contactLayout.after(recruit);
+    contactCopy.append(recruit);
   }
 
-  /* Remove the old footer placement and duplicate recruiting link. */
+  /* Remove any old footer / standalone recruiting placement and duplicate recruiting link. */
   document.querySelectorAll('.footer-access-recruit').forEach(el=>el.remove());
+  document.querySelectorAll('#contact > .contact-recruit').forEach(el=>{
+    if(el.parentElement!==contactCopy)el.remove();
+  });
   document.querySelectorAll('.footer-nav a').forEach(link=>{
     if(link.textContent.trim()==='讲师・运营成员招聘')link.remove();
   });
