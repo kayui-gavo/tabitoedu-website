@@ -1,0 +1,57 @@
+/* r97 — official 2027 Common Test schedule + clearer classroom visual. */
+
+.kyotsu-page #schedule{scroll-margin-top:116px}
+
+/* The requested Nakano classroom photo is a compact contextual visual, not a giant hero poster. */
+.kyotsu-page .kyotsu-hero-aside figure{height:220px;background:#edf2f3}
+.kyotsu-page .kyotsu-hero-aside figure img{object-position:center center}
+
+/* Current official schedule: compact enough to scan without turning the page into a notice board. */
+.kyotsu-schedule-section{padding-top:38px!important;padding-bottom:40px!important;background:#fff!important}
+.kyotsu-schedule-section .course-head{margin-bottom:15px!important}
+.kyotsu-schedule-section .course-head h2{font-size:27px!important}
+.kyotsu-schedule-section .course-head p{max-width:790px!important;font-size:12.2px!important;line-height:1.72!important}
+.kyotsu-schedule-status{display:flex;align-items:center;gap:9px;margin:0 0 13px;padding:9px 12px;border-left:2px solid #5d8fa2;background:#f2f7f8;color:#3f6575;font-size:11.2px;line-height:1.55;font-weight:650}
+.kyotsu-schedule-status::before{content:'';flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#53879a}
+.kyotsu-schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid #173f55;border-bottom:1px solid #d8e2e6;background:#fff}
+.kyotsu-schedule-item{position:relative;min-width:0;padding:15px 15px 16px;border-left:1px solid #dfe7ea;border-top:1px solid #e5ecef}
+.kyotsu-schedule-item:nth-child(-n+4){border-top:0}
+.kyotsu-schedule-item:nth-child(4n+1){padding-left:0;border-left:0}
+.kyotsu-schedule-item small{display:block;margin-bottom:5px;color:#8799a1;font-size:9.3px;line-height:1.35;font-weight:800;letter-spacing:.055em}
+.kyotsu-schedule-item b{display:block;color:#244f61;font-size:12.2px;line-height:1.42;font-weight:800}
+.kyotsu-schedule-item time{display:block;margin-top:4px;color:#55727e;font-size:10.5px;line-height:1.55;font-weight:650}
+.kyotsu-schedule-item span{display:block;margin-top:3px;color:#7b8d95;font-size:9.6px;line-height:1.5}
+.kyotsu-schedule-item.is-current{background:#f1f6f7}
+.kyotsu-schedule-item.is-current::after{content:'NOW';position:absolute;right:10px;top:10px;color:#4f8295;font-size:8px;font-weight:850;letter-spacing:.08em}
+.kyotsu-schedule-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 18px;margin-top:11px;color:#758a93;font-size:9.9px;line-height:1.55}
+.kyotsu-schedule-foot p{margin:0}
+.kyotsu-schedule-foot a{padding-bottom:2px;border-bottom:1px solid #9db1b9;color:#39768e;font-weight:750;text-decoration:none}
+
+@media(hover:hover){
+  .kyotsu-schedule-item{transition:background-color .15s ease}
+  .kyotsu-schedule-item:hover{background:#f8fafb}
+  .kyotsu-schedule-item.is-current:hover{background:#edf4f6}
+}
+
+@media(max-width:860px){
+  .kyotsu-schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kyotsu-schedule-item,.kyotsu-schedule-item:nth-child(-n+4){border-top:1px solid #e5ecef}
+  .kyotsu-schedule-item:nth-child(-n+2){border-top:0}
+  .kyotsu-schedule-item:nth-child(4n+1){padding-left:15px;border-left:1px solid #dfe7ea}
+  .kyotsu-schedule-item:nth-child(2n+1){padding-left:0;border-left:0}
+}
+
+@media(max-width:520px){
+  .kyotsu-schedule-section{padding-top:31px!important;padding-bottom:33px!important}
+  .kyotsu-schedule-section .course-head h2{font-size:25px!important}
+  .kyotsu-schedule-status{font-size:10.7px}
+  .kyotsu-schedule-grid{grid-template-columns:1fr 1fr}
+  .kyotsu-schedule-item{padding:13px 11px 14px}
+  .kyotsu-schedule-item:nth-child(4n+1){padding-left:11px}
+  .kyotsu-schedule-item:nth-child(2n+1){padding-left:0}
+  .kyotsu-schedule-item b{font-size:11.5px}
+  .kyotsu-schedule-item time{font-size:9.9px}
+  .kyotsu-schedule-item span{font-size:9.2px}
+}
+
+@media(prefers-reduced-motion:reduce){.kyotsu-schedule-item{transition:none!important}}
