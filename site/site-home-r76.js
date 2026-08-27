@@ -9,7 +9,7 @@
   }
   if(!document.querySelector('link[data-home-r89]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r89.css?v=20260828r89';style.dataset.homeR89='';
+    style.rel='stylesheet';style.href='site-home-r89.css?v=20260828r90';style.dataset.homeR89='';
     document.head.append(style);
   }
 
@@ -66,6 +66,18 @@
           <div class="faculty-person"><b>薛</b><div class="faculty-meta"><span class="faculty-duty">动画实战</span><span class="faculty-school">北京电影学院</span></div></div>
         </div>
       </section>`;
+  }
+
+  /* Resources r90: expose the source platform and keep all five links in one consistent rail. */
+  const resourceRail=document.querySelector('.resource-rail');
+  if(resourceRail){
+    resourceRail.classList.add('resource-rail--expanded');
+    resourceRail.innerHTML=`
+      <a class="resource-link" href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer"><small>微信公众号 · 共通考试</small><b>共通考试｜政策与报考说明</b><span>阅读全文 ↗</span></a>
+      <a class="resource-link" href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer"><small>小红书 · 教师介绍</small><b>栗子老师｜共通考试介绍</b><span>查看内容 ↗</span></a>
+      <a class="resource-link" href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer"><small>小红书 · 合格学生采访</small><b>日本大学一般入试</b><span>查看内容 ↗</span></a>
+      <a class="resource-link" href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer"><small>小红书 · 美术升学</small><b>京都精华大学｜中文入试与美术升学</b><span>查看内容 ↗</span></a>
+      <a class="resource-link" href="https://v.douyin.com/2SzMKWb4gys/" target="_blank" rel="noopener noreferrer"><small>抖音 · 官方账号</small><b>旅人教育官方抖音</b><span>查看主页 ↗</span></a>`;
   }
 
   /* Ultra-light page progress line on the fixed header. */
