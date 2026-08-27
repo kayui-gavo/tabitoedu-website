@@ -14,18 +14,50 @@
     programsIntro.textContent='成绩、兴趣、性格和目标校不同，升学方案也应不同。';
   }
 
-  /* Faculty: remove the redundant Chinese-course note, update the directory, and keep the lead teacher credit concise. */
+  /* Faculty: one person = one visual unit; teaching area and affiliation are separate metadata. */
   document.querySelector('.faculty-note')?.remove();
-  const facultyLines=[...document.querySelectorAll('.faculty-line')];
-  const mathLine=facultyLines.find(line=>line.querySelector('h3')?.textContent.trim()==='数学');
-  if(mathLine){
-    const p=mathLine.querySelector('p');
-    if(p)p.innerHTML='<b>脇村</b>｜筑波大学　　<b>坂野</b>｜早稻田大学　　<b>陆</b>｜东京科学大学　　<b>胡</b>｜东京大学';
-  }
-  const scienceLine=facultyLines.find(line=>line.querySelector('h3')?.textContent.trim()==='理科');
-  if(scienceLine){
-    const p=scienceLine.querySelector('p');
-    if(p)p.innerHTML='<b>刘・陆</b>｜物理　　<b>金</b>｜早稻田大学・物理　　<b>孙・焦</b>｜化学　　<b>周</b>｜生物　　<b>丁</b>｜地学';
+  const facultyDirectory=document.querySelector('.faculty-directory');
+  if(facultyDirectory){
+    facultyDirectory.classList.add('faculty-directory--structured');
+    facultyDirectory.innerHTML=`
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">01</span><h3>数学</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>脇村</b><div class="faculty-meta"><span class="faculty-school">筑波大学</span></div></div>
+          <div class="faculty-person"><b>坂野</b><div class="faculty-meta"><span class="faculty-school">早稻田大学</span></div></div>
+          <div class="faculty-person"><b>陆</b><div class="faculty-meta"><span class="faculty-school">东京科学大学</span></div></div>
+          <div class="faculty-person"><b>胡</b><div class="faculty-meta"><span class="faculty-school">东京大学</span></div></div>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">02</span><h3>理科</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>刘・陆</b><div class="faculty-meta"><span class="faculty-duty">物理</span></div></div>
+          <div class="faculty-person"><b>金</b><div class="faculty-meta"><span class="faculty-duty">物理</span><span class="faculty-school">早稻田大学</span></div></div>
+          <div class="faculty-person"><b>孙・焦</b><div class="faculty-meta"><span class="faculty-duty">化学</span></div></div>
+          <div class="faculty-person"><b>周</b><div class="faculty-meta"><span class="faculty-duty">生物</span></div></div>
+          <div class="faculty-person"><b>丁</b><div class="faculty-meta"><span class="faculty-duty">地学</span></div></div>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">03</span><h3>语言・人文</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>刘</b><div class="faculty-meta"><span class="faculty-duty">国语・英语・政经・世界史</span></div></div>
+          <div class="faculty-person"><b>卢</b><div class="faculty-meta"><span class="faculty-duty">日语</span></div></div>
+          <div class="faculty-person"><b>沈</b><div class="faculty-meta"><span class="faculty-duty">英语</span></div></div>
+          <div class="faculty-person"><b>丁</b><div class="faculty-meta"><span class="faculty-duty">地理</span></div></div>
+        </div>
+      </section>
+      <section class="faculty-line faculty-line--structured">
+        <span class="faculty-no">04</span><h3>美术</h3>
+        <div class="faculty-people">
+          <div class="faculty-person"><b>妮</b><div class="faculty-meta"><span class="faculty-duty">美术</span></div></div>
+          <div class="faculty-person"><b>汤</b><div class="faculty-meta"><span class="faculty-duty">雕刻</span></div></div>
+          <div class="faculty-person"><b>张</b><div class="faculty-meta"><span class="faculty-duty">油画</span></div></div>
+          <div class="faculty-person"><b>兰</b><div class="faculty-meta"><span class="faculty-duty">染织设计</span></div></div>
+          <div class="faculty-person"><b>薛</b><div class="faculty-meta"><span class="faculty-duty">动画实战</span></div></div>
+        </div>
+      </section>`;
   }
   const leadTeacherLink=document.querySelector('.team-head > a[href="https://kayui-gavo.github.io/education/"]');
   if(leadTeacherLink){
