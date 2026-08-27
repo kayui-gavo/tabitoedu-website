@@ -1,0 +1,69 @@
+/* r64 — course panels become image-led editorial compositions. Loaded after r61+r63. */
+
+/* shared course visual language */
+.course-panel-visual.visual-collage{display:grid;position:relative;min-height:422px;overflow:hidden;background:#dce5e9}
+.course-panel-visual.visual-collage figure{position:relative;margin:0;overflow:hidden;background:#dfe7ea}
+.course-panel-visual.visual-collage img{width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.2,.65,.3,1)}
+.course-panel-visual.visual-collage::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,42,57,.02) 36%,rgba(8,42,57,.28) 100%)}
+.course-panel-visual.visual-collage .visual-label{position:absolute;z-index:3;left:24px;bottom:21px;color:#fff;text-shadow:0 1px 10px rgba(5,27,38,.25)}
+.course-panel-visual.visual-collage .visual-label small{display:block;margin-bottom:4px;color:rgba(255,255,255,.77);font-size:10px;font-weight:700;letter-spacing:.035em}
+.course-panel-visual.visual-collage .visual-label strong{display:block;font-size:20px;line-height:1.28;font-weight:700;letter-spacing:-.025em}
+.course-panel-visual.visual-collage .visual-label span{display:block;margin-top:5px;color:rgba(255,255,255,.84);font-size:11px;line-height:1.55}
+.course-panel:hover .course-panel-visual.visual-collage img{transform:scale(1.012)}
+
+/* common test — photographic, not a subject dashboard */
+.common-photo-visual{grid-template-columns:1.38fr .62fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px}
+.common-photo-visual figure:first-child{grid-row:1/3}
+.common-photo-visual figure:first-child img{object-position:center 46%}
+.common-photo-visual figure:nth-child(2) img{object-position:center 38%}
+.common-photo-visual figure:nth-child(3) img{object-position:center 55%}
+.common-photo-visual .visual-label{left:28px;bottom:25px}
+.common-photo-visual .visual-label strong{font-size:28px}
+
+/* EJU — two-picture editorial spread */
+.eju-photo-visual{grid-template-columns:1.16fr .84fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px}
+.eju-photo-visual figure:first-child{grid-row:1/3}
+.eju-photo-visual figure:first-child img{object-position:center 44%}
+.eju-photo-visual figure:nth-child(2) img{object-position:center 42%}
+.eju-photo-visual figure:nth-child(3) img{object-position:center 54%}
+.eju-photo-visual .visual-label strong{font-size:30px;letter-spacing:-.045em}
+
+/* school-specific exam — no Tokyo Science document thumbnails on homepage */
+.school-photo-visual{display:block!important;padding:6px}
+.school-photo-visual figure{height:100%}
+.school-photo-visual figure img{object-position:center 45%}
+.school-photo-visual::before{content:'';position:absolute;z-index:2;inset:6px;background:linear-gradient(90deg,rgba(7,38,52,.46),rgba(7,38,52,.10) 60%,transparent 82%);pointer-events:none}
+.school-photo-visual .visual-label{left:30px;bottom:27px;max-width:390px}
+.school-photo-visual .visual-label strong{font-size:26px}
+.school-photo-visual .school-route{display:flex;align-items:center;gap:9px;margin-top:11px;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.015em}
+.school-photo-visual .school-route i{font-style:normal;color:rgba(255,255,255,.55)}
+
+/* art panel receives the same frame and calmer overlay language */
+.art-visual{gap:6px;padding:6px;background:#dce5e9}
+.art-visual figure{position:relative}
+.art-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 62%,rgba(7,38,52,.16))}
+
+/* make the stage feel more like an editorial spread than a UI widget */
+.course-stage{background:#eef2f4}
+.course-panel-copy{padding-left:42px;padding-right:42px}
+.course-panel-copy .panel-index{letter-spacing:.06em}
+.course-panel-copy h3{font-size:33px}
+.course-panel-copy p{max-width:330px}
+
+@media(max-width:1040px){
+  .course-panel-visual.visual-collage{min-height:350px}
+}
+
+@media(max-width:640px){
+  .course-panel-visual.visual-collage{min-height:300px}
+  .common-photo-visual,.eju-photo-visual{grid-template-columns:1.2fr .8fr;grid-template-rows:147px 147px}
+  .course-panel-visual.visual-collage .visual-label{left:18px;bottom:17px}
+  .course-panel-visual.visual-collage .visual-label strong,.common-photo-visual .visual-label strong,.eju-photo-visual .visual-label strong,.school-photo-visual .visual-label strong{font-size:22px}
+  .school-photo-visual{min-height:300px}
+  .school-photo-visual .school-route{flex-wrap:wrap;gap:6px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .course-panel-visual.visual-collage img{transition:none}
+  .course-panel:hover .course-panel-visual.visual-collage img{transform:none}
+}
