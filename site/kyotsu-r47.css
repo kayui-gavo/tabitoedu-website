@@ -1,4 +1,4 @@
-/* r47 — 共通考试：官方科目全貌 + 常设/按需开课状态。保持 course.css 的 editorial 体系。 */
+/* r78 — 共通考试：统一开设科目，不区分常设/按需；费用规则明确化。 */
 .kyotsu-page .course-hero{padding-bottom:54px}
 .kyotsu-page .course-hero p{max-width:700px}
 .kyotsu-page .course-hero-meta span:first-child{font-weight:800}
@@ -17,20 +17,14 @@
 .kyotsu-official-head span{display:block;margin-top:5px;color:#8799a1;font-size:9.5px;line-height:1.45}
 
 .kyotsu-subject-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;margin:0;padding:0;list-style:none}
-.kyotsu-subject-items li{position:relative;min-width:0;padding:8px 84px 8px 0}
+.kyotsu-subject-items li{position:relative;min-width:0;padding:8px 0}
 .kyotsu-subject-items li:nth-child(n+3){border-top:1px solid #edf1f3}
 .kyotsu-subject-items li.wide{grid-column:1/3;border-top:1px solid #edf1f3}
 .kyotsu-subject-items li.wide:first-child{border-top:0}
 .kyotsu-subject-items b{display:block;color:#315767;font-size:12.65px;line-height:1.5}
 .kyotsu-subject-items span{display:block;margin-top:2px;color:#758890;font-size:10.6px;line-height:1.55}
-.kyotsu-subject-items em{position:absolute;right:0;top:9px;color:#657d88;font-size:8.75px;font-style:normal;font-weight:800;letter-spacing:.04em;white-space:nowrap}
-.kyotsu-subject-items em.regular{color:#2f6d87}
-.kyotsu-subject-items em.request{color:#8b9ba2;font-weight:700}
+.kyotsu-subject-items em,.kyotsu-legend{display:none!important}
 
-.kyotsu-legend{display:flex;flex-wrap:wrap;gap:6px 20px;margin:14px 0 0;color:#71858e;font-size:10.5px;line-height:1.65}
-.kyotsu-legend b{color:#315767;font-size:10.5px}
-.kyotsu-legend span{position:relative;padding-left:10px}
-.kyotsu-legend span::before{content:'';position:absolute;left:0;top:.72em;width:3px;height:3px;border-radius:50%;background:#7897a5}
 .kyotsu-source-link{display:inline-flex;margin-top:15px;padding-bottom:2px;border-bottom:1px solid #93abb5;color:#356e86;font-size:11.5px;font-weight:800;text-decoration:none}
 .kyotsu-source-link:hover{color:#173f55;border-color:#6f909e}
 
@@ -47,6 +41,14 @@
 .kyotsu-support-grid .course-card{min-height:142px}
 .kyotsu-support-grid .course-card b{font-size:14.25px}
 .kyotsu-support-grid .course-card p{font-size:12.25px}
+
+.kyotsu-fee-examples{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kyotsu-fee-examples>div{padding:17px 18px;border-right:1px solid var(--line)}
+.kyotsu-fee-examples>div:last-child{border-right:0}
+.kyotsu-fee-examples small{display:block;color:#82969f;font-size:9.5px;font-weight:800;letter-spacing:.05em}
+.kyotsu-fee-examples strong{display:block;margin-top:4px;color:#173f55;font-size:20px;line-height:1.25}
+.kyotsu-fee-examples span{display:block;margin-top:4px;color:#7b8f98;font-size:9.75px;line-height:1.5}
+.course-table td strong{color:#173f55;font-weight:800}
 
 @media(max-width:1080px){
   .kyotsu-intro-line{grid-template-columns:1fr;gap:6px}
@@ -65,17 +67,22 @@
   .kyotsu-regular-grid>div,.kyotsu-regular-grid>div:nth-child(3){border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
   .kyotsu-regular-grid>div:nth-child(2n){border-right:0}
   .kyotsu-regular-grid>div:last-child{border-right:0;border-bottom:0}
+  .kyotsu-fee-examples{grid-template-columns:1fr 1fr}
+  .kyotsu-fee-examples>div:nth-child(2n){border-right:0}
+  .kyotsu-fee-examples>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
 @media(max-width:620px){
   .kyotsu-page .course-hero{padding-bottom:42px}
   .kyotsu-official-row{grid-template-columns:1fr;gap:7px;padding:17px 0}
   .kyotsu-official-head span{margin-top:3px}
-  .kyotsu-subject-items li{padding:8px 76px 8px 0}
+  .kyotsu-subject-items li{padding:8px 0}
   .kyotsu-subject-items b{font-size:12.25px}
   .kyotsu-subject-items span{font-size:10.25px}
-  .kyotsu-subject-items em{font-size:8.25px}
   .kyotsu-regular-grid{grid-template-columns:1fr}
   .kyotsu-regular-grid>div,.kyotsu-regular-grid>div:nth-child(3),.kyotsu-regular-grid>div:nth-child(2n){border-right:0;border-bottom:1px solid var(--line)}
   .kyotsu-regular-grid>div:last-child{border-bottom:0}
   .kyotsu-basic-note{font-size:10.65px}
+  .kyotsu-fee-examples{grid-template-columns:1fr 1fr}
+  .kyotsu-fee-examples>div{padding:14px}
+  .kyotsu-fee-examples strong{font-size:18px}
 }
