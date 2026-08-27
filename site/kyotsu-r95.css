@@ -10,9 +10,8 @@
 .kyotsu-hero-facts b{font-size:13.1px}
 .kyotsu-hero-facts span{font-size:9.5px}
 
-/* The old compressed classroom thumbnail was only 7.6 KB. Use the original Common Test visual from the legacy site instead. */
-.kyotsu-hero-aside figure{height:210px;background:#e8eef0 url('images/hero_background_1.jpg') center 46%/cover no-repeat}
-.kyotsu-hero-aside figure img{opacity:0}
+/* The hero now uses the original Common Test visual instead of the 7.6 KB classroom thumbnail. */
+.kyotsu-hero-aside figure{height:210px;background:#e8eef0}
 .kyotsu-route-brief{padding:14px 0 1px}
 .kyotsu-route-brief>small{display:block;margin-bottom:7px;color:#7d919a;font-size:9.3px;line-height:1.4;font-weight:800;letter-spacing:.055em}
 .kyotsu-route-line{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:baseline;padding:8px 0;border-top:1px solid #e0e8eb}
