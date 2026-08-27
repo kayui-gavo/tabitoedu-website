@@ -1,10 +1,10 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* r80 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
+  /* r82 contact/access styles are loaded here so the stable homepage HTML does not need another rewrite. */
   if(!document.querySelector('link[data-home-r77]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r80';style.dataset.homeR77='';
+    style.rel='stylesheet';style.href='site-home-r77.css?v=20260828r82';style.dataset.homeR77='';
     document.head.append(style);
   }
 
@@ -42,6 +42,30 @@
         </div>
       </div>`;
     campusCopy.append(access);
+  }
+
+  /* Small useful controls: copy the exact classroom address or open it in Google Maps. */
+  if(campusCopy&&!campusCopy.querySelector('.campus-tools')){
+    const address='〒164-0001 東京都中野区中野1-55-3 フェリスビル 4F';
+    const tools=document.createElement('div');
+    tools.className='campus-tools';
+    tools.innerHTML=`<button type="button" class="campus-copy-address">复制地址</button><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" target="_blank" rel="noopener">Google Maps ↗</a>`;
+    const access=campusCopy.querySelector('.campus-access');
+    campusCopy.insertBefore(tools,access||null);
+    const copyButton=tools.querySelector('.campus-copy-address');
+    copyButton?.addEventListener('click',async()=>{
+      const original='复制地址';
+      try{
+        if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(address);
+        else{
+          const area=document.createElement('textarea');
+          area.value=address;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';
+          document.body.append(area);area.select();document.execCommand('copy');area.remove();
+        }
+        copyButton.textContent='已复制';
+      }catch(_){copyButton.textContent='请手动复制';}
+      window.setTimeout(()=>{copyButton.textContent=original;},1500);
+    });
   }
 
   /* Recruiting belongs in the unused lower-left space of admissions consultation. */
