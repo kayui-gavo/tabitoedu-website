@@ -1,33 +1,22 @@
-/* r69 — performance, stability and progressive-image polish. Loaded last. */
+/* r70 — stability first. Keep rendering deterministic and browser-native. */
 
-/* Header logo: never render a replaced <img> over the hero. A CSS mask fails silently
-   instead of showing a browser broken-image icon, and follows the header text colour. */
-.brand img{display:none!important}
-.brand::before{content:"";display:block;flex:0 0 34px;width:34px;height:34px;background:currentColor;-webkit-mask:url('images/logo1.png') center/contain no-repeat;mask:url('images/logo1.png') center/contain no-repeat}
+/* Header brand: use the original image without inversion or masking. The light disc keeps
+   the mark readable over the dark hero and avoids any filter artefacts. */
+.brand::before{display:none!important}
+.brand img{display:block!important;width:36px!important;height:36px!important;box-sizing:border-box;object-fit:contain;filter:none!important;opacity:1!important;padding:3px;background:rgba(255,255,255,.96);border-radius:50%}
 .site-header:not(.is-scrolled) .brand{color:#fff}
 .site-header.is-scrolled .brand{color:var(--navy)}
-@media(max-width:820px){
-  .brand::before{width:31px;height:31px;flex-basis:31px}
-  .site-header:has(.mobile-menu.open) .brand{color:var(--navy)}
-}
+.site-header.is-scrolled .brand img{background:#fff;box-shadow:0 0 0 1px rgba(18,55,71,.06)}
 
-/* Keep below-the-fold paint/layout work away from the LCP path. */
-.results-section,.programs-section,.people-section,.contact-section{content-visibility:auto}
-.results-section{contain-intrinsic-size:auto 760px}
-.programs-section{contain-intrinsic-size:auto 820px}
-.people-section{contain-intrinsic-size:auto 760px}
-.contact-section{contain-intrinsic-size:auto 720px}
+/* Undo speculative rendering deferral. All sections remain normal layout objects. */
+.results-section,.programs-section,.people-section,.contact-section{content-visibility:visible!important;contain-intrinsic-size:none!important}
 
-/* Stable boxes and quiet progressive reveal: no layout jump while media arrives. */
-.course-panel-visual figure,.result-gallery-card{background:#e9eef0}
-.course-panel-visual img,.result-gallery-card img{transition:opacity .18s ease}
-.course-panel-visual img[data-src],.result-gallery-card:not([data-loaded="true"]) img{opacity:0}
-.course-panel-visual img[src],.result-gallery-card[data-loaded="true"] img{opacity:1}
-
-/* Prevent expensive offscreen media from affecting initial rendering. */
+/* Never hide an image merely because JS has not toggled a state flag yet. */
+.course-panel-visual img,.result-gallery-card img{opacity:1!important;transition:none!important}
+.result-gallery-card{background:#f4f1e9}
 .course-panel[hidden]{display:none!important}
-.course-panel-visual img{content-visibility:auto}
 
-@media(prefers-reduced-motion:reduce){
-  .course-panel-visual img,.result-gallery-card img{transition:none}
+@media(max-width:820px){
+  .brand img{width:32px!important;height:32px!important}
+  .site-header:has(.mobile-menu.open) .brand{color:var(--navy)}
 }
