@@ -4,6 +4,11 @@
     style.rel='stylesheet';style.href='site-home-r96.css?v=20260828r119';style.dataset.homeR96='';
     document.head.append(style);
   }
+  if(!document.querySelector('link[data-home-r120]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='site-home-r120.css?v=20260828r120';style.dataset.homeR120='';
+    document.head.append(style);
+  }
 
   const facultySection=document.getElementById('faculty') || document.querySelector('.people-section');
   const heading=facultySection?.querySelector('.team-head h2, h2');
@@ -26,14 +31,12 @@
     chemistryTeachers.append(teacher);
   }
 
-  /* Keep teacher names polite and consistent across the original and enhanced faculty layouts. */
   facultySection?.querySelectorAll('.faculty-line b, .faculty-person b, .faculty-subject-teachers b').forEach(el=>{
     const raw=el.textContent.trim();
     if(!raw)return;
     el.textContent=raw.split('・').map(name=>name.endsWith('老师')?name:`${name}老师`).join('・');
   });
 
-  /* r119: lightweight section-aware header state, implemented with one passive scroll listener. */
   const sectionLinks=[...document.querySelectorAll('.utility-nav a[href^="#"], .mobile-menu a[href^="#"]')]
     .filter(link=>link.getAttribute('href')!=='#top');
   const sectionTargets=[...new Set(sectionLinks.map(link=>link.getAttribute('href')))]
@@ -89,7 +92,6 @@
     footerBrand.append(direct);
   }
 
-  /* r119 refreshes resource loading, long-title readability and interaction states. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
     script.src='site-home-r112.js?v=20260828r119';
