@@ -1,0 +1,23 @@
+name: Finalize preview r123
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/finalize-preview-r123.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move preview-r40 to verified r123 commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --method PATCH "repos/${GH_REPO}/git/refs/heads/preview-r40" \
+            -f sha='f2cae23fd484520c093045bd40dbffe9a1a4799b' \
+            -F force=true
