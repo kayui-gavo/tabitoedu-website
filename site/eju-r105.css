@@ -6,7 +6,7 @@
 .eju-page .course-hero-grid{grid-template-columns:minmax(0,1fr) 420px;gap:68px}
 .eju-page .eju-hero-media{justify-self:end;width:min(100%,420px);height:292px;border-top:2px solid #173f55;border-bottom:1px solid #d4e0e5;background:#eef3f5;overflow:hidden}
 .eju-page .eju-hero-media figure{display:block;width:100%;height:292px;margin:0;position:relative}
-.eju-page .eju-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.eju-page .course-hero-media.eju-hero-media.single img:first-child{width:100%;height:100%;object-fit:cover;object-position:center 38%}
 .eju-page .eju-hero-media figcaption{position:absolute;left:0;right:auto;bottom:0;padding:6px 9px;background:rgba(16,47,67,.84);color:#fff;font-size:10px;font-weight:700}
 
 /* Small editorial anchors make the sections easier to scan without adding another icon layer. */
