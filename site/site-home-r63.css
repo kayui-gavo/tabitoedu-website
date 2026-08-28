@@ -1,4 +1,4 @@
-/* r63 — cinematic full-bleed hero art direction, layered over r61 base. */
+/* r63/r126 — cinematic full-bleed hero art direction. Mobile defers the 2.3 MB hero photo until the page is interactive. */
 
 /* Header becomes part of the opening image, then resolves to the normal light header. */
 body{padding-top:0}
@@ -66,11 +66,12 @@ html{scroll-padding-top:82px}
   .site-header .shell-wide{width:calc(100% - 32px)}
   .mobile-trigger span{background:#fff}
   .site-header.is-scrolled .mobile-trigger span{background:var(--navy)}
-  .site-header:has(.mobile-menu.open){background:#fff;border-bottom-color:var(--line);backdrop-filter:blur(16px)}
+  .site-header:has(.mobile-menu.open){background:#fff;border-bottom-color:var(--line);backdrop-filter:none}
   .site-header:has(.mobile-menu.open) .brand{color:var(--navy);text-shadow:none}
   .site-header:has(.mobile-menu.open) .brand img{filter:none}
   .site-header:has(.mobile-menu.open) .mobile-trigger span{background:var(--navy)}
-  .hero{min-height:760px;background-image:linear-gradient(90deg,rgba(5,29,43,.92) 0%,rgba(5,29,43,.82) 42%,rgba(5,29,43,.43) 72%,rgba(5,29,43,.18)),linear-gradient(0deg,rgba(5,27,39,.30),transparent 42%),url('images/hero_background_4.jpg');background-position:61% center}
+  /* Mobile starts with the same tonal composition but no multi-megabyte photo. r126 adds the photo after idle. */
+  .hero{min-height:760px;background-image:linear-gradient(90deg,rgba(5,29,43,.94) 0%,rgba(5,29,43,.86) 42%,rgba(7,43,58,.72) 72%,rgba(9,53,69,.62)),linear-gradient(0deg,rgba(5,27,39,.34),transparent 42%);background-position:61% center}
   .hero-grid{width:calc(100% - 40px);min-height:760px;padding:100px 0 150px;align-items:center}
   .hero-copy{width:min(620px,90%)}
   .hero-location{font-size:11px}
@@ -83,10 +84,11 @@ html{scroll-padding-top:82px}
   .trust-item:first-child{padding-left:0}
   .trust-item small{font-size:9.5px}
   .trust-item strong{font-size:13px}
+  .site-header.is-scrolled{backdrop-filter:none}
 }
 
 @media(max-width:640px){
-  .hero{min-height:720px;background-image:linear-gradient(90deg,rgba(5,29,43,.94),rgba(5,29,43,.78) 62%,rgba(5,29,43,.48)),linear-gradient(0deg,rgba(5,27,39,.35),transparent 45%),url('images/hero_background_4.jpg');background-position:64% center}
+  .hero{min-height:720px;background-image:linear-gradient(90deg,rgba(5,29,43,.95),rgba(5,29,43,.84) 62%,rgba(9,52,68,.68)),linear-gradient(0deg,rgba(5,27,39,.38),transparent 45%);background-position:64% center}
   .hero-grid{width:calc(100% - 32px);min-height:720px;padding:88px 0 142px;align-items:center}
   .hero-copy{width:100%}
   .hero-location{margin-bottom:11px}
