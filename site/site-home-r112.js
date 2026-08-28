@@ -10,6 +10,38 @@
     document.head.append(style);
   }
 
+  if(!document.querySelector('style[data-home-r113-compact]')){
+    const compact=document.createElement('style');
+    compact.dataset.homeR113Compact='';
+    compact.textContent=`
+      @media (min-width:901px){
+        .resource-rail--visual .resource-story:nth-child(-n+3){
+          width:202px!important;
+          justify-self:center!important;
+          border-left:1px solid var(--line)!important;
+          border-right:1px solid var(--line)!important;
+        }
+        .resource-rail--visual .resource-story:nth-child(-n+3) .resource-story-media,
+        .resource-rail--visual .resource-story:nth-child(-n+3) .resource-story-copy{
+          width:200px!important;
+          max-width:200px!important;
+        }
+        .resource-rail--visual .resource-story:nth-child(-n+3) .resource-story-media{
+          padding-left:15px!important;
+          padding-right:15px!important;
+        }
+        .resource-rail--visual .resource-story:nth-child(-n+3) .resource-story-copy{
+          padding-left:15px!important;
+          padding-right:15px!important;
+        }
+        .resource-rail--visual .resource-story:nth-child(-n+3) .resource-story-copy span{
+          left:15px!important;
+        }
+      }
+    `;
+    document.head.append(compact);
+  }
+
   const rail=document.querySelector('.resource-rail');
   if(!rail)return;
 
