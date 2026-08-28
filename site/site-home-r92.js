@@ -57,10 +57,10 @@
     footerBrand.append(direct);
   }
 
-  /* r112 is the final homepage admissions-resource layer. */
+  /* r114 keeps the r112 resource layout and refreshes the corrected TUS image asset. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r112';
+    script.src='site-home-r112.js?v=20260828r114';
     script.dataset.homeR112='';
     document.body.append(script);
   }
