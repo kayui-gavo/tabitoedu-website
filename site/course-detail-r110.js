@@ -2,6 +2,15 @@
   if(document.documentElement.dataset.courseDetailR110)return;
   document.documentElement.dataset.courseDetailR110='1';
 
+  if(!document.querySelector('link[data-course-mobile-r124]')){
+    const mobile=document.createElement('link');
+    mobile.rel='stylesheet';
+    mobile.href='course-mobile-r124.css?v=20260828r124';
+    mobile.media='(max-width:820px)';
+    mobile.dataset.courseMobileR124='';
+    document.head.append(mobile);
+  }
+
   const paths={
     person:'<circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4 3.2-6 7-6s6.3 2 7 6"/>',
     target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
