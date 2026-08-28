@@ -1,0 +1,65 @@
+/* r105 — school page hierarchy, evidence readability and document-preview fixes. */
+.school-course-page{font-feature-settings:"palt" 1;text-rendering:optimizeLegibility}
+.school-course-page :focus-visible{outline:2px solid #4c879e;outline-offset:3px}
+
+.school-course-page .course-head>span{position:relative;padding-left:15px}
+.school-course-page .course-head>span::before{content:"";position:absolute;left:1px;top:13px;width:7px;height:7px;border:1px solid #7e9aa6;transform:rotate(45deg)}
+.school-course-page .course-head h2{display:flex;align-items:center;gap:14px}
+.school-course-page .course-head h2::after{content:"";width:34px;height:1px;background:#b8c8ce;flex:0 0 auto}
+
+.school-course-page .school-hero-summary{box-shadow:0 16px 36px rgba(23,63,85,.07)}
+.school-course-page .school-prep-grid>div{position:relative}
+.school-course-page .school-prep-grid>div::after{content:"";position:absolute;left:21px;bottom:0;width:30px;height:2px;background:#6f94a4;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
+
+.school-proof-heading{align-items:end}
+.school-proof-heading p{max-width:610px;text-align:left}
+.proof-row{transition:background-color .16s ease}
+.proof-row-copy h4{font-size:16.5px}
+.proof-row-copy p{max-width:500px}
+.proof-thumb{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}
+
+/* Written-test material needs to be readable as a preview, not three postage stamps. */
+.proof-row:has(.proof-thumbs.questions){grid-template-columns:112px minmax(205px,.58fr) minmax(430px,1.42fr)}
+.proof-thumbs.questions{display:grid;grid-template-columns:repeat(3,minmax(116px,1fr));gap:12px;justify-content:stretch;padding-right:18px}
+.proof-thumbs.questions .proof-thumb{display:flex;flex-direction:column;width:100%;height:164px;padding:7px 7px 28px;background:#eef3f5}
+.proof-thumbs.questions .proof-thumb img{width:100%;height:100%;object-fit:contain;object-position:center top;background:#fff}
+.proof-thumbs.questions .proof-thumb:nth-child(2){border-color:#adc1c9;background:#eaf1f3}
+.proof-thumbs.questions .proof-thumb:nth-child(2) img{transform:scale(1.08);transform-origin:center top;filter:contrast(1.04)}
+.proof-thumb-label{position:absolute;left:8px;bottom:6px;color:#526f7c;font-size:9.5px;font-weight:800;line-height:1.25}
+.proof-thumbs.questions .proof-thumb::after{right:6px;bottom:5px}
+
+/* Results are evidence, but they should not visually overpower the course itself. */
+.proof-thumbs.results{gap:12px}
+.proof-quality-note{max-width:880px}
+.school-case-method>div{position:relative}
+.school-case-method>div::before{content:"";position:absolute;left:16px;top:0;width:28px;height:1px;background:#9db4be}
+
+@supports(content-visibility:auto){
+  .school-course-page main>.course-section{content-visibility:auto;contain-intrinsic-size:1px 650px}
+}
+
+@media(hover:hover){
+  .school-course-page .school-prep-grid>div:hover::after{transform:scaleX(1)}
+  .proof-row:hover{background:#fbfcfc}
+  .proof-thumb:hover{border-color:#9eb5bf;box-shadow:0 7px 18px rgba(23,63,85,.06);transform:translateY(-1px)}
+}
+
+@media(max-width:1040px){
+  .proof-row:has(.proof-thumbs.questions){grid-template-columns:105px minmax(190px,.55fr) minmax(390px,1.45fr)}
+  .proof-thumbs.questions{grid-template-columns:repeat(3,minmax(106px,1fr))}
+}
+@media(max-width:820px){
+  .proof-row:has(.proof-thumbs.questions){grid-template-columns:86px 1fr}
+  .proof-row:has(.proof-thumbs.questions) .proof-thumbs.questions{grid-column:2;grid-template-columns:repeat(3,minmax(105px,1fr));padding:0 18px 0 0;overflow-x:auto}
+  .proof-thumbs.questions .proof-thumb{min-width:105px;height:154px}
+}
+@media(max-width:560px){
+  .school-course-page .course-head>span{padding-left:13px}
+  .school-course-page .course-head h2::after{display:none}
+  .proof-row:has(.proof-thumbs.questions){grid-template-columns:1fr}
+  .proof-row:has(.proof-thumbs.questions) .proof-thumbs.questions{grid-column:auto;grid-template-columns:repeat(3,112px);padding:0;overflow-x:auto;overscroll-behavior-inline:contain}
+  .proof-thumbs.questions .proof-thumb{width:112px;height:154px}
+}
+@media(prefers-reduced-motion:reduce){
+  .school-course-page *,.school-course-page *::before,.school-course-page *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
