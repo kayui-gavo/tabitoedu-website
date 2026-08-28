@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="旅人教育 TABITO EJU 一对一课程：科目辅导、文书、出愿与面试准备。">
+  <meta name="description" content="旅人教育 TABITO EJU 一对一课程：根据志望校与当前成绩安排科目辅导，并对应文书、出愿与面试准备。">
+  <meta name="theme-color" content="#102f43">
   <title>EJU 一对一｜旅人教育 TABITO</title>
   <link rel="icon" href="images/logo1.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="course.css?v=20260825r33case">
-  <link rel="stylesheet" href="eju-r105.css?v=20260828r105">
+  <link rel="stylesheet" href="eju-r109.css?v=20260828r109">
 </head>
 <body class="course-page eju-page">
 <header class="course-top">
@@ -31,55 +32,61 @@
 <main>
 <section class="course-hero eju-hero">
   <div class="course-shell course-hero-grid">
-    <div>
+    <div class="eju-hero-copy">
       <span class="course-kicker">日本留学试验 EJU</span>
       <h1>EJU 一对一</h1>
-      <p>目前 EJU 课程仅提供一对一授课。根据志望校要求和现有成绩确定科目与课时；需要文书、出愿或面试准备时，可在同一阶段衔接。</p>
-      <div class="course-hero-meta"><span>一对一授课</span><span>科目辅导</span><span>文书・出愿</span><span>面试</span></div>
-      <div class="course-actions"><a class="primary" href="index.html#contact">咨询 EJU 一对一</a><a class="secondary" href="index.html#programs">返回课程总览</a></div>
+      <p class="eju-hero-lede">目前 EJU 课程仅提供一对一授课。根据志望校要求和现有成绩确定科目与课时；需要文书、出愿或面试准备时，可在同一阶段衔接。</p>
+      <div class="eju-hero-facts" aria-label="EJU 一对一课程要点">
+        <div><small>01</small><b>授课形式</b><span>1 : 1 个别指导</span></div>
+        <div><small>02</small><b>课程起点</b><span>志望校・当前成绩</span></div>
+        <div><small>03</small><b>辅导范围</b><span>科目・文书・面试</span></div>
+      </div>
+      <div class="course-actions"><a class="primary" href="index.html#contact">咨询 EJU 一对一</a><a class="secondary" href="#scope">查看辅导内容</a></div>
     </div>
-    <div class="course-hero-media single eju-hero-media">
+    <aside class="eju-hero-visual" aria-label="旅人教育 EJU 一对一课程">
       <figure><img src="images/tabito-classroom-seminar.webp" alt="旅人教育中野教室个别指导空间" fetchpriority="high" decoding="async"><figcaption>东京・中野教室｜个别指导空间</figcaption></figure>
-    </div>
+      <div class="eju-hero-visual-meta"><div><strong>1 : 1</strong><span>仅提供一对一</span></div><p>已有 EJU 成绩也可以直接从薄弱科目开始，不需要重新从完整课程起步。</p></div>
+    </aside>
   </div>
 </section>
 
-<section class="course-section">
+<nav class="eju-jumpnav" aria-label="EJU 一对一页面导航"><div class="course-shell"><a href="#scope">辅导内容</a><a href="#plan">开始前</a><a href="#cases">常见情况</a></div></nav>
+
+<section id="scope" class="course-section">
   <div class="course-shell">
-    <div class="course-head"><span>一对一课程</span><div><h2>EJU 科目与出愿准备</h2><p>从需要补强的科目开始，必要时衔接志望理由书、出愿资料与面试。</p></div></div>
-    <div class="course-grid">
-      <div class="course-card"><b>科目辅导</b><p>围绕志望校要求和当前薄弱点安排对应科目，授课内容随进度调整。</p></div>
-      <div class="course-card"><b>志望理由・文书</b><p>整理报考理由、经历和表达逻辑，并修改出愿文书。</p></div>
-      <div class="course-card"><b>面试准备</b><p>根据志望校准备常见问题、回答内容与模拟面试。</p></div>
+    <div class="course-head"><span>辅导内容</span><div><h2>EJU 科目与出愿准备</h2><p>从需要补强的科目开始；报考阶段需要文书、出愿或面试时，再把对应内容加入课程。</p></div></div>
+    <div class="eju-scope-grid">
+      <article data-index="01"><small>01</small><h3>科目辅导</h3><p>围绕志望校要求和当前薄弱点安排对应科目，授课内容随进度调整。</p></article>
+      <article data-index="02"><small>02</small><h3>志望理由・文书</h3><p>整理报考理由、经历和表达逻辑，并修改出愿文书。</p></article>
+      <article data-index="03"><small>03</small><h3>面试准备</h3><p>根据志望校准备常见问题、回答内容与模拟面试。</p></article>
     </div>
   </div>
 </section>
 
-<section class="course-section alt">
+<section id="plan" class="course-section alt">
   <div class="course-shell">
-    <div class="course-head"><span>开始前</span><div><h2>报考条件和当前成绩</h2><p>咨询时带上志望校、现有成绩与预计出愿时间，课程内容和授课频率会更容易确定。</p></div></div>
-    <div class="course-list">
-      <div><b>01 志望校</b><span>学校、学部、入试方式与出愿时间</span></div>
-      <div><b>02 当前成绩</b><span>EJU 成绩，以及日语、英语和校内考的准备情况</span></div>
-      <div><b>03 授课科目</b><span>需要补强的科目与希望的授课频率</span></div>
-      <div><b>04 出愿・面试</b><span>是否需要文书、手续或面试方面的辅导</span></div>
-    </div>
+    <div class="course-head"><span>开始前</span><div><h2>先确认报考条件和当前进度</h2><p>咨询时提供下面几项信息，就可以判断需要补哪些科目，以及授课从哪里开始。</p></div></div>
+    <ol class="eju-plan">
+      <li><small>01</small><b>志望校</b><span>学校、学部、入试方式与出愿时间</span></li>
+      <li><small>02</small><b>当前成绩</b><span>EJU 成绩，以及日语、英语和校内考的准备情况</span></li>
+      <li><small>03</small><b>授课科目</b><span>需要补强的科目与希望的授课频率</span></li>
+      <li><small>04</small><b>出愿・面试</b><span>是否需要文书、手续或面试方面的辅导</span></li>
+    </ol>
   </div>
 </section>
 
-<section class="course-section">
+<section id="cases" class="course-section">
   <div class="course-shell">
-    <div class="course-head"><span>常见情况</span><div><h2>已有成绩，也可以从薄弱科目开始</h2><p>不需要从完整课程重新开始，可根据当前阶段补足最需要的部分。</p></div></div>
-    <div class="course-case">
-      <article><h3>已有 EJU 成绩</h3><p>集中补强个别科目，或在报考阶段追加文书与面试准备。</p></article>
-      <article><h3>出愿时间较近</h3><p>根据剩余时间安排授课，并同步处理出愿材料和面试准备。</p></article>
+    <div class="course-head"><span>常见情况</span><div><h2>不需要从完整课程重新开始</h2><p>一对一课程会从当前阶段最需要处理的部分开始。</p></div></div>
+    <div class="eju-case-grid">
+      <article><div class="eju-case-index">CASE<strong>01</strong></div><div><h3>已有 EJU 成绩</h3><p>集中补强个别科目，或在报考阶段追加文书与面试准备。</p></div></article>
+      <article><div class="eju-case-index">CASE<strong>02</strong></div><div><h3>出愿时间较近</h3><p>根据剩余时间安排授课，并同步处理出愿材料和面试准备。</p></div></article>
     </div>
+    <p class="eju-case-note">具体授课科目、课时和频率会根据志望校、现有成绩与考试时间确认。</p>
   </div>
 </section>
 
-<section class="course-switch">
-  <div class="course-shell"><h2>其他课程</h2><div class="course-switch-grid"><a href="art.html"><span>美术升学</span><i>→</i></a><a href="kyotsu.html"><span>共通考试</span><i>→</i></a><a class="active" href="eju.html"><span>EJU 一对一</span><i>当前</i></a><a href="school.html"><span>校内考对策</span><i>→</i></a></div></div>
-</section>
+<section class="course-switch"><div class="course-shell"><h2>其他课程</h2><div class="course-switch-grid"><a href="art.html"><span>美术升学</span><i>→</i></a><a href="kyotsu.html"><span>共通考试</span><i>→</i></a><a class="active" href="eju.html"><span>EJU 一对一</span><i>当前</i></a><a href="school.html"><span>校内考对策</span><i>→</i></a></div></div></section>
 <section class="course-cta"><div class="course-shell"><div><h2>咨询 EJU 一对一</h2><p>请提供志望校、现有 EJU 成绩、日语情况和预计出愿时间。</p></div><a href="index.html#contact">查看咨询方式</a></div></section>
 </main>
 
