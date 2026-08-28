@@ -1,12 +1,12 @@
 (()=>{
   if(!document.querySelector('link[data-home-r96]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r96.css?v=20260828r119';style.dataset.homeR96='';
+    style.rel='stylesheet';style.href='site-home-r96.css?v=20260828r121';style.dataset.homeR96='';
     document.head.append(style);
   }
   if(!document.querySelector('link[data-home-r120]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r120.css?v=20260828r120';style.dataset.homeR120='';
+    style.rel='stylesheet';style.href='site-home-r120.css?v=20260828r121';style.dataset.homeR120='';
     document.head.append(style);
   }
 
@@ -94,7 +94,7 @@
 
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r119';
+    script.src='site-home-r112.js?v=20260828r121';
     script.dataset.homeR112='';
     document.body.append(script);
   }
