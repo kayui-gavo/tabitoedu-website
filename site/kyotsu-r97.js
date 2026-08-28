@@ -32,41 +32,41 @@
   const items=[...document.querySelectorAll('.kyotsu-schedule-item[data-stage]')];
   const mark=stage=>items.forEach(item=>item.classList.toggle('is-current',item.dataset.stage===stage));
 
-  let text='令和9年度（2027年1月实施）的最新官方日程。';
+  let text='令和9年度（2027年1月实施）的官方日程。';
   let stage='';
 
   if(today<20260701){
-    text='7月1日 10:00 起可以创建共通テスト出愿网站个人页面（My Page）。';
+    text='My Page 将于 7月1日 10:00 开放。';
     stage='mypage';
   }else if(today<=20260914){
-    text='当前：个人页面（My Page）已开放；正式出愿从 9月15日 10:00 开始。';
+    text='My Page 已开放；出愿登记从 9月15日 10:00 开始。';
     stage='mypage';
   }else if(today<=20261002){
-    text='当前：出愿受付中。出愿内容登记至 10月2日 17:00；检定费支付至当日 23:59。';
+    text='出愿受理中：内容登记截至 10月2日 17:00，检定费支付截至 23:59。';
     stage='entry';
   }else if(today<=20261008){
-    text='出愿受付已经结束。10月9日开始确认・订正出愿内容。';
+    text='出愿登记已结束；10月9日起可确认、订正出愿内容。';
     stage='correction';
   }else if(today<=20261016){
-    text='当前：出愿内容确认・订正期间，截止 10月16日 17:00。';
+    text='出愿内容确认・订正期间，截止 10月16日 17:00。';
     stage='correction';
   }else if(today<=20261203){
-    text='出愿手续阶段结束。12月4日 10:00 起可以取得准考证（受験票）。';
+    text='出愿手续已结束；12月4日 10:00 起可取得准考证（受験票）。';
     stage='ticket';
   }else if(today<=20270115){
-    text='当前：可以从个人页面取得准考证（受験票）。正式考试为 2027年1月16日、17日。';
+    text='准考证（受験票）已开放取得；正式考试为 2027年1月16日、17日。';
     stage='ticket';
   }else if(today<=20270117){
-    text='当前：令和9年度大学入学共通テスト正式考试（本試験）。';
+    text='令和9年度大学入学共通テスト正式考试期间。';
     stage='exam';
   }else if(today<=20270122){
-    text='正式考试已经结束；追试（追試験）安排在 1月23日、24日。';
+    text='正式考试已结束；追试安排在 1月23日、24日。';
     stage='makeup';
   }else if(today<=20270124){
-    text='当前：令和9年度大学入学共通テスト追试（追試験）。';
+    text='令和9年度大学入学共通テスト追试期间。';
     stage='makeup';
   }else{
-    text='令和9年度正式考试与追试已经结束；后续请确认大学入试中心公布的成绩与相关日程。';
+    text='令和9年度正式考试及追试已结束。后续信息请查看大学入试中心公告。';
   }
 
   status.textContent=text;
