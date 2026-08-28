@@ -57,10 +57,10 @@
     footerBrand.append(direct);
   }
 
-  /* r116 uses the validated TUS cover file and bypasses the broken chunk assembly. */
+  /* r117 adds illustrated covers to the WeChat guide and media report resources. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r116';
+    script.src='site-home-r112.js?v=20260828r117';
     script.dataset.homeR112='';
     document.body.append(script);
   }
