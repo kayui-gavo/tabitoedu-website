@@ -1,7 +1,7 @@
 (()=>{
   if(!document.querySelector('link[data-home-r96]')){
     const style=document.createElement('link');
-    style.rel='stylesheet';style.href='site-home-r96.css?v=20260828r96';style.dataset.homeR96='';
+    style.rel='stylesheet';style.href='site-home-r96.css?v=20260828r119';style.dataset.homeR96='';
     document.head.append(style);
   }
 
@@ -32,6 +32,31 @@
     if(!raw)return;
     el.textContent=raw.split('・').map(name=>name.endsWith('老师')?name:`${name}老师`).join('・');
   });
+
+  /* r119: lightweight section-aware header state, implemented with one passive scroll listener. */
+  const sectionLinks=[...document.querySelectorAll('.utility-nav a[href^="#"], .mobile-menu a[href^="#"]')]
+    .filter(link=>link.getAttribute('href')!=='#top');
+  const sectionTargets=[...new Set(sectionLinks.map(link=>link.getAttribute('href')))]
+    .map(hash=>document.querySelector(hash)).filter(Boolean);
+  let navTicking=false;
+  const syncCurrentSection=()=>{
+    const y=window.scrollY+Math.min(160,Math.max(90,window.innerHeight*.18));
+    let current='';
+    sectionTargets.forEach(section=>{if(section.offsetTop<=y)current=`#${section.id}`;});
+    sectionLinks.forEach(link=>{
+      if(link.getAttribute('href')===current)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+    navTicking=false;
+  };
+  const requestCurrentSection=()=>{
+    if(navTicking)return;
+    navTicking=true;
+    requestAnimationFrame(syncCurrentSection);
+  };
+  window.addEventListener('scroll',requestCurrentSection,{passive:true});
+  window.addEventListener('resize',requestCurrentSection,{passive:true});
+  syncCurrentSection();
 
   const kurikoResource=[...document.querySelectorAll('.resource-link')].find(link=>link.href.includes('xhslink.cn/o/5Djzx1FPbYQ'));
   const kurikoPlatform=kurikoResource?.querySelector('small');
@@ -64,10 +89,10 @@
     footerBrand.append(direct);
   }
 
-  /* r118 refreshes resource titles and faculty honorifics. */
+  /* r119 refreshes resource loading, long-title readability and interaction states. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r118';
+    script.src='site-home-r112.js?v=20260828r119';
     script.dataset.homeR112='';
     document.body.append(script);
   }
