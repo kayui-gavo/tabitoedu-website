@@ -7,7 +7,7 @@
   }
 
   const programsIntro=document.querySelector('#programs .section-head p');
-  if(programsIntro)programsIntro.textContent='成绩、兴趣、性格和目标校不同，升学方案也应不同。';
+  if(programsIntro)programsIntro.textContent='共通考试、EJU、校内考和美术升学，按目标校、考试方式与准备阶段选择。';
 
   /* Stable first-pass faculty markup. r76 will enrich affiliations afterwards. */
   document.querySelector('.faculty-note')?.remove();
@@ -71,7 +71,7 @@
       <div class="shell">
         <header class="section-head"><h2>公司介绍</h2><p><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(16,56,74,.28);padding-bottom:2px">百度百科 ↗</a></p></header>
         <div class="company-overview">
-          <div class="company-copy"><h3><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">中国旅人教育集团株式会社</a></h3><p>中国旅人教育集团株式会社成立于2025年3月27日，是跨国教育服务企业，总部位于日本东京都中野区中野1-55-3 <span style="white-space:nowrap">Ferris大厦4层</span>。主营中日留学服务、研学、国际贸易及国际高中课程合作，助力日本大学升学考试体系融入中国国际高中课程体系。</p></div>
+          <div class="company-copy"><h3><a href="${baikeUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">中国旅人教育集团株式会社</a></h3><p>中国旅人教育集团株式会社成立于2025年3月27日，总部位于日本东京都中野区中野1-55-3 <span style="white-space:nowrap">Ferris大厦4层</span>。主营中日留学服务、研学、国际贸易及国际高中课程合作，并开展日本大学升学考试相关课程。</p></div>
           <dl class="company-facts"><div><dt>成立时间</dt><dd>2025年3月27日</dd></div><div><dt>核心业务</dt><dd>留学服务</dd></div><div><dt>总部地址</dt><dd>日本东京都中野区中野1-55-3<br><span style="white-space:nowrap">Ferris大厦4层</span></dd></div></dl>
         </div>
         <div class="company-details">
@@ -132,11 +132,12 @@
     choice.addEventListener('touchstart',warm,{once:true,passive:true});
   });
 
-  /* Result proofs are not part of the critical hero path. Load after window load,
-     while hover/focus/touch still makes the requested proof immediate. */
+  /* Result proofs are prefetched near the viewport instead of in one post-load burst. */
   const cards=[...document.querySelectorAll('[data-result-b64]')];
   const hydrate=async card=>{
     if(card.dataset.imageSrc)return card.dataset.imageSrc;
+    if(card.dataset.loading==='true')return null;
+    card.dataset.loading='true';
     try{
       const response=await fetch(card.dataset.resultB64,{cache:'force-cache'});
       if(!response.ok)throw new Error(`HTTP ${response.status}`);
@@ -146,6 +147,7 @@
       if(img){img.src=src;img.loading='lazy';img.fetchPriority='low';try{await img.decode?.();}catch(_){} }
       card.dataset.imageSrc=src;card.dataset.loaded='true';return src;
     }catch(error){card.dataset.error='true';console.error('Result image failed to load',error);return null;}
+    finally{delete card.dataset.loading;}
   };
   cards.forEach(card=>{
     const load=()=>hydrate(card);
@@ -153,14 +155,23 @@
     card.addEventListener('focus',load,{once:true});
     card.addEventListener('touchstart',load,{once:true,passive:true});
   });
-  const hydrateResults=()=>cards.forEach(hydrate);
-  if(document.readyState==='complete')setTimeout(hydrateResults,0);
-  else window.addEventListener('load',hydrateResults,{once:true});
+  if('IntersectionObserver' in window){
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      hydrate(entry.target);
+      observer.unobserve(entry.target);
+    }),{rootMargin:'1000px 0px'});
+    cards.forEach(card=>observer.observe(card));
+  }else{
+    const schedule=()=>cards.forEach(hydrate);
+    if('requestIdleCallback' in window)requestIdleCallback(schedule,{timeout:1800});
+    else setTimeout(schedule,900);
+  }
 
   const loadR92=()=>{
     if(document.querySelector('script[data-home-r92]'))return;
     const script=document.createElement('script');
-    script.src='site-home-r92.js?v=20260828r119';script.dataset.homeR92='';
+    script.src='site-home-r92.js?v=20260828r121';script.dataset.homeR92='';
     document.body.append(script);
   };
 
