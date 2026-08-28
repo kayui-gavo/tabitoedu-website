@@ -1,10 +1,58 @@
-/* r96 — official phone/email replace the former personal recruiting mailbox. */
+/* r96/r119 — direct contact + homepage readability and interaction polish. */
 .contact-direct{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.18)}
 .contact-direct a{color:#edf5f7;font-size:10.2px;line-height:1.5;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.42);padding-bottom:2px;transition:border-color .16s ease,transform .16s ease}
 .contact-recruit-contact{display:flex;flex-wrap:wrap;gap:6px 15px;margin-top:9px}
 .contact-recruit .contact-recruit-contact a{margin-top:0}
 .footer-direct-contact{display:flex;flex-wrap:wrap;gap:5px 13px;margin-top:8px}
 .footer-direct-contact a{color:inherit;font-size:9.5px;line-height:1.45;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.26)}
-@media(hover:hover){.contact-direct a:hover,.contact-direct a:focus-visible,.contact-recruit-contact a:hover,.contact-recruit-contact a:focus-visible{border-color:#fff;transform:translateX(1px)}}
+
+/* r119 — improve scanability without changing the established editorial layout. */
+html{scroll-padding-top:84px}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a,button{touch-action:manipulation}
+#results,#programs,#faculty,#company,#contact{scroll-margin-top:84px}
+.section-head p{max-width:66ch;line-height:1.78}
+.hero-lede{max-width:32em;line-height:1.72}
+.course-panel-copy p,.company-copy p,.company-detail p,.campus-copy p,.contact-copy>p{max-width:66ch;line-height:1.78}
+.course-panel-copy a,.lead-teacher-link,.resources-head a,.campus-tools a,.campus-tools button{transition:color .16s ease,border-color .16s ease,background-color .16s ease}
+
+/* Course selector: clearer selected state and larger keyboard/touch target. */
+.course-choice{min-height:68px}
+.course-choice[aria-selected="true"]{box-shadow:inset 3px 0 0 #2f7289}
+.course-choice:focus-visible,.hero-actions a:focus-visible,.utility-nav a:focus-visible,.mobile-menu a:focus-visible,.course-panel-copy a:focus-visible,.resource-story:focus-visible,.result-gallery-card:focus-visible,.results-gallery-controls button:focus-visible,.lead-teacher-link:focus-visible,.campus-tools a:focus-visible,.campus-tools button:focus-visible{outline:2px solid #5e91a4!important;outline-offset:3px!important}
+
+/* Result gallery: easier horizontal reading and better button ergonomics. */
+.result-gallery{scroll-snap-type:x proximity;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.result-gallery-card{scroll-snap-align:start;scroll-snap-stop:normal}
+.results-gallery-controls button{min-width:38px;min-height:38px}
+
+/* Faculty: names should win the hierarchy over affiliation metadata. */
+.faculty-directory--structured .faculty-person b,.faculty-subject-teachers b{font-size:13.8px;line-height:1.45}
+.faculty-duty,.faculty-school,.faculty-subject-teachers span{line-height:1.55}
+
+/* Resource archive: long article titles remain readable even on the compact first row. */
+.resource-rail--visual .resource-story-copy b{font-size:13.6px!important;line-height:1.62!important;letter-spacing:-.01em!important;overflow-wrap:anywhere}
+.resource-rail--visual .resource-story-copy small{line-height:1.5!important}
+.resource-rail--visual .resource-story{outline:none}
+
+@media(hover:hover){
+  .contact-direct a:hover,.contact-direct a:focus-visible,.contact-recruit-contact a:hover,.contact-recruit-contact a:focus-visible{border-color:#fff;transform:translateX(1px)}
+  .course-choice:hover{background-color:rgba(54,111,132,.035)}
+}
+@media(max-width:720px){
+  html{scroll-padding-top:72px}
+  #results,#programs,#faculty,#company,#contact{scroll-margin-top:72px}
+  .section-head p,.course-panel-copy p,.company-copy p,.company-detail p,.campus-copy p,.contact-copy>p{line-height:1.72}
+  .course-choice{min-height:62px}
+  .resource-rail--visual .resource-story-copy b{font-size:13px!important;line-height:1.58!important}
+}
 @media(max-width:560px){.contact-direct,.contact-recruit-contact{display:grid;gap:6px}}
-@media(prefers-reduced-motion:reduce){.contact-direct a,.contact-recruit-contact a{transition:none!important}.contact-direct a:hover,.contact-recruit-contact a:hover{transform:none!important}}
+@media(max-width:420px){
+  .resource-rail--visual .resource-story-copy b{font-size:12.5px!important;line-height:1.55!important}
+  .faculty-directory--structured .faculty-person b,.faculty-subject-teachers b{font-size:13.2px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  .contact-direct a,.contact-recruit-contact a,.course-panel-copy a,.lead-teacher-link,.resources-head a,.campus-tools a,.campus-tools button{transition:none!important}
+  .contact-direct a:hover,.contact-recruit-contact a:hover{transform:none!important}
+}
