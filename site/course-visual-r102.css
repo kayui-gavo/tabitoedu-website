@@ -47,8 +47,8 @@
 @media(hover:hover){.art-page .art-team-person:hover{background:#fbfcfc}.art-page .art-team-person:hover::after{transform:scaleY(1)}}
 
 .art-page .art-work-head h3::after{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:18px;margin-left:7px;padding:0 5px;border:1px solid #d3dfe3;background:#f8fafb;color:#6d858f;font-size:9px;line-height:1;font-weight:800;vertical-align:2px}
-.art-page .art-work-group:first-of-type .art-work-head h3::after{content:"5"}
-.art-page .art-work-group:nth-of-type(2) .art-work-head h3::after{content:"8"}
+.art-page #student-works .art-work-head h3::after{content:"5"}
+.art-page .art-work-group:not(#student-works) .art-work-head h3::after{content:"8"}
 .art-page .art-work-rail figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);pointer-events:none}
 .art-page .art-work-rail figcaption{backdrop-filter:blur(3px)}
 
