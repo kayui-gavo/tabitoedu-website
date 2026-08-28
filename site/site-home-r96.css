@@ -16,6 +16,10 @@ a,button{touch-action:manipulation}
 .course-panel-copy p,.company-copy p,.company-detail p,.campus-copy p,.contact-copy>p{max-width:66ch;line-height:1.78}
 .course-panel-copy a,.lead-teacher-link,.resources-head a,.campus-tools a,.campus-tools button{transition:color .16s ease,border-color .16s ease,background-color .16s ease}
 
+/* Section-aware header feedback: restrained underline, no extra chrome. */
+.utility-nav a[aria-current="location"]{box-shadow:inset 0 -2px 0 #5e91a4;color:#214f61}
+.mobile-menu a[aria-current="location"]{color:#214f61;font-weight:800}
+
 /* Course selector: clearer selected state and larger keyboard/touch target. */
 .course-choice{min-height:68px}
 .course-choice[aria-selected="true"]{box-shadow:inset 3px 0 0 #2f7289}
