@@ -81,4 +81,11 @@
       <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r123/media.webp?v=20260828r123" alt="旅人教育媒体报道采访彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="480" height="360"></figure>
       <div class="resource-story-copy"><small>06 · 中华网</small><b>媒体报道｜谈近十年中国高考外语科目中的变革</b><span>阅读全文</span></div>
     </a>`;
+
+  if(!document.querySelector('script[data-home-r125]')){
+    const interaction=document.createElement('script');
+    interaction.src='site-home-r125.js?v=20260828r125';
+    interaction.dataset.homeR125='';
+    document.body.append(interaction);
+  }
 })();
