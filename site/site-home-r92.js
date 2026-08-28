@@ -11,7 +11,7 @@
 
   const mathLine=[...(facultySection?.querySelectorAll('.faculty-line')||[])].find(line=>line.querySelector('h3')?.textContent.trim()==='数学');
   const mathPeople=mathLine?.querySelector('.faculty-people');
-  if(mathPeople && ![...mathPeople.querySelectorAll('.faculty-person b')].some(el=>el.textContent.trim()==='吴')){
+  if(mathPeople && ![...mathPeople.querySelectorAll('.faculty-person b')].some(el=>el.textContent.trim().replace(/老师$/,'')==='吴')){
     const person=document.createElement('div');
     person.className='faculty-person';
     person.innerHTML='<b>吴</b><div class="faculty-meta"><span class="faculty-school">东京理科大学</span></div>';
@@ -20,11 +20,18 @@
 
   const chemistry=[...(facultySection?.querySelectorAll('.faculty-subject-col')||[])].find(col=>col.querySelector('h4')?.textContent.trim()==='化学');
   const chemistryTeachers=chemistry?.querySelector('.faculty-subject-teachers');
-  if(chemistryTeachers && ![...chemistryTeachers.querySelectorAll('b')].some(el=>el.textContent.trim()==='纪')){
+  if(chemistryTeachers && ![...chemistryTeachers.querySelectorAll('b')].some(el=>el.textContent.trim().replace(/老师$/,'')==='纪')){
     const teacher=document.createElement('p');
     teacher.innerHTML='<b>纪</b><span>东京理科大学</span>';
     chemistryTeachers.append(teacher);
   }
+
+  /* Keep teacher names polite and consistent across the original and enhanced faculty layouts. */
+  facultySection?.querySelectorAll('.faculty-line b, .faculty-person b, .faculty-subject-teachers b').forEach(el=>{
+    const raw=el.textContent.trim();
+    if(!raw)return;
+    el.textContent=raw.split('・').map(name=>name.endsWith('老师')?name:`${name}老师`).join('・');
+  });
 
   const kurikoResource=[...document.querySelectorAll('.resource-link')].find(link=>link.href.includes('xhslink.cn/o/5Djzx1FPbYQ'));
   const kurikoPlatform=kurikoResource?.querySelector('small');
@@ -57,10 +64,10 @@
     footerBrand.append(direct);
   }
 
-  /* r117 adds illustrated covers to the WeChat guide and media report resources. */
+  /* r118 refreshes resource titles and faculty honorifics. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r117';
+    script.src='site-home-r112.js?v=20260828r118';
     script.dataset.homeR112='';
     document.body.append(script);
   }
