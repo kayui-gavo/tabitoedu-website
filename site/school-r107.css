@@ -1,0 +1,101 @@
+/* r107 — preserve source-image scale. Low-resolution evidence stays compact; no CSS enlargement. */
+
+.school-proof-heading{grid-template-columns:220px minmax(0,1fr)}
+.school-proof-heading p{max-width:650px}
+.school-proof-block{margin-top:34px}
+
+/* Two representative teaching materials only. Treat them as documentary thumbnails,
+   not as full-page document viewers. */
+.school-proof-showcase{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0;
+  background:#fff;
+  border-top:2px solid #173f55;
+  border-bottom:1px solid #cad8de;
+}
+.school-proof-document{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 166px;
+  gap:18px;
+  align-items:center;
+  min-width:0;
+  margin:0;
+  padding:18px 20px;
+  background:#fff;
+}
+.school-proof-document+ .school-proof-document{border-left:1px solid #dbe4e8}
+.school-proof-document-media{
+  grid-column:2;
+  grid-row:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:166px;
+  height:198px;
+  padding:6px;
+  background:#eef3f5;
+  border:1px solid #d7e1e5;
+  overflow:hidden;
+}
+.school-proof-document img{
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+  image-rendering:auto;
+}
+.school-proof-document figcaption{
+  grid-column:1;
+  grid-row:1;
+  display:block;
+  padding:0;
+  background:transparent;
+  border:0;
+}
+.school-proof-document figcaption b{display:block;color:#315767;font-size:14px;line-height:1.5}
+.school-proof-document figcaption span{display:block;margin-top:6px;color:#81949c;font-size:10.5px;line-height:1.55}
+
+/* Secondary evidence remains deliberately small and never stretches beyond its intrinsic size. */
+.proof-ledger--secondary{margin-top:20px;border-top:1px solid #cbd8dd}
+.proof-ledger--secondary .proof-row{grid-template-columns:112px minmax(250px,.8fr) minmax(220px,1.2fr)}
+.proof-ledger--secondary .proof-thumbs{pointer-events:none}
+.proof-ledger--secondary .proof-thumb{cursor:default}
+.proof-ledger--secondary .proof-thumb img{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  margin:auto;
+  object-fit:contain;
+}
+.school-course-page .proof-thumb::after{display:none!important}
+.proof-ledger--secondary .proof-thumb:hover{transform:none;box-shadow:none}
+.school-proof-showcase .proof-thumb-label{display:none}
+.school-proof-block .proof-quality-note{display:none}
+
+@media(max-width:1040px){
+  .school-proof-document{grid-template-columns:minmax(0,1fr) 146px;gap:14px;padding:16px}
+  .school-proof-document-media{width:146px;height:176px}
+  .proof-ledger--secondary .proof-row{grid-template-columns:105px minmax(220px,.8fr) minmax(210px,1.2fr)}
+}
+@media(max-width:820px){
+  .school-proof-showcase{grid-template-columns:1fr}
+  .school-proof-document+ .school-proof-document{border-left:0;border-top:1px solid #dbe4e8}
+  .school-proof-document{grid-template-columns:minmax(0,1fr) 150px}
+  .school-proof-document-media{width:150px;height:180px}
+  .proof-ledger--secondary .proof-row{grid-template-columns:86px 1fr}
+  .proof-ledger--secondary .proof-thumbs{grid-column:2}
+}
+@media(max-width:560px){
+  .school-proof-document{grid-template-columns:minmax(0,1fr) 116px;gap:12px;padding:14px}
+  .school-proof-document-media{width:116px;height:142px;padding:5px}
+  .school-proof-document figcaption b{font-size:12.5px}
+  .school-proof-document figcaption span{font-size:10px}
+  .proof-ledger--secondary .proof-row{grid-template-columns:1fr}
+  .proof-ledger--secondary .proof-thumbs{grid-column:auto}
+}
