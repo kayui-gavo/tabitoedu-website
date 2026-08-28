@@ -11,6 +11,14 @@
     mobile.dataset.courseMobileR124='';
     document.head.append(mobile);
   }
+  if(!document.querySelector('link[data-course-mobile-perf-r126]')){
+    const perf=document.createElement('link');
+    perf.rel='stylesheet';
+    perf.href='course-mobile-perf-r126.css?v=20260828r126';
+    perf.media='(max-width:820px)';
+    perf.dataset.courseMobilePerfR126='';
+    document.head.append(perf);
+  }
 
   const shell=document.querySelector('.course-top .course-shell');
   const legacyNav=shell?.querySelector('.course-links');
