@@ -18,54 +18,55 @@
   rail.innerHTML=`
     <a class="resource-link resource-story" href="https://xhslink.cn/o/2EDGvnprZwG" target="_blank" rel="noopener noreferrer">
       <figure class="resource-story-media resource-story-media--portrait">
-        <img data-resource-b64="images/resources-r111/seika-chinese-admission.webp.b64" alt="京都精华大学中文入试与美术升学内容封面" loading="lazy" decoding="async" width="300" height="401">
+        <img data-resource-parts="images/resources-r111/seika-chinese-admission.webp.b64.part1|images/resources-r111/seika-chinese-admission.webp.b64.part2|images/resources-r111/seika-chinese-admission.webp.b64.part3|images/resources-r111/seika-chinese-admission.webp.b64.part4" alt="中文考精华：日本美术留学与京都精华大学相关内容封面" loading="lazy" decoding="async" width="300" height="401">
       </figure>
       <div class="resource-story-copy">
         <small>01 · 美术升学</small>
-        <b>京都精华大学｜中文入试与美术升学</b>
+        <b>中文考精华｜日本美术留学</b>
         <span>查看内容</span>
       </div>
     </a>
     <a class="resource-link resource-story" href="https://xhslink.cn/o/5Djzx1FPbYQ" target="_blank" rel="noopener noreferrer">
       <figure class="resource-story-media resource-story-media--portrait">
-        <img data-resource-b64="images/resources-r111/kuriko-common-test.webp.b64" alt="栗子老师共通考试介绍内容封面" loading="lazy" decoding="async" width="300" height="405">
+        <img data-resource-parts="images/resources-r111/kuriko-common-test.webp.b64.part1|images/resources-r111/kuriko-common-test.webp.b64.part2" alt="栗子共通考试介绍内容封面" loading="lazy" decoding="async" width="300" height="405">
       </figure>
       <div class="resource-story-copy">
         <small>02 · 共通考试</small>
-        <b>栗子老师｜共通考试介绍</b>
+        <b>栗子｜共通考试介绍</b>
         <span>查看内容</span>
       </div>
     </a>
     <a class="resource-link resource-story" href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer">
       <figure class="resource-story-media resource-story-media--landscape">
-        <img data-resource-b64="images/resources-r111/student-interview.webp.b64" alt="日本大学一般入试合格学生采访内容封面" loading="lazy" decoding="async" width="480" height="270">
+        <img data-resource-parts="images/resources-r111/student-interview.webp.b64.part1|images/resources-r111/student-interview.webp.b64.part2|images/resources-r111/student-interview.webp.b64.part3" alt="日本大学一般入试合格学生采访内容封面" loading="lazy" decoding="async" width="480" height="270">
       </figure>
       <div class="resource-story-copy">
         <small>03 · 合格学生采访</small>
-        <b>日本大学一般入试</b>
+        <b>日本大学一般入试｜合格学生采访</b>
         <span>查看内容</span>
       </div>
     </a>`;
 
   const hydrate=async img=>{
     if(!img||img.dataset.resourceLoaded==='true')return;
-    const path=img.dataset.resourceB64;
-    if(!path)return;
+    const parts=(img.dataset.resourceParts||'').split('|').filter(Boolean);
+    if(!parts.length)return;
     img.dataset.resourceLoaded='true';
     try{
-      const response=await fetch(path,{cache:'force-cache'});
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
-      const base64=(await response.text()).replace(/\s+/g,'');
+      const responses=await Promise.all(parts.map(path=>fetch(path,{cache:'force-cache'})));
+      const failed=responses.find(response=>!response.ok);
+      if(failed)throw new Error(`HTTP ${failed.status}`);
+      const base64=(await Promise.all(responses.map(response=>response.text()))).join('').replace(/\s+/g,'');
       img.src=`data:image/webp;base64,${base64}`;
-      img.removeAttribute('data-resource-b64');
-      try{await img.decode?.();}catch(_){/* decoded by browser when ready */}
+      img.removeAttribute('data-resource-parts');
+      try{await img.decode?.();}catch(_){/* browser will paint when ready */}
     }catch(error){
       img.dataset.resourceError='true';
       console.error('Admissions resource image failed to load',error);
     }
   };
 
-  const images=[...rail.querySelectorAll('img[data-resource-b64]')];
+  const images=[...rail.querySelectorAll('img[data-resource-parts]')];
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
