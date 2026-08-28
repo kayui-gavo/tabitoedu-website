@@ -56,4 +56,12 @@
     direct.innerHTML='<a href="tel:+818064319082">080-6431-9082</a><a href="mailto:jic56428@gmail.com">jic56428@gmail.com</a>';
     footerBrand.append(direct);
   }
+
+  /* r111 runs after the existing resource-rail rewrite, so the supplied covers become the final homepage state. */
+  if(!document.querySelector('script[data-home-r111]')){
+    const script=document.createElement('script');
+    script.src='site-home-r111.js?v=20260828r111';
+    script.dataset.homeR111='';
+    document.body.append(script);
+  }
 })();
