@@ -1,0 +1,178 @@
+/* r104 — consolidated Common Test visual layer. Replaces r98/r99/r101/r102 runtime CSS waterfall. */
+.r101-icon,.r101-mini-icon,.r101-icon-tile{display:inline-grid;place-items:center;flex:0 0 auto;color:#4d7f92}
+.r101-icon svg,.r101-mini-icon svg,.r101-icon-tile svg{display:block;width:100%;height:100%}
+.r101-mini-icon{width:17px;height:17px}
+.r101-icon-tile{width:34px;height:34px;padding:7px;border:1px solid #cfdbdf;background:#f5f8f9;color:#47788b}
+
+.kyotsu-page .course-head>span{display:flex;align-items:center;gap:8px;width:max-content}
+.kyotsu-page .course-head>span::before{content:"";width:7px;height:7px;border:1px solid #6f94a2;transform:rotate(45deg);background:#f8fafb;flex:0 0 auto}
+.kyotsu-page .course-head h2{display:flex;align-items:center;gap:12px}
+.kyotsu-page .course-head h2::after{content:"";width:34px;height:1px;background:#c7d5da;flex:0 0 auto}
+
+/* Adaptive schedule state. */
+.kyotsu-schedule-countdown{display:inline-flex!important;align-items:center!important;width:max-content!important;max-width:100%;margin-top:8px!important;padding:4px 8px!important;border:1px solid #c9d8de;border-radius:999px;background:#f5f8f9;color:#426b7a!important;font-size:9.9px!important;line-height:1.35!important;font-weight:800!important;letter-spacing:.005em;white-space:normal}
+.kyotsu-schedule-item.is-active-window .kyotsu-schedule-countdown{border-color:#83a9b8;background:#fff;color:#245d73!important}
+.kyotsu-schedule-item.is-upcoming .kyotsu-schedule-countdown{border-color:#d6e0e4;background:#fff;color:#526f7b!important}
+.kyotsu-schedule-item.is-ended{background:#fafbfb!important;opacity:.68}
+.kyotsu-schedule-item.is-ended>b,.kyotsu-schedule-item.is-ended>time,.kyotsu-schedule-item.is-ended>span:not(.kyotsu-schedule-countdown){color:#98a6ac!important;text-decoration-line:line-through;text-decoration-thickness:1px;text-decoration-color:#9eabb0}
+.kyotsu-schedule-item.is-ended>small{color:#a5b0b5!important}
+.kyotsu-schedule-item.is-ended .kyotsu-schedule-countdown{border-color:#dde4e7;background:#f3f5f6;color:#8b9a9f!important;text-decoration:none!important}
+.kyotsu-schedule-item.is-ended::after{display:none!important}
+.kyotsu-countdown-ready .kyotsu-schedule-item:not(.is-active-window)::after{display:none!important}
+
+.kyotsu-page .kyotsu-jumpnav a{font-size:11.4px}
+.kyotsu-page .kyotsu-jumpnav a.is-current{background:#f7fafb;color:#173f55}
+.kyotsu-page .kyotsu-jumpnav a:focus-visible{outline:2px solid #4c879e;outline-offset:-3px}
+.kyotsu-schedule-status{font-size:11.8px;line-height:1.62;padding:10px 13px}
+.kyotsu-schedule-tools{display:flex;justify-content:flex-end;margin:-3px 0 10px}
+.kyotsu-schedule-toggle{min-height:30px;padding:5px 9px;border:1px solid #cbd9de;background:#fff;color:#4c6e7c;font:inherit;font-size:10px;line-height:1.4;font-weight:750;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.kyotsu-schedule-toggle:focus-visible{outline:2px solid #4c879e;outline-offset:2px}
+@media(hover:hover){.kyotsu-schedule-toggle:hover{background:#f3f7f8;border-color:#9fb7c1;color:#173f55}}
+
+.kyotsu-schedule-item{transition:background-color .15s ease,opacity .15s ease;overflow:hidden}
+.kyotsu-schedule-item b{font-size:12.7px;line-height:1.45}
+.kyotsu-schedule-item time{font-size:10.9px;line-height:1.58}
+.kyotsu-schedule-item>span:not(.kyotsu-schedule-countdown){font-size:9.9px;line-height:1.56}
+.kyotsu-schedule-item.is-active-window{background:#edf5f7!important;box-shadow:inset 0 2px 0 #4f8498}
+.kyotsu-schedule-item.is-active-window b{color:#173f55}
+.kyotsu-schedule-item.is-upcoming{background:#fff}
+.kyotsu-schedule-section.is-hiding-ended .kyotsu-schedule-item.is-ended{display:none}
+.kyotsu-page .kyotsu-schedule-item small{display:inline-grid;place-items:center;width:24px;height:24px;margin-bottom:8px;border:1px solid #d3dfe3;background:#f8fafb;color:#718790;border-radius:50%;letter-spacing:0}
+.kyotsu-page .kyotsu-schedule-item.is-active-window small{border-color:#8fb0bc;background:#fff;color:#2f6d84}
+.kyotsu-page .kyotsu-schedule-item.is-ended small{background:#f4f6f7}
+.kyotsu-page .kyotsu-schedule-item::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:#6c96a6;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
+.kyotsu-page .kyotsu-schedule-item.is-active-window::before{transform:scaleX(1)}
+@media(hover:hover){
+  .kyotsu-schedule-item.is-upcoming:hover{background:#f8fafb}
+  .kyotsu-schedule-item.is-ended:hover{opacity:.82}
+  .kyotsu-page .kyotsu-schedule-item.is-upcoming:hover::before{transform:scaleX(.35)}
+}
+
+/* Hero + route icon treatment. */
+.kyotsu-page .kyotsu-hero-facts{background:#fbfcfc}
+.kyotsu-page .kyotsu-hero-facts>div{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 10px;align-items:center;position:relative}
+.kyotsu-page .kyotsu-hero-facts>div>.r101-icon-tile{grid-row:1/3}
+.kyotsu-page .kyotsu-hero-facts b,.kyotsu-page .kyotsu-hero-facts span{grid-column:2}
+.kyotsu-page .kyotsu-hero-facts>div::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#5a8798;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
+@media(hover:hover){
+  .kyotsu-page .kyotsu-hero-facts>div:hover .r101-icon-tile{border-color:#aec2ca;background:#eef4f6;color:#2f687f}
+  .kyotsu-page .kyotsu-hero-facts>div:hover::after{transform:scaleX(1)}
+}
+.kyotsu-page .kyotsu-definition>small{display:flex;align-items:center;gap:7px}
+.kyotsu-page .kyotsu-definition>small>.r101-mini-icon{width:16px;height:16px}
+.kyotsu-use-strip{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:11px;padding-top:10px;border-top:1px solid #e4eaed}
+.kyotsu-use-strip>span{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:1px solid #d5e0e4;background:#f8fafb;color:#536f7b;font-size:9.8px;line-height:1.35;font-weight:700}
+.kyotsu-use-strip>.kyotsu-use-label{padding-left:0;border:0;background:transparent;color:#81949c;font-size:9.4px;font-weight:750}
+.kyotsu-use-strip .r101-mini-icon{width:14px;height:14px;color:#5a8596}
+.kyotsu-page .kyotsu-route-line{display:grid;grid-template-columns:22px 86px minmax(0,1fr);gap:7px;align-items:center}
+.kyotsu-page .kyotsu-route-line>.r101-mini-icon{width:17px;height:17px;color:#698d9c}
+.kyotsu-page .kyotsu-route-line b,.kyotsu-page .kyotsu-route-line span{min-width:0}
+.kyotsu-page .kyotsu-definition-takeaway{position:relative;padding-left:31px}
+.kyotsu-page .kyotsu-definition-takeaway::before{content:"";position:absolute;left:10px;top:.76em;width:11px;height:7px;border-left:1.5px solid #618b9b;border-bottom:1.5px solid #618b9b;transform:skewX(-35deg) rotate(-45deg)}
+@media(min-width:761px){
+  .kyotsu-page .kyotsu-definition{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(220px,.88fr);gap:10px 24px;align-items:start;max-width:760px}
+  .kyotsu-page .kyotsu-definition>small{grid-column:1/-1;margin-bottom:0}
+  .kyotsu-page .kyotsu-definition>p:not(.kyotsu-definition-note){grid-column:1;margin:0}
+  .kyotsu-page .kyotsu-definition .kyotsu-definition-note{grid-column:2;margin:0;padding-left:18px;border-left:1px solid #dce5e8}
+  .kyotsu-page .kyotsu-definition .kyotsu-use-strip{grid-column:1/-1;margin-top:2px}
+}
+
+.kyotsu-page .kyotsu-schedule-status::before{display:none!important}
+.kyotsu-page .kyotsu-schedule-status>.r101-mini-icon{width:17px;height:17px;color:#4b8195}
+.kyotsu-page .kyotsu-schedule-item b{display:flex;align-items:center;gap:6px}
+.kyotsu-page .kyotsu-schedule-item b>.r101-mini-icon{width:16px;height:16px;color:#79949f}
+.kyotsu-page .kyotsu-schedule-item.is-active-window b>.r101-mini-icon{color:#2f6f87}
+.kyotsu-page .kyotsu-schedule-item.is-ended b>.r101-mini-icon{color:#9aa9af}
+
+/* Subjects. */
+.kyotsu-subject-group{position:relative;padding-top:17px;padding-bottom:17px;transition:background-color .15s ease}
+.kyotsu-subject-group header h3{font-size:15.7px}
+.kyotsu-subject-group header span{font-size:9.7px}
+.kyotsu-subject-group b{font-size:12.2px;line-height:1.5}
+.kyotsu-subject-group li span{font-size:10.3px;line-height:1.56}
+.kyotsu-page .kyotsu-subject-group header>div{display:grid;grid-template-columns:30px minmax(0,1fr);grid-template-rows:auto auto;gap:1px 7px;align-items:center}
+.kyotsu-page .kyotsu-subject-group header>div>.r101-icon-tile{grid-row:1/3;width:28px;height:28px;padding:6px;border-color:#d7e1e5;background:#f7f9fa;color:#678a99}
+.kyotsu-page .kyotsu-subject-group header h3,.kyotsu-page .kyotsu-subject-group header span{grid-column:2}
+.kyotsu-page .kyotsu-subject-group header>small{display:inline-grid;place-items:center;width:23px;height:23px;padding:0;border:1px solid #d8e2e6;background:#f8fafb;color:#768b94;font-size:8.5px;line-height:1;border-radius:50%}
+.kyotsu-page .kyotsu-subject-group::after{content:"";position:absolute;left:0;top:0;width:30px;height:2px;background:#7699a7;transform:scaleX(.55);transform-origin:left;transition:transform .18s ease}
+@media(hover:hover){
+  .kyotsu-subject-group:hover{background:#fbfcfc}
+  .kyotsu-subject-group li:hover{background:#f4f8f9}
+  .kyotsu-page .kyotsu-subject-group:hover header>div>.r101-icon-tile{border-color:#abc0c8;background:#eef4f6;color:#306b82}
+  .kyotsu-page .kyotsu-subject-group:hover::after{transform:scaleX(1)}
+}
+
+/* Fees + preparation. */
+.kyotsu-panel-head h3{font-size:18.5px}
+.kyotsu-page .kyotsu-fee-lead{align-items:center;position:relative;padding:9px 0 16px}
+.kyotsu-page .kyotsu-fee-lead>.r101-icon-tile{width:36px;height:36px;margin-right:4px}
+.kyotsu-page .kyotsu-fee-lead::after{content:"JPY";margin-left:auto;color:#9aabb2;font-size:9px;font-weight:800;letter-spacing:.1em}
+.kyotsu-fee-rules b{font-size:11.4px;line-height:1.5}
+.kyotsu-fee-rules span{font-size:10.3px;line-height:1.62}
+.kyotsu-page .kyotsu-fee-rules>div{position:relative;padding-left:14px}
+.kyotsu-page .kyotsu-fee-rules>div:nth-child(even){padding-left:27px}
+.kyotsu-page .kyotsu-fee-rules>div::before{content:"";position:absolute;left:0;top:16px;width:5px;height:5px;border:1px solid #7e9ca8;transform:rotate(45deg);background:#fff}
+.kyotsu-page .kyotsu-fee-rules>div:nth-child(even)::before{left:13px}
+.kyotsu-page .kyotsu-fee-examples>div{position:relative;overflow:hidden;padding-bottom:14px;transition:background-color .15s ease}
+.kyotsu-page .kyotsu-fee-examples small{font-size:9.4px}
+.kyotsu-page .kyotsu-fee-examples strong{font-size:16.6px}
+.kyotsu-page .kyotsu-fee-examples span{font-size:9.4px;line-height:1.48}
+.kyotsu-page .kyotsu-fee-examples>div::after{content:"";position:absolute;left:0;bottom:0;height:2px;background:#7397a6}
+.kyotsu-page .kyotsu-fee-examples>div:nth-child(1)::after{width:25%}
+.kyotsu-page .kyotsu-fee-examples>div:nth-child(2)::after{width:50%}
+.kyotsu-page .kyotsu-fee-examples>div:nth-child(3)::after{width:75%}
+.kyotsu-page .kyotsu-fee-examples>div:nth-child(4)::after{width:100%;background:#3e7890}
+@media(hover:hover){.kyotsu-page .kyotsu-fee-examples>div:hover{background:#f3f7f8}.kyotsu-page .kyotsu-fee-examples>div:last-child:hover{background:#e8f1f4}}
+
+.kyotsu-page .kyotsu-planning-lines{position:relative}
+.kyotsu-planning-lines li{position:relative;transition:background-color .15s ease,padding-left .15s ease}
+.kyotsu-page .kyotsu-planning-lines li>div{display:grid;grid-template-columns:27px minmax(0,1fr);grid-template-rows:auto auto;gap:2px 8px;align-items:start}
+.kyotsu-page .kyotsu-planning-lines li>div>.r101-mini-icon{grid-row:1/3;width:20px;height:20px;margin-top:1px;color:#6e909e}
+.kyotsu-page .kyotsu-planning-lines b,.kyotsu-page .kyotsu-planning-lines span{grid-column:2}
+.kyotsu-planning-lines b{font-size:12.1px}
+.kyotsu-planning-lines span{font-size:10.6px;line-height:1.64}
+.kyotsu-planning-note{font-size:10.5px;line-height:1.66}
+.kyotsu-page .kyotsu-planning-lines em{display:grid;place-items:center;width:26px;height:26px;border:1px solid #cfdce1;background:#fff;color:#6f8791;border-radius:50%;padding:0}
+.kyotsu-page .kyotsu-planning-lines li:not(:last-child)::after{content:"";position:absolute;left:13px;top:39px;bottom:-1px;width:1px;background:#d7e2e6}
+@media(hover:hover){.kyotsu-planning-lines li:hover{padding-left:5px;background:#f8fafb}}
+
+.kyotsu-page .course-actions a:focus-visible,.kyotsu-source-link:focus-visible,.kyotsu-policy-link:focus-visible,.kyotsu-page .course-cta a:focus-visible{outline:2px solid #4c879e;outline-offset:3px}
+
+/* Skip expensive layout/paint work for sections far below the first viewport. */
+@supports(content-visibility:auto){
+  .kyotsu-page #subjects,.kyotsu-page .kyotsu-essentials-section,.kyotsu-page .course-switch,.kyotsu-page .course-cta{content-visibility:auto;contain-intrinsic-size:auto 700px}
+}
+
+@media(max-width:760px){
+  .kyotsu-page .course-head h2::after{width:24px}
+  .kyotsu-page .kyotsu-route-line{grid-template-columns:20px 78px minmax(0,1fr)}
+  .kyotsu-page .kyotsu-fee-rules>div,.kyotsu-page .kyotsu-fee-rules>div:nth-child(even){padding-left:14px}
+  .kyotsu-page .kyotsu-fee-rules>div:nth-child(even)::before{left:0}
+}
+@media(max-width:620px){
+  .kyotsu-schedule-status{font-size:11.2px}
+  .kyotsu-schedule-item b{font-size:12px}
+  .kyotsu-schedule-item time{font-size:10.3px}
+  .kyotsu-schedule-countdown{font-size:9.4px!important}
+  .kyotsu-subject-group b{font-size:12px}
+  .kyotsu-subject-group li span{font-size:10.1px}
+  .kyotsu-fee-rules b{font-size:11.2px}
+  .kyotsu-fee-rules span,.kyotsu-planning-lines span{font-size:10.4px}
+}
+@media(max-width:520px){
+  .r101-icon-tile{width:31px;height:31px;padding:7px}
+  .kyotsu-page .kyotsu-hero-facts>div{grid-template-columns:31px minmax(0,1fr);gap:2px 8px}
+  .kyotsu-page .kyotsu-route-line{grid-template-columns:18px 72px minmax(0,1fr);gap:6px}
+  .kyotsu-use-strip{gap:5px}
+  .kyotsu-use-strip>span{font-size:9.4px}
+  .kyotsu-page .kyotsu-subject-group header>div{grid-template-columns:28px minmax(0,1fr)}
+  .kyotsu-page .kyotsu-schedule-item small{width:22px;height:22px;font-size:8.6px}
+  .kyotsu-page .kyotsu-subject-group header>small{width:22px;height:22px}
+  .kyotsu-page .course-head h2::after{display:none}
+  .kyotsu-page .course-head>span::before{width:6px;height:6px}
+  .kyotsu-page .kyotsu-planning-lines li:not(:last-child)::after{left:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .r101-icon,.r101-mini-icon,.r101-icon-tile{transition:none!important}
+  .kyotsu-page *,.kyotsu-page *::before,.kyotsu-page *::after{transition:none!important;animation:none!important}
+}
