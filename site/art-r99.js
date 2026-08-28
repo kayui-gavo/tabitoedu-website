@@ -7,6 +7,14 @@
     style.dataset.artVisualR104='';
     document.head.append(style);
   }
+  if(!document.querySelector('link[data-course-mobile-r124]')){
+    const mobile=document.createElement('link');
+    mobile.rel='stylesheet';
+    mobile.href='course-mobile-r124.css?v=20260828r124';
+    mobile.media='(max-width:820px)';
+    mobile.dataset.courseMobileR124='';
+    document.head.append(mobile);
+  }
 
   const heroLine=document.querySelector('.art-jp-line');
   if(heroLine)heroLine.textContent='作品と実技を、志望校に合わせて磨く。';
