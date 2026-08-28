@@ -7,6 +7,14 @@
     style.dataset.kyotsuVisualR104='';
     document.head.append(style);
   }
+  if(!document.querySelector('link[data-course-mobile-r124]')){
+    const mobile=document.createElement('link');
+    mobile.rel='stylesheet';
+    mobile.href='course-mobile-r124.css?v=20260828r124';
+    mobile.media='(max-width:820px)';
+    mobile.dataset.courseMobileR124='';
+    document.head.append(mobile);
+  }
 
   const subjectTitle=document.querySelector('#subjects .course-head h2');
   if(subjectTitle)subjectTitle.textContent='开设科目';
