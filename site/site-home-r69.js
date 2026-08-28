@@ -99,30 +99,23 @@
     footerSiteNav.insertBefore(link,footerSiteNav.querySelector('a[href="#contact"]'));
   }
 
-  /* Keep only the visible course imagery on the initial path. Hidden panels warm on intent. */
+  /* r126: index.html owns course image src state. This layer only warms the next panel on intent.
+     The previous implementation removed/reassigned src after the inline tab script had already run,
+     which could race on mobile and leave a broken thumbnail. */
   const courseMedia={
     'course-panel-common':['images/hero_background_1.jpg','images/tabito-classroom-teaching.webp','images/hero_background_3.jpg'],
     'course-panel-eju':['images/hero_background_0.jpg','images/tabito-classroom-seminar.webp','images/hero_background_9.webp'],
     'course-panel-school':['images/hero_background_9.webp'],
     'course-panel-art':['images/student-work-figure-study.jpg','images/student-work-bust-charcoal.jpg','images/tabito-classroom-art.webp']
   };
-  const setPanelSources=(panelId,urls,showNow=false)=>{
-    const panel=document.getElementById(panelId);if(!panel)return;
-    [...panel.querySelectorAll('.course-panel-visual img')].forEach((img,index)=>{
-      const src=urls[Math.min(index,urls.length-1)];
-      img.removeAttribute('src');img.dataset.src=src;img.decoding='async';
-      if(showNow){img.loading='lazy';img.fetchPriority='low';img.src=src;delete img.dataset.src;}
-    });
-  };
-  setPanelSources('course-panel-common',courseMedia['course-panel-common'],true);
-  setPanelSources('course-panel-eju',courseMedia['course-panel-eju']);
-  setPanelSources('course-panel-school',courseMedia['course-panel-school']);
-  setPanelSources('course-panel-art',courseMedia['course-panel-art']);
-
   const warmed=new Set();
   const warmUrls=urls=>urls.forEach(src=>{
-    if(warmed.has(src))return;warmed.add(src);
-    const image=new Image();image.decoding='async';image.fetchPriority='low';image.src=src;
+    if(warmed.has(src))return;
+    warmed.add(src);
+    const image=new Image();
+    image.decoding='async';
+    image.fetchPriority='low';
+    image.src=src;
   });
   document.querySelectorAll('.course-choice').forEach(choice=>{
     const urls=courseMedia[choice.getAttribute('aria-controls')];if(!urls)return;
@@ -132,46 +125,10 @@
     choice.addEventListener('touchstart',warm,{once:true,passive:true});
   });
 
-  /* Result proofs are prefetched near the viewport instead of in one post-load burst. */
-  const cards=[...document.querySelectorAll('[data-result-b64]')];
-  const hydrate=async card=>{
-    if(card.dataset.imageSrc)return card.dataset.imageSrc;
-    if(card.dataset.loading==='true')return null;
-    card.dataset.loading='true';
-    try{
-      const response=await fetch(card.dataset.resultB64,{cache:'force-cache'});
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
-      const base64=(await response.text()).replace(/\s+/g,'');
-      const src=`data:image/webp;base64,${base64}`;
-      const img=card.querySelector('img');
-      if(img){img.src=src;img.loading='lazy';img.fetchPriority='low';try{await img.decode?.();}catch(_){} }
-      card.dataset.imageSrc=src;card.dataset.loaded='true';return src;
-    }catch(error){card.dataset.error='true';console.error('Result image failed to load',error);return null;}
-    finally{delete card.dataset.loading;}
-  };
-  cards.forEach(card=>{
-    const load=()=>hydrate(card);
-    card.addEventListener('pointerenter',load,{once:true,passive:true});
-    card.addEventListener('focus',load,{once:true});
-    card.addEventListener('touchstart',load,{once:true,passive:true});
-  });
-  if('IntersectionObserver' in window){
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(!entry.isIntersecting)return;
-      hydrate(entry.target);
-      observer.unobserve(entry.target);
-    }),{rootMargin:'1000px 0px'});
-    cards.forEach(card=>observer.observe(card));
-  }else{
-    const schedule=()=>cards.forEach(hydrate);
-    if('requestIdleCallback' in window)requestIdleCallback(schedule,{timeout:1800});
-    else setTimeout(schedule,900);
-  }
-
   const loadR92=()=>{
     if(document.querySelector('script[data-home-r92]'))return;
     const script=document.createElement('script');
-    script.src='site-home-r92.js?v=20260828r121';script.dataset.homeR92='';
+    script.src='site-home-r92.js?v=20260828r126';script.dataset.homeR92='';
     document.body.append(script);
   };
 
