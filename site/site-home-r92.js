@@ -94,7 +94,7 @@
 
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r122';
+    script.src='site-home-r112.js?v=20260828r123';
     script.dataset.homeR112='';
     document.body.append(script);
   }
