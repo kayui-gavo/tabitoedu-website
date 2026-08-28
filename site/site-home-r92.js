@@ -57,11 +57,11 @@
     footerBrand.append(direct);
   }
 
-  /* r111 runs after the existing resource-rail rewrite, so the supplied covers become the final homepage state. */
-  if(!document.querySelector('script[data-home-r111]')){
+  /* r112 is the final homepage admissions-resource layer. */
+  if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r111.js?v=20260828r111';
-    script.dataset.homeR111='';
+    script.src='site-home-r112.js?v=20260828r112';
+    script.dataset.homeR112='';
     document.body.append(script);
   }
 })();
