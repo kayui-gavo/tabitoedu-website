@@ -19,6 +19,11 @@
     script.src='course-visual-r101.js?v=20260828r101';script.dataset.courseVisualR101='';script.async=false;
     document.head.append(script);
   }
+  if(!document.querySelector('link[data-course-visual-r102]')){
+    const style=document.createElement('link');
+    style.rel='stylesheet';style.href='course-visual-r102.css?v=20260828r102';style.dataset.courseVisualR102='';
+    document.head.append(style);
+  }
 
   const schedule=[
     {start:'2026-07-01',end:'2026-10-02',kind:'range'},
