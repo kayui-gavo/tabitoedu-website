@@ -64,12 +64,12 @@
       <figure class="resource-story-media resource-story-media--landscape"><img data-resource-parts="images/resources-r111/student-interview.webp.b64.part1|images/resources-r111/student-interview.webp.b64.part2|images/resources-r111/student-interview.webp.b64.part3" alt="日本大学一般入试合格学生采访内容封面" loading="lazy" decoding="async" width="480" height="270"></figure>
       <div class="resource-story-copy"><small>04 · 合格学生采访</small><b>日本大学一般入试｜合格学生采访</b><span>查看内容</span></div>
     </a>
-    <a class="resource-link resource-story resource-story--text" href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer">
-      <div class="resource-story-media resource-story-media--editorial" aria-hidden="true"><div class="resource-editorial-cover"><em>WECHAT · GUIDE</em><div><strong>共通考试<br>政策与报考说明</strong><i></i></div><span>微信公众号 <b>ARTICLE</b></span></div></div>
+    <a class="resource-link resource-story" href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer">
+      <figure class="resource-story-media resource-story-media--landscape"><img data-resource-parts="images/resources-r117/wechat-guide.webp.b64" alt="共通考试政策与报考说明彩铅插图" loading="lazy" decoding="async" width="480" height="360"></figure>
       <div class="resource-story-copy"><small>05 · 微信公众号</small><b>共通考试｜政策与报考说明</b><span>阅读全文</span></div>
     </a>
-    <a class="resource-link resource-story resource-story--text" href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">
-      <div class="resource-story-media resource-story-media--editorial" aria-hidden="true"><div class="resource-editorial-cover"><em>CHINA.COM · MEDIA</em><div><strong>旅人教育<br>媒体报道</strong><i></i></div><span>中华网 · 2026.04 <b>PRESS</b></span></div></div>
+    <a class="resource-link resource-story" href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">
+      <figure class="resource-story-media resource-story-media--landscape"><img data-resource-parts="images/resources-r117/media-report.webp.b64" alt="旅人教育媒体报道彩铅插图" loading="lazy" decoding="async" width="480" height="360"></figure>
       <div class="resource-story-copy"><small>06 · 中华网</small><b>旅人教育｜媒体报道</b><span>阅读全文</span></div>
     </a>`;
 
