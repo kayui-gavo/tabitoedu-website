@@ -1,6 +1,13 @@
 (()=>{
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  if(window.matchMedia('(max-width:820px)').matches&&!document.querySelector('script[data-course-mobile-nav-r125]')){
+    const mobileNav=document.createElement('script');
+    mobileNav.src='course-mobile-nav-r125.js?v=20260828r125';
+    mobileNav.dataset.courseMobileNavR125='';
+    document.body.append(mobileNav);
+  }
+
   /* r94: fees and planning now share one compact information region. */
   const feeJump=document.querySelector('.kyotsu-jumpnav a[href="#fees"]');
   if(feeJump)feeJump.textContent='费用・准备';
