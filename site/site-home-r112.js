@@ -10,6 +10,15 @@
     document.head.append(style);
   }
 
+  if(!document.querySelector('link[data-home-mobile-r124]')){
+    const mobile=document.createElement('link');
+    mobile.rel='stylesheet';
+    mobile.href='site-mobile-r124.css?v=20260828r124';
+    mobile.media='(max-width:820px)';
+    mobile.dataset.homeMobileR124='';
+    document.head.append(mobile);
+  }
+
   if(!document.querySelector('style[data-home-r113-compact]')){
     const compact=document.createElement('style');
     compact.dataset.homeR113Compact='';
