@@ -1,0 +1,52 @@
+name: Cleanup old branches
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-old-branches.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete obsolete branches
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branches=(
+            'kayui/ai-entity-seo-v1'
+            'kayui/debug-blobs'
+            'kayui/debug-blobs2'
+            'kayui/debug-blobs3'
+            'kayui/debug-blobs4'
+            'kayui/debug-blobs5'
+            'kayui/debug-blobs6'
+            'kayui/debug-blobs7'
+            'kayui/debug-blobs8'
+            'kayui/site-polish-v3-preserve'
+            'kayui/site-redesign-v2'
+            'kayui/tokyo-science-assets-complete'
+            'kayui/upload-all-tokyo-science-assets'
+            'kayui/upload-assets-bundle'
+            'preview-r40-r47-safety'
+            'preview-r40-r47-work'
+            'preview-r47-temp'
+            'cleanup-branches-r123'
+            'cleanup-branches-r123-run'
+            'cleanup-branches-r123-run2'
+            'cleanup-branches-r123-run3'
+            'cleanup-branches-r123-run4'
+            'cleanup-branches-r123-run5'
+          )
+          for branch in "${branches[@]}"; do
+            encoded=$(python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$branch")
+            echo "Deleting $branch"
+            gh api --method DELETE "repos/${GH_REPO}/git/refs/heads/${encoded}" || true
+          done
