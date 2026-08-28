@@ -65,11 +65,11 @@
       <div class="resource-story-copy"><small>04 · 合格学生采访</small><b>合格学生采访｜极限逆袭！速通日本大学一般入试</b><span>查看内容</span></div>
     </a>
     <a class="resource-link resource-story" href="https://mp.weixin.qq.com/s/ZMtJsMmy-gfTXMUUDcR7HQ" target="_blank" rel="noopener noreferrer">
-      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r121/wechat.webp?v=20260828r121" alt="共通考试政策与报考说明彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="640" height="480"></figure>
+      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r121/wechat.webp?v=20260828r122" alt="共通考试政策与报考说明彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="320" height="240"></figure>
       <div class="resource-story-copy"><small>05 · 微信公众号</small><b>政策解读｜「共通考试」是否能成为秒杀 EJU 的日本留学新选择？</b><span>阅读全文</span></div>
     </a>
     <a class="resource-link resource-story" href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">
-      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r121/media.webp?v=20260828r121" alt="旅人教育媒体报道彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="480" height="360"></figure>
+      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r121/media.webp?v=20260828r122" alt="旅人教育媒体报道彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="320" height="240"></figure>
       <div class="resource-story-copy"><small>06 · 中华网</small><b>媒体报道｜谈近十年中国高考外语科目中的变革</b><span>阅读全文</span></div>
     </a>`;
 })();
