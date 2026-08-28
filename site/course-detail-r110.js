@@ -10,6 +10,12 @@
     mobile.dataset.courseMobileR124='';
     document.head.append(mobile);
   }
+  if(window.matchMedia('(max-width:820px)').matches&&!document.querySelector('script[data-course-mobile-nav-r125]')){
+    const mobileNav=document.createElement('script');
+    mobileNav.src='course-mobile-nav-r125.js?v=20260828r125';
+    mobileNav.dataset.courseMobileNavR125='';
+    document.body.append(mobileNav);
+  }
 
   const paths={
     person:'<circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4 3.2-6 7-6s6.3 2 7 6"/>',
