@@ -69,7 +69,7 @@
       <div class="resource-story-copy"><small>05 · 微信公众号</small><b>政策解读｜「共通考试」是否能成为秒杀 EJU 的日本留学新选择？</b><span>阅读全文</span></div>
     </a>
     <a class="resource-link resource-story" href="https://m.tech.china.com/mtz/touzi/2026/0430/230973.html" target="_blank" rel="noopener noreferrer">
-      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r123/media.webp?v=20260828r123" alt="旅人教育媒体报道采访彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="640" height="480"></figure>
+      <figure class="resource-story-media resource-story-media--landscape"><img src="images/resources-r123/media.webp?v=20260828r123" alt="旅人教育媒体报道采访彩铅插图" loading="lazy" decoding="async" fetchpriority="low" width="480" height="360"></figure>
       <div class="resource-story-copy"><small>06 · 中华网</small><b>媒体报道｜谈近十年中国高考外语科目中的变革</b><span>阅读全文</span></div>
     </a>`;
 })();
