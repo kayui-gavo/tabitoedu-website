@@ -57,10 +57,10 @@
     footerBrand.append(direct);
   }
 
-  /* r115 loads the corrected TUS cover as a normal binary WebP. */
+  /* r116 uses the validated TUS cover file and bypasses the broken chunk assembly. */
   if(!document.querySelector('script[data-home-r112]')){
     const script=document.createElement('script');
-    script.src='site-home-r112.js?v=20260828r115';
+    script.src='site-home-r112.js?v=20260828r116';
     script.dataset.homeR112='';
     document.body.append(script);
   }
