@@ -57,7 +57,7 @@
       <div class="resource-story-copy"><small>02 · 共通考试</small><b>栗子老师｜共通考试介绍</b><span>查看内容</span></div>
     </a>
     <a class="resource-link resource-story" href="https://xhslink.cn/m/5QyfLyRRHK1" target="_blank" rel="noopener noreferrer">
-      <figure class="resource-story-media resource-story-media--portrait"><img data-resource-parts="images/resources-r112/kuriko-tus.webp.b64.part1?v=20260828r114|images/resources-r112/kuriko-tus.webp.b64.part2?v=20260828r114|images/resources-r112/kuriko-tus.webp.b64.part3?v=20260828r114|images/resources-r112/kuriko-tus.webp.b64.part4?v=20260828r114" alt="栗子老师日本留学信息差与东京理科大学中文考试内容封面" loading="lazy" decoding="async" width="400" height="533"></figure>
+      <figure class="resource-story-media resource-story-media--portrait"><img src="images/resources-r115/kuriko-tus.webp?v=20260828r115" alt="栗子老师日本留学信息差与东京理科大学中文考试内容封面" loading="lazy" decoding="async" width="540" height="720"></figure>
       <div class="resource-story-copy"><small>03 · 日留信息差</small><b>栗子老师｜用中文能考东京理科大学！福报！</b><span>查看内容</span></div>
     </a>
     <a class="resource-link resource-story" href="https://xhslink.cn/o/17CWJJBamPK" target="_blank" rel="noopener noreferrer">
