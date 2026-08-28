@@ -90,3 +90,8 @@
 @media(prefers-reduced-motion:reduce){
   .art-page *,.art-page *::before,.art-page *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+/* r123 — replace the generic hero slogan with concrete admissions language. */
+.art-page .art-jp-line{font-size:0!important}
+.art-page .art-jp-line::after{content:'作品と実技を、志望校に合わせて磨く。';font-size:clamp(23px,2.4vw,34px);line-height:1.38;font-weight:600}
+@media(max-width:520px){.art-page .art-jp-line::after{font-size:23px}}
