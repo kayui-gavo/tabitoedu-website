@@ -1,0 +1,67 @@
+/* r105 — EJU page hierarchy refinement. Keep the page restrained and editorial, not card-heavy. */
+.eju-page{font-feature-settings:"palt" 1;text-rendering:optimizeLegibility}
+.eju-page :focus-visible{outline:2px solid #4c879e;outline-offset:3px}
+
+.eju-page .course-hero{background:#fff}
+.eju-page .course-hero-grid{grid-template-columns:minmax(0,1fr) 420px;gap:68px}
+.eju-page .eju-hero-media{justify-self:end;width:min(100%,420px);height:292px;border-top:2px solid #173f55;border-bottom:1px solid #d4e0e5;background:#eef3f5;overflow:hidden}
+.eju-page .eju-hero-media figure{display:block;width:100%;height:292px;margin:0;position:relative}
+.eju-page .eju-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.eju-page .eju-hero-media figcaption{position:absolute;left:0;right:auto;bottom:0;padding:6px 9px;background:rgba(16,47,67,.84);color:#fff;font-size:10px;font-weight:700}
+
+/* Small editorial anchors make the sections easier to scan without adding another icon layer. */
+.eju-page .course-head>span{position:relative;padding-left:15px}
+.eju-page .course-head>span::before{content:"";position:absolute;left:1px;top:13px;width:7px;height:7px;border:1px solid #7e9aa6;transform:rotate(45deg)}
+.eju-page .course-head h2{display:flex;align-items:center;gap:14px}
+.eju-page .course-head h2::after{content:"";width:34px;height:1px;background:#b8c8ce;flex:0 0 auto}
+
+.eju-page .course-grid{counter-reset:eju-scope}
+.eju-page .course-card{position:relative;min-height:166px;padding:25px 23px 22px}
+.eju-page .course-card::before{counter-increment:eju-scope;content:"0" counter(eju-scope);display:block;margin-bottom:19px;color:#91a4ac;font-size:10px;font-weight:800;letter-spacing:.05em}
+.eju-page .course-card b{font-size:15px}
+.eju-page .course-card p{max-width:330px}
+
+.eju-page .course-list>div{position:relative;min-height:76px;align-items:start}
+.eju-page .course-list b{font-size:12.8px}
+.eju-page .course-list span{line-height:1.62}
+.eju-page .course-list>div::after{content:"";position:absolute;left:20px;bottom:0;width:28px;height:1px;background:#b7c8ce;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
+
+.eju-page .course-case{border-top:2px solid #173f55;background:#fff}
+.eju-page .course-case article{position:relative;min-height:150px;padding:25px 28px 25px 53px}
+.eju-page .course-case article::before{content:"";position:absolute;left:26px;top:31px;width:9px;height:9px;border:1px solid #7897a4;transform:rotate(45deg)}
+.eju-page .course-case h3{font-size:19px}
+.eju-page .course-case p{max-width:440px}
+
+/* Defer below-the-fold painting on long mobile pages without changing content. */
+@supports(content-visibility:auto){
+  .eju-page main>.course-section{content-visibility:auto;contain-intrinsic-size:1px 440px}
+}
+
+@media(hover:hover){
+  .eju-page .course-list>div:hover::after{transform:scaleX(1)}
+  .eju-page .course-card{transition:background-color .16s ease}
+  .eju-page .course-card:hover{background:#f9fbfc}
+}
+
+@media(max-width:1080px){
+  .eju-page .course-hero-grid{grid-template-columns:1fr;gap:38px}
+  .eju-page .eju-hero-media{justify-self:start;width:min(100%,620px)}
+}
+@media(max-width:760px){
+  .eju-page .course-head h2::after{width:24px}
+  .eju-page .course-card{min-height:145px}
+  .eju-page .course-case article{padding-left:48px}
+  .eju-page .course-case article::before{left:23px}
+}
+@media(max-width:620px){
+  .eju-page .eju-hero-media,.eju-page .eju-hero-media figure{height:220px;width:100%}
+  .eju-page .course-head>span{padding-left:13px}
+  .eju-page .course-head h2::after{display:none}
+  .eju-page .course-card{min-height:0;padding:21px 19px}
+  .eju-page .course-card::before{margin-bottom:11px}
+  .eju-page .course-case article{min-height:0;padding:22px 20px 22px 45px}
+  .eju-page .course-case article::before{left:21px;top:28px}
+}
+@media(prefers-reduced-motion:reduce){
+  .eju-page *,.eju-page *::before,.eju-page *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
